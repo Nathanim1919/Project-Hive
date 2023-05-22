@@ -1,0 +1,31 @@
+.testimonials{
+    display: grid;
+    place-items: center;
+}
+
+.testimonials > h1 span{
+    padding: .2rem 3rem;
+    color: #fff;
+    background: linear-gradient(to right, rgba(0, 0, 255, 0),blue,rgba(0, 0, 255, 0));
+}
+
+.testimonial-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    place-items: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.testimonial{
+    position: relative;
+    border: 1px solid #eee;
+}
+
+.testimonial img{
+   width: 150px;
+   height: 150px;
+   border-radius: 50%;
+   object-fit: cover;
+}
+

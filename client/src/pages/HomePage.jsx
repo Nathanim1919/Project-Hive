@@ -3,9 +3,14 @@ import Header from "../components/header/header";
 import "../styles/homepage.css";
 import { NavLink } from "react-router-dom";
 import {TbForbid2} from 'react-icons/tb'
-import {AiOutlineDown} from 'react-icons/ai'
+import FAQ from "../components/faq/faq";
+import Testimonial from "../components/testimonial/testimonial";
+import Footer from "../components/footer/Footer";
+
 
 export default function HomePage() {
+
+
   return (
     <div>
       <Header />
@@ -141,90 +146,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      <section className="faq">
-        <h1>FAQ</h1>
-        <div className="faq-list">
-          <div>
-            <h2>How do I create a new project? <AiOutlineDown/></h2>
-            <p>
-              As a Project Executive or Project Manager, you have the ability to
-              create new projects. Navigate to the Projects section on the
-              dashboard and click on the "Create Project" button. Fill in the
-              necessary details such as project name, description, and assigned
-              team members.
-            </p>
-          </div>
-
-          <div>
-            <h2>How can I view the tasks assigned to me?<AiOutlineDown/></h2>
-            <p>
-              As a Team Member, you can view your assigned tasks in the Task
-              Management section. The tasks assigned to you will be listed,
-              along with their deadlines and priority levels.
-            </p>
-          </div>
-
-          <div>
-            <h2>Can I track the overall progress of my team's projects?<AiOutlineDown/></h2>
-            <p>
-              Yes, as a Project Executive or Project Manager, you can track the
-              progress of your team's projects on the dashboard. The progress
-              bar and status indicators will provide a visual representation of
-              each project's completion status.
-            </p>
-          </div>
-
-          <div>
-            <h2>How can I update the status of a task?<AiOutlineDown/></h2>
-            <p>
-              As a Team Member, you can update the status of a task by
-              navigating to the Task Management section. Select the task and
-              mark it as "In Progress," "Completed," or any other relevant
-              status.
-            </p>
-          </div>
-
-          <div>
-            <h2>How do I schedule a meeting or event for my team?<AiOutlineDown/></h2>
-            <p>
-              Project Executives and Project Managers have the ability to
-              schedule meetings or events. In the Event Countdown section, click
-              on the "Add Event" button and provide the event details such as
-              name, date, and time.
-            </p>
-          </div>
-
-          <div>
-            <h2>How can I collaborate with my team members on a specific project?<AiOutlineDown/></h2>
-            <p>
-              Utilize the Collaboration section to engage in project-specific
-              discussions and file sharing. Create discussion threads, comment
-              on posts, and upload project-related files for seamless
-              collaboration with your team members.
-            </p>
-          </div>
-
-          <div>
-            <h2>How do I update my profile information or contact details?<AiOutlineDown/></h2>
-            <p>
-              In the Profile section, click on the "Edit Profile" button. Update
-              your personal information, contact details, and preferences. Click
-              "Save" to apply the changes.
-            </p>
-          </div>
-
-          <div>
-            <h2>What should I do if I encounter technical issues or need support? <AiOutlineDown/></h2>
-            <p>
-              If you experience technical issues or require support, reach out
-              to the designated support team by submitting a support ticket or
-              contacting the IT department. They will assist you in resolving
-              any issues or answering your questions.
-            </p>
-          </div>
-        </div>
-      </section>
+      <Testimonial/>
+      <FAQ/>
+      <Footer/>
     </div>
   );
 }

@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
 section.hero{
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-height: 100vh;
+    
 }
 .hero .hero-content{
     position: absolute;
@@ -63,6 +66,7 @@ section.hero{
     max-height: 100vh;
     margin-top: 3rem;
     margin-bottom: 13rem;
+    font-family: 'Poppins', sans-serif;
 }
 
 .key-features >h1,
@@ -114,7 +118,7 @@ section.hero{
 }
 
 .f1 .content{
-    top: -1rem;
+    top: -0rem;
 }
 .f2 .content{
     top: -2rem;
@@ -131,11 +135,12 @@ section.hero{
 
 .house-rules{
     display: grid;
+    font-family: 'Poppins', sans-serif;
 }
 
 .rules{
     display: grid;
-    grid-template-columns: .8fr 1.2fr;
+    grid-template-columns: 1fr 1fr;
     place-items: center;
     padding: 2rem;
 }
@@ -158,8 +163,9 @@ section.hero{
     gap: 1rem;
 }
 .rule-content ul li{
+    width: 100%;
     display: grid;
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-align: left;
     place-items: center;
     gap: 1rem;
@@ -173,6 +179,11 @@ section.hero{
     width: 60%;
     margin: 2rem auto;
     max-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+.faq > h1{
+    color: #ffffff;
+    background: linear-gradient(to right,rgba(0, 0, 255, 0),rgba(0, 0, 255, 0.075),rgba(0, 0, 255, 0.301),blue,blue,rgba(0, 0, 255, 0.137),rgba(0, 0, 255, 0.055),rgba(0, 0, 255, 0));
 }
 
 .faq .faq-list{
@@ -184,6 +195,8 @@ section.hero{
     text-align: left;
     padding: .5rem;
     border-bottom:1px solid #ddd ;
+    position: relative;
+    cursor: pointer;
 }
 .faq .faq-list > div h2{
     display: flex;
@@ -195,7 +208,10 @@ section.hero{
     margin: .51rem;
 }
 .faq .faq-list > div > p{
-    display: none;
+    background-color: #ffffff;
+    padding: .5rem;
+    color: #726e6e;
+    transition: all 1s ease-in-out;
 }
 
 /* .faq .faq-list > div:hover p{
