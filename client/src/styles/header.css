@@ -1,0 +1,41 @@
+.headerContainer{
+    background-color: #fff;
+    padding:.1rem 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.logo .icon{
+    font-size: 1.5rem;
+    display: grid;
+    place-items: center;
+}
+
+nav,.sign{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sign{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.sign > *{
+    border: 1px solid #000;
+    padding: .2rem 1rem;
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+    background-color: rgb(35, 112, 253);
+    color: #fff;
+    border: 1px solid rgba(34, 33, 33, 0.096);
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.sign > *:first-child{
+    color: #000;
+    background-color: transparent;
+}
