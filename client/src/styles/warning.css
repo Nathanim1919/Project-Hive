@@ -1,0 +1,27 @@
+.backdrop{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.329);
+    top: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+}
+.warning-page{
+    width: 70%;
+    background-color: #fff;
+    padding:4rem 2rem;
+    padding-top: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.116);
+}
+
+.button-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+}

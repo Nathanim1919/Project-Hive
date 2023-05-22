@@ -19,6 +19,9 @@ section.hero{
     backdrop-filter: blur(0px);
     background-color: rgba(255, 255, 255, 0.13);   
 }
+.hero .hero-content h1{
+    font-size: 2.8rem;
+}
 .hero-content article{
     font-size: 1.5rem;
     font-weight: 400;
@@ -66,7 +69,6 @@ section.hero{
     max-height: 100vh;
     margin-top: 3rem;
     margin-bottom: 13rem;
-    font-family: 'Poppins', sans-serif;
 }
 
 .key-features >h1,
@@ -203,6 +205,7 @@ section.hero{
     align-items: center;
     justify-content: space-between;
     font-weight: 400;
+    font-size: 1.2rem;
 }
 .faq .faq-list > div > *{
     margin: .51rem;

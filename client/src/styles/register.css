@@ -1,0 +1,71 @@
+.registration-page {
+  max-width: 700px;
+  margin:1rem auto;
+  padding: 2rem;
+  max-height: 100vh;
+  background-color: rgb(154, 215, 255);
+  display: grid;
+  place-items: center;
+}
+.registration-form{
+    width: 90%;
+    padding: 3rem;
+    display: grid;
+}
+
+.registration-page h1 {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  position: relative;
+}
+.form-group ul{
+  position: absolute;
+  z-index: 3;
+  top: -10%;
+  padding: 1rem;
+  right: 0;
+  background-color: #ffffff67;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 5px;
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+}
+
+.form-group ul li{
+    list-style: none;
+    cursor: pointer;
+}
+.form-group ul li:hover{
+   color: #0056b3;
+}
+
+.form-sex ul{
+right: -30%;
+display: none;
+    
+}
+
+input{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

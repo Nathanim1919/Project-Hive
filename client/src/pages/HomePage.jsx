@@ -6,6 +6,7 @@ import {TbForbid2} from 'react-icons/tb'
 import FAQ from "../components/faq/faq";
 import Testimonial from "../components/testimonial/testimonial";
 import Footer from "../components/footer/Footer";
+import '../styles/global.css'
 
 
 export default function HomePage() {
