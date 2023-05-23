@@ -1,24 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 // import { useHistory } from "react-router-dom";
 import "../../styles/warning.css";
-import "../../styles/global.css"
+import "../../styles/global.css";
+import {NavLink} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export default function WarningPage() {
-//   const history = useHistory();
 
-  const handleEmployeeClick = () => {
-    // Handle logic when employee is confident about their employment
-    // Redirect them to the appropriate page
-  };
-
-  const handleGoBackClick = () => {
-    // Handle logic when user wants to go back or cancel registration/login
-    // Redirect them to the homepage or the previous page
-    // history.push("/");
-  };
+  const [close, setClose] = useState(false)
 
   return (
-    <div className="backdrop">
+    <div className={!close?"backdrop":"close-backdrop"}>
     <div className="warning-page">
       <h1>Access Warning</h1>
       <p>
@@ -32,12 +24,12 @@ export default function WarningPage() {
         access.
       </p>
       <div className="button-container">
-        <button className="employee-button" onClick={handleEmployeeClick}>
-          I am an employee
-        </button>
-        <button className="go-back-button" onClick={handleGoBackClick}>
-          Go back / Cancel
-        </button>
+        <NavLink onClick={()=> setClose(true)}>
+          Yes, I am an employee
+        </NavLink>
+        <NavLink to={'/'}>
+          Go back
+        </NavLink>
       </div>
     </div>
     </div>

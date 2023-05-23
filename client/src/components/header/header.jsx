@@ -14,8 +14,8 @@ export default function Header() {
         </div>
 
         <ul className="sign">
-          <NavLink>Sign in</NavLink>
-          <NavLink>Sign Up</NavLink>
+          <NavLink to={'/login'}>Sign in</NavLink>
+          <NavLink to={'/register'}>Sign Up</NavLink>
         </ul>
       </nav>
     </div>

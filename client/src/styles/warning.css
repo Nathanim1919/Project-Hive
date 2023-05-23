@@ -24,4 +24,26 @@
     align-items: center;
     justify-content: center;
     gap: 3rem;
+    flex-wrap: wrap;
 }
+
+
+.close-backdrop{
+    display: none;
+}
+
+.button-container a {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  width: 20%;
+}
+
+a:hover {
+  background-color: #0056b3;
+}
+
