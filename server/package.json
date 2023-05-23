@@ -4,7 +4,7 @@
   "description": "This project is my  final project for my computer science degree",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.0",
+    "nodemon": "^2.0.22",
     "passport": "^0.6.0"
   }
 }

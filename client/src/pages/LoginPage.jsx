@@ -20,7 +20,7 @@ export default function LoginPage() {
 
   return (
     <>
-      {/* <WarningPage/> */}
+      <WarningPage/>
 
       <div className="login-page">
         <div className="image-background">

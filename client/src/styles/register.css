@@ -22,9 +22,14 @@
 .registration-form >*{
   margin: 0;
 }
+/* .registration-form >*:nth-child(2){
+  margin-top: -1rem;
+} */
+
+
 
 .registration-form form{
-  height: 65%;
+  height: 70%;
   width: 90%;
 }
 
@@ -80,4 +85,9 @@ a.account{
 
 a.account:hover{
     background-color: transparent;
+}
+
+button{
+  width:100%;
+  background-color:blue;
 }

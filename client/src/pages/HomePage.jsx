@@ -7,6 +7,7 @@ import FAQ from "../components/faq/faq";
 import Testimonial from "../components/testimonial/testimonial";
 import Footer from "../components/footer/Footer";
 import '../styles/global.css'
+import {BiRun} from 'react-icons/bi';
 
 
 export default function HomePage() {
@@ -25,7 +26,7 @@ export default function HomePage() {
               Employee-Exclusive Platform.
             </article>
           </h1>
-          <NavLink>Get Started</NavLink>
+          <NavLink to={'/login'}>Get Started <BiRun/></NavLink>
         </div>
 
         <div className="hero-ill">

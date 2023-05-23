@@ -52,7 +52,10 @@ export default function RegistrationPage() {
           <form onSubmit={handleRegistration}>
             <div className="form-group">
               <input
-               onFocus={() => {setOpen1(false);setOpen(false)}}
+                onFocus={() => {
+                  setOpen1(false);
+                  setOpen(false);
+                }}
                 type="text"
                 placeholder="Name"
                 id="name"
@@ -63,7 +66,10 @@ export default function RegistrationPage() {
             </div>
             <div className="form-group">
               <input
-               onFocus={() => {setOpen1(false);setOpen(false)}}
+                onFocus={() => {
+                  setOpen1(false);
+                  setOpen(false);
+                }}
                 placeholder="Email"
                 type="email"
                 id="email"
@@ -74,7 +80,10 @@ export default function RegistrationPage() {
             </div>
             <div className="form-group">
               <input
-               onFocus={() => {setOpen1(false);setOpen(false)}}
+                onFocus={() => {
+                  setOpen1(false);
+                  setOpen(false);
+                }}
                 placeholder="Phone-Number"
                 type="tel"
                 id="phone"
@@ -86,7 +95,10 @@ export default function RegistrationPage() {
 
             <div className="form-group">
               <input
-                onFocus={() => {setOpen(true);setOpen1(false)}}
+                onFocus={() => {
+                  setOpen(true);
+                  setOpen1(false);
+                }}
                 type="text"
                 placeholder="role in the company"
                 id="role"
@@ -97,20 +109,72 @@ export default function RegistrationPage() {
               />
               {open && (
                 <ul className="role">
-                  <li onClick={(e)=>{setRole(e.target.textContent);setOpen(false)}}>Project executive</li>
-                  <li onClick={(e)=>{setRole(e.target.textContent);setOpen(false)}}>Project manager</li>
-                  <li onClick={(e)=>{setRole(e.target.textContent);setOpen(false)}}>Front-end developer</li>
-                  <li onClick={(e)=>{setRole(e.target.textContent);setOpen(false)}}>Back-end developer</li>
-                  <li onClick={(e)=>{setRole(e.target.textContent);setOpen(false)}}>Full-stack developer</li>
-                  <li onClick={(e)=>{setRole(e.target.textContent);setOpen(false)}}>UI/UX</li>
-                  <li onClick={(e)=>{setRole(e.target.textContent);setOpen(false)}}>Other</li>
+                  <li
+                    onClick={(e) => {
+                      setRole(e.target.textContent);
+                      setOpen(false);
+                    }}
+                  >
+                    Project executive
+                  </li>
+                  <li
+                    onClick={(e) => {
+                      setRole(e.target.textContent);
+                      setOpen(false);
+                    }}
+                  >
+                    Project manager
+                  </li>
+                  <li
+                    onClick={(e) => {
+                      setRole(e.target.textContent);
+                      setOpen(false);
+                    }}
+                  >
+                    Front-end developer
+                  </li>
+                  <li
+                    onClick={(e) => {
+                      setRole(e.target.textContent);
+                      setOpen(false);
+                    }}
+                  >
+                    Back-end developer
+                  </li>
+                  <li
+                    onClick={(e) => {
+                      setRole(e.target.textContent);
+                      setOpen(false);
+                    }}
+                  >
+                    Full-stack developer
+                  </li>
+                  <li
+                    onClick={(e) => {
+                      setRole(e.target.textContent);
+                      setOpen(false);
+                    }}
+                  >
+                    UI/UX
+                  </li>
+                  <li
+                    onClick={(e) => {
+                      setRole(e.target.textContent);
+                      setOpen(false);
+                    }}
+                  >
+                    Other
+                  </li>
                 </ul>
               )}
             </div>
 
             <div className="form-group form-sex">
               <input
-                onFocus={() => {setOpen1(true);setOpen(false)}}
+                onFocus={() => {
+                  setOpen1(true);
+                  setOpen(false);
+                }}
                 placeholder="Sex"
                 type="text"
                 id="sex"
@@ -121,15 +185,32 @@ export default function RegistrationPage() {
               />
               {open1 && (
                 <ul className="sex">
-                  <li onClick={(e)=>{setSex(e.target.textContent);setOpen1(false)}}>male</li>
-                  <li onClick={(e)=>{setSex(e.target.textContent);setOpen1(false)}}>female</li>
+                  <li
+                    onClick={(e) => {
+                      setSex(e.target.textContent);
+                      setOpen1(false);
+                    }}
+                  >
+                    male
+                  </li>
+                  <li
+                    onClick={(e) => {
+                      setSex(e.target.textContent);
+                      setOpen1(false);
+                    }}
+                  >
+                    female
+                  </li>
                 </ul>
               )}
             </div>
 
             <div className="form-group">
               <input
-               onFocus={() => {setOpen1(false);setOpen(false)}}
+                onFocus={() => {
+                  setOpen1(false);
+                  setOpen(false);
+                }}
                 type="date"
                 id="dob"
                 value={dateOfBirth}
@@ -139,7 +220,10 @@ export default function RegistrationPage() {
             </div>
             <div className="form-group">
               <input
-               onFocus={() => {setOpen1(false);setOpen(false)}}
+                onFocus={() => {
+                  setOpen1(false);
+                  setOpen(false);
+                }}
                 type="date"
                 id="employment-date"
                 value={employmentDate}
@@ -147,13 +231,14 @@ export default function RegistrationPage() {
                 required
               />
             </div>
+            <button type="submit">Sign up</button>
           </form>
           <NavLink className="account" to={"/login"}>
             Already have an account?
           </NavLink>
         </div>
       </div>
-      <WarningPage/>
+      <WarningPage />
     </>
   );
 }

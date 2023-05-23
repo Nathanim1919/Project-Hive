@@ -28,7 +28,7 @@ section.hero{
 }
 
 .hero-content a{
-    padding: .8rem 1.2rem;
+    padding: .5rem 1.5rem;
     font-size: 1rem;
     text-decoration: none;
     color: #ffffff;
@@ -39,6 +39,9 @@ section.hero{
     backdrop-filter: blur(5px);
     align-self: center;
     transition: all .2s ease-in-out;
+    display:flex;
+    align-items:center;
+    gap:1rem;
 }
 .hero-content a:hover{
     background-color: transparent;
