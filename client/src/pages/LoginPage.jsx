@@ -1,22 +1,38 @@
 import React, { useState } from "react";
 import "../styles/login.css";
-import { NavLink } from "react-router-dom";
-import '../styles/global.css'
+import { NavLink, useNavigate } from "react-router-dom";
+import '../styles/global.css';
 import WarningPage from "../components/warning/warning";
+import axios from "axios";
+import DashboardPage from "./DashboardPage";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  const navigate = useNavigate();
 
-    // Perform login logic, such as verifying credentials with a server or database
-    // You can access the login data in the state variables (email and password)
+    const handleLogin = async (e) => {
+      e.preventDefault();
 
-    // Redirect to the appropriate page after successful login
-    // history.push("/dashboard");
-  };
+      try {
+        const response = await axios.post("http://localhost:5000/auth/login", {
+          email,
+          password,
+        });
+
+        const { token } = response.data;
+
+        // Store the token in local storage for subsequent requests
+        localStorage.setItem("token", token);
+
+        console.log(response.data)
+        // Redirect to the appropriate page after successful login
+        navigate('/dashboard');
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
   return (
     <>

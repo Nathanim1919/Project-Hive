@@ -1,0 +1,52 @@
+.createProject{
+    display: grid;
+    height: 100vh;
+    background-color: rgba(245, 241, 241, 0.116);
+    padding: 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    backdrop-filter: blur(4px);
+}
+
+.createProject form{
+    display: grid;
+    place-items: start;
+    width: 50%;
+    height: 80%;
+    padding: 1rem;
+    border-radius: 20px;
+    box-shadow: 0 9px 17px rgba(0, 0, 0, 0.068);
+}
+.createProject form label{
+    color: rgb(89, 90, 92);
+    text-transform: capitalize;
+}
+.createProject form input,
+.createProject form textarea
+,.createProject form button{
+    width: 90%;
+    border: 1px solid #e7e1e1;
+    padding: .71rem .5rem;
+    resize: none;
+    border-left: 5px solid blue;
+}
+.priorityHead{
+    text-align: left;
+}
+
+.priority{
+    display: flex;
+    margin: auto;
+    justify-content: start;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+}
+.priority div{
+    border: 3px solid orange;
+    border-radius: 15px;
+    padding: .2rem 2rem;
+    cursor: pointer;
+}

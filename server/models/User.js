@@ -10,14 +10,23 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    password:{
+        type:String,
+        required:true
+    },
     phoneNumber: {
         type: String,
         required: true
     },
-    role: {
+    position: {
         type: String,
         required: true
     },
+     roll: {
+         type: String,
+         enum: ['project manager', 'team member'],
+         default:'team member'
+     },
     sex: {
         type: String,
         required: true

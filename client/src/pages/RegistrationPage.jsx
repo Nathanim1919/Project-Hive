@@ -2,35 +2,70 @@ import React, { useState } from "react";
 import "../styles/register.css";
 import "../styles/global.css";
 import WarningPage from "../components/warning/warning";
-import { NavLink } from "react-router-dom";
+import { NavLink,useNavigate } from "react-router-dom";
+import axios from "axios";
+
 
 export default function RegistrationPage() {
+  // user registration states
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [role, setRole] = useState("");
+  const [position, setPosition] = useState("");
   const [sex, setSex] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [employmentDate, setEmploymentDate] = useState("");
 
-  // open boxes
-  const [open, setOpen] = useState(false)
-  const [open1, setOpen1] = useState(false)
+  // react hooks
+  const navigate = useNavigate()
 
-  const handleRegistration = (e) => {
+  // open boxes
+  const [open, setOpen] = useState(false);
+  const [open1, setOpen1] = useState(false);
+
+  // handle registration form submit
+  const handleRegistration = async (e) => {
     e.preventDefault();
 
-    // Perform registration logic, such as sending data to a server or storing in a database
-    // You can access the registration data in the state variables (name, email, phoneNumber, role, sex, dateOfBirth, employmentDate)
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/auth/register",
+        {
+          name,
+          email,
+          password,
+          phoneNumber,
+          position,
+          sex,
+          dateOfBirth,
+          employmentDate,
+        },
+        {
+          withCredentials: true,
+        }
+      );
 
-    // Reset the form after successful registration
-    setName("");
-    setEmail("");
-    setPhoneNumber("");
-    setRole("");
-    setSex("");
-    setDateOfBirth("");
-    setEmploymentDate("");
+      // Handle the response from the server
+      console.log(response);
+
+      // Reset the form after successful registration
+      setName("");
+      setEmail("");
+      setPassword("");
+      setPhoneNumber("");
+      setPosition("");
+      setSex("");
+      setDateOfBirth("");
+      setEmploymentDate("");
+
+      // navigate to login page
+      navigate('/login')
+    } catch (error) {
+      // Handle any errors that occur during the registration process
+      console.log(error);
+      // You can display an error message or perform other error handling actions
+    }
   };
 
   return (
@@ -84,6 +119,20 @@ export default function RegistrationPage() {
                   setOpen1(false);
                   setOpen(false);
                 }}
+                placeholder="Password"
+                type="password"
+                id="pasword"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <input
+                onFocus={() => {
+                  setOpen1(false);
+                  setOpen(false);
+                }}
                 placeholder="Phone-Number"
                 type="tel"
                 id="phone"
@@ -102,16 +151,16 @@ export default function RegistrationPage() {
                 type="text"
                 placeholder="role in the company"
                 id="role"
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
+                value={position}
+                onChange={(e) => setPosition(e.target.value)}
                 required
                 readOnly
               />
               {open && (
-                <ul className="role">
+                <ul className="position">
                   <li
                     onClick={(e) => {
-                      setRole(e.target.textContent);
+                      setPosition(e.target.textContent);
                       setOpen(false);
                     }}
                   >
@@ -119,7 +168,7 @@ export default function RegistrationPage() {
                   </li>
                   <li
                     onClick={(e) => {
-                      setRole(e.target.textContent);
+                      setPosition(e.target.textContent);
                       setOpen(false);
                     }}
                   >
@@ -127,7 +176,7 @@ export default function RegistrationPage() {
                   </li>
                   <li
                     onClick={(e) => {
-                      setRole(e.target.textContent);
+                      setPosition(e.target.textContent);
                       setOpen(false);
                     }}
                   >
@@ -135,7 +184,7 @@ export default function RegistrationPage() {
                   </li>
                   <li
                     onClick={(e) => {
-                      setRole(e.target.textContent);
+                      setPosition(e.target.textContent);
                       setOpen(false);
                     }}
                   >
@@ -143,7 +192,7 @@ export default function RegistrationPage() {
                   </li>
                   <li
                     onClick={(e) => {
-                      setRole(e.target.textContent);
+                      setPosition(e.target.textContent);
                       setOpen(false);
                     }}
                   >
@@ -151,7 +200,7 @@ export default function RegistrationPage() {
                   </li>
                   <li
                     onClick={(e) => {
-                      setRole(e.target.textContent);
+                      setPosition(e.target.textContent);
                       setOpen(false);
                     }}
                   >
@@ -159,7 +208,7 @@ export default function RegistrationPage() {
                   </li>
                   <li
                     onClick={(e) => {
-                      setRole(e.target.textContent);
+                      setPosition(e.target.textContent);
                       setOpen(false);
                     }}
                   >
