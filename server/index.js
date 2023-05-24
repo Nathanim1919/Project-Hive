@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const authRouter = require('./routes/authRoutes.js')
+const profileRouter  = require('./routes/profileRoutes.js');
 
 const app = express();
 
@@ -28,6 +29,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/projecthive', {
 // Add your routes here
 
 app.use('/auth', authRouter);
+app.use('/user', profileRouter);
 
 // Start the server
 const port = 5000;

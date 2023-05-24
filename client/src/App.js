@@ -10,13 +10,11 @@ function App() {
   return ( <
     div className = "App" >
 
-
-
     <Routes>
     <Route path='/' element={<HomePage/>}/>
     <Route path='/register' element={<RegistrationPage/>}/>
     <Route path='/login' element={<LoginPage/>}/>
-    <Route path='/dashboard' element={<DashboardPage/>}/>
+    <Route path='/user/:id' element={<DashboardPage/>}/>
     </Routes>
     </div>
   );

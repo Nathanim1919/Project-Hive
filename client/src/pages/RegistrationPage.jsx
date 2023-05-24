@@ -21,7 +21,6 @@ export default function RegistrationPage() {
   const navigate = useNavigate()
 
   // open boxes
-  const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
 
   // handle registration form submit
@@ -54,13 +53,15 @@ export default function RegistrationPage() {
       setEmail("");
       setPassword("");
       setPhoneNumber("");
-      setPosition("");
       setSex("");
       setDateOfBirth("");
       setEmploymentDate("");
 
       // navigate to login page
-      navigate('/login')
+   console.log()
+      if (response.data.message === "User registered successfully"){
+        navigate("/login");
+      }
     } catch (error) {
       // Handle any errors that occur during the registration process
       console.log(error);
@@ -89,7 +90,6 @@ export default function RegistrationPage() {
               <input
                 onFocus={() => {
                   setOpen1(false);
-                  setOpen(false);
                 }}
                 type="text"
                 placeholder="Name"
@@ -103,7 +103,6 @@ export default function RegistrationPage() {
               <input
                 onFocus={() => {
                   setOpen1(false);
-                  setOpen(false);
                 }}
                 placeholder="Email"
                 type="email"
@@ -117,7 +116,6 @@ export default function RegistrationPage() {
               <input
                 onFocus={() => {
                   setOpen1(false);
-                  setOpen(false);
                 }}
                 placeholder="Password"
                 type="password"
@@ -131,7 +129,6 @@ export default function RegistrationPage() {
               <input
                 onFocus={() => {
                   setOpen1(false);
-                  setOpen(false);
                 }}
                 placeholder="Phone-Number"
                 type="tel"
@@ -142,87 +139,10 @@ export default function RegistrationPage() {
               />
             </div>
 
-            <div className="form-group">
-              <input
-                onFocus={() => {
-                  setOpen(true);
-                  setOpen1(false);
-                }}
-                type="text"
-                placeholder="role in the company"
-                id="role"
-                value={position}
-                onChange={(e) => setPosition(e.target.value)}
-                required
-                readOnly
-              />
-              {open && (
-                <ul className="position">
-                  <li
-                    onClick={(e) => {
-                      setPosition(e.target.textContent);
-                      setOpen(false);
-                    }}
-                  >
-                    Project executive
-                  </li>
-                  <li
-                    onClick={(e) => {
-                      setPosition(e.target.textContent);
-                      setOpen(false);
-                    }}
-                  >
-                    Project manager
-                  </li>
-                  <li
-                    onClick={(e) => {
-                      setPosition(e.target.textContent);
-                      setOpen(false);
-                    }}
-                  >
-                    Front-end developer
-                  </li>
-                  <li
-                    onClick={(e) => {
-                      setPosition(e.target.textContent);
-                      setOpen(false);
-                    }}
-                  >
-                    Back-end developer
-                  </li>
-                  <li
-                    onClick={(e) => {
-                      setPosition(e.target.textContent);
-                      setOpen(false);
-                    }}
-                  >
-                    Full-stack developer
-                  </li>
-                  <li
-                    onClick={(e) => {
-                      setPosition(e.target.textContent);
-                      setOpen(false);
-                    }}
-                  >
-                    UI/UX
-                  </li>
-                  <li
-                    onClick={(e) => {
-                      setPosition(e.target.textContent);
-                      setOpen(false);
-                    }}
-                  >
-                    Other
-                  </li>
-                </ul>
-              )}
-            </div>
-
             <div className="form-group form-sex">
               <input
                 onFocus={() => {
                   setOpen1(true);
-                  setOpen(false);
                 }}
                 placeholder="Sex"
                 type="text"
@@ -258,20 +178,6 @@ export default function RegistrationPage() {
               <input
                 onFocus={() => {
                   setOpen1(false);
-                  setOpen(false);
-                }}
-                type="date"
-                id="dob"
-                value={dateOfBirth}
-                onChange={(e) => setDateOfBirth(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <input
-                onFocus={() => {
-                  setOpen1(false);
-                  setOpen(false);
                 }}
                 type="date"
                 id="employment-date"

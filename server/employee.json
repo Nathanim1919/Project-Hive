@@ -1,0 +1,152 @@
+[
+  {
+    "id": "1",
+    "email": "abeba@gmail.com",
+    "fullName": "Abeba Assefa",
+    "role": "Full Stack Developer"
+  },
+  {
+    "id": "2",
+    "email": "biruk@gmail.com",
+    "fullName": "Biruk Desta",
+    "role": "Front-end Developer"
+  },
+  {
+    "id": "3",
+    "email": "chala@gmail.com",
+    "fullName": "Chala Negash",
+    "role": "UI/UX Designer"
+  },
+  {
+    "id": "4",
+    "email": "dawit@gmail.com",
+    "fullName": "Dawit Kebede",
+    "role": "Project Manager"
+  },
+  {
+    "id": "5",
+    "email": "elias@gmail.com",
+    "fullName": "Elias Tesfaye",
+    "role": "System Administrator"
+  },
+  {
+    "id": "6",
+    "email": "fiker@gmail.com",
+    "fullName": "Fiker Tadesse",
+    "role": "Project Executive"
+  },
+  {
+    "id": "7",
+    "email": "genet@gmail.com",
+    "fullName": "Genet Abate",
+    "role": "Back-end Developer"
+  },
+  {
+    "id": "8",
+    "email": "habtamu@gmail.com",
+    "fullName": "Habtamu Gebre",
+    "role": "Data Scientist"
+  },
+  {
+    "id": "9",
+    "email": "iness@gmail.com",
+    "fullName": "Iness Solomon",
+    "role": "Quality Assurance Engineer"
+  },
+  {
+    "id": "10",
+    "email": "jemal@gmail.com",
+    "fullName": "Jemal Teklu",
+    "role": "Database Administrator"
+  },
+  {
+    "id": "11",
+    "email": "kiya@gmail.com",
+    "fullName": "Kiya Mekonnen",
+    "role": "Mobile App Developer"
+  },
+  {
+    "id": "12",
+    "email": "liya@gmail.com",
+    "fullName": "Liya Alemu",
+    "role": "DevOps Engineer"
+  },
+  {
+    "id": "13",
+    "email": "mesfin@gmail.com",
+    "fullName": "Mesfin Demissie",
+    "role": "Software Architect"
+  },
+  {
+    "id": "14",
+    "email": "nigist@gmail.com",
+    "fullName": "Nigist Wondimu",
+    "role": "Business Analyst"
+  },
+  {
+    "id": "15",
+    "email": "otiso@gmail.com",
+    "fullName": "Otiso Wolde",
+    "role": "Network Administrator"
+  },
+  {
+    "id": "16",
+    "email": "paulos@gmail.com",
+    "fullName": "Paulos Gebre",
+    "role": "Data Engineer"
+  },
+  {
+    "id": "17",
+    "email": "rediet@gmail.com",
+    "fullName": "Rediet Admasu",
+    "role": "UI/UX Researcher"
+  },
+  {
+    "id": "18",
+    "email": "seble@gmail.com",
+    "fullName": "Seble Melese",
+    "role": "Software Tester"
+  },
+    {
+    "id": "19",
+    "email": "solomon@gmail.com",
+    "fullName": "Solomon Tekle",
+    "role": "Cloud Engineer"
+  },
+  {
+    "id": "20",
+    "email": "tigist@gmail.com",
+    "fullName": "Tigist Teshome",
+    "role": "Data Analyst"
+  },
+  {
+    "id": "21",
+    "email": "yared@gmail.com",
+    "fullName": "Yared Girma",
+    "role": "Software Engineer"
+  },
+  {
+    "id": "22",
+    "email": "zehara@gmail.com",
+    "fullName": "Zehara Asfaw",
+    "role": "Product Manager"
+  },
+  {
+    "id": "23",
+    "email": "adamu@gmail.com",
+    "fullName": "Adamu Ali",
+    "role": "Network Engineer"
+  },
+  {
+    "id": "24",
+    "email": "betelhem@gmail.com",
+    "fullName": "Betelhem Worku",
+    "role": "Cybersecurity Specialist"
+  },
+  {
+    "id": "25",
+    "email": "esayas@gmail.com",
+    "fullName": "Esayas Tadele",
+    "role": "Data Scientist"
+  }
+]

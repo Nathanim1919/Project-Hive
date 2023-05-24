@@ -31,10 +31,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    dateOfBirth: {
-        type: Date,
-        required: true
-    },
+
     employmentDate: {
         type: Date,
         required: true
@@ -54,6 +51,10 @@ const userSchema = new mongoose.Schema({
     createdProjects: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Project'
+    }],
+    createdEvents:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Event'
     }]
 });
 

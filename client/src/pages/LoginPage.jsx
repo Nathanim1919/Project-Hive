@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/login.css";
 import { NavLink, useNavigate } from "react-router-dom";
-import '../styles/global.css';
+import "../styles/global.css";
 import WarningPage from "../components/warning/warning";
 import axios from "axios";
 import DashboardPage from "./DashboardPage";
@@ -12,31 +12,42 @@ export default function LoginPage() {
 
   const navigate = useNavigate();
 
-    const handleLogin = async (e) => {
-      e.preventDefault();
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-      try {
-        const response = await axios.post("http://localhost:5000/auth/login", {
-          email,
-          password,
-        });
+    try {
+      const response = await axios.post("http://localhost:5000/auth/login", {
+        email,
+        password,
+      });
 
-        const { token } = response.data;
+      const { token, message } = response.data;
 
-        // Store the token in local storage for subsequent requests
-        localStorage.setItem("token", token);
+      // Store the token in local storage for subsequent requests
+      localStorage.setItem("token", token);
 
-        console.log(response.data)
+      console.log(response.data);
+
+      if (message === "Logged in successfully") {
         // Redirect to the appropriate page after successful login
-        navigate('/dashboard');
-      } catch (error) {
-        console.error(error);
+        navigate(`/user/${response.data.userId}`);
+      } else {
+        // Handle login error
+        console.error("Login error:", message);
+        // Display an error message to the user
+        // ...
       }
-    };
+    } catch (error) {
+      console.error("Login error:", error);
+      // Handle error
+      // Display an error message to the user
+      // ...
+    }
+  };
 
   return (
     <>
-      <WarningPage/>
+      <WarningPage />
 
       <div className="login-page">
         <div className="image-background">
