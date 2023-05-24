@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import '../../styles/createEvent.css'
 
 const CreateEventPage = () => {
   const [title, setTitle] = useState("");
@@ -38,48 +39,49 @@ const CreateEventPage = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="title">Title:</label>
-      <input
-        type="text"
-        id="title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
+    <div className="createEvent">
+      <form onSubmit={handleSubmit}>
+        <input
+          placeholder="Event Title"
+          type="text"
+          id="title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
 
-      <label htmlFor="description">Description:</label>
-      <textarea
-        id="description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
 
-      <label htmlFor="startDate">Start Date:</label>
-      <input
-        type="date"
-        id="startDate"
-        value={startDate}
-        onChange={(e) => setStartDate(e.target.value)}
-      />
+        <input
+          type="date"
+          id="startDate"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+        />
 
-      <label htmlFor="endDate">End Date:</label>
-      <input
-        type="date"
-        id="endDate"
-        value={endDate}
-        onChange={(e) => setEndDate(e.target.value)}
-      />
+        <input
+          type="time"
+          id="startTime"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+        />
 
-      <label htmlFor="location">Location:</label>
-      <input
-        type="text"
-        id="location"
-        value={location}
-        onChange={(e) => setLocation(e.target.value)}
-      />
+        <input
+          placeholder="Where"
+          type="text"
+          id="location"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+        />
+        <textarea
+        placeholder="About The Event"
+           rows={3}
+          id="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
 
-      <button type="submit">Create Event</button>
-    </form>
+        <button type="submit">Create Event</button>
+      </form>
+    </div>
   );
 };
 

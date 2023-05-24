@@ -1,4 +1,257 @@
-div.dashboard{
-    background-color: blue;
+section.dashboard{
+    background-color: rgb(247, 243, 243);
     height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    display: grid;
+    grid-template-rows: 7% auto;
+    height: 100vh;
+}
+
+.header-section{
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 2rem;
+}
+
+.header-section .search{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    padding: .3rem 1rem;
+    border-radius: 20px;
+}
+.header-section .contents{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    padding: 0 3rem;
+}
+.search input{
+    border: none;
+    padding: .3rem;
+    outline: none;
+}
+
+.profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 3rem;
+}
+
+/* side bar styles */
+.sidbar{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    padding: 3rem 1rem;
+}
+.sidbar > *{
+ font-size: 1rem;
+ width: 40px;
+ height: 40px;
+ background-color: #1d1c1c;
+ display: grid;
+ place-items: center;
+ border-radius: 50%;
+ color: #fff;
+}
+
+.profile .pic{
+    width: 40px;
+    height: 40px;
+    background-color: grey;
+    border-radius: 50%;
+}
+
+.main-section{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 6% auto;
+}
+
+.userdatas{
+    display: grid;
+    grid-template-columns: 60% 40%;
+}
+
+.userdatas .projects{
+    margin-top: .51rem;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    padding: 2rem;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+}
+/* .projects .pro-header{
+    border-bottom:1px solid #eee;
+    padding-bottom:.3rem;
+} */
+.projects .pro-header .current-year{
+    display: flex;
+    color: #535151;
+    font-weight: 100;
+    justify-content: space-between;
+    font-size:.8rem;
+}
+
+.pro-header .projects-status{
+    display:flex;
+    align-items: center;
+    gap:2rem;
+}
+.pro-header .projects-status > div{
+    display:flex;
+    flex-direction:column;
+    padding:.3rem 1rem;
+}
+
+.pro-header .projects-status > div:nth-child(1),
+.pro-header .projects-status > div:nth-child(2),
+.pro-header .projects-status > div:nth-child(3){
+    border-right:1px solid #eee;
+}
+
+
+.pro-header .projects-status > div > *{
+   margin:0;
+}
+.pro-header .projects-status > div > h3{
+   font-size:.91rem;
+}
+.pro-header .projects-status > div > p{
+   font-size:.8rem;
+   color:#696666;
+}
+
+/* project lists style sheet */
+.project-list {
+    overflow:auto;
+    height:65vh;
+     gap:1rem;
+    margin-top:1rem;
+    display:flex;
+    flex-wrap:wrap;
+}
+.project-list .p-project{
+    display:flex;
+    flex-direction:column;
+    border-radius:15px;
+    padding:.5rem 1rem;
+    width:180px;
+    max-height:200px;
+    background-color:rgb(238, 238, 237);
+    /* box-shadow:0 6px 13px rgba(0, 0, 0, 0.089); */
+}
+.project-list .p-project>*{
+    margin:0;
+}
+.project-list .p-project .pro-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.project-list .p-project .pro-head p{
+    font-size:.7rem;
+
+}
+.project-list .p-project .pro-title h2{
+    font-size:.8rem;
+    font-weight:500;
+}
+.project-list .p-project .progress{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+.project-list .p-project .progress >*{
+    margin:0.1rem;
+}
+.project-list .p-project .progress .upperProgressBar{
+    position:relative;
+    width:100%;
+    height:5px;
+    background-color:rgb(224, 228, 230);
+}
+.project-list .p-project .progress .upperProgressBar .innerProgressBar{
+    position:absolute;
+    width:80%;
+    height:100%;
+    left:0;
+    top:0;
+    background-color:rgb(41, 186, 253);
+}
+.project-list .p-project .progress p:nth-child(1){
+    align-self:start;
+    font-size:.7rem;
+}
+.project-list .p-project .progress p:nth-child(3){
+    align-self:end;
+    font-size:.7rem;
+}
+
+.project-list  .footer-detail,.footer-detail .members{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.footer-detail .members{
+    position:relative;
+}
+.footer-detail .members > div{
+    width:20px;
+    border:1px solid #a8a3a3;
+    height:20px;
+    border-radius:50%;
+    background-color:#fff;
+}
+.footer-detail .members > div:nth-child(2){
+     position:relative;
+     left:-.61rem;
+}
+.footer-detail .members > div:nth-child(3){
+     position:relative;
+     display:grid;
+     place-items:center;
+     left:-.3rem;
+     background-color:rgb(14, 199, 255);
+     color:#fff;
+}
+.footer-detail .deadline{
+    font-size:.7rem;
+    background-color:rgba(73, 148, 182, 0.342);
+    padding:0 1rem;
+    display:grid;
+    place-items:center;
+    border-radius:40px;
+}
+
+
+
+
+
+.mes-not{
+     background-color: rgb(255, 255, 255);
+     border-top-left-radius: 40px;
+    display: grid;
+    margin: .5rem;
+    grid-template-rows: repeat(2,1fr);
+}
+
+.mes-not .notifications{
+    /* background-color: gray; */
+}
+
+.mes-not .messages{
+    background-color: rgb(255, 255, 255);
 }
