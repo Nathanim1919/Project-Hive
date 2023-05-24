@@ -4,6 +4,7 @@ import "../styles/global.css";
 import WarningPage from "../components/warning/warning";
 import { NavLink,useNavigate } from "react-router-dom";
 import axios from "axios";
+import {RxAvatar} from 'react-icons/rx'
 
 
 export default function RegistrationPage() {
@@ -13,8 +14,8 @@ export default function RegistrationPage() {
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [position, setPosition] = useState("");
+  const [avatar, setAvatar] = useState("");
   const [sex, setSex] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState("");
   const [employmentDate, setEmploymentDate] = useState("");
 
   // react hooks
@@ -23,11 +24,23 @@ export default function RegistrationPage() {
   // open boxes
   const [open1, setOpen1] = useState(false);
 
+
+
+  // change image file into binary inorder to store it on database
+    const toBase64 = (file) =>
+      new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+      });
+
   // handle registration form submit
   const handleRegistration = async (e) => {
     e.preventDefault();
 
     try {
+      const profile = await toBase64(avatar);
       const response = await axios.post(
         "http://localhost:5000/auth/register",
         {
@@ -36,8 +49,8 @@ export default function RegistrationPage() {
           password,
           phoneNumber,
           position,
+          profile,
           sex,
-          dateOfBirth,
           employmentDate,
         },
         {
@@ -54,7 +67,6 @@ export default function RegistrationPage() {
       setPassword("");
       setPhoneNumber("");
       setSex("");
-      setDateOfBirth("");
       setEmploymentDate("");
 
       // navigate to login page
@@ -184,6 +196,17 @@ export default function RegistrationPage() {
                 value={employmentDate}
                 onChange={(e) => setEmploymentDate(e.target.value)}
                 required
+              />
+            </div>
+            <div className="form-group profile">
+              <label for="profile">
+                <RxAvatar /> <p>set profile picture</p>
+              </label>
+              <input
+                type="file"
+                id="profile"
+                hidden
+                onChange={(e) => setAvatar(e.target.files[0])}
               />
             </div>
             <button type="submit">Sign up</button>

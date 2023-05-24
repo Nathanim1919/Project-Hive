@@ -3,17 +3,23 @@ import ProjectForm from "../components/project/ProjectForm";
 import "../styles/dashboard.css";
 import { RiBarChartLine } from "react-icons/ri";
 import { BiSearch, BiTask } from "react-icons/bi";
-import { AiOutlineHome, AiOutlinePlus, AiOutlineProject } from "react-icons/ai";
+import { AiOutlineHome,AiOutlineLogout, AiOutlinePlus, AiOutlineProject } from "react-icons/ai";
 import { SiGotomeeting } from "react-icons/si";
 import { FiMoreHorizontal } from "react-icons/fi";
+import { CgProfile } from "react-icons/cg";
+import { FaBan } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import {useNavigate} from 'react-router-dom';
 
 export default function DashboardPage() {
 
   // states
   const [activeUser, setActiveUser] = useState({});
+  const [openOption, setOpenOption] = useState(false);
   const {id} = useParams()
+
+  const navigate = useNavigate()
 
 
   // get the current month name with the year
@@ -46,17 +52,35 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="profile">
+        <div className="profile" onClick={() => setOpenOption(!openOption)}>
           <div className="pic">
-            <img src="" alt="" />
+            <img src={activeUser.profile} alt="" />
           </div>
-          <div>
-          <h6>{`${(activeUser.name || "").slice(0, 3)} ${(activeUser.name || "")
-            .split(" ")[1]
-            ?.charAt(0)}`}</h6>
-          <p>{activeUser && activeUser.position}</p>
+          <div className="user-info">
+            <h6>{`${(activeUser.name || "").slice(0, 3)} ${(
+              activeUser.name || ""
+            )
+              .split(" ")[1]
+              ?.charAt(0)}`}</h6>
+            <p>{activeUser && activeUser.position}</p>
           </div>
         </div>
+        {openOption && (
+          <div className="profile-option">
+            <li onClick={() => setOpenOption(!openOption)}>
+              <CgProfile />
+              Profile
+            </li>
+            <li onClick={() => setOpenOption(!openOption)}>
+              <FaBan />
+              deactivate
+            </li>
+            <li onClick={() => {setOpenOption(!openOption);navigate('/login')}}>
+              <AiOutlineLogout />
+              logout
+            </li>
+          </div>
+        )}
       </header>
       <main className="main-section">
         <div className="sidbar">

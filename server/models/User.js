@@ -14,6 +14,9 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+     profile: {
+         type: String,
+     },
     phoneNumber: {
         type: String,
         required: true

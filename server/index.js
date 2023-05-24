@@ -1,13 +1,28 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 const authRouter = require('./routes/authRoutes.js')
-const profileRouter  = require('./routes/profileRoutes.js');
+const profileRouter = require('./routes/profileRoutes.js');
 
 const app = express();
 
-// Middleware
-app.use(express.json());
+
+// Middleware to parse JSON data with increased payload size limit
+app.use(express.json({
+    limit: '50mb'
+}));
+
+
+app.use(bodyParser.json({
+    limit: '50mb'
+}));
+
+app.use(bodyParser.urlencoded({
+    extended: true,
+    limit: '50mb',
+    parameterLimit: 50000
+}));
 
 app.use(cors({
     origin: ['http://localhost:3000'],

@@ -22,11 +22,6 @@
 .registration-form >*{
   margin: 0;
 }
-/* .registration-form >*:nth-child(2){
-  margin-top: -1rem;
-} */
-
-
 
 .registration-form form{
   height: 70%;
@@ -41,26 +36,11 @@
   margin-bottom: 15px;
   position: relative;
 }
-.form-group ul{
-  position: absolute;
-  z-index: 3;
-  top: -10%;
-  padding: 1rem;
-  right: 10%;
-  background-color: #ffffff28;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 5px;
-  backdrop-filter: blur(10px);
-  border-radius: 10px;
-  border: 1px solid rgb(212, 218, 212);
-}
+
 
 .form-group ul li{
     list-style: none;
     cursor: pointer;
-    width: 100%;
     text-align: left;
     border-bottom: 1px solid #eee;
 }
@@ -77,6 +57,20 @@ input{
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+.profile label{
+  font-size:2rem;
+  place-self:start;
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  text-align:left;
+}
+
+.profile label p{
+  font-size:1rem;
 }
 
 a.account{
