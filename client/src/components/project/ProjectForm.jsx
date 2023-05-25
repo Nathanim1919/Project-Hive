@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 const ProjectForm = ({ setOpenProjectForm }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [startDate, setStartDate] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [priority, setPriority] = useState("");
 
@@ -16,15 +15,20 @@ const ProjectForm = ({ setOpenProjectForm }) => {
     e.preventDefault();
 
     // Check if the due date is less than the start date
-    const start = new Date(startDate);
+
+    const start = new Date(); // Use current date/time as the start date
     const due = new Date(dueDate);
-    console.log(due - start);
-    if (due < start) {
+
+    const timeDiff = due.getTime() - start.getTime();
+    const diffInDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+    if (diffInDays < 0) {
       alert(
         "Due date cannot be earlier than the start date. Please reset the due date."
       );
       return;
     }
+
 
     try {
       const projectData = {

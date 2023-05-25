@@ -10,12 +10,13 @@ import {
   AiOutlineProject,
 } from "react-icons/ai";
 import { SiGotomeeting } from "react-icons/si";
-import { FiMoreHorizontal } from "react-icons/fi";
+import { BsArrowRight } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { FaBan } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function DashboardPage() {
   // states
@@ -43,6 +44,17 @@ export default function DashboardPage() {
     getUser();
   }, [id]);
 
+  // PROJECT STATUS COUNT
+  const upCommingProjects = projects.filter(
+    (project) => project.status === "Not Started"
+  );
+  const inprogressProjects = projects.filter(
+    (project) => project.status === "In progress"
+  );
+  const completedProjects = projects.filter(
+    (project) => project.status === "completed"
+  );
+
   // get projects associated with the active user
   useEffect(() => {
     const getProjects = async () => {
@@ -53,7 +65,7 @@ export default function DashboardPage() {
       console.log(response.data.projects);
     };
     getProjects();
-  }, [id]);
+  }, [id, openProjectForm]);
 
   const changeDate = (date) => {
     const dt = new Date(date);
@@ -158,19 +170,23 @@ export default function DashboardPage() {
 
               <div className="projects-status">
                 <div>
-                  <h3>12</h3>
+                  <h3>{inprogressProjects.length}</h3>
                   <p>In progress</p>
                 </div>
                 <div>
-                  <h3>22</h3>
+                  <h3>{completedProjects.length}</h3>
                   <p>Completed</p>
                 </div>
                 <div>
-                  <h3>2</h3>
-                  <p>Upcoming</p>
+                  <h3>{upCommingProjects.length}</h3>
+                  <p>Not Started</p>
                 </div>
                 <div>
-                  <h3>52</h3>
+                  <h3>
+                    {inprogressProjects.length +
+                      upCommingProjects.length +
+                      completedProjects.length}
+                  </h3>
                   <p>Total projects</p>
                 </div>
 
@@ -186,57 +202,64 @@ export default function DashboardPage() {
             <div className="project-list">
               {projects &&
                 projects.map((project) => (
-                  <div
-                    className="p-project pro1"
-                    style={{
-                      backgroundColor:
-                        project.priority === "Low"
-                          ? "rgba(60, 250, 21, 0.658)"
-                          : project.priority === "Medium"
-                          ? "rgba(238, 255, 4, 0.863)"
-                          : project.priority === "High"
-                          ? "rgba(255, 0, 0, 0.438)"
-                          : "transparent",
-                    }}
-                  >
-                    <div className="pro-head">
-                      <p>{changeDate(project.startDate)}</p>
-                      <FiMoreHorizontal />
-                    </div>
-                    <div className="pro-title">
-                      <h2>{project.title}</h2>
-                    </div>
-
-                    <div className="progress">
-                      <p>Progress</p>
-                      <div className="upperProgressBar">
-                        <div
-                          className="innerProgressBar"
-                          style={{
-                            width: `${project.completionPercentage}%`,
-                          }}
-                        ></div>
+                  <NavLink to={`/user/${id}/projects/${project._id}`}>
+                    <div
+                      className="p-project pro1"
+                      style={{
+                        backgroundColor:
+                          project.priority === "Low"
+                            ? "rgba(60, 250, 21, 0.658)"
+                            : project.priority === "Medium"
+                            ? "rgba(238, 255, 4, 0.863)"
+                            : project.priority === "High"
+                            ? "rgba(255, 0, 0, 0.438)"
+                            : "transparent",
+                      }}
+                    >
+                      <div className="pro-head">
+                        <p>{changeDate(project.startDate)}</p>
+                        <p>{project.priority}</p>
                       </div>
-                      <p className="percent">{project.completionPercentage}%</p>
-                    </div>
+                      <div className="pro-title">
+                        <h2>{project.title}</h2>
+                      </div>
 
-                    <div className="footer-detail">
-                      <div className="members">
-                        <div className="m1"></div>
-                        <div className="m2"></div>
-                        <div className="m2">
-                          <AiOutlinePlus />
+                      <div className="progress">
+                        <p>Progress</p>
+                        <div className="upperProgressBar">
+                          <div
+                            className="innerProgressBar"
+                            style={{
+                              width: `${project.completionPercentage}%`,
+                            }}
+                          ></div>
                         </div>
-                      </div>
-
-                      <div className="deadline">
-                        <p>
-                          {howMuchDaysLeft(project.startDate, project.dueDate)}{" "}
-                          days left
+                        <p className="percent">
+                          {project.completionPercentage}%
                         </p>
                       </div>
+
+                      <div className="footer-detail">
+                        <div className="members">
+                          <div className="m1"></div>
+                          <div className="m2"></div>
+                          <div className="m2">
+                            <AiOutlinePlus />
+                          </div>
+                        </div>
+
+                        <div className="deadline">
+                          <p>
+                            {howMuchDaysLeft(
+                              project.startDate,
+                              project.dueDate
+                            )}{" "}
+                            days left
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  </NavLink>
                 ))}
             </div>
           </div>

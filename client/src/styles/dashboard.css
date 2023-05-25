@@ -227,6 +227,13 @@ section.dashboard{
     display:flex;
     flex-wrap:wrap;
 }
+.project-list a{
+    text-decoration: none;
+    color: #1d1c1c;
+}
+.project-list a:hover{
+    background-color: transparent;
+}
 .project-list .p-project{
     display:flex;
     flex-direction:column;
@@ -234,9 +241,15 @@ section.dashboard{
     padding:.5rem 1rem;
     width:180px;
     max-height:175px;
+    transition: all .3s ease-in-out;
     background-color:rgb(238, 238, 237);
-    /* box-shadow:0 6px 13px rgba(0, 0, 0, 0.089); */
+    border: 2px solid rgba(0, 0, 255, 0);
+    cursor: pointer;
 }
+.project-list .p-project:hover{
+    border: 2px solid rgb(255, 48, 48);
+}
+
 .project-list .p-project>*{
     margin:0;
 }
@@ -247,7 +260,9 @@ section.dashboard{
 }
 .project-list .p-project .pro-head p{
     font-size:.7rem;
-
+}
+.project-list .p-project .pro-head p{
+    font-size:.7rem;
 }
 .project-list .p-project .pro-title h2{
     font-size:.8rem;
