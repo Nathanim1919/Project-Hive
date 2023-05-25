@@ -3,42 +3,43 @@ import ProjectForm from "../components/project/ProjectForm";
 import "../styles/dashboard.css";
 import { RiBarChartLine } from "react-icons/ri";
 import { BiSearch, BiTask } from "react-icons/bi";
-import { AiOutlineHome,AiOutlineLogout, AiOutlinePlus, AiOutlineProject } from "react-icons/ai";
+import {
+  AiOutlineHome,
+  AiOutlineLogout,
+  AiOutlinePlus,
+  AiOutlineProject,
+} from "react-icons/ai";
 import { SiGotomeeting } from "react-icons/si";
 import { FiMoreHorizontal } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { FaBan } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export default function DashboardPage() {
-
   // states
   const [activeUser, setActiveUser] = useState({});
   const [openOption, setOpenOption] = useState(false);
-  const {id} = useParams()
+  const { id } = useParams();
 
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   // get the current month name with the year
   const currentDate = new Date();
   const options = { month: "long", year: "numeric" };
   const formattedDate = currentDate.toLocaleDateString("en-US", options);
 
-
   // get active user
   useEffect(() => {
-    const getUser = async ()=>{
-        const user = await axios.get(`http://localhost:5000/user/${id}`);
-        setActiveUser(user.data.user);
-        console.log(activeUser);
-    }
+    const getUser = async () => {
+      const user = await axios.get(`http://localhost:5000/user/${id}`);
+      setActiveUser(user.data.user);
+      console.log(activeUser);
+    };
 
     getUser();
-  },[id])
-
+  }, [id]);
 
   return (
     <section className="dashboard">
@@ -75,7 +76,12 @@ export default function DashboardPage() {
               <FaBan />
               deactivate
             </li>
-            <li onClick={() => {setOpenOption(!openOption);navigate('/login')}}>
+            <li
+              onClick={() => {
+                setOpenOption(!openOption);
+                navigate("/login");
+              }}
+            >
               <AiOutlineLogout />
               logout
             </li>
