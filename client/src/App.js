@@ -7,18 +7,15 @@ import DashboardPage from './pages/DashboardPage';
 import ProjectDetailPage from './components/project/ProjectDetails';
 
 function App() {
-  return ( <
-    div className = "App" >
+  return ( 
+    <div className = "App" >
 
     <Routes>
       <Route path='/' element={<HomePage/>}/>
       <Route path='/register' element={<RegistrationPage/>}/>
       <Route path='/login' element={<LoginPage/>}/>
       <Route path='/user/:id' element={<DashboardPage/>}/>
-      < Route path = '/user/:id/projects/:projectId'
-      element = {
-        < ProjectDetailPage / >
-      }
+      <Route path = '/user/:id/projects/:projectId' element = {< ProjectDetailPage />}
       />
     </Routes>
     </div>

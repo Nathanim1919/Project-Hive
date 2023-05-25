@@ -1,0 +1,78 @@
+.projectDetailSection{
+  background-color: rgb(233, 238, 238);
+  width: 100vw;
+  height: 100%;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.projectDetailSection .projectInfo .pro-title a{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 25px;
+    height: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+    margin:.5rem 1rem;
+    display: grid;
+    place-items: center;
+}
+
+.projectDetailSection .projectInfo .pro-title a:hover{
+    background-color: rgb(182, 182, 185);
+}
+
+.projectDetailSection .projectInfo .pro-title{
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    background-color: #fff;
+    position: relative;
+    left: 0;
+    padding:1rem 3rem;
+}
+.projectDetailSection .projectInfo .pro-title .deadline{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+.projectDetailSection .projectInfo .pro-title .deadline span{
+   color: #fff;
+   background-color: rgb(218, 37, 37);
+   border-radius: 5px;
+   padding: .2rem .5rem;
+}
+
+.project-progress,.project-budget{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 1rem 2rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.project-progress > div{
+    border: 1px solid #eee;
+    border-radius: 5px;
+    flex: 1;
+}
+.project-budget > div{
+    border: 1px solid #eee;
+    border-radius: 5px;
+    flex: 1;
+}
+
+.project-budget > div:nth-child(2),
+.project-budget > div:nth-child(3){
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

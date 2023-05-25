@@ -51,11 +51,11 @@ module.exports.getProjects = async (req, res) => {
 module.exports.getProject = async (req, res) => {
 
     try {
-
         const {
             projectId
         } = req.params
         const project = await Project.findById(projectId);
+        console.log(projectId);
         res.status(200).json({
             project
         })

@@ -8,7 +8,7 @@ const {
 
 
 router.get('/projects', getProjects)
-router.get('/projects/:id', getProject)
+router.get('/projects/:projectId', getProject)
 router.post('/projects/createProject', createProject)
 
 module.exports = router;
