@@ -20,7 +20,9 @@ import { useNavigate } from "react-router-dom";
 export default function DashboardPage() {
   // states
   const [activeUser, setActiveUser] = useState({});
+  const [projects, setProjects] = useState([]);
   const [openOption, setOpenOption] = useState(false);
+  const [openProjectForm, setOpenProjectForm] = useState(false);
   const { id } = useParams();
 
   const navigate = useNavigate();
@@ -41,8 +43,49 @@ export default function DashboardPage() {
     getUser();
   }, [id]);
 
+  // get projects associated with the active user
+  useEffect(() => {
+    const getProjects = async () => {
+      const response = await axios.get(
+        `http://localhost:5000/user/${id}/projects`
+      );
+      setProjects(response.data.projects);
+      console.log(response.data.projects);
+    };
+    getProjects();
+  }, [id]);
+
+  const changeDate = (date) => {
+    const dt = new Date(date);
+
+    const options = { month: "long", day: "numeric", year: "numeric" };
+    const formattedDate = dt.toLocaleDateString("en-US", options);
+    return formattedDate; // Output: "May 25, 2023"
+  };
+
+  const howMuchDaysLeft = (startDateStr, dueDateStr) => {
+    const startDate = new Date(startDateStr);
+    const dueDate = new Date(dueDateStr);
+
+    // Calculate the difference in milliseconds between the two dates
+    const timeDiff = dueDate.getTime() - startDate.getTime();
+
+    // Calculate the number of days left
+    let daysLeft;
+    if (timeDiff > 0) {
+      daysLeft = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    } else {
+      daysLeft = 0; // Due date has already passed
+    }
+
+    return daysLeft;
+  };
+
   return (
     <section className="dashboard">
+      {openProjectForm && (
+        <ProjectForm setOpenProjectForm={setOpenProjectForm} />
+      )}
       <header className="header-section">
         <div className="contents">
           <RiBarChartLine />
@@ -105,6 +148,7 @@ export default function DashboardPage() {
         </div>
         <div className="userdatas">
           {/* projects section */}
+
           <div className="projects">
             <div className="pro-header">
               <div className="current-year">
@@ -129,41 +173,71 @@ export default function DashboardPage() {
                   <h3>52</h3>
                   <p>Total projects</p>
                 </div>
+
+                <div
+                  className="createProjecticon"
+                  onClick={() => setOpenProjectForm(true)}
+                >
+                  <AiOutlinePlus />
+                </div>
               </div>
             </div>
 
             <div className="project-list">
-              <div className="p-project pro1">
-                <div className="pro-head">
-                  <p>may 2 2023</p>
-                  <FiMoreHorizontal />
-                </div>
-                <div className="pro-title">
-                  <h2>Web designing</h2>
-                </div>
+              {projects &&
+                projects.map((project) => (
+                  <div
+                    className="p-project pro1"
+                    style={{
+                      backgroundColor:
+                        project.priority === "Low"
+                          ? "rgba(60, 250, 21, 0.658)"
+                          : project.priority === "Medium"
+                          ? "rgba(238, 255, 4, 0.863)"
+                          : project.priority === "High"
+                          ? "rgba(255, 0, 0, 0.438)"
+                          : "transparent",
+                    }}
+                  >
+                    <div className="pro-head">
+                      <p>{changeDate(project.startDate)}</p>
+                      <FiMoreHorizontal />
+                    </div>
+                    <div className="pro-title">
+                      <h2>{project.title}</h2>
+                    </div>
 
-                <div className="progress">
-                  <p>Progress</p>
-                  <div className="upperProgressBar">
-                    <div className="innerProgressBar"></div>
-                  </div>
-                  <p className="percent">80%</p>
-                </div>
+                    <div className="progress">
+                      <p>Progress</p>
+                      <div className="upperProgressBar">
+                        <div
+                          className="innerProgressBar"
+                          style={{
+                            width: `${project.completionPercentage}%`,
+                          }}
+                        ></div>
+                      </div>
+                      <p className="percent">{project.completionPercentage}%</p>
+                    </div>
 
-                <div className="footer-detail">
-                  <div className="members">
-                    <div className="m1"></div>
-                    <div className="m2"></div>
-                    <div className="m2">
-                      <AiOutlinePlus />
+                    <div className="footer-detail">
+                      <div className="members">
+                        <div className="m1"></div>
+                        <div className="m2"></div>
+                        <div className="m2">
+                          <AiOutlinePlus />
+                        </div>
+                      </div>
+
+                      <div className="deadline">
+                        <p>
+                          {howMuchDaysLeft(project.startDate, project.dueDate)}{" "}
+                          days left
+                        </p>
+                      </div>
                     </div>
                   </div>
-
-                  <div className="deadline">
-                    <p>2 days left</p>
-                  </div>
-                </div>
-              </div>
+                ))}
             </div>
           </div>
 

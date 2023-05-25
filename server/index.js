@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const authRouter = require('./routes/authRoutes.js')
 const profileRouter = require('./routes/profileRoutes.js');
+const projectRouter = require('./routes/projectRoutes.js');
 
 const app = express();
 
@@ -40,11 +41,16 @@ mongoose.connect('mongodb://127.0.0.1:27017/projecthive', {
     .then(() => console.log('Connected to MongoDB'))
     .catch(error => console.log(error));
 
+
+
 // Define routes
 // Add your routes here
 
 app.use('/auth', authRouter);
 app.use('/user', profileRouter);
+app.use('/user/:id', projectRouter);
+
+
 
 // Start the server
 const port = 5000;

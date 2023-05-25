@@ -164,6 +164,9 @@ section.dashboard{
     border-bottom:1px solid #eee;
     padding-bottom:.3rem;
 } */
+.projects{
+    position: relative;
+}
 .projects .pro-header .current-year{
     display: flex;
     color: #535151;
@@ -180,7 +183,21 @@ section.dashboard{
 .pro-header .projects-status > div{
     display:flex;
     flex-direction:column;
+    align-items: center;
     padding:.3rem 1rem;
+}
+.pro-header .projects-status > div.createProjecticon{
+    background-color: rgba(121, 216, 245, 0.473);
+    padding: .5rem;
+    color: #3a3838;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.pro-header .projects-status > div.createProjecticon:hover{
+    background-color: rgba(67, 151, 177, 0.473);
+    padding: .5rem;
+    color: #ffffff;
 }
 
 .pro-header .projects-status > div:nth-child(1),
@@ -273,6 +290,8 @@ section.dashboard{
     justify-content:space-between;
     align-items:center;
 }
+
+
 .footer-detail .members{
     position:relative;
 }

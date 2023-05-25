@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const projectSchema = new mongoose.Schema({
-    name: {
+    title: {
         type: String,
         required: true
     },
@@ -17,6 +17,10 @@ const projectSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
     startDate: {
         type: Date,
         required: true
@@ -29,6 +33,11 @@ const projectSchema = new mongoose.Schema({
         type: String,
         enum: ['Low', 'Medium', 'High'],
         default: 'Medium'
+    },
+    status: {
+        type: String,
+        enum: ['Not Started', 'In progress', 'Completed'],
+        default: 'Not Started'
     },
     tasks: [{
         type: mongoose.Schema.Types.ObjectId,

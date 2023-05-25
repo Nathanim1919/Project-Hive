@@ -1,38 +1,55 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../../styles/createProject.css";
+import { useParams } from "react-router-dom";
 
-const ProjectForm = () => {
-  const [name, setName] = useState("");
+const ProjectForm = ({ setOpenProjectForm }) => {
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [priority, setPriority] = useState("");
 
+  const { id } = useParams();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Check if the due date is less than the start date
+    const start = new Date(startDate);
+    const due = new Date(dueDate);
+    console.log(due - start);
+    if (due < start) {
+      alert(
+        "Due date cannot be earlier than the start date. Please reset the due date."
+      );
+      return;
+    }
+
     try {
       const projectData = {
-        name,
+        title,
         description,
-        startDate,
+        startDate: new Date(),
         dueDate,
         priority,
       };
 
       // Send the project data to the server
-      const response = await axios.post("/projects", projectData);
+      const response = await axios.post(
+        `http://localhost:5000/user/${id}/projects/createProject`,
+        projectData
+      );
 
       // Handle the response and perform any necessary actions
       console.log("Project created successfully:", response.data);
 
       // Reset the form after successful project creation
-      setName("");
+      setTitle("");
       setDescription("");
-      setStartDate("");
       setDueDate("");
       setPriority("");
+      setOpenProjectForm(false);
     } catch (error) {
       console.error("Error creating project:", error);
     }
@@ -46,8 +63,8 @@ const ProjectForm = () => {
           placeholder="Title of the project"
           type="text"
           id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
         <input
           type="date"
@@ -63,18 +80,27 @@ const ProjectForm = () => {
           onChange={(e) => setDescription(e.target.value)}
         />
         <div>
-            <p className="priorityHead">set priority</p>
-        <div className="priority">
-          <div className="low">
-            <p>Low</p>
+          <p className="priorityHead">set priority</p>
+          <div className="priority">
+            <div
+              onClick={(e) => setPriority(e.target.textContent)}
+              className="low"
+            >
+              Low
+            </div>
+            <div
+              onClick={(e) => setPriority(e.target.textContent)}
+              className="medium"
+            >
+              Medium
+            </div>
+            <div
+              onClick={(e) => setPriority(e.target.textContent)}
+              className="high"
+            >
+              High
+            </div>
           </div>
-          <div className="medium">
-            <p>Medium</p>
-          </div>
-          <div className="high">
-            <p>High</p>
-          </div>
-        </div>
         </div>
         <button type="submit">Create Project</button>
       </form>

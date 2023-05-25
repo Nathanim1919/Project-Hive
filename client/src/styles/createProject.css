@@ -1,13 +1,14 @@
 .createProject{
     display: grid;
     height: 100vh;
-    background-color: rgba(245, 241, 241, 0.116);
+    background-color: rgba(0, 0, 0, 0.137);
     padding: 2rem;
     position: fixed;
+    z-index:3;
     top: 0;
     left: 0;
     width: 100vw;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(2px);
 }
 
 .createProject form{
