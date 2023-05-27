@@ -3,150 +3,260 @@
     "id": "1",
     "email": "abeba@gmail.com",
     "fullName": "Abeba Assefa",
-    "role": "Full Stack Developer"
+    "role": "Full Stack Developer",
+    "employmentDate": "2022-01-01",
+    "phoneNumber": "+251912345678",
+    "sex": "F",
+    "employeeCode": "EMP001"
   },
   {
     "id": "2",
     "email": "biruk@gmail.com",
     "fullName": "Biruk Desta",
-    "role": "Front-end Developer"
+    "role": "Front-end Developer",
+    "employmentDate": "2022-02-01",
+    "phoneNumber": "+251923456789",
+    "sex": "M",
+    "employeeCode": "EMP002"
   },
   {
     "id": "3",
     "email": "chala@gmail.com",
     "fullName": "Chala Negash",
-    "role": "UI/UX Designer"
+    "role": "UI/UX Designer",
+    "employmentDate": "2022-03-01",
+    "phoneNumber": "+251934567890",
+    "sex": "M",
+    "employeeCode": "EMP003"
   },
   {
     "id": "4",
     "email": "dawit@gmail.com",
     "fullName": "Dawit Kebede",
-    "role": "Project Manager"
+    "role": "Software Engineer",
+    "employmentDate": "2022-04-01",
+    "phoneNumber": "+251945678901",
+    "sex": "M",
+    "employeeCode": "EMP004"
   },
   {
     "id": "5",
     "email": "elias@gmail.com",
     "fullName": "Elias Tesfaye",
-    "role": "System Administrator"
+    "role": "System Administrator",
+    "employmentDate": "2022-05-01",
+    "phoneNumber": "+251956789012",
+    "sex": "M",
+    "employeeCode": "EMP005"
   },
   {
     "id": "6",
     "email": "fiker@gmail.com",
     "fullName": "Fiker Tadesse",
-    "role": "Project Executive"
+    "role": "Project Executive",
+    "employmentDate": "2022-06-01",
+    "phoneNumber": "+251967890123",
+    "sex": "F",
+    "employeeCode": "EMP006"
   },
   {
     "id": "7",
     "email": "genet@gmail.com",
     "fullName": "Genet Abate",
-    "role": "Back-end Developer"
+    "role": "Back-end Developer",
+    "employmentDate": "2022-07-01",
+    "phoneNumber": "+251978901234",
+    "sex": "F",
+    "employeeCode": "EMP007"
   },
   {
     "id": "8",
     "email": "habtamu@gmail.com",
     "fullName": "Habtamu Gebre",
-    "role": "Data Scientist"
+    "role": "Data Scientist",
+    "employmentDate": "2022-08-01",
+    "phoneNumber": "+251989012345",
+    "sex": "M",
+    "employeeCode": "EMP008"
   },
   {
     "id": "9",
     "email": "iness@gmail.com",
     "fullName": "Iness Solomon",
-    "role": "Quality Assurance Engineer"
+    "role": "Quality Assurance Engineer",
+    "employmentDate": "2022-09-01",
+    "phoneNumber": "+251910123456",
+    "sex": "F",
+    "employeeCode": "EMP009"
   },
   {
     "id": "10",
     "email": "jemal@gmail.com",
     "fullName": "Jemal Teklu",
-    "role": "Database Administrator"
+    "role": "Database Administrator",
+    "employmentDate": "2022-10-01",
+    "phoneNumber": "+251921234567",
+    "sex": "M",
+    "employeeCode": "EMP010"
   },
   {
     "id": "11",
     "email": "kiya@gmail.com",
     "fullName": "Kiya Mekonnen",
-    "role": "Mobile App Developer"
+    "role": "Mobile App Developer",
+    "employmentDate": "2022-11-01",
+    "phoneNumber": "+251932345678",
+    "sex": "F",
+    "employeeCode": "EMP011"
   },
   {
     "id": "12",
     "email": "liya@gmail.com",
     "fullName": "Liya Alemu",
-    "role": "DevOps Engineer"
+    "role": "DevOps Engineer",
+    "employmentDate": "2022-12-01",
+    "phoneNumber": "+251943456789",
+    "sex": "F",
+    "employeeCode": "EMP012"
   },
   {
     "id": "13",
     "email": "mesfin@gmail.com",
     "fullName": "Mesfin Demissie",
-    "role": "Software Architect"
+    "role": "Software Architect",
+    "employmentDate": "2023-01-01",
+    "phoneNumber": "+251954567890",
+    "sex": "M",
+    "employeeCode": "EMP013"
   },
   {
     "id": "14",
     "email": "nigist@gmail.com",
     "fullName": "Nigist Wondimu",
-    "role": "Business Analyst"
+    "role": "Business Analyst",
+    "employmentDate": "2023-02-01",
+    "phoneNumber": "+251965678901",
+    "sex": "F",
+    "employeeCode": "EMP014"
   },
   {
     "id": "15",
     "email": "otiso@gmail.com",
     "fullName": "Otiso Wolde",
-    "role": "Network Administrator"
+    "role": "Network Administrator",
+    "employmentDate": "2023-03-01",
+    "phoneNumber": "+251976789012",
+    "sex": "M",
+    "employeeCode": "EMP015"
   },
   {
     "id": "16",
     "email": "paulos@gmail.com",
     "fullName": "Paulos Gebre",
-    "role": "Data Engineer"
+    "role": "Data Engineer",
+    "employmentDate": "2023-04-01",
+    "phoneNumber": "+251987890123",
+    "sex": "M",
+    "employeeCode": "EMP016"
   },
   {
     "id": "17",
     "email": "rediet@gmail.com",
     "fullName": "Rediet Admasu",
-    "role": "UI/UX Researcher"
+    "role": "UI/UX Researcher",
+    "employmentDate": "2023-05-01",
+    "phoneNumber": "+251998901234",
+    "sex": "F",
+    "employeeCode": "EMP017"
   },
   {
     "id": "18",
     "email": "seble@gmail.com",
     "fullName": "Seble Melese",
-    "role": "Software Tester"
+    "role": "Software Tester",
+    "employmentDate": "2023-06-01",
+    "phoneNumber": "+251909012345",
+    "sex": "F",
+    "employeeCode": "EMP018"
   },
-    {
+  {
     "id": "19",
     "email": "solomon@gmail.com",
     "fullName": "Solomon Tekle",
-    "role": "Cloud Engineer"
+    "role": "Cloud Engineer",
+    "employmentDate": "2023-07-01",
+    "phoneNumber": "+251920123456",
+    "sex": "M",
+    "employeeCode": "EMP019"
   },
   {
     "id": "20",
-    "email": "tigist@gmail.com",
-    "fullName": "Tigist Teshome",
-    "role": "Data Analyst"
+    "email": "tsega@gmail.com",
+    "fullName": "Tsega Negash",
+    "role": "Project Manager",
+    "employmentDate": "2023-08-01",
+    "phoneNumber": "+251931234567",
+    "sex": "F",
+    "employeeCode": "EMP020"
   },
   {
     "id": "21",
     "email": "yared@gmail.com",
-    "fullName": "Yared Girma",
-    "role": "Software Engineer"
+    "fullName": "Yared Zewdu",
+    "role": "Project Manager",
+    "employmentDate": "2023-09-01",
+    "phoneNumber": "+251942345678",
+    "sex": "M",
+    "employeeCode": "EMP021"
   },
   {
     "id": "22",
-    "email": "zehara@gmail.com",
-    "fullName": "Zehara Asfaw",
-    "role": "Product Manager"
+    "email": "zena@gmail.com",
+    "fullName": "Zena Bekele",
+    "role": "Project Manager",
+    "employmentDate": "2023-10-01",
+    "phoneNumber": "+251953456789",
+    "sex": "F",
+    "employeeCode": "EMP022"
   },
   {
     "id": "23",
-    "email": "adamu@gmail.com",
-    "fullName": "Adamu Ali",
-    "role": "Network Engineer"
+    "email": "abdu@gmail.com",
+    "fullName": "Abdu Wazir",
+    "role": "Project Manager",
+    "employmentDate": "2023-11-01",
+    "phoneNumber": "+251964567890",
+    "sex": "M",
+    "employeeCode": "EMP023"
   },
   {
     "id": "24",
-    "email": "betelhem@gmail.com",
-    "fullName": "Betelhem Worku",
-    "role": "Cybersecurity Specialist"
+    "email": "betelehem@gmail.com",
+    "fullName": "Betelehem Alemu",
+    "role": "Project Manager",
+    "employmentDate": "2023-12-01",
+    "phoneNumber": "+251975678901",
+    "sex": "F",
+    "employeeCode": "EMP024"
   },
   {
     "id": "25",
-    "email": "esayas@gmail.com",
-    "fullName": "Esayas Tadele",
-    "role": "Data Scientist"
+    "email": "chala2@gmail.com",
+    "fullName": "Chala Negash",
+    "role": "Network Engineer",
+    "employmentDate": "2024-01-01",
+    "phoneNumber": "+251986789012",
+    "sex": "M",
+    "employeeCode": "EMP025"
+  },
+  {
+    "id": "26",
+    "email": "guest@gmail.com",
+    "fullName": "am guest",
+    "role": "Project Executive",
+    "employmentDate": "2022-01-01",
+    "phoneNumber": "+251912345678",
+    "sex": "M",
+    "employeeCode": "EMP0026"
   }
 ]

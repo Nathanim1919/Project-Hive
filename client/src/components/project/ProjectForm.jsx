@@ -9,56 +9,51 @@ const ProjectForm = ({ setOpenProjectForm }) => {
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [priority, setPriority] = useState("");
-
   const { id } = useParams();
+  
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+      e.preventDefault();
 
-    // Check if the due date is less than the start date
+      // Check if the due date is less than the start date
+      const start = new Date(); // Use current date/time as the start date
+      const due = new Date(dueDate);
 
-    const start = new Date(); // Use current date/time as the start date
-    const due = new Date(dueDate);
+      const timeDiff = due.getTime() - start.getTime();
+      const diffInDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
-    const timeDiff = due.getTime() - start.getTime();
-    const diffInDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+      if (diffInDays < 0) {
+        <Error message={"Due date cannot be earlier than the start date. Please reset the due date."}/>;
+      }
 
-    if (diffInDays < 0) {
-      <Error
-        message={
-          "Due date cannot be earlier than the start date. Please reset the due date."
+      else{
+        try {
+          const projectData = {
+            title,
+            description,
+            startDate: new Date(),
+            dueDate,
+            priority,
+          };
+
+          // Send the project data to the server
+          const response = await axios.post(
+            `http://localhost:5000/user/${id}/projects/createProject`,
+            projectData
+          );
+
+          // Handle the response and perform any necessary actions
+          console.log("Project created successfully:", response.data);
+
+          // Reset the form after successful project creation
+          setTitle("");
+          setDescription("");
+          setDueDate("");
+          setPriority("");
+          setOpenProjectForm(false);
+        } catch (error) {
+          console.error("Error creating project:", error);
         }
-      />;
-      // return;
-    }
-
-
-    try {
-      const projectData = {
-        title,
-        description,
-        startDate: new Date(),
-        dueDate,
-        priority,
-      };
-
-      // Send the project data to the server
-      const response = await axios.post(
-        `http://localhost:5000/user/${id}/projects/createProject`,
-        projectData
-      );
-
-      // Handle the response and perform any necessary actions
-      console.log("Project created successfully:", response.data);
-
-      // Reset the form after successful project creation
-      setTitle("");
-      setDescription("");
-      setDueDate("");
-      setPriority("");
-      setOpenProjectForm(false);
-    } catch (error) {
-      console.error("Error creating project:", error);
     }
   };
 

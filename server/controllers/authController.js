@@ -13,14 +13,10 @@ const sampleEmployees = JSON.parse(fs.readFileSync('./employee.json'));
 module.exports.registerUser = async (req, res) => {
     try {
         const {
-            name,
             email,
             password,
             profile,
-            phoneNumber,
-            position,
-            sex,
-            employmentDate,
+            code
         } = req.body;
 
 
@@ -29,10 +25,15 @@ module.exports.registerUser = async (req, res) => {
 
         if (isEmployee) {
         
-            const emp = sampleEmployees.find(e => e.email === email);
-            const userPositon = position + emp.role
+            const emp = sampleEmployees.find(e => e.email === email && e.employeeCode === code);
+            const position = emp.role
+            const name = emp.fullName
+            const phoneNumber = emp.phoneNumber
+            const sex = emp.sex
+            const employmentDate = emp.employmentDate 
+
         // Check if the email already exists
-        const existingUser = await User.findOne({
+        let existingUser = await User.findOne({
             email
         });
         if (existingUser) {
@@ -40,8 +41,6 @@ module.exports.registerUser = async (req, res) => {
                 message: 'Email already exists'
             });
         }
-
-        
             // Hash the password
             const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -51,7 +50,7 @@ module.exports.registerUser = async (req, res) => {
                 password: hashedPassword,
                 profile,
                 phoneNumber,
-                position: userPositon,
+                position,
                 sex,
                 employmentDate,
             });
@@ -122,5 +121,3 @@ module.exports.userLoginController = async (req, res) => {
         });
     }
 };
-
-

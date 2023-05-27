@@ -9,20 +9,17 @@ import {RxAvatar} from 'react-icons/rx'
 
 export default function RegistrationPage() {
   // user registration states
-  const [name, setName] = useState("");
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [position, setPosition] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [avatar, setAvatar] = useState("");
-  const [sex, setSex] = useState("");
-  const [employmentDate, setEmploymentDate] = useState("");
+  const [code, setCode] = useState("");
+
 
   // react hooks
   const navigate = useNavigate()
 
-  // open boxes
-  const [open1, setOpen1] = useState(false);
 
 
 
@@ -44,14 +41,10 @@ export default function RegistrationPage() {
       const response = await axios.post(
         "http://localhost:5000/auth/register",
         {
-          name,
           email,
           password,
-          phoneNumber,
-          position,
           profile,
-          sex,
-          employmentDate,
+          code,
         },
         {
           withCredentials: true,
@@ -62,15 +55,12 @@ export default function RegistrationPage() {
       console.log(response);
 
       // Reset the form after successful registration
-      setName("");
       setEmail("");
       setPassword("");
-      setPhoneNumber("");
-      setSex("");
-      setEmploymentDate("");
+      setConfirmPassword("");
+      setCode("");
 
       // navigate to login page
-   console.log()
       if (response.data.message === "User registered successfully"){
         navigate("/login");
       }
@@ -100,22 +90,6 @@ export default function RegistrationPage() {
           <form onSubmit={handleRegistration}>
             <div className="form-group">
               <input
-                onFocus={() => {
-                  setOpen1(false);
-                }}
-                type="text"
-                placeholder="Name"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <input
-                onFocus={() => {
-                  setOpen1(false);
-                }}
                 placeholder="Email"
                 type="email"
                 id="email"
@@ -126,9 +100,6 @@ export default function RegistrationPage() {
             </div>
             <div className="form-group">
               <input
-                onFocus={() => {
-                  setOpen1(false);
-                }}
                 placeholder="Password"
                 type="password"
                 id="pasword"
@@ -137,67 +108,28 @@ export default function RegistrationPage() {
                 required
               />
             </div>
+
             <div className="form-group">
               <input
-                onFocus={() => {
-                  setOpen1(false);
-                }}
-                placeholder="Phone-Number"
-                type="tel"
-                id="phone"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
+                placeholder="confirm Password"
+                type="password"
+                id="pasword"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
             </div>
-
-            <div className="form-group form-sex">
+            <div className="form-group">
               <input
-                onFocus={() => {
-                  setOpen1(true);
-                }}
-                placeholder="Sex"
+                placeholder="Employeement code"
                 type="text"
-                id="sex"
-                value={sex}
-                onChange={(e) => setSex(e.target.value)}
+                id="code"
+                value={code}
+                onChange={(e) => setCode(e.target.value)}
                 required
-                readOnly
               />
-              {open1 && (
-                <ul className="sex">
-                  <li
-                    onClick={(e) => {
-                      setSex(e.target.textContent);
-                      setOpen1(false);
-                    }}
-                  >
-                    male
-                  </li>
-                  <li
-                    onClick={(e) => {
-                      setSex(e.target.textContent);
-                      setOpen1(false);
-                    }}
-                  >
-                    female
-                  </li>
-                </ul>
-              )}
             </div>
 
-            <div className="form-group">
-              <input
-                onFocus={() => {
-                  setOpen1(false);
-                }}
-                type="date"
-                id="employment-date"
-                value={employmentDate}
-                onChange={(e) => setEmploymentDate(e.target.value)}
-                required
-              />
-            </div>
             <div className="form-group profile">
               <label for="profile">
                 <RxAvatar /> <p>set profile picture</p>
@@ -209,6 +141,7 @@ export default function RegistrationPage() {
                 onChange={(e) => setAvatar(e.target.files[0])}
               />
             </div>
+
             <button type="submit">Sign up</button>
           </form>
           <NavLink className="account" to={"/login"}>

@@ -10,13 +10,13 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    password:{
-        type:String,
-        required:true
+    password: {
+        type: String,
+        required: true
     },
-     profile: {
-         type: String,
-     },
+    profile: {
+        type: String,
+    },
     phoneNumber: {
         type: String,
         required: true
@@ -25,11 +25,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-     roll: {
-         type: String,
-         enum: ['project manager', 'team member'],
-         default:'team member'
-     },
+    roll: {
+        type: String,
+        enum: ['project manager', 'team member'],
+        default: 'team member'
+    },
     sex: {
         type: String,
         required: true
@@ -55,12 +55,11 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Project'
     }],
-    createdEvents:[{
+    createdEvents: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Event'
     }]
 });
 
 const User = mongoose.model('User', userSchema);
-
 module.exports = User;

@@ -9,18 +9,6 @@ const projectSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    teamMembers: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    }],
-    projectManager: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    createdBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    },
     startDate: {
         type: Date,
         required: true
@@ -29,25 +17,40 @@ const projectSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    priority: {
-        type: String,
-        enum: ['Low', 'Medium', 'High'],
-        default: 'Medium'
+    projectManager: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     },
-    status: {
-        type: String,
-        enum: ['Not Started', 'In progress', 'Completed'],
-        default: 'Not Started'
-    },
+    team: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
     tasks: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Task'
     }],
-    completionPercentage: {
+    events: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Event'
+    }],
+    technologyStack: {
+        type: [String],
+        required: true
+    },
+    status: {
+        type: String,
+        enum: ['Planning', 'In Progress', 'Completed', 'On Hold', 'Cancelled'],
+        default: 'Planning'
+    },
+    budget: {
         type: Number,
-        min: 0,
-        max: 100,
-        default: 0
+        required: true
+    },
+ 
+    chatboard: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Chatboard'
     }
 });
 
