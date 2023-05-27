@@ -1,5 +1,5 @@
 .projectDetailSection{
-  background-color: rgb(233, 238, 238);
+  background-color: rgb(255, 255, 255);
   width: 100vw;
   height: 100%;
   margin: 0;
@@ -23,6 +23,21 @@
     place-items: center;
 }
 
+.pro-title .title{
+    padding:1rem;
+    display:flex;
+    flex-direction:column;
+}
+
+.pro-title .title>*{
+    margin:0;
+    text-align:left;
+}
+.pro-title .title>p{
+   color:#4e4c4c;
+   font-size:.8rem;
+}
+
 .projectDetailSection .projectInfo .pro-title a:hover{
     background-color: rgb(182, 182, 185);
 }
@@ -36,6 +51,54 @@
     left: 0;
     padding:1rem 3rem;
 }
+
+/* navbar designing */
+.project-navbar{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:2rem;
+    background-color:#fff;
+    position:relative;
+    padding:1rem;
+}
+ .projectDetailSection .projectInfo  .project-navbar > li{
+   text-decoration:none;
+   color:#272626;
+   text-transform:capitalize;
+   position:relative;
+    padding:.4rem 1rem;
+    font-size:.8rem;
+    list-style-type:none;
+    cursor:pointer;
+    transition:all .3s ease-in-out;
+    
+}
+  .project-navbar > li::after{
+   position:absolute;
+   width:0;
+   height:2px;
+   content:"";
+   left:30%;
+   bottom:0;
+   transition:all .3s ease-in-out;
+}
+section.projectDetailSection .projectInfo div.project-navbar > li.active{
+    background-color:#eee;
+    border-radius:20px;
+    transition:all .3s ease-in-out;
+}
+section.projectDetailSection .projectInfo div.project-navbar > li.active::after {
+    width: 40%;
+    background-color:orange;
+}
+
+
+ .projectDetailSection .projectInfo  .project-navbar > li:hover{
+    background-color:#eee;
+    border-radius:20px;
+}
+
 .projectDetailSection .projectInfo .pro-title .deadline{
     display: flex;
     justify-content: space-between;
@@ -76,3 +139,83 @@
     justify-content: space-around;
     align-items: center;
 }
+
+
+/* task style */
+
+.task-list-header{
+    display: grid;
+    grid-template-columns: .7fr .23fr;
+    padding: .1rem 1rem;
+    text-align: left;
+}
+.task-list-header div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+.task-list-header div button{
+    font-size: .9rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap:.51rem;
+}
+.task-list-header div button:nth-child(1){
+   background-color: transparent;
+   color: #333;
+   border: 1px solid #eee;
+}
+
+.tasklist{
+    background-color: #fff;
+    padding: .1rem 2rem;
+    display: grid;
+    gap: 0rem;
+    font-size: .9rem;
+}
+.tasklist .task{
+    padding: .2rem 2rem;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+.tasklist a{
+    color: #6e6c6c;
+    text-decoration: none;
+}
+.tasklist a:hover{
+    background-color: transparent;
+    color: #509bfd;
+}
+.tasklist .task,.tasklist .task div{
+    display:flex;
+    align-items:center;
+    gap: 2rem;
+    justify-content: space-between;
+}
+#members{
+    background-color: #eee;
+    gap: .31rem;
+    padding: .1rem 1rem;
+    border-radius: 50px;
+    height: 35px;
+}
+#members div{
+    background-color: #ffffff;
+    width: 25px;
+    height:25px;
+    border-radius: 50%;
+}
+div#progress{
+    gap: .5rem;
+}
+
+#members .add{
+    margin-left: .5rem;
+    display: grid;
+    place-items: center;
+    font-size: 1.2rem;
+}
+
+

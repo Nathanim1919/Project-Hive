@@ -208,11 +208,11 @@ export default function DashboardPage() {
                       style={{
                         backgroundColor:
                           project.priority === "Low"
-                            ? "rgba(60, 250, 21, 0.658)"
+                            ? "rgba(215, 255, 215, 0.7)" // Green with reduced opacity
                             : project.priority === "Medium"
-                            ? "rgba(238, 255, 4, 0.863)"
+                            ? "rgb(241, 238, 194)" // Orange with reduced opacity
                             : project.priority === "High"
-                            ? "rgba(255, 0, 0, 0.438)"
+                            ? "rgb(247, 193, 191)" // Red with reduced opacity
                             : "transparent",
                       }}
                     >
