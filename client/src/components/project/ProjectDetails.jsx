@@ -3,25 +3,25 @@ import { NavLink, useParams } from "react-router-dom";
 import axios from "axios";
 import { BiArrowBack } from "react-icons/bi";
 import "../../styles/projectDetail.css";
-import { BsListTask } from "react-icons/bs";
+import { BsListTask, BsFillCheckCircleFill } from "react-icons/bs";
 import {
   AiOutlineCheckCircle,
   AiFillPlusCircle,
   AiOutlineUnorderedList,
+  AiOutlineClose,
 } from "react-icons/ai";
 
 const ProjectDetailPage = () => {
   const { id, projectId } = useParams();
+
   const [project, setProject] = useState(null);
-
-
-// use states for 
   const [overviewPage, setOverviewPage] = useState(true);
   const [taskPage, setTaskPage] = useState(false);
   const [membersPage, setMembersPage] = useState(false);
   const [collaburationPage, setCollaburationPage] = useState(false);
-
+  const [createTask, setCreateTask] = useState(true);
   const [activeLink, setActiveLink] = useState("Overview");
+
 
   useEffect(() => {
     const getProject = async () => {
@@ -38,12 +38,64 @@ const ProjectDetailPage = () => {
     getProject();
   }, [id, projectId]); // Include 'projectId' as a dependency
 
+
+
+
+
   if (!project) {
     return <div>Loading... {projectId}</div>;
   }
 
   return (
     <section className="projectDetailSection">
+      {createTask && (
+        <div id="createTaskBox">
+          <div id="taskform">
+            <AiOutlineClose
+              onClick={() => setCreateTask(false)}
+              className="close-icon"
+            />
+            <h1>Create Task</h1>
+            <div>
+              <form>
+                <input type="text" placeholder="Title" />
+                <textarea
+                  name=""
+                  id=""
+                  cols="30"
+                  rows="4"
+                  placeholder="Description"
+                ></textarea>
+                <input type="date" />
+                <div className="setpriority">
+                  <p>set priority</p>
+                  <div>
+                    <li>
+                      <BsFillCheckCircleFill />
+                      Low
+                    </li>
+                    <li>
+                      <BsFillCheckCircleFill />
+                      Medium
+                    </li>
+                    <li>
+                      <BsFillCheckCircleFill />
+                      High
+                    </li>
+                  </div>
+                </div>
+                <div className="assignmember">
+                  <p>Assign to member</p>
+                  {/* <div>
+                        members
+                      </div> */}
+                </div>
+                <button type="submit">create</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="projectInfo">
         <div className="pro-title">
           <NavLink to={`/user/${id}`}>
@@ -162,8 +214,14 @@ const ProjectDetailPage = () => {
           <div className="task-list-header">
             <h1>Tasks</h1>
             <div>
-              <button><AiOutlineUnorderedList/>Filter Tasks</button>
-              <button><AiFillPlusCircle className="add" />Add new task</button>
+              <button>
+                <AiOutlineUnorderedList />
+                Filter Tasks
+              </button>
+              <button onClick={() => setCreateTask(true)}>
+                <AiFillPlusCircle className="add" />
+                Add new task
+              </button>
             </div>
           </div>
           <div className="tasklist">

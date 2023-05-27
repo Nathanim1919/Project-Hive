@@ -173,10 +173,10 @@ section.projectDetailSection .projectInfo div.project-navbar > li.active::after 
     padding: .1rem 2rem;
     display: grid;
     gap: 0rem;
-    font-size: .9rem;
+    font-size: .8rem;
 }
 .tasklist .task{
-    padding: .2rem 2rem;
+    padding: 0rem 2rem;
     border: 1px solid #eee;
     border-radius: 5px;
 }
@@ -197,9 +197,9 @@ section.projectDetailSection .projectInfo div.project-navbar > li.active::after 
 #members{
     background-color: #eee;
     gap: .31rem;
-    padding: .1rem 1rem;
+    padding: 0.2rem 0.5rem;
     border-radius: 50px;
-    height: 35px;
+    height: 30px;
 }
 #members div{
     background-color: #ffffff;
@@ -219,3 +219,98 @@ div#progress{
 }
 
 
+/* sidebar create task box style */
+
+#createTaskBox{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #948f8f3a;
+    z-index: 10;
+    backdrop-filter: blur(3px);
+}
+
+#taskform{
+    width: 500px;
+    background-color: #fff;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 0;
+}
+
+#taskform .close-icon{
+    position: absolute;
+    top: .5rem;
+    left: .5rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    background-color: #eee;
+    padding: .5rem;
+    border-radius: 50%;
+}
+
+#taskform form input, #taskform textarea{
+    border: 1px solid #ccc7c75b;
+    width: 83%;
+    margin: auto;
+    margin-top: .5rem;
+    outline: none;
+    padding: 1rem;
+    resize: none;
+}
+
+
+#taskform .setpriority div{
+    border: 1px solid #eeeeee56;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 2rem;
+    font-size: .9rem;
+    color: #b3b0b0;
+    padding: .5rem;
+    width: 83%;
+    margin: auto;
+    position: relative;
+}
+
+#taskform .setpriority div li{
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap:.51rem;
+}
+
+#taskform .setpriority div li:hover{
+   color: #333;
+}
+
+#taskform .setpriority p{
+    margin-top: 2rem;
+    text-align: left;
+    color: #070c36;
+    margin-left: 2.3rem;
+}
+
+#taskform .assignmember{
+    margin-left: 2.3rem;
+    text-align: left;
+    font-size: .8rem;
+    color: #333;
+    color: rgb(43, 170, 255);
+    text-decoration: underline;
+}
+
+#taskform button{
+    background-color: transparent;
+    color: #333;
+    margin-top: 2rem;
+    border: 1px solid rgb(205, 207, 205);
+}
+#taskform button:hover{
+    border-color: blue;
+}

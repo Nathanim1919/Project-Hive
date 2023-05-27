@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../../styles/createProject.css";
 import { useParams } from "react-router-dom";
+import Error from "../ShowError/error";
 
 const ProjectForm = ({ setOpenProjectForm }) => {
   const [title, setTitle] = useState("");
@@ -23,10 +24,12 @@ const ProjectForm = ({ setOpenProjectForm }) => {
     const diffInDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
     if (diffInDays < 0) {
-      alert(
-        "Due date cannot be earlier than the start date. Please reset the due date."
-      );
-      return;
+      <Error
+        message={
+          "Due date cannot be earlier than the start date. Please reset the due date."
+        }
+      />;
+      // return;
     }
 
 
