@@ -66,11 +66,30 @@ section.dashboard{
 .sidbar{
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
+}
+.sidbar > div{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     align-items: center;
     padding: 3rem 1rem;
 }
-.sidbar > *{
+
+.sidbar > div.lowericon > *{
+    background-color: transparent;
+    color: #1d1c1c;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+.sidbar > div.lowericon > * a:hover{
+    background-color: transparent;
+}
+.sidbar > div.lowericon > *:hover{
+   color: #5671cc;
+}
+.sidbar > div > *{
  font-size: 1rem;
  width: 40px;
  height: 40px;
@@ -99,34 +118,6 @@ section.dashboard{
     border-radius: 50%;
 }
 
-.profile-option{
-    position:absolute;
-    top:9%;
-    border-radius:10px;
-    right:2%;
-    overflow:hidden;
-    z-index:2;
-   border:1px solid #eee;
-    backdrop-filter:blur(5px);
-    background-color:rgb(247, 247, 247);
-}
-
-.profile-option li{
-    display:flex;
-    align-items:center;
-    gap:.5rem;
-    position:relative;
-    text-align:left;
-    font-size:.9rem;
-    list-style-type:none;
-    padding:.5rem 1rem;
-    cursor:pointer;
-}
-
-.profile-option li:hover{
-    background-color:#188fff;
-    color:#fff;
-}
 
 .profile .user-info{
     display:flex;

@@ -31,7 +31,7 @@ module.exports.registerUser = async (req, res) => {
             const phoneNumber = emp.phoneNumber
             const sex = emp.sex
             const employmentDate = emp.employmentDate 
-
+            const salary = emp.salary
         // Check if the email already exists
         let existingUser = await User.findOne({
             email
@@ -51,6 +51,7 @@ module.exports.registerUser = async (req, res) => {
                 profile,
                 phoneNumber,
                 position,
+                salary,
                 sex,
                 employmentDate,
             });

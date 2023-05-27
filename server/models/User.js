@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    salary: {
+        type: String,
+        required: true
+    },
     roll: {
         type: String,
         enum: ['project manager', 'team member'],
