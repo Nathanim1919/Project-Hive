@@ -25,7 +25,7 @@ export default function DashboardPage() {
   const [activeUser, setActiveUser] = useState({});
   const [projects, setProjects] = useState([]);
   const [openDashBoardPage, setOpenDashBoardPage] = useState(true);
-  const [openProfilePage, setOpenProfilePage] = useState(true);
+  const [openProfilePage, setOpenProfilePage] = useState(false);
   const { id } = useParams();
 
   const navigate = useNavigate();

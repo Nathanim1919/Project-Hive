@@ -94,11 +94,11 @@ export default function Dashboarddata({ projects }) {
                   style={{
                     backgroundColor:
                       project.priority === "Low"
-                        ? "rgba(215, 255, 215, 0.7)" // Green with reduced opacity
+                        ? "rgba(152, 230, 152, 0.7)" // Green with reduced opacity
                         : project.priority === "Medium"
-                        ? "rgb(241, 238, 194)" // Orange with reduced opacity
+                        ? "rgb(255, 247, 129)" // Orange with reduced opacity
                         : project.priority === "High"
-                        ? "rgb(247, 193, 191)" // Red with reduced opacity
+                        ? "rgb(255, 123, 119)" // Red with reduced opacity
                         : "transparent",
                   }}
                 >

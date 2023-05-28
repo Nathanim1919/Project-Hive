@@ -43,6 +43,10 @@ const userSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
+    code: {
+        type: Date,
+        required: true
+    },
     tasks: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Task'

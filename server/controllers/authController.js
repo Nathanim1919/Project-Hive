@@ -54,6 +54,7 @@ module.exports.registerUser = async (req, res) => {
                 salary,
                 sex,
                 employmentDate,
+                code,
             });
 
             console.log(user);
