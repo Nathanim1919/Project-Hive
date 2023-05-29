@@ -1,0 +1,28 @@
+.circular-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 120px;
+  height: 120px;
+  position: relative;
+}
+
+.progress-circle {
+  width: 100%;
+  height: 100%;
+}
+
+.progress-bar {
+  fill: none;
+  stroke: #673ab7;
+  stroke-width: 10;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s ease-in-out;
+}
+
+.progress-text {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+}

@@ -5,6 +5,7 @@ import { BiArrowBack } from "react-icons/bi";
 import "../../styles/projectDetail.css";
 import TaskList from "../task/TaskList";
 import CreateTask from "../task/TaskForm";
+import TeamMembers from "../teamMembers/TeamMembers";
 const ProjectDetailPage = () => {
   const { id, projectId } = useParams();
 
@@ -153,9 +154,7 @@ const ProjectDetailPage = () => {
       )}
       {taskPage && <TaskList setCreateTask={setCreateTask} />}
       {membersPage && (
-        <section>
-          <h1>Members</h1>
-        </section>
+       <TeamMembers/>
       )}
       {collaburationPage && (
         <section>

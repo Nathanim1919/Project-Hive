@@ -140,7 +140,7 @@ section.dashboard{
 
 .userdatas{
     display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: 75% 25%;
 }
 
 .userdatas .projects{
@@ -335,9 +335,66 @@ section.dashboard{
      border-top-left-radius: 40px;
     display: grid;
     margin: .5rem;
-    grid-template-rows: repeat(2,1fr);
+    grid-template-columns: 1fr;
 }
 
 .mes-not .messages{
     background-color: rgb(255, 255, 255);
+}
+
+
+
+/* notification styles */
+.notifications{
+    max-height: 80vh;
+    color: #272626;
+    position: relative;
+    border-radius: 10px;
+}
+.notification-list{
+    position: relative;
+    color: #333;
+    max-height: 100%;
+    overflow: auto;
+    display: grid;
+    padding: .5rem;
+    gap: .2rem;
+    background-color: #fff;
+}
+.notification-list > div{
+   display: flex;
+   align-items: center;
+   padding: .5rem;
+   border-radius: 10px;
+   gap: 1rem;
+   background-color: #f7f3f300;
+   border: 1px solid #dddddd00;
+   cursor: pointer;
+}
+
+.notification-list > div .logo{
+    width: 30px;
+    height: 30px;
+    background-color: #eee;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    display: grid;
+    place-items: center;
+    color: red;
+}
+.notification-list > div:hover{
+    background-color: #f5f1f1;
+}
+.notification-list > div p{
+  font-size: .7rem;
+}
+.notification-list > div p:nth-of-type(2){
+  color: #807c7c;
+}
+.notification-list > div div.message{
+  display: flex;
+  flex-direction: column;
+}
+.notification-list > div div.message>*{
+  margin: 0;
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import {IoMdNotificationsOutline} from 'react-icons/io';
 
 export default function Dashboarddata({ projects }) {
   // get the current month name with the year
@@ -146,8 +147,119 @@ export default function Dashboarddata({ projects }) {
       </div>
 
       <div className="mes-not">
-        <div className="notifications">notification</div>
-        <div className="messages">message</div>
+        <div className="notifications">
+          <p>notification</p>
+          <div className="notification-list">
+            <div className="notify">
+                <div className="logo">
+                  <IoMdNotificationsOutline/>
+                </div>
+                <div className="message">
+                  <p>Task completed request</p>
+                  <p>2:43 AM may 12, 2023</p>
+                </div>
+            </div>
+            <div className="notify">
+                <div className="logo">
+                  <IoMdNotificationsOutline/>
+                </div>
+                <div className="message">
+                  <p>Task completed request and progress</p>
+                  <p>2:43 AM may 12, 2023</p>
+                </div>
+            </div>
+            <div className="notify">
+                <div className="logo">
+                  <IoMdNotificationsOutline/>
+                </div>
+                <div className="message">
+                  <p>Task completed request</p>
+                  <p>2:43 AM may 12, 2023</p>
+                </div>
+            </div>
+            <div className="notify">
+                <div className="logo">
+                  <IoMdNotificationsOutline/>
+                </div>
+                <div className="message">
+                  <p>Task completed request and progress</p>
+                  <p>2:43 AM may 12, 2023</p>
+                </div>
+            </div>
+            <div className="notify">
+                <div className="logo">
+                  <IoMdNotificationsOutline/>
+                </div>
+                <div className="message">
+                  <p>Task completed request</p>
+                  <p>2:43 AM may 12, 2023</p>
+                </div>
+            </div>
+            <div className="notify">
+                <div className="logo">
+                  <IoMdNotificationsOutline/>
+                </div>
+                <div className="message">
+                  <p>Task completed request and progress</p>
+                  <p>2:43 AM may 12, 2023</p>
+                </div>
+            </div>
+            <div className="notify">
+                <div className="logo">
+                  <IoMdNotificationsOutline/>
+                </div>
+                <div className="message">
+                  <p>Task completed request</p>
+                  <p>2:43 AM may 12, 2023</p>
+                </div>
+            </div>
+            <div className="notify">
+                <div className="logo">
+                  <IoMdNotificationsOutline/>
+                </div>
+                <div className="message">
+                  <p>Task completed request</p>
+                  <p>2:43 AM may 12, 2023</p>
+                </div>
+            </div>
+            <div className="notify">
+                <div className="logo">
+                  <IoMdNotificationsOutline/>
+                </div>
+                <div className="message">
+                  <p>Task completed request</p>
+                  <p>2:43 AM may 12, 2023</p>
+                </div>
+            </div>
+            <div className="notify">
+                <div className="logo">
+                  <IoMdNotificationsOutline/>
+                </div>
+                <div className="message">
+                  <p>Task completed request</p>
+                  <p>2:43 AM may 12, 2023</p>
+                </div>
+            </div>
+            <div className="notify">
+                <div className="logo">
+                  <IoMdNotificationsOutline/>
+                </div>
+                <div className="message">
+                  <p>Task completed request</p>
+                  <p>2:43 AM may 12, 2023</p>
+                </div>
+            </div>
+            <div className="notify">
+                <div className="logo">
+                  <IoMdNotificationsOutline/>
+                </div>
+                <div className="message">
+                  <p>Task completed request</p>
+                  <p>2:43 AM may 12, 2023</p>
+                </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

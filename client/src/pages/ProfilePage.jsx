@@ -8,6 +8,7 @@ import {
   AiFillInstagram,
   AiOutlineTwitter,
 } from "react-icons/ai";
+import Progress from "../components/progress/progress";
 
 export default function ProfilePage() {
   const { id } = useParams();
@@ -29,6 +30,23 @@ export default function ProfilePage() {
     const formattedDate = dt.toLocaleDateString("en-US", options);
     return formattedDate; // Output: "May 25, 2023"
   };
+
+  const totalTasks = 50; // Total number of tasks
+  const completedTasks = 20; // Number of completed tasks
+  const notStartedTasks = 2; // Number of tasks not yet started
+  const inProgressTasks = totalTasks - completedTasks - notStartedTasks; // Number of tasks in progress
+
+  const maxLimit = 472; // Maximum limit based on the strokeDasharray
+  
+  const completed= (completedTasks / totalTasks) * maxLimit;
+  const inProgress= (inProgressTasks / totalTasks) * maxLimit;
+  const notStarted= (notStartedTasks / totalTasks) * maxLimit;
+
+  const completedPercentage = (completed / maxLimit) * 100;
+  const inProgressPercentage = (inProgress / maxLimit) * 100;
+  const notStartedPercentage = (notStarted / maxLimit) * 100;
+
+
 
   return (
     <section className="profile">
@@ -73,41 +91,45 @@ export default function ProfilePage() {
         <div className="userrating">
           <div>
             <h1>
-              2<sup>+</sup>
-              <span> years</span>
+              2<sup>+</sup> <span>years</span>
             </h1>
-            <p>with BlueNile</p>
+            <p>Experience at BlueNile</p>
           </div>
 
           <div>
             <h1>
-              4<sup>+</sup>
-              <span> projects</span>
+              4<sup>+</sup> <span>projects</span>
             </h1>
-            <p>Participated</p>
+            <p>Participated in</p>
           </div>
           <div>
             <h1>90%</h1>
-            <p>Completion rate</p>
+            <p>Task completion rate</p>
           </div>
         </div>
 
         <div className="tasksprogress">
           <div>
             <h1>43</h1>
-            <p>Tasks</p>
+            <p>Total Tasks</p>
           </div>
 
           <div>
-            <h1>20</h1>
-            <p>Completed</p>
+            {/* <h1>20</h1>
+            <p>Completed Tasks</p> */}
+            <Progress limit={completedPercentage} progress={40} />
+            <p>Completed Tasks</p>
           </div>
           <div>
-            <h1>10</h1>
-            <p>In progresss</p>
+            {/* <h1>10</h1>
+            <p>In Progress</p> */}
+            <Progress limit={inProgressPercentage} progress={40} />
+            <p>In Progress</p>
           </div>
           <div>
-            <h1>13</h1>
+            {/* <h1>13</h1>
+            <p>Not Yet Started</p> */}
+            <Progress limit={notStartedPercentage} progress={20} />
             <p>Not Yet Started</p>
           </div>
         </div>
