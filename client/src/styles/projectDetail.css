@@ -111,26 +111,60 @@ section.projectDetailSection .projectInfo div.project-navbar > li.active::after 
    border-radius: 5px;
    padding: .2rem .5rem;
 }
+.project-progress{
+background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
 
+
+}
 .project-progress,.project-budget{
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
-    padding: 1rem 2rem;
+    padding: 2rem;
     gap: 2rem;
     flex-wrap: wrap;
 }
+.project-progress h1,.project-budget h1{
+    font-size: 3rem;
+    color: rgb(52, 52, 53);
+}
 
 .project-progress > div{
-    border: 1px solid #eee;
+    /* border: 1px solid #eee; */
     border-radius: 5px;
     flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
+
+.project-budget > div>div:nth-child(1),.project-budget > div:nth-child(1){
+     display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.project-progress > div>*,.project-budget > div>div:nth-child(1)>*,.project-budget > div:nth-child(1)>*{
+    margin: 0;
+}
+.project-progress > div>p,.project-budget > div>div:nth-child(1)>p{
+    color: #706e6e;
+}
+
 .project-budget > div{
     border: 1px solid #eee;
     border-radius: 5px;
     flex: 1;
+    padding: 1rem;
+background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);
+
+
+}
+
+.project-budget > div:nth-child(1){
+    border: none;
+    background: none;
 }
 
 .project-budget > div:nth-child(2),

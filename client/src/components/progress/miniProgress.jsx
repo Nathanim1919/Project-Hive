@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import "../../styles/progress.css";
+import "../../styles/miniprogress.css";
 
-export default function Progress({ progress, animates, total }) {
+export default function MiniProgress({ progress, animates, total }) {
   const progressRef = useRef(null);
   const [degree, setDegree] = useState(0)
 
@@ -17,7 +17,7 @@ export default function Progress({ progress, animates, total }) {
 
     const animationInterval = setInterval(() => {
       const gradientDegree = (currentFrame / frames) * progressDegree; // Gradually increase the gradient degree
-      progressElement.style.background = `conic-gradient(orange, ${gradientDegree}deg, #ededed 0deg)`;
+      progressElement.style.background = `conic-gradient(rgb(31, 119, 219), ${gradientDegree}deg, #79ffff 0deg)`;
       currentFrame++;
 
       if (currentFrame === frames) {
@@ -31,8 +31,8 @@ export default function Progress({ progress, animates, total }) {
   }, [progress, animates, total]);
 
   return (
-    <div className="circular-progress" ref={progressRef}>
-      <div className="number">{degree}%</div>
+    <div className="mini-circular-progress" ref={progressRef}>
+      <sapn id="mini-number">{78}%</sapn>
     </div>
   );
 }

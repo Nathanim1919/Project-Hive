@@ -4,7 +4,7 @@ section.profile{
     height: 100%;
     margin-top: .51rem;
     display: grid;
-    grid-template-columns: .2fr .8fr;
+    grid-template-columns: .25fr .75fr;
     padding: 0;
     overflow: hidden;
     place-items: start;
@@ -15,15 +15,32 @@ section.profile>*{
     margin: 0;
 }
 
-.profile .coverpic{
-    background: linear-gradient(#000000,#007bff3a, #ffffff00);
-    padding: 2rem;
-    position: relative;
-    top: 0;
-    color: #e0dddd;
-    background-image: url('../../public/images/cover.jpg');
-    background-position: center;
-    background-size: cover;
+
+section.profile .employeementInfo{
+    display: grid;
+    width: 100%;
+}
+
+section.profile .employeementInfo .profile-navigation{
+    display: grid;
+    place-items: center;
+}
+
+section.profile .employeementInfo .profile-navigation ul{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 2rem;
+   list-style: none;
+   color: #4e4c4c;
+   font-size: .9rem;
+}
+section.profile .employeementInfo .profile-navigation ul li{
+    padding: .4rem 1rem;
+    border-radius: 10px;
+}
+section.profile .employeementInfo .profile-navigation ul li:hover{
+   background-color: #eee;
 }
 
 .profile .userrating{
@@ -60,11 +77,18 @@ section.profile>*{
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(243, 238, 238);
+    margin: auto;
+    place-self: center;
+    align-self: start;
+    padding:0;
+    width: 100%;
+    height: 100%;
 }
 
 .profiliepic{
-    /* height: 150px; */
+    width: 100%;
+    /* height: 250px; */
 }
 
 .profiliepic img{
@@ -113,7 +137,7 @@ section.profile>*{
     display: flex;
     justify-content: space-between;
     padding: 1rem;
-    /* width: 90%; */
+    width: 100%;
     margin: auto;
     align-items: center;
 }

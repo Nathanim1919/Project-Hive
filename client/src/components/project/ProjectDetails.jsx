@@ -6,6 +6,7 @@ import "../../styles/projectDetail.css";
 import TaskList from "../task/TaskList";
 import CreateTask from "../task/TaskForm";
 import TeamMembers from "../teamMembers/TeamMembers";
+import Progress from "../progress/progress";
 const ProjectDetailPage = () => {
   const { id, projectId } = useParams();
 
@@ -125,7 +126,7 @@ const ProjectDetailPage = () => {
           </div>
 
           <div className="overallProgress">
-            <h1>90%</h1>
+            <Progress animates={1000} total={200} progress={100} />
             <p>overall progress</p>
           </div>
         </div>
@@ -141,21 +142,23 @@ const ProjectDetailPage = () => {
               <p>Internal cost</p>
               <h1>$132</h1>
             </div>
-            <div className="circle-progress">45%</div>
+            <div className="circle-progress">
+              <Progress animates={1000} total={200} progress={100} />
+            </div>
           </div>
           <div className="Budget-Left">
             <div>
               <p>Budget Left</p>
               <h1>$132</h1>
             </div>
-            <div>55%</div>
+            <div>
+              <Progress animates={200} total={200} progress={60} />
+            </div>
           </div>
         </div>
       )}
       {taskPage && <TaskList setCreateTask={setCreateTask} />}
-      {membersPage && (
-       <TeamMembers/>
-      )}
+      {membersPage && <TeamMembers />}
       {collaburationPage && (
         <section>
           <h1>chatting page</h1>

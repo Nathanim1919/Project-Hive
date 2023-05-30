@@ -31,22 +31,6 @@ export default function ProfilePage() {
     return formattedDate; // Output: "May 25, 2023"
   };
 
-  const totalTasks = 50; // Total number of tasks
-  const completedTasks = 20; // Number of completed tasks
-  const notStartedTasks = 2; // Number of tasks not yet started
-  const inProgressTasks = totalTasks - completedTasks - notStartedTasks; // Number of tasks in progress
-
-  const maxLimit = 472; // Maximum limit based on the strokeDasharray
-  
-  const completed= (completedTasks / totalTasks) * maxLimit;
-  const inProgress= (inProgressTasks / totalTasks) * maxLimit;
-  const notStarted= (notStartedTasks / totalTasks) * maxLimit;
-
-  const completedPercentage = (completed / maxLimit) * 100;
-  const inProgressPercentage = (inProgress / maxLimit) * 100;
-  const notStartedPercentage = (notStarted / maxLimit) * 100;
-
-
 
   return (
     <section className="profile">
@@ -78,14 +62,13 @@ export default function ProfilePage() {
       </div>
 
       <div className="employeementInfo">
-        <div className="coverpic">
-          <div className="bio">
-            <p>
-              "Success is not the key to happiness. Happiness is the key to
-              success. If you love what you do, you will be successful." -
-              Albert Schweitzer
-            </p>
-          </div>
+        <div className="profile-navigation">
+           <ul>
+              <li>Profile</li>
+              <li>Tasks</li>
+              <li>Projects</li>
+              <li>Events</li>
+           </ul>
         </div>
 
         <div className="userrating">
@@ -117,19 +100,19 @@ export default function ProfilePage() {
           <div>
             {/* <h1>20</h1>
             <p>Completed Tasks</p> */}
-            <Progress limit={completedPercentage} progress={40} />
+            <Progress animates={900} total={200} progress={70} />
             <p>Completed Tasks</p>
           </div>
           <div>
             {/* <h1>10</h1>
             <p>In Progress</p> */}
-            <Progress limit={inProgressPercentage} progress={40} />
+            <Progress animates={1100} total={200} progress={100} />
             <p>In Progress</p>
           </div>
           <div>
             {/* <h1>13</h1>
             <p>Not Yet Started</p> */}
-            <Progress limit={notStartedPercentage} progress={20} />
+            <Progress animates={1300} total={200} progress={30} />
             <p>Not Yet Started</p>
           </div>
         </div>
