@@ -9,6 +9,11 @@ const projectSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    priority: {
+        type: String,
+        enum: ['High', 'Medium', 'Low'],
+        default: 'Medium'
+    },
     startDate: {
         type: Date,
         required: true
@@ -20,7 +25,6 @@ const projectSchema = new mongoose.Schema({
     projectManager: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: true
     },
     team: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -47,7 +51,7 @@ const projectSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
- 
+
     chatboard: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Chatboard'

@@ -1,53 +1,112 @@
-.createProject{
-    display: grid;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.137);
-    padding: 2rem;
-    position: fixed;
-    z-index:3;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    backdrop-filter: blur(2px);
+.createProject {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: rgb(255, 255, 255);
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100vw;
 }
 
-.createProject form{
-    display: grid;
-    place-items: start;
-    width: 50%;
-    height: 80%;
-    padding: 1rem;
-    border-radius: 20px;
-    box-shadow: 0 9px 17px rgba(0, 0, 0, 0.068);
-}
-.createProject form label{
-    color: rgb(89, 90, 92);
-    text-transform: capitalize;
-}
-.createProject form input,
-.createProject form textarea
-,.createProject form button{
-    width: 90%;
-    border: 1px solid #e7e1e1;
-    padding: .71rem .5rem;
-    resize: none;
-    border-left: 5px solid blue;
-}
-.priorityHead{
-    text-align: left;
+.createProject form {
+  /* animation: anim 2s; */
+  display: grid;
+  place-items: center;
+  width: 50%;
+  gap: 1.2rem;
+  height: 100%;
+  background-color: #fff;
 }
 
-.priority{
-    display: flex;
-    margin: auto;
-    justify-content: start;
-    align-items: center;
-    gap: 2rem;
-    width: 100%;
+.createProject form input {
+  background-color: #fffdfd;
+  border: none;
+  padding: 0.7rem 2.1rem;
+  border-radius: 0;
+  outline: none;
+  border: 1px solid #eee;
 }
-.priority div{
-    border: 3px solid orange;
-    border-radius: 15px;
-    padding: .2rem 2rem;
-    cursor: pointer;
+
+.createProject form > * {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
 }
+.createProject form label {
+  font-size: 0.7rem;
+  color: #969393;
+}
+.createProject form .upperForms {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2.1rem;
+  flex-wrap: wrap;
+}
+.createProject form .upperForms > * {
+  flex: 1;
+  width: 100%;
+}
+.createProject form .description textarea {
+  background-color: #fffdfd;
+  border: 1px solid #eee;
+  padding: 1rem;
+  outline: none;
+  resize:none;
+}
+.createProject form .description > * {
+  width: 100%;
+  text-align: left;
+}
+
+
+.createProject form .moreinfo{
+}
+.createProject form .moreinfo .priority{
+  display:flex;
+  justify-content:start;
+  align-items:center;
+  gap:2rem
+}
+.createProject form .moreinfo .priority > *{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:1rem;
+  border:1px solid #eee;
+  background-color: #eee;
+  padding: .3rem .5rem;
+  font-size: .8rem;
+  cursor: pointer;
+}
+
+.createProject form .moreinfo .priority > *:hover{
+  background-color: rgb(180, 214, 180);
+}
+
+
+.createProject .closeBtnicon{
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+/* 
+@keyframes anim {
+  0%{
+   opacity: 0;
+  }
+  100%{
+   opacity: 1;
+  }
+} */

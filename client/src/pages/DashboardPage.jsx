@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from "react";
-import ProjectForm from "../components/project/ProjectForm";
 import "../styles/dashboard.css";
 import { RiBarChartLine } from "react-icons/ri";
 import { BiSearch, BiTask } from "react-icons/bi";
 import {
   AiOutlineHome,
   AiOutlineLogout,
-  AiOutlinePlus,
   AiOutlineProject,
 } from "react-icons/ai";
 import { SiGotomeeting } from "react-icons/si";
-import { BsArrowRight } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
-import { FaBan } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +19,7 @@ import Dashboarddata from "../components/dashboard/Dashboard";
 export default function DashboardPage() {
   // states
   const [activeUser, setActiveUser] = useState({});
-  const [projects, setProjects] = useState([]);
+  // const [projects, setProjects] = useState([]);
   const [openDashBoardPage, setOpenDashBoardPage] = useState(true);
   const [openProfilePage, setOpenProfilePage] = useState(false);
   const { id } = useParams();
@@ -46,23 +42,20 @@ export default function DashboardPage() {
     getUser();
   }, [id]);
 
-  // get projects associated with the active user
-  useEffect(() => {
-    const getProjects = async () => {
-      const response = await axios.get(
-        `http://localhost:5000/user/${id}/projects`
-      );
-      setProjects(response.data.projects);
-      console.log(response.data.projects);
-    };
-    getProjects();
-  }, [id]);
+  // // get projects associated with the active user
+  // useEffect(() => {
+  //   const getProjects = async () => {
+  //     const response = await axios.get(
+  //       `http://localhost:5000/user/${id}/projects`
+  //     );
+  //     setProjects(response.data.projects);
+  //     console.log(response.data.projects);
+  //   };
+  //   getProjects();
+  // }, [id]);
 
   return (
     <section className="dashboard">
-      {/* {openProjectForm && (
-        <ProjectForm setOpenProjectForm={setOpenProjectForm} />
-      )} */}
       <header className="header-section">
         <div className="contents">
           <RiBarChartLine />
@@ -128,7 +121,7 @@ export default function DashboardPage() {
             </div>
           </div>
         </div>
-        {openDashBoardPage && <Dashboarddata projects={projects} />}
+        {openDashBoardPage && <Dashboarddata/>}
         {openProfilePage && <ProfilePage />}
       </main>
     </section>

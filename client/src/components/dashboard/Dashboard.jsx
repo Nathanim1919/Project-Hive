@@ -3,8 +3,12 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import {IoMdNotificationsOutline} from 'react-icons/io';
+import ProjectForm from "../project/ProjectForm";
+import axios from "axios";
 
-export default function Dashboarddata({ projects }) {
+export default function Dashboarddata() {
+  const [openForm, setOpenform] = useState(false);
+   const [projects, setProjects] = useState([]);
   // get the current month name with the year
   const currentDate = new Date();
   const options = { month: "long", year: "numeric" };
@@ -14,7 +18,7 @@ export default function Dashboarddata({ projects }) {
 
   // PROJECT STATUS COUNT
   const upCommingProjects = projects.filter(
-    (project) => project.status === "Not Started"
+    (project) => project.status === "Planning"
   );
   const inprogressProjects = projects.filter(
     (project) => project.status === "In progress"
@@ -22,10 +26,15 @@ export default function Dashboarddata({ projects }) {
   const completedProjects = projects.filter(
     (project) => project.status === "completed"
   );
+  const OnHoldProjects = projects.filter(
+    (project) => project.status === "On Hold"
+  );
+  const cancelledProjects = projects.filter(
+    (project) => project.status === "Cancelled"
+  );
 
   const changeDate = (date) => {
     const dt = new Date(date);
-
     const options = { month: "long", day: "numeric", year: "numeric" };
     const formattedDate = dt.toLocaleDateString("en-US", options);
     return formattedDate; // Output: "May 25, 2023"
@@ -49,8 +58,21 @@ export default function Dashboarddata({ projects }) {
     return daysLeft;
   };
 
+  // get projects associated with the active user
+  useEffect(() => {
+    const getProjects = async () => {
+      const response = await axios.get(
+        `http://localhost:5000/user/${id}/projects`
+      );
+      setProjects(response.data.projects);
+      console.log(response.data.projects);
+    };
+    getProjects();
+  }, [id, openForm]);
+
   return (
     <div className="userdatas">
+      {openForm && <ProjectForm setOpenform={setOpenform} />}
       <div className="projects">
         <div className="pro-header">
           <div className="current-year">
@@ -60,6 +82,10 @@ export default function Dashboarddata({ projects }) {
 
           <div className="projects-status">
             <div>
+              <h3>{upCommingProjects.length}</h3>
+              <p>Planning</p>
+            </div>
+            <div>
               <h3>{inprogressProjects.length}</h3>
               <p>In progress</p>
             </div>
@@ -68,19 +94,28 @@ export default function Dashboarddata({ projects }) {
               <p>Completed</p>
             </div>
             <div>
-              <h3>{upCommingProjects.length}</h3>
-              <p>Not Started</p>
+              <h3>{OnHoldProjects.length}</h3>
+              <p>On Hold</p>
+            </div>
+            <div>
+              <h3>{cancelledProjects.length}</h3>
+              <p>Cancelled</p>
             </div>
             <div>
               <h3>
                 {inprogressProjects.length +
                   upCommingProjects.length +
+                  cancelledProjects.length +
+                  OnHoldProjects.length +
                   completedProjects.length}
               </h3>
               <p>Total projects</p>
             </div>
 
-            <div className="createProjecticon">
+            <div
+              className="createProjecticon"
+              onClick={() => setOpenform(true)}
+            >
               <AiOutlinePlus />
             </div>
           </div>
@@ -108,7 +143,7 @@ export default function Dashboarddata({ projects }) {
                     <p>{project.priority}</p>
                   </div>
                   <div className="pro-title">
-                    <h2>{project.title}</h2>
+                    <h2>{project.title.slice(0, 20)}</h2>
                   </div>
 
                   <div className="progress">
@@ -118,6 +153,8 @@ export default function Dashboarddata({ projects }) {
                         className="innerProgressBar"
                         style={{
                           width: `${project.completionPercentage}%`,
+                          backgroundColor:
+                            project.priority === "High" ? "yellow" : "#67b2f8",
                         }}
                       ></div>
                     </div>
@@ -133,7 +170,13 @@ export default function Dashboarddata({ projects }) {
                       </div>
                     </div>
 
-                    <div className="deadline">
+                    <div
+                      className="deadline"
+                      style={{
+                        backgroundColor:
+                          project.priority === "High" ? "#c3f16d" : "#67b2f8",
+                      }}
+                    >
                       <p>
                         {howMuchDaysLeft(project.startDate, project.dueDate)}{" "}
                         days left
@@ -151,112 +194,112 @@ export default function Dashboarddata({ projects }) {
           <p>notification</p>
           <div className="notification-list">
             <div className="notify">
-                <div className="logo">
-                  <IoMdNotificationsOutline/>
-                </div>
-                <div className="message">
-                  <p>Task completed request</p>
-                  <p>2:43 AM may 12, 2023</p>
-                </div>
+              <div className="logo">
+                <IoMdNotificationsOutline />
+              </div>
+              <div className="message">
+                <p>Task completed request</p>
+                <p>2:43 AM may 12, 2023</p>
+              </div>
             </div>
             <div className="notify">
-                <div className="logo">
-                  <IoMdNotificationsOutline/>
-                </div>
-                <div className="message">
-                  <p>Task completed request and progress</p>
-                  <p>2:43 AM may 12, 2023</p>
-                </div>
+              <div className="logo">
+                <IoMdNotificationsOutline />
+              </div>
+              <div className="message">
+                <p>Task completed request and progress</p>
+                <p>2:43 AM may 12, 2023</p>
+              </div>
             </div>
             <div className="notify">
-                <div className="logo">
-                  <IoMdNotificationsOutline/>
-                </div>
-                <div className="message">
-                  <p>Task completed request</p>
-                  <p>2:43 AM may 12, 2023</p>
-                </div>
+              <div className="logo">
+                <IoMdNotificationsOutline />
+              </div>
+              <div className="message">
+                <p>Task completed request</p>
+                <p>2:43 AM may 12, 2023</p>
+              </div>
             </div>
             <div className="notify">
-                <div className="logo">
-                  <IoMdNotificationsOutline/>
-                </div>
-                <div className="message">
-                  <p>Task completed request and progress</p>
-                  <p>2:43 AM may 12, 2023</p>
-                </div>
+              <div className="logo">
+                <IoMdNotificationsOutline />
+              </div>
+              <div className="message">
+                <p>Task completed request and progress</p>
+                <p>2:43 AM may 12, 2023</p>
+              </div>
             </div>
             <div className="notify">
-                <div className="logo">
-                  <IoMdNotificationsOutline/>
-                </div>
-                <div className="message">
-                  <p>Task completed request</p>
-                  <p>2:43 AM may 12, 2023</p>
-                </div>
+              <div className="logo">
+                <IoMdNotificationsOutline />
+              </div>
+              <div className="message">
+                <p>Task completed request</p>
+                <p>2:43 AM may 12, 2023</p>
+              </div>
             </div>
             <div className="notify">
-                <div className="logo">
-                  <IoMdNotificationsOutline/>
-                </div>
-                <div className="message">
-                  <p>Task completed request and progress</p>
-                  <p>2:43 AM may 12, 2023</p>
-                </div>
+              <div className="logo">
+                <IoMdNotificationsOutline />
+              </div>
+              <div className="message">
+                <p>Task completed request and progress</p>
+                <p>2:43 AM may 12, 2023</p>
+              </div>
             </div>
             <div className="notify">
-                <div className="logo">
-                  <IoMdNotificationsOutline/>
-                </div>
-                <div className="message">
-                  <p>Task completed request</p>
-                  <p>2:43 AM may 12, 2023</p>
-                </div>
+              <div className="logo">
+                <IoMdNotificationsOutline />
+              </div>
+              <div className="message">
+                <p>Task completed request</p>
+                <p>2:43 AM may 12, 2023</p>
+              </div>
             </div>
             <div className="notify">
-                <div className="logo">
-                  <IoMdNotificationsOutline/>
-                </div>
-                <div className="message">
-                  <p>Task completed request</p>
-                  <p>2:43 AM may 12, 2023</p>
-                </div>
+              <div className="logo">
+                <IoMdNotificationsOutline />
+              </div>
+              <div className="message">
+                <p>Task completed request</p>
+                <p>2:43 AM may 12, 2023</p>
+              </div>
             </div>
             <div className="notify">
-                <div className="logo">
-                  <IoMdNotificationsOutline/>
-                </div>
-                <div className="message">
-                  <p>Task completed request</p>
-                  <p>2:43 AM may 12, 2023</p>
-                </div>
+              <div className="logo">
+                <IoMdNotificationsOutline />
+              </div>
+              <div className="message">
+                <p>Task completed request</p>
+                <p>2:43 AM may 12, 2023</p>
+              </div>
             </div>
             <div className="notify">
-                <div className="logo">
-                  <IoMdNotificationsOutline/>
-                </div>
-                <div className="message">
-                  <p>Task completed request</p>
-                  <p>2:43 AM may 12, 2023</p>
-                </div>
+              <div className="logo">
+                <IoMdNotificationsOutline />
+              </div>
+              <div className="message">
+                <p>Task completed request</p>
+                <p>2:43 AM may 12, 2023</p>
+              </div>
             </div>
             <div className="notify">
-                <div className="logo">
-                  <IoMdNotificationsOutline/>
-                </div>
-                <div className="message">
-                  <p>Task completed request</p>
-                  <p>2:43 AM may 12, 2023</p>
-                </div>
+              <div className="logo">
+                <IoMdNotificationsOutline />
+              </div>
+              <div className="message">
+                <p>Task completed request</p>
+                <p>2:43 AM may 12, 2023</p>
+              </div>
             </div>
             <div className="notify">
-                <div className="logo">
-                  <IoMdNotificationsOutline/>
-                </div>
-                <div className="message">
-                  <p>Task completed request</p>
-                  <p>2:43 AM may 12, 2023</p>
-                </div>
+              <div className="logo">
+                <IoMdNotificationsOutline />
+              </div>
+              <div className="message">
+                <p>Task completed request</p>
+                <p>2:43 AM may 12, 2023</p>
+              </div>
             </div>
           </div>
         </div>

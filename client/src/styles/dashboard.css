@@ -147,7 +147,7 @@ section.dashboard{
     margin-top: .51rem;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
-    padding:1rem 2rem;
+    padding:1.5rem;
     position: relative;
     background-color: rgb(255, 255, 255);
 }
@@ -213,10 +213,11 @@ section.dashboard{
 .project-list {
     overflow:auto;
     height:65vh;
-     gap:1rem;
+    gap:.6rem;
     margin-top:1rem;
     display:flex;
     flex-wrap:wrap;
+    padding-bottom: 2rem;
 }
 .project-list a{
     text-decoration: none;
@@ -228,7 +229,7 @@ section.dashboard{
 .project-list .p-project{
     display:flex;
     flex-direction:column;
-    border-radius:15px;
+    border-radius:30px;
     padding:.5rem 1rem;
     width:180px;
     max-height:175px;
@@ -240,7 +241,6 @@ section.dashboard{
 .project-list .p-project:hover{
     border: 2px solid rgb(255, 48, 48);
 }
-
 .project-list .p-project>*{
     margin:0;
 }
@@ -280,7 +280,7 @@ section.dashboard{
     height:100%;
     left:0;
     top:0;
-    background-color:rgb(41, 186, 253);
+    /* background-color:rgb(41, 186, 253); */
 }
 .project-list .p-project .progress p:nth-child(1){
     align-self:start;

@@ -14,7 +14,8 @@ module.exports.createProject = async (req, res) => {
             description,
             startDate,
             dueDate,
-            priority
+            priority,
+            budget,
         } = req.body;
 
         const project = await Project.create({
@@ -23,7 +24,8 @@ module.exports.createProject = async (req, res) => {
             startDate,
             dueDate,
             priority,
-            createdBy: id
+            budget,
+            projectManager: id
         });
 
         res.status(200).json({

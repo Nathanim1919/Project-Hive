@@ -1,4 +1,4 @@
-.projectDetailSection{
+.projectDetailSection {
   background-color: rgb(255, 255, 255);
   width: 100vw;
   height: 100%;
@@ -10,341 +10,344 @@
   overflow: hidden;
 }
 
-.projectDetailSection .projectInfo .pro-title a{
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 25px;
-    height: 25px;
-    background-color: #eee;
-    border-radius: 50%;
-    margin:.5rem 1rem;
-    display: grid;
-    place-items: center;
+.projectDetailSection .projectInfo .pro-title a {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 25px;
+  height: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+  margin: 0.5rem 1rem;
+  display: grid;
+  place-items: center;
 }
 
-.pro-title .title{
-    padding:1rem;
-    display:flex;
-    flex-direction:column;
+.pro-title .title {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
-.pro-title .title>*{
-    margin:0;
-    text-align:left;
+.pro-title .title > * {
+  margin: 0;
+  text-align: left;
 }
-.pro-title .title>p{
-   color:#4e4c4c;
-   font-size:.8rem;
-}
-
-.projectDetailSection .projectInfo .pro-title a:hover{
-    background-color: rgb(182, 182, 185);
+.pro-title .title > p {
+  color: #747070;
+  font-size: 0.8rem;
 }
 
-.projectDetailSection .projectInfo .pro-title{
-    display: flex;
-    align-items: center;
-    gap: 4rem;
-    background-color: #fff;
-    position: relative;
-    left: 0;
-    padding:1rem 3rem;
+.projectDetailSection .projectInfo .pro-title a:hover {
+  background-color: rgb(182, 182, 185);
+}
+
+.projectDetailSection .projectInfo .pro-title {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  background-color: #fff;
+  position: relative;
+  left: 0;
+  padding: 1rem 3rem;
 }
 
 /* navbar designing */
-.project-navbar{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:2rem;
-    background-color:#fff;
-    position:relative;
-    padding:1rem;
+.project-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  background-color: #fff;
+  position: relative;
+  padding: 1rem;
 }
- .projectDetailSection .projectInfo  .project-navbar > li{
-   text-decoration:none;
-   color:#272626;
-   text-transform:capitalize;
-   position:relative;
-    padding:.4rem 1rem;
-    font-size:.8rem;
-    list-style-type:none;
-    cursor:pointer;
-    transition:all .3s ease-in-out;
-    
+.projectDetailSection .projectInfo .project-navbar > li {
+  text-decoration: none;
+  color: #272626;
+  text-transform: capitalize;
+  position: relative;
+  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
+  list-style-type: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
-  .project-navbar > li::after{
-   position:absolute;
-   width:0;
-   height:2px;
-   content:"";
-   left:30%;
-   bottom:0;
-   transition:all .3s ease-in-out;
+.project-navbar > li::after {
+  position: absolute;
+  width: 0;
+  height: 2px;
+  content: "";
+  left: 30%;
+  bottom: 0;
+  transition: all 0.3s ease-in-out;
 }
-section.projectDetailSection .projectInfo div.project-navbar > li.active{
-    background-color:#eee;
-    border-radius:20px;
-    transition:all .3s ease-in-out;
+section.projectDetailSection .projectInfo div.project-navbar > li.active {
+  background-color: #eee;
+  border-radius: 20px;
+  transition: all 0.3s ease-in-out;
 }
-section.projectDetailSection .projectInfo div.project-navbar > li.active::after {
-    width: 40%;
-    background-color:orange;
-}
-
-
- .projectDetailSection .projectInfo  .project-navbar > li:hover{
-    background-color:#eee;
-    border-radius:20px;
+section.projectDetailSection
+  .projectInfo
+  div.project-navbar
+  > li.active::after {
+  width: 40%;
+  background-color: orange;
 }
 
-.projectDetailSection .projectInfo .pro-title .deadline{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-}
-.projectDetailSection .projectInfo .pro-title .deadline span{
-   color: #fff;
-   background-color: rgb(218, 37, 37);
-   border-radius: 5px;
-   padding: .2rem .5rem;
-}
-.project-progress{
-background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
-
-
-}
-.project-progress,.project-budget{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    padding: 2rem;
-    gap: 2rem;
-    flex-wrap: wrap;
-}
-.project-progress h1,.project-budget h1{
-    font-size: 3rem;
-    color: rgb(52, 52, 53);
+.projectDetailSection .projectInfo .project-navbar > li:hover {
+  background-color: #eee;
+  border-radius: 20px;
 }
 
-.project-progress > div{
-    /* border: 1px solid #eee; */
-    border-radius: 5px;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.projectDetailSection .projectInfo .pro-title .deadline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.projectDetailSection .projectInfo .pro-title .deadline span {
+  color: #fff;
+  background-color: rgb(218, 37, 37);
+  border-radius: 5px;
+  padding: 0.2rem 0.5rem;
+}
+.project-progress,
+.project-budget {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 1rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+  /* border: 1px solid #eee; */
+  margin:0.4rem 1rem;
+}
+.project-progress {
+    background: linear-gradient(90deg, #ffffff 0%, #f7f7f8 100%);
+}
+.project-progress h1,
+.project-budget h1 {
+  font-size: 2.5rem;
+  color: rgb(52, 52, 53);
 }
 
-.project-budget > div>div:nth-child(1),.project-budget > div:nth-child(1){
-     display: flex;
-    align-items: center;
-    flex-direction: column;
+.project-progress > div {
+  /* border: 1px solid #eee; */
+  border-radius: 5px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.project-progress > div>*,.project-budget > div>div:nth-child(1)>*,.project-budget > div:nth-child(1)>*{
-    margin: 0;
-}
-.project-progress > div>p,.project-budget > div>div:nth-child(1)>p{
-    color: #706e6e;
-}
-
-.project-budget > div{
-    border: 1px solid #eee;
-    border-radius: 5px;
-    flex: 1;
-    padding: 1rem;
-background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);
-
-
+.project-budget > div > div:nth-child(1),
+.project-budget > div:nth-child(1) {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.project-budget > div:nth-child(1){
-    border: none;
-    background: none;
+.project-progress > div > *,
+.project-budget > div > div:nth-child(1) > *,
+.project-budget > div:nth-child(1) > * {
+  margin: 0;
+}
+.project-progress > div > p,
+.project-budget > div > div:nth-child(1) > p {
+  color: #706e6e;
+}
+
+.project-budget > div {
+  border: 1px solid #eee;
+  border-radius: 5px;
+  flex: 1;
+  padding: 1rem;
+  background: linear-gradient(90deg, #ffffff 0%, #efeff1 100%);
+}
+
+.project-budget > div:nth-child(1) {
+  padding: 3.5rem 0;
 }
 
 .project-budget > div:nth-child(2),
-.project-budget > div:nth-child(3){
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+.project-budget > div:nth-child(3) {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
-
 
 /* task style */
 
-.task-list-header{
-    display: grid;
-    grid-template-columns: .7fr .23fr;
-    padding: .1rem 1rem;
-    text-align: left;
+.task-list-header {
+  display: grid;
+  grid-template-columns: 0.7fr 0.23fr;
+  padding: 0.1rem 1rem;
+  text-align: left;
 }
-.task-list-header div{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
+.task-list-header div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
 }
-.task-list-header div button{
-    font-size: .9rem;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap:.51rem;
+.task-list-header div button {
+  font-size: 0.9rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.51rem;
 }
-.task-list-header div button:nth-child(1){
-   background-color: transparent;
-   color: #333;
-   border: 1px solid #eee;
-}
-
-.tasklist{
-    background-color: #fff;
-    padding: .1rem 2rem;
-    display: grid;
-    gap: 0rem;
-    font-size: .8rem;
-}
-.tasklist .task{
-    padding: 0rem 2rem;
-    border: 1px solid #eee;
-    border-radius: 5px;
-}
-.tasklist a{
-    color: #6e6c6c;
-    text-decoration: none;
-}
-.tasklist a:hover{
-    background-color: transparent;
-    color: #509bfd;
-}
-.tasklist .task,.tasklist .task div{
-    display:flex;
-    align-items:center;
-    gap: 2rem;
-    justify-content: space-between;
-}
-#members{
-    background-color: #eee;
-    gap: .31rem;
-    padding: 0.2rem 0.5rem;
-    border-radius: 50px;
-    height: 30px;
-}
-#members div{
-    background-color: #ffffff;
-    width: 25px;
-    height:25px;
-    border-radius: 50%;
-}
-div#progress{
-    gap: .5rem;
+.task-list-header div button:nth-child(1) {
+  background-color: transparent;
+  color: #333;
+  border: 1px solid #eee;
 }
 
-#members .add{
-    margin-left: .5rem;
-    display: grid;
-    place-items: center;
-    font-size: 1.2rem;
+.tasklist {
+  background-color: #fff;
+  padding: 0.1rem 2rem;
+  display: grid;
+  gap: 0rem;
+  font-size: 0.8rem;
+}
+.tasklist .task {
+  padding: 0rem 2rem;
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+.tasklist a {
+  color: #6e6c6c;
+  text-decoration: none;
+}
+.tasklist a:hover {
+  background-color: transparent;
+  color: #509bfd;
+}
+.tasklist .task,
+.tasklist .task div {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  justify-content: space-between;
+}
+#members {
+  background-color: #eee;
+  gap: 0.31rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 50px;
+  height: 30px;
+}
+#members div {
+  background-color: #ffffff;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+div#progress {
+  gap: 0.5rem;
 }
 
+#members .add {
+  margin-left: 0.5rem;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+}
 
 /* sidebar create task box style */
 
-#createTaskBox{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #948f8f3a;
-    z-index: 10;
-    backdrop-filter: blur(3px);
+#createTaskBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #948f8f3a;
+  z-index: 10;
+  backdrop-filter: blur(3px);
 }
 
-#taskform{
-    width: 500px;
-    background-color: #fff;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    top: 0;
+#taskform {
+  width: 500px;
+  background-color: #fff;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
 }
 
-#taskform .close-icon{
-    position: absolute;
-    top: .5rem;
-    left: .5rem;
-    font-size: 1.3rem;
-    cursor: pointer;
-    background-color: #eee;
-    padding: .5rem;
-    border-radius: 50%;
+#taskform .close-icon {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+  background-color: #eee;
+  padding: 0.5rem;
+  border-radius: 50%;
 }
 
-#taskform form input, #taskform textarea{
-    border: 1px solid #ccc7c75b;
-    width: 83%;
-    margin: auto;
-    margin-top: .5rem;
-    outline: none;
-    padding: 1rem;
-    resize: none;
+#taskform form input,
+#taskform textarea {
+  border: 1px solid #ccc7c75b;
+  width: 83%;
+  margin: auto;
+  margin-top: 0.5rem;
+  outline: none;
+  padding: 1rem;
+  resize: none;
 }
 
-
-#taskform .setpriority div{
-    border: 1px solid #eeeeee56;
-    display: flex;
-    align-items: center;
-    list-style: none;
-    gap: 2rem;
-    font-size: .9rem;
-    color: #b3b0b0;
-    padding: .5rem;
-    width: 83%;
-    margin: auto;
-    position: relative;
+#taskform .setpriority div {
+  border: 1px solid #eeeeee56;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 2rem;
+  font-size: 0.9rem;
+  color: #b3b0b0;
+  padding: 0.5rem;
+  width: 83%;
+  margin: auto;
+  position: relative;
 }
 
-#taskform .setpriority div li{
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap:.51rem;
+#taskform .setpriority div li {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.51rem;
 }
 
-#taskform .setpriority div li:hover{
-   color: #333;
+#taskform .setpriority div li:hover {
+  color: #333;
 }
 
-#taskform .setpriority p{
-    margin-top: 2rem;
-    text-align: left;
-    color: #070c36;
-    margin-left: 2.3rem;
+#taskform .setpriority p {
+  margin-top: 2rem;
+  text-align: left;
+  color: #070c36;
+  margin-left: 2.3rem;
 }
 
-#taskform .assignmember{
-    margin-left: 2.3rem;
-    text-align: left;
-    font-size: .8rem;
-    color: #333;
-    color: rgb(43, 170, 255);
-    text-decoration: underline;
+#taskform .assignmember {
+  margin-left: 2.3rem;
+  text-align: left;
+  font-size: 0.8rem;
+  color: #333;
+  color: rgb(43, 170, 255);
+  text-decoration: underline;
 }
 
-#taskform button{
-    background-color: transparent;
-    color: #333;
-    margin-top: 2rem;
-    border: 1px solid rgb(205, 207, 205);
+#taskform button {
+  background-color: transparent;
+  color: #333;
+  margin-top: 2rem;
+  border: 1px solid rgb(205, 207, 205);
 }
-#taskform button:hover{
-    border-color: blue;
+#taskform button:hover {
+  border-color: blue;
 }
