@@ -207,10 +207,12 @@ section.projectDetailSection
 
 .tasklist {
   background-color: #fff;
-  padding: 0.1rem 2rem;
+  padding: 0 2rem;
   display: grid;
-  gap: 0rem;
+  gap: 0.25rem;
   font-size: 0.8rem;
+  height:60vh;
+  overflow:auto;
 }
 .tasklist .task {
   padding: 0rem 2rem;
@@ -222,8 +224,7 @@ section.projectDetailSection
   text-decoration: none;
 }
 .tasklist a:hover {
-  background-color: transparent;
-  color: #509bfd;
+  background-color: #fdfcfc;
 }
 .tasklist .task,
 .tasklist .task div {

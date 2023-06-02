@@ -11,6 +11,7 @@ export default function CreateTask({ setCreateTask }) {
   const [priority, setPriority] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [assignedTo, setAssignedTo] = useState(null);
+  const [createdBy, setCreatedBy] = useState(null);
 
   const { id, projectId } = useParams();
 
@@ -37,21 +38,23 @@ export default function CreateTask({ setCreateTask }) {
           description,
           priority,
           dueDate,
-          assignedTo,
+          createdBy:id,
         };
 
         const responce = await axios.post(
           `http://localhost:5000/user/${id}/projects/${projectId}/createTask`,
           taskData
         );
+        console.log(responce);
       } catch (error) {
         console.log(error);
       }
 
       setTitle("");
-      setDescription();
-      setPriority();
-      setDueDate();
+      setDescription('');
+      setPriority('');
+      setDueDate('');
+      setCreateTask(false);
     }
   };
 
@@ -64,7 +67,7 @@ export default function CreateTask({ setCreateTask }) {
         />
         <h1>Create Task</h1>
         <div>
-          <form>
+          <form onSubmit={handleCreateTask}>
             <input
               type="text"
               placeholder="Title"
@@ -88,19 +91,30 @@ export default function CreateTask({ setCreateTask }) {
             <div className="setpriority">
               <p>set priority</p>
               <div>
-                <li onClick={() => setPriority("Low")} style={{
-                  color:priority === 'Low'?'Black':'red',}}>
+                <li
+                  onClick={() => setPriority("Low")}
+                  style={{
+                    color: priority === "Low" ? "Black" : "",
+                  }}
+                >
                   <BsFillCheckCircleFill />
                   Low
                 </li>
-                <li onClick={() => setPriority("Medium")} style={{
-                  color:priority === 'Medium'?'Black':'red',}}>
+                <li
+                  onClick={() => setPriority("Medium")}
+                  style={{
+                    color: priority === "Medium" ? "Black" : "",
+                  }}
+                >
                   <BsFillCheckCircleFill />
                   Medium
                 </li>
-                <li onClick={() => setPriority("High")} style={{
-                  color:priority === 'High'?'Black':'red',
-                }}>
+                <li
+                  onClick={() => setPriority("High")}
+                  style={{
+                    color: priority === "High" ? "Black" : "",
+                  }}
+                >
                   <BsFillCheckCircleFill />
                   High
                 </li>

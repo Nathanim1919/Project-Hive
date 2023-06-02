@@ -157,7 +157,9 @@ const ProjectDetailPage = () => {
           </div>
         </div>
       )}
-      {taskPage && <TaskList setCreateTask={setCreateTask} />}
+      {taskPage && (
+        <TaskList createTask={createTask} setCreateTask={setCreateTask} />
+      )}
       {membersPage && <TeamMembers />}
       {collaburationPage && (
         <section>

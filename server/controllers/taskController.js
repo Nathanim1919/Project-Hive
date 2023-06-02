@@ -1,10 +1,12 @@
 const Task = require('../models/Task.js')
+const Project = require('../models/Project.js');
 
 
-modules.export.createTask = async (req, res) => {
+module.exports.createTask = async (req, res) => {
     try {
 
         const {
+            id,
             projectId
         } = req.params;
 
@@ -13,16 +15,24 @@ modules.export.createTask = async (req, res) => {
             description,
             priority,
             dueDate,
-            assignedTo,     
+            createdBy
+           
         } = req.body;
 
+        
         const task = await Task.create({
             title,
             description,
             priority,
             dueDate,
-            assignedTo
+            createdBy
         })
+        
+        console.log(task);
+        const project = await Project.findById(projectId);
+        project.tasks.push(task);
+
+        await project.save()
 
         res.status(200).json({
             message:"Tasks created successfully",
@@ -33,5 +43,23 @@ modules.export.createTask = async (req, res) => {
         res.status(500).json({
             message:"unable to create task"
         })
+    }
+}
+
+
+
+module.exports.getTasks = async (req, res)=>{
+    try{
+
+        const tasks = await Task.find();
+
+        res.status(200).json({
+            tasks
+        })
+
+    }catch(error){
+       res.status(500).json({
+        message:"unble to fetch tasks"
+       })
     }
 }

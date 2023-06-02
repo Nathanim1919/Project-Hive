@@ -25,7 +25,7 @@ export default function Dashboarddata() {
     (project) => project.status === "In progress"
   );
   const completedProjects = projects.filter(
-    (project) => project.status === "completed"
+    (project) => project.status === "Completed"
   );
   const OnHoldProjects = projects.filter(
     (project) => project.status === "On Hold"
@@ -164,13 +164,9 @@ export default function Dashboarddata() {
               onClick={() => setFilterProjects("")}
               style={{
                 color:
-                  filterProjects === ""
-                    ? "rgba(0,0,0,1)"
-                    : "rgba(0,0,0,.21)",
+                  filterProjects === "" ? "rgba(0,0,0,1)" : "rgba(0,0,0,.21)",
                 backgroundColor:
-                  filterProjects === ""
-                    ? "#f1eded"
-                    : "rgba(0, 0, 0, 0)",
+                  filterProjects === "" ? "#f1eded" : "rgba(0, 0, 0, 0)",
               }}
             >
               <h3>
@@ -193,70 +189,73 @@ export default function Dashboarddata() {
         </div>
 
         <div className="project-list">
-          {projects && 
+          {projects &&
             projects.map((project) => (
               <NavLink to={`/user/${id}/projects/${project._id}`}>
-                {(project.status === filterProjects || filterProjects === '') && 
-                <div
-                  className="p-project pro1"
-                  style={{
-                    backgroundColor:
-                      project.priority === "Low"
-                        ? "rgba(152, 230, 152, 0.7)" // Green with reduced opacity
-                        : project.priority === "Medium"
-                        ? "rgb(255, 247, 129)" // Orange with reduced opacity
-                        : project.priority === "High"
-                        ? "rgb(255, 123, 119)" // Red with reduced opacity
-                        : "transparent",
-                  }}
-                >
-                  <div className="pro-head">
-                    <p>{changeDate(project.startDate)}</p>
-                    <p>{project.priority}</p>
-                  </div>
-                  <div className="pro-title">
-                    <h2>{project.title.slice(0, 20)}</h2>
-                  </div>
-
-                  <div className="progress">
-                    <p>Progress</p>
-                    <div className="upperProgressBar">
-                      <div
-                        className="innerProgressBar"
-                        style={{
-                          width: `${project.completionPercentage}%`,
-                          backgroundColor:
-                            project.priority === "High" ? "yellow" : "#67b2f8",
-                        }}
-                      ></div>
+                {(project.status === filterProjects ||
+                  filterProjects === "") && (
+                  <div
+                    className="p-project pro1"
+                    style={{
+                      backgroundColor:
+                        project.priority === "Low"
+                          ? "rgba(152, 230, 152, 0.7)" // Green with reduced opacity
+                          : project.priority === "Medium"
+                          ? "rgb(255, 247, 129)" // Orange with reduced opacity
+                          : project.priority === "High"
+                          ? "rgb(255, 123, 119)" // Red with reduced opacity
+                          : "transparent",
+                    }}
+                  >
+                    <div className="pro-head">
+                      <p>{changeDate(project.startDate)}</p>
+                      <p>{project.priority}</p>
                     </div>
-                    <p className="percent">{project.completionPercentage}%</p>
-                  </div>
+                    <div className="pro-title">
+                      <h2>{project.title.slice(0, 20)}</h2>
+                    </div>
 
-                  <div className="footer-detail">
-                    <div className="members">
-                      <div className="m1"></div>
-                      <div className="m2"></div>
-                      <div className="m2">
-                        <AiOutlinePlus />
+                    <div className="progress">
+                      <p>Progress</p>
+                      <div className="upperProgressBar">
+                        <div
+                          className="innerProgressBar"
+                          style={{
+                            width: `${project.completionPercentage}%`,
+                            backgroundColor:
+                              project.priority === "High"
+                                ? "yellow"
+                                : "#67b2f8",
+                          }}
+                        ></div>
+                      </div>
+                      <p className="percent">{project.completionPercentage}%</p>
+                    </div>
+
+                    <div className="footer-detail">
+                      <div className="members">
+                        <div className="m1"></div>
+                        <div className="m2"></div>
+                        <div className="m2">
+                          <AiOutlinePlus />
+                        </div>
+                      </div>
+
+                      <div
+                        className="deadline"
+                        style={{
+                          backgroundColor:
+                            project.priority === "High" ? "#c3f16d" : "#67b2f8",
+                        }}
+                      >
+                        <p>
+                          {howMuchDaysLeft(project.startDate, project.dueDate)}{" "}
+                          days left
+                        </p>
                       </div>
                     </div>
-
-                    <div
-                      className="deadline"
-                      style={{
-                        backgroundColor:
-                          project.priority === "High" ? "#c3f16d" : "#67b2f8",
-                      }}
-                    >
-                      <p>
-                        {howMuchDaysLeft(project.startDate, project.dueDate)}{" "}
-                        days left
-                      </p>
-                    </div>
                   </div>
-                </div>
-}
+                )}
               </NavLink>
             ))}
         </div>
