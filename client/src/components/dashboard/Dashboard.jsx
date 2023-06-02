@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import {IoMdNotificationsOutline} from 'react-icons/io';
+import { IoMdNotificationsOutline } from "react-icons/io";
 import ProjectForm from "../project/ProjectForm";
 import axios from "axios";
 
 export default function Dashboarddata() {
   const [openForm, setOpenform] = useState(false);
-   const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState([]);
+  const [filterProjects, setFilterProjects] = useState("");
   // get the current month name with the year
   const currentDate = new Date();
   const options = { month: "long", year: "numeric" };
@@ -81,27 +82,97 @@ export default function Dashboarddata() {
           </div>
 
           <div className="projects-status">
-            <div>
+            <div
+              onClick={() => setFilterProjects("Planning")}
+              style={{
+                color:
+                  filterProjects === "Planning"
+                    ? "rgba(0,0,0,1)"
+                    : "rgba(0,0,0,.21)",
+                backgroundColor:
+                  filterProjects === "Planning"
+                    ? "#f1eded"
+                    : "rgba(0, 0, 0, 0)",
+              }}
+            >
               <h3>{upCommingProjects.length}</h3>
               <p>Planning</p>
             </div>
-            <div>
+            <div
+              onClick={() => setFilterProjects("In Progress")}
+              style={{
+                color:
+                  filterProjects === "In Progress"
+                    ? "rgba(0,0,0,1)"
+                    : "rgba(0,0,0,.21)",
+                backgroundColor:
+                  filterProjects === "In Progress"
+                    ? "#f1eded"
+                    : "rgba(0, 0, 0, 0)",
+              }}
+            >
               <h3>{inprogressProjects.length}</h3>
               <p>In progress</p>
             </div>
-            <div>
+            <div
+              onClick={() => setFilterProjects("Completed")}
+              style={{
+                color:
+                  filterProjects === "Completed"
+                    ? "rgba(0,0,0,1)"
+                    : "rgba(0,0,0,.21)",
+                backgroundColor:
+                  filterProjects === "Completed"
+                    ? "#f1eded"
+                    : "rgba(0, 0, 0, 0)",
+              }}
+            >
               <h3>{completedProjects.length}</h3>
               <p>Completed</p>
             </div>
-            <div>
+            <div
+              onClick={() => setFilterProjects("On Hold")}
+              style={{
+                color:
+                  filterProjects === "On Hold"
+                    ? "rgba(0,0,0,1)"
+                    : "rgba(0,0,0,.21)",
+                backgroundColor:
+                  filterProjects === "On Hold" ? "#f1eded" : "rgba(0, 0, 0, 0)",
+              }}
+            >
               <h3>{OnHoldProjects.length}</h3>
               <p>On Hold</p>
             </div>
-            <div>
+            <div
+              onClick={() => setFilterProjects("Cancelled")}
+              style={{
+                color:
+                  filterProjects === "Cancelled"
+                    ? "rgba(0,0,0,1)"
+                    : "rgba(0,0,0,.21)",
+                backgroundColor:
+                  filterProjects === "Cancelled"
+                    ? "#f1eded"
+                    : "rgba(0, 0, 0, 0)",
+              }}
+            >
               <h3>{cancelledProjects.length}</h3>
               <p>Cancelled</p>
             </div>
-            <div>
+            <div
+              onClick={() => setFilterProjects("")}
+              style={{
+                color:
+                  filterProjects === ""
+                    ? "rgba(0,0,0,1)"
+                    : "rgba(0,0,0,.21)",
+                backgroundColor:
+                  filterProjects === ""
+                    ? "#f1eded"
+                    : "rgba(0, 0, 0, 0)",
+              }}
+            >
               <h3>
                 {inprogressProjects.length +
                   upCommingProjects.length +
@@ -122,9 +193,10 @@ export default function Dashboarddata() {
         </div>
 
         <div className="project-list">
-          {projects &&
+          {projects && 
             projects.map((project) => (
               <NavLink to={`/user/${id}/projects/${project._id}`}>
+                {(project.status === filterProjects || filterProjects === '') && 
                 <div
                   className="p-project pro1"
                   style={{
@@ -184,6 +256,7 @@ export default function Dashboarddata() {
                     </div>
                   </div>
                 </div>
+}
               </NavLink>
             ))}
         </div>

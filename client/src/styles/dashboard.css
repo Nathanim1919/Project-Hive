@@ -175,7 +175,10 @@ section.dashboard{
     display:flex;
     flex-direction:column;
     align-items: center;
-    padding:.3rem 1rem;
+    padding:.5rem 1rem;
+    cursor:pointer;
+    border-radius:10px;
+    transition: all .3s ease-in-out;
 }
 .pro-header .projects-status > div.createProjecticon{
     background-color: rgba(121, 216, 245, 0.473);
@@ -193,7 +196,10 @@ section.dashboard{
 
 .pro-header .projects-status > div:nth-child(1),
 .pro-header .projects-status > div:nth-child(2),
-.pro-header .projects-status > div:nth-child(3){
+.pro-header .projects-status > div:nth-child(3),
+.pro-header .projects-status > div:nth-child(4),
+.pro-header .projects-status > div:nth-child(5),
+.pro-header .projects-status > div:nth-child(6){
     border-right:1px solid #eee;
 }
 
@@ -206,7 +212,7 @@ section.dashboard{
 }
 .pro-header .projects-status > div > p{
    font-size:.8rem;
-   color:#696666;
+   /* color:#696666; */
 }
 
 /* project lists style sheet */

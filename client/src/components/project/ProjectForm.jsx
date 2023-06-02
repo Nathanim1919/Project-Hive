@@ -142,5 +142,4 @@ const ProjectForm = ({ setOpenform }) => {
     </div>
   );
 };
-
 export default ProjectForm;
