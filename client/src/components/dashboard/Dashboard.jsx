@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import ProjectForm from "../project/ProjectForm";
 import axios from "axios";
+import {changeDate,howMuchDaysLeft} from '../../functions.js'
 
 export default function Dashboarddata() {
   const [openForm, setOpenform] = useState(false);
@@ -33,31 +34,6 @@ export default function Dashboarddata() {
   const cancelledProjects = projects.filter(
     (project) => project.status === "Cancelled"
   );
-
-  const changeDate = (date) => {
-    const dt = new Date(date);
-    const options = { month: "long", day: "numeric", year: "numeric" };
-    const formattedDate = dt.toLocaleDateString("en-US", options);
-    return formattedDate; // Output: "May 25, 2023"
-  };
-
-  const howMuchDaysLeft = (startDateStr, dueDateStr) => {
-    const startDate = new Date(startDateStr);
-    const dueDate = new Date(dueDateStr);
-
-    // Calculate the difference in milliseconds between the two dates
-    const timeDiff = dueDate.getTime() - startDate.getTime();
-
-    // Calculate the number of days left
-    let daysLeft;
-    if (timeDiff > 0) {
-      daysLeft = Math.ceil(timeDiff / (1000 * 3600 * 24));
-    } else {
-      daysLeft = 0; // Due date has already passed
-    }
-
-    return daysLeft;
-  };
 
   // get projects associated with the active user
   useEffect(() => {

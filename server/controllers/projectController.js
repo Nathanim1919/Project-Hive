@@ -3,8 +3,6 @@ const Project = require('../models/Project.js');
 
 module.exports.createProject = async (req, res) => {
     try {
-
-
         const {
             id
         } = req.params;
@@ -50,13 +48,17 @@ module.exports.getProjects = async (req, res) => {
         console.log(error);
     }
 }
-module.exports.getProject = async (req, res) => {
 
+module.exports.getProject = async (req, res) => {
     try {
         const {
             projectId
         } = req.params
-        const project = await Project.findById(projectId);
+        const project = await Project.findById(projectId)
+                                .populate('tasks')
+                                .populate('team')
+                                // .populate('events')
+                                .populate('chatboard');
         console.log(projectId);
         res.status(200).json({
             project
@@ -65,3 +67,32 @@ module.exports.getProject = async (req, res) => {
         console.log(error);
     }
 }
+
+module.exports.addEmployee = async (req, res) => {
+    try {
+        const {
+            projectId
+        } = req.params;
+        const {
+            userId
+        } = req.body;
+
+        const project = await Project.findById(projectId);
+
+        const isMember = project.team.some((member) => member._id.toString() === userId);
+
+        if (!isMember) {
+            project.team.push(userId);
+            await project.save();
+            res.status(200).json({
+                project
+            });
+        } else {
+            res.status(500).json({
+                message: "User is already a member of this project"
+            });
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};

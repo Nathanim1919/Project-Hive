@@ -10,6 +10,7 @@
   overflow: hidden;
 }
 
+
 .projectDetailSection .projectInfo .pro-title a {
   position: absolute;
   left: 0;
@@ -42,14 +43,67 @@
   background-color: rgb(182, 182, 185);
 }
 
-.projectDetailSection .projectInfo .pro-title {
+.projectDetailSection .projectInfo .pro-title .deadline p{
+  color:#b6b2b2;
+  font-size:.7rem;
+}
+.projectDetailSection .projectInfo .pro-title .deadline p:nth-child(2){
+  border-right:1px solid rgb(102, 98, 98);
+  padding:0 1rem;
+}
+.projectDetailSection .projectInfo .pro-title .deadline h5{
+  color:#686565;
+  font-weight:500;
+}
+
+.pro-title .editProject{
+  position:absolute;
+  color:#333232;
+  top:1rem;
+  right:2rem;
+  width:30px;
+  height:30px;
+  background-color:#f5f2f2;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+}
+.pro-title .editProject:hover{
+    background-color:#80c4fc;
+    color:#fff;
+}
+
+
+.projectDetailSection .projectInfo .pro-title >div{
   display: flex;
   align-items: center;
   gap: 4rem;
-  background-color: #fff;
+  background-color: #ffffff;
   position: relative;
   left: 0;
-  padding: 1rem 3rem;
+  padding: .5rem 3rem;
+}
+
+.projectDetailSection .projectInfo .pro-title{
+  display:flex;
+  flex-direction:column;
+}
+.projectDetailSection .projectInfo .pro-title>*{
+   margin:0;
+}
+.projectDetailSection .projectInfo .pro-title>div:nth-child(1){
+   margin:0;
+   padding:.5rem 4rem;
+}
+.projectDetailSection .projectInfo .pro-title>div:nth-child(2){
+   margin:0;
+   padding:0 4rem;
+}
+.projectDetailSection .projectInfo .pro-title>div:nth-child(2) p{
+  color:#5f5d5d;
+  font-size:.7rem;
+  text-align:left;
 }
 
 /* navbar designing */
@@ -60,7 +114,7 @@
   gap: 2rem;
   background-color: #fff;
   position: relative;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
 }
 .projectDetailSection .projectInfo .project-navbar > li {
   text-decoration: none;
@@ -129,7 +183,12 @@ section.projectDetailSection
 }
 .project-progress h1,
 .project-budget h1 {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
+  color: rgb(52, 52, 53);
+}
+.project-progress p,
+.project-budget p {
+  font-size: 0.8rem;
   color: rgb(52, 52, 53);
 }
 
@@ -205,13 +264,42 @@ section.projectDetailSection
   border: 1px solid #eee;
 }
 
+.task-container {
+  display: grid;
+  height: 60vh;
+  animation: expandCollapse 0.3s ease-in-out;
+}
+
+.expanded {
+  grid-template-columns: 70% 30%;
+}
+
+.collapsed {
+  grid-template-columns: 1fr;
+}
+
+
+section div.all_task_info #taskinformation{
+  background-color:rgb(110, 110, 243);
+  height:100%;
+  width:100%;
+  animation:anim 2s;
+  position:relative;
+  transition:all 3s ease-in-out;
+}
+
+#taskinformation .close-icon{
+  position:absolute;
+  right:1rem;
+  cursor:pointer;
+}
+
 .tasklist {
   background-color: #fff;
   padding: 0 2rem;
   display: grid;
   gap: 0.25rem;
   font-size: 0.8rem;
-  height:60vh;
   overflow:auto;
 }
 .tasklist .task {
@@ -222,9 +310,11 @@ section.projectDetailSection
 .tasklist a {
   color: #6e6c6c;
   text-decoration: none;
+  transition:all .2s ease-in-out;
 }
 .tasklist a:hover {
-  background-color: #fdfcfc;
+  background-color: #e6e8eb48;
+  transform:scale(1.01);
 }
 .tasklist .task,
 .tasklist .task div {

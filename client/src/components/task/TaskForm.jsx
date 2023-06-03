@@ -38,7 +38,8 @@ export default function CreateTask({ setCreateTask }) {
           description,
           priority,
           dueDate,
-          createdBy:id,
+          createdBy: id,
+          project: projectId,
         };
 
         const responce = await axios.post(

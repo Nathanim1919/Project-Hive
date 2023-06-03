@@ -7,6 +7,9 @@ import TaskList from "../task/TaskList";
 import CreateTask from "../task/TaskForm";
 import TeamMembers from "../teamMembers/TeamMembers";
 import Progress from "../progress/progress";
+import { changeDate, howMuchDaysLeft } from "../../functions.js";
+import {AiFillEdit} from 'react-icons/ai';
+
 const ProjectDetailPage = () => {
   const { id, projectId } = useParams();
 
@@ -34,7 +37,7 @@ const ProjectDetailPage = () => {
   }, [id, projectId]); // Include 'projectId' as a dependency
 
   if (!project) {
-    return <div>Loading... {projectId}</div>;
+    return <div>Loading...</div>;
   }
 
   return (
@@ -42,19 +45,32 @@ const ProjectDetailPage = () => {
       {createTask && <CreateTask setCreateTask={setCreateTask} />}
       <div className="projectInfo">
         <div className="pro-title">
-          <NavLink to={`/user/${id}`}>
-            <BiArrowBack />
-          </NavLink>
-          <div className="title">
-            <h1>Web Designing</h1>
-            <p>project manager: Nathanim Tadele</p>
+          <div>
+            <NavLink to={`/user/${id}`}>
+              <BiArrowBack />
+            </NavLink>
+            <div className="title">
+              <h1>{project.title}</h1>
+              <p>project manager: Nathanim Tadele</p>
+            </div>
+            <div className="deadline">
+              <h5>Start-Date:</h5>
+              <p>{changeDate(project.startDate)}</p>
+              <h5>Due-Date:</h5>
+              <p>{changeDate(project.dueDate)}</p>
+              <span>
+                {howMuchDaysLeft(project.startDate, project.dueDate)} days left
+              </span>
+            </div>
+            <div className="editProject">
+                <AiFillEdit/>
+            </div>
           </div>
-          <div className="deadline">
-            <p>deadline:</p>
-            <p>june 3, 2023</p>
-            <span>6 days left</span>
+          <div>
+            <p>{project.description}</p>
           </div>
         </div>
+
         <div className="project-navbar">
           <li
             onClick={() => {
@@ -109,7 +125,7 @@ const ProjectDetailPage = () => {
       {overviewPage && (
         <div className="project-progress">
           <div className="tasks">
-            <h1>23</h1>
+            <h1>{project.tasks.length}</h1>
             <p>Total tasks</p>
           </div>
           <div className="started">
@@ -135,24 +151,32 @@ const ProjectDetailPage = () => {
         <div className="project-budget">
           <div className="total-budget">
             <p>Total Budget</p>
-            <h1>$456</h1>
+            <h1>{project.budget} BIrr</h1>
           </div>
           <div className="internal-cost">
             <div>
               <p>Internal cost</p>
-              <h1>$132</h1>
+              <h1>{project.internalCost} Birr</h1>
             </div>
             <div className="circle-progress">
-              <Progress animates={1000} total={200} progress={100} />
+              <Progress
+                animates={1000}
+                total={project.budget}
+                progress={project.internalCost}
+              />
             </div>
           </div>
           <div className="Budget-Left">
             <div>
               <p>Budget Left</p>
-              <h1>$132</h1>
+              <h1>{project.budgetLeft} Birr</h1>
             </div>
             <div>
-              <Progress animates={200} total={200} progress={60} />
+              <Progress
+                animates={1000}
+                total={project.budget}
+                progress={project.budgetLeft}
+              />
             </div>
           </div>
         </div>
@@ -160,7 +184,7 @@ const ProjectDetailPage = () => {
       {taskPage && (
         <TaskList createTask={createTask} setCreateTask={setCreateTask} />
       )}
-      {membersPage && <TeamMembers />}
+      {membersPage && <TeamMembers project={project}/>}
       {collaburationPage && (
         <section>
           <h1>chatting page</h1>

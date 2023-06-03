@@ -48,6 +48,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/projecthive', {
 
 app.use('/auth', authRouter);
 app.use('/user', profileRouter);
+// app.use('/users', profileRouter);
 app.use('/user/:id', projectRouter);
 
 

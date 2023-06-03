@@ -13,11 +13,14 @@ export default function Progress({ progress, animates, total }) {
     let currentFrame = 0;
     const progressPercent = (progress / total) * 100; // Convert progress to percentage
     setDegree(progressPercent);
-    const progressDegree = (progressPercent / 100) * 360; // Convert progress to degrees
+    let progressDegree = (progressPercent / 100) * 360; // Convert progress to degrees
 
+    if (progressDegree === 360){
+      progressDegree = (progressPercent / 100) * 360 + 7;
+    }
     const animationInterval = setInterval(() => {
       const gradientDegree = (currentFrame / frames) * progressDegree; // Gradually increase the gradient degree
-      progressElement.style.background = `conic-gradient(orange, ${gradientDegree}deg, #ededed 0deg)`;
+      progressElement.style.background = `conic-gradient(#429ff7, ${gradientDegree}deg, #63f5ff 0deg)`;
       currentFrame++;
 
       if (currentFrame === frames) {

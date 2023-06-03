@@ -4,18 +4,17 @@ const Project = require('../models/Project.js');
 
 module.exports.createTask = async (req, res) => {
     try {
-
         const {
             id,
             projectId
         } = req.params;
-
         const {
             title,
             description,
             priority,
             dueDate,
-            createdBy
+            createdBy,
+            project
            
         } = req.body;
 
@@ -25,14 +24,15 @@ module.exports.createTask = async (req, res) => {
             description,
             priority,
             dueDate,
-            createdBy
+            createdBy,
+            project
         })
         
         console.log(task);
-        const project = await Project.findById(projectId);
-        project.tasks.push(task);
+        const owner_project = await Project.findById(projectId);
+        owner_project.tasks.push(task);
 
-        await project.save()
+        await owner_project.save()
 
         res.status(200).json({
             message:"Tasks created successfully",
@@ -49,9 +49,14 @@ module.exports.createTask = async (req, res) => {
 
 
 module.exports.getTasks = async (req, res)=>{
-    try{
 
-        const tasks = await Task.find();
+    try{
+        const {
+            id,
+            projectId
+        } = req.params;
+
+        const tasks = await Task.find({project:projectId});
 
         res.status(200).json({
             tasks

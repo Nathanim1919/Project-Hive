@@ -1,7 +1,7 @@
 .mini-circular-progress {
   position: relative;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -25,9 +25,9 @@ div.mini-circular-progress #mini-number {
   color: black;
 }
 
-@keyframes anim {
+/* @keyframes anim {
   0% {
     background: conic-gradient(blue, 0deg, #ededed 0deg);
   }
-}
+} */
 

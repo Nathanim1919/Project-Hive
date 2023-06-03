@@ -42,18 +42,6 @@ export default function DashboardPage() {
     getUser();
   }, [id]);
 
-  // // get projects associated with the active user
-  // useEffect(() => {
-  //   const getProjects = async () => {
-  //     const response = await axios.get(
-  //       `http://localhost:5000/user/${id}/projects`
-  //     );
-  //     setProjects(response.data.projects);
-  //     console.log(response.data.projects);
-  //   };
-  //   getProjects();
-  // }, [id]);
-
   return (
     <section className="dashboard">
       <header className="header-section">
