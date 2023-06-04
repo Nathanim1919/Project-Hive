@@ -40,14 +40,24 @@ module.exports.createProject = async (req, res) => {
 
 module.exports.getProjects = async (req, res) => {
     try {
+        const {
+            id
+        } = req.params;
+
+        console.log(req.params)
+
         const projects = await Project.find();
         res.status(200).json({
             projects
-        })
+        });
     } catch (error) {
         console.log(error);
+        res.status(500).json({
+            error: 'Internal Server Error'
+        });
     }
-}
+};
+
 
 module.exports.getProject = async (req, res) => {
     try {
@@ -55,10 +65,10 @@ module.exports.getProject = async (req, res) => {
             projectId
         } = req.params
         const project = await Project.findById(projectId)
-                                .populate('tasks')
-                                .populate('team')
-                                // .populate('events')
-                                .populate('chatboard');
+            .populate('tasks')
+            .populate('team')
+            // .populate('events')
+            .populate('chatboard');
         console.log(projectId);
         res.status(200).json({
             project

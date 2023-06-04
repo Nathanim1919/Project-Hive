@@ -4,9 +4,8 @@ import { AiFillCheckCircle, AiOutlinePlus } from "react-icons/ai";
 import "../../styles/member.css";
 import MiniProgress from "../progress/miniProgress";
 import axios from "axios";
-import {GrFormClose} from 'react-icons/gr';
+import { GrFormClose } from "react-icons/gr";
 import { useParams } from "react-router-dom";
-
 
 export default function TeamMembers() {
   const [employees, setEmployees] = useState([]);
@@ -21,7 +20,6 @@ export default function TeamMembers() {
           `http://localhost:5000/user/${id}/projects/${projectId}`
         );
         setProject(response.data.project); // Assuming the response data contains a 'project' property
-        console.log(response.data.project);
       } catch (error) {
         console.log(error);
       }

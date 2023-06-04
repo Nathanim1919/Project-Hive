@@ -28,7 +28,6 @@ const ProjectDetailPage = () => {
           `http://localhost:5000/user/${id}/projects/${projectId}`
         );
         setProject(response.data.project); // Assuming the response data contains a 'project' property
-        console.log(response.data.project);
       } catch (error) {
         console.log(error);
       }
@@ -59,7 +58,7 @@ const ProjectDetailPage = () => {
               <h5>Due-Date:</h5>
               <p>{changeDate(project.dueDate)}</p>
               <span>
-                {howMuchDaysLeft(project.startDate, project.dueDate)} days left
+                {howMuchDaysLeft(Date.now(), project.dueDate)} days left
               </span>
             </div>
             <div className="editProject">

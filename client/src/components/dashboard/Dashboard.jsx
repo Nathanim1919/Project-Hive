@@ -5,7 +5,8 @@ import { NavLink } from "react-router-dom";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import ProjectForm from "../project/ProjectForm";
 import axios from "axios";
-import {changeDate,howMuchDaysLeft} from '../../functions.js'
+import { changeDate, howMuchDaysLeft } from "../../functions.js";
+import Error from "../ShowError/error";
 
 export default function Dashboarddata() {
   const [openForm, setOpenform] = useState(false);
@@ -15,6 +16,8 @@ export default function Dashboarddata() {
   const currentDate = new Date();
   const options = { month: "long", year: "numeric" };
   const formattedDate = currentDate.toLocaleDateString("en-US", options);
+  const [ errorOccured, setErrorOccured ] = useState(false);
+  const [ errorMessage, setErrorMessage ] = useState('');
 
   const { id } = useParams();
 
@@ -38,17 +41,26 @@ export default function Dashboarddata() {
   // get projects associated with the active user
   useEffect(() => {
     const getProjects = async () => {
-      const response = await axios.get(
-        `http://localhost:5000/user/${id}/projects`
-      );
-      setProjects(response.data.projects);
-      console.log(response.data.projects);
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/user/${id}/projects`
+        );
+        console.log(id);
+        setProjects(response.data.projects);
+        setErrorOccured(false);
+      } catch (error) {
+        setErrorOccured(true);
+        setErrorMessage('Unable to fetch projects, please reload again later');
+      }
     };
     getProjects();
   }, [id, openForm]);
 
   return (
     <div className="userdatas">
+      {errorOccured && (
+        <Error message={errorMessage} setErrorOccured={setErrorOccured} />
+      )}
       {openForm && <ProjectForm setOpenform={setOpenform} />}
       <div className="projects">
         <div className="pro-header">
@@ -241,105 +253,6 @@ export default function Dashboarddata() {
         <div className="notifications">
           <p>notification</p>
           <div className="notification-list">
-            <div className="notify">
-              <div className="logo">
-                <IoMdNotificationsOutline />
-              </div>
-              <div className="message">
-                <p>Task completed request</p>
-                <p>2:43 AM may 12, 2023</p>
-              </div>
-            </div>
-            <div className="notify">
-              <div className="logo">
-                <IoMdNotificationsOutline />
-              </div>
-              <div className="message">
-                <p>Task completed request and progress</p>
-                <p>2:43 AM may 12, 2023</p>
-              </div>
-            </div>
-            <div className="notify">
-              <div className="logo">
-                <IoMdNotificationsOutline />
-              </div>
-              <div className="message">
-                <p>Task completed request</p>
-                <p>2:43 AM may 12, 2023</p>
-              </div>
-            </div>
-            <div className="notify">
-              <div className="logo">
-                <IoMdNotificationsOutline />
-              </div>
-              <div className="message">
-                <p>Task completed request and progress</p>
-                <p>2:43 AM may 12, 2023</p>
-              </div>
-            </div>
-            <div className="notify">
-              <div className="logo">
-                <IoMdNotificationsOutline />
-              </div>
-              <div className="message">
-                <p>Task completed request</p>
-                <p>2:43 AM may 12, 2023</p>
-              </div>
-            </div>
-            <div className="notify">
-              <div className="logo">
-                <IoMdNotificationsOutline />
-              </div>
-              <div className="message">
-                <p>Task completed request and progress</p>
-                <p>2:43 AM may 12, 2023</p>
-              </div>
-            </div>
-            <div className="notify">
-              <div className="logo">
-                <IoMdNotificationsOutline />
-              </div>
-              <div className="message">
-                <p>Task completed request</p>
-                <p>2:43 AM may 12, 2023</p>
-              </div>
-            </div>
-            <div className="notify">
-              <div className="logo">
-                <IoMdNotificationsOutline />
-              </div>
-              <div className="message">
-                <p>Task completed request</p>
-                <p>2:43 AM may 12, 2023</p>
-              </div>
-            </div>
-            <div className="notify">
-              <div className="logo">
-                <IoMdNotificationsOutline />
-              </div>
-              <div className="message">
-                <p>Task completed request</p>
-                <p>2:43 AM may 12, 2023</p>
-              </div>
-            </div>
-            <div className="notify">
-              <div className="logo">
-                <IoMdNotificationsOutline />
-              </div>
-              <div className="message">
-                <p>Task completed request</p>
-                <p>2:43 AM may 12, 2023</p>
-              </div>
-            </div>
-            <div className="notify">
-              <div className="logo">
-                <IoMdNotificationsOutline />
-              </div>
-              <div className="message">
-                <p>Task completed request</p>
-                <p>2:43 AM may 12, 2023</p>
-              </div>
-            </div>
             <div className="notify">
               <div className="logo">
                 <IoMdNotificationsOutline />

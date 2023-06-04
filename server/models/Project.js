@@ -38,10 +38,6 @@ const projectSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Event'
     }],
-    // technologyStack: {
-    //     type: [String],
-    //     required: true
-    // },
     status: {
         type: String,
         enum: ['Planning', 'In Progress', 'Completed', 'On Hold', 'Cancelled'],
