@@ -11,6 +11,7 @@ import axios from "axios";
 import { GrFormClose } from "react-icons/gr";
 import { useParams } from "react-router-dom";
 import Error from "../ShowError/error";
+import Confirmation from "../warning/confirmation";
 
 export default function TeamMembers() {
   const [employees, setEmployees] = useState([]);
@@ -18,6 +19,9 @@ export default function TeamMembers() {
   const { id, projectId } = useParams();
   const [project, setProject] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
+  const [confirmed, setConfirmed] = useState(false);
+  const [openConfirmationBox, setOpenConfirmationBox] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     const getProject = async () => {
@@ -45,28 +49,72 @@ export default function TeamMembers() {
     getUsers();
   }, []);
 
-const addUser = async (userId) => {
-  try {
-    const add = await axios.post(
-      `http://localhost:5000/user/${id}/projects/${projectId}/addEmployee`,
-      { userId }
-    );
-    console.log(add);
-    setOpenusersBox(false);
-  } catch (error) {
-    if (error.response && error.response.status === 409) {
-      setErrorMessage(error.response.data.message);
-    } else {
-      setErrorMessage("Failed to add employee to the project");
+  const addUser = async (userId) => {
+    try {
+      const add = await axios.post(
+        `http://localhost:5000/user/${id}/projects/${projectId}/addEmployee`,
+        { userId }
+      );
+      setOpenusersBox(false);
+      // setEmployeeorRemovedAdded(true);
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
+        setErrorMessage(error.response.data.message);
+      } else {
+        setErrorMessage("Failed to add employee to the project");
+      }
     }
-  }
-};
+  };
+
+  const removeUser = async (userId) => {
+    setOpenConfirmationBox(true);
+    setUserId(userId);
+  };
+
+  useEffect(() => {
+    const removeEmployee = async () => {
+      try {
+        await axios.post(
+          `http://localhost:5000/user/${id}/projects/${projectId}/removeEmployee`,
+          { userId }
+        );
+        setOpenusersBox(false);
+
+        // Update the project state with the updated team members
+        const updatedProject = { ...project };
+        updatedProject.team = updatedProject.team.filter(
+          (user) => user._id !== userId
+        );
+        setProject(updatedProject);
+      } catch (error) {
+        if (error.response && error.response.status === 409) {
+          setErrorMessage(error.response.data.message);
+        } else {
+          setErrorMessage("Failed to remove employee from this project");
+        }
+      }
+      setConfirmed(false)
+    };
+
+    if (confirmed) {
+      removeEmployee();
+    }
+  }, [confirmed, openConfirmationBox]);
 
   return (
     <section className="teammembers">
-      {errorMessage != "" && (
+      {errorMessage !== "" && (
         <Error message={errorMessage} setErrorMessage={setErrorMessage} />
       )}
+      {openConfirmationBox && (
+        <Confirmation
+          setConfirmed={(value) => {
+            setConfirmed(value);
+            setOpenConfirmationBox(false);
+          }}
+        />
+      )}
+
       <div className="add-icon" onClick={() => setOpenusersBox(true)}>
         <AiOutlinePlus />
       </div>
@@ -98,7 +146,7 @@ const addUser = async (userId) => {
             <div className="member">
               <div className="header">
                 <AiFillCheckCircle />
-                <AiOutlineUserDelete />
+                <AiOutlineUserDelete onClick={() => removeUser(user._id)} />
               </div>
 
               <div className="profileinfo">

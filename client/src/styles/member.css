@@ -167,7 +167,7 @@ background-color:transparent;
   transform:translate(-50%,-50%);
   background-color:#ffffffe0;
   display:grid;
-  gap:.3rem;
+  gap:0rem;
   backdrop-filter:blur(5px);
   border:1px solid #eee;
   box-shadow:0 5px 10px #0000003b;
@@ -175,6 +175,7 @@ background-color:transparent;
   overflow:auto;
   padding: 2rem 1rem;
   z-index:20;
+  max-height: 50vh;
 }
 
 #all-empolloyee .employee{
@@ -182,7 +183,7 @@ background-color:transparent;
   align-items:center;
   justify-content:space-between;
   font-size:1rem;
-  padding:.5rem .5rem;
+  padding:.2rem;
   cursor:pointer;
   gap:2rem;
 }

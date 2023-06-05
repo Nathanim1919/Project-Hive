@@ -9,10 +9,10 @@
     top: 0;
     left: 0;
     z-index: 30;
-    background-color: #0000008a;
+    background-color: #4744448a;
     place-items: center;
     align-items: start;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
 }
 
 .close-box{
@@ -23,13 +23,19 @@
     font-size: 1.2rem;
 }
 
-.error-showing p{
+.error-showing .errorShowing{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
     border-radius: 10px;
-    background-color: red;
-    font-size: .8rem;
-    padding: 1rem;
+    background-color: rgb(221, 71, 71);
+    /* font-size: .8rem; */
+    padding:.3rem 1rem;
     text-align: left;
     margin-top: 1rem;
-    width: 60%;
+    max-width: 60%;
     max-height: 10%;
+}
+.error-showing .errorShowing .icon{
+    font-size: 3rem;
 }

@@ -235,7 +235,7 @@ export default function Dashboarddata() {
                         }}
                       >
                         <p>
-                          {howMuchDaysLeft(project.startDate, project.dueDate)}{" "}
+                          {howMuchDaysLeft(Date.now(), project.dueDate)}{" "}
                           days left
                         </p>
                       </div>

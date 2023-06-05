@@ -52,7 +52,6 @@ section.profile .employeementInfo .profile-navigation ul li:hover {
 
 .profile .userrating > div {
   border: 1px solid #eee;
-  /* flex: 1; */
   display: flex;
   flex-direction: column;
   padding: 2rem;

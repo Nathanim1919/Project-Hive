@@ -10,7 +10,9 @@ import DashboardPage from './pages/DashboardPage';
 import ProjectDetailPage from './components/project/ProjectDetails';
 import ProfilePage from './pages/ProfilePage';
 
+
 function App() {
+
   return ( <div className = "App">
   <Routes>
     <Route path = '/' element = {< HomePage/>}/> 
