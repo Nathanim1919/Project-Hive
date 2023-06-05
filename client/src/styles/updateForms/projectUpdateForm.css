@@ -1,0 +1,88 @@
+.editOptions{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(86, 123, 243, 0.418);
+    backdrop-filter: blur(10px);
+    display: grid;
+    place-items: center;
+    z-index: 10;
+}
+
+.editOptions form{
+    max-width: 60%;
+    max-height: 100%;
+    display: grid;
+    place-items: center;
+    text-align: left;
+}
+
+.editOptions form > div{
+    width: 100%;
+}
+.editOptions .close-icns{
+    position:absolute;
+    top:1rem;
+    right:1rem;
+    font-size:1.3rem;
+}
+
+.editOptions form input,.editOptions form textarea{
+    padding: .5rem 1rem;
+    border: none;
+    outline: none;
+    resize: none;
+}
+.editOptions form textarea{
+    width: 100%;
+    padding: 0;
+}
+.editOptions form label{
+   color: #8a8c8f;
+    font-size: .8rem;
+}
+
+.editOptions form .basicInfo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.editOptions form .dropdowns{
+    display: flex;
+    justify-content: space-between;
+}
+
+.editOptions form .dropdowns > div{
+    position: relative;
+    padding: 1rem;
+}
+.editOptions form .dropdowns > div>p{
+    font-size: .8rem;
+    color: rgb(255, 255, 255);
+    padding:.5rem 1rem;
+    background-color:rgb(88, 180, 255);
+}
+.editOptions form .dropdowns > div>p:hover{
+    background-color:rgb(61, 130, 187);
+}
+.editOptions form .dropdowns > div>ul{
+    background-color:rgb(235, 228, 228);
+    border:1px solid #eee;
+    text-align:left;
+    position:absolute;
+    color:#333;
+}
+.editOptions form .dropdowns > div>ul li{
+    padding:.3rem .5rem;
+    list-style-type:none;
+    color:#333;
+    width:100%;
+    position:relative;
+    left:0;
+}
+.editOptions form .dropdowns > div>ul li:hover{
+    background-color:#eee;
+}

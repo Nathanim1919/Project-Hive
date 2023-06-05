@@ -5,14 +5,17 @@ import "../styles/global.css";
 import WarningPage from "../components/warning/warning";
 import axios from "axios";
 import DashboardPage from "./DashboardPage";
+import Loading from "../components/Loading/Loading";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
 
     try {
@@ -26,7 +29,7 @@ export default function LoginPage() {
       // Store the token in local storage for subsequent requests
       localStorage.setItem("token", token);
 
-      console.log(response.data);
+     
 
       if (message === "Logged in successfully") {
         // Redirect to the appropriate page after successful login
@@ -37,18 +40,20 @@ export default function LoginPage() {
         // Display an error message to the user
         // ...
       }
+      
     } catch (error) {
       console.error("Login error:", error);
       // Handle error
       // Display an error message to the user
       // ...
     }
+    setIsLoading(false);
   };
 
   return (
     <>
       <WarningPage />
-
+      {isLoading && <Loading />}
       <div className="login-page">
         <div className="image-background">
           <h1>Welcome to BlueNile Software Development!</h1>

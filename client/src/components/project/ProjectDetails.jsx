@@ -8,7 +8,9 @@ import CreateTask from "../task/TaskForm";
 import TeamMembers from "../teamMembers/TeamMembers";
 import Progress from "../progress/progress";
 import { changeDate, howMuchDaysLeft } from "../../functions.js";
-import {AiFillEdit} from 'react-icons/ai';
+import { AiFillEdit } from "react-icons/ai";
+import Loading from "../Loading/Loading";
+import ProjectUpdateForm from "../updateForms/ProjectUpdateForm";
 
 const ProjectDetailPage = () => {
   const { id, projectId } = useParams();
@@ -20,6 +22,7 @@ const ProjectDetailPage = () => {
   const [collaburationPage, setCollaburationPage] = useState(false);
   const [createTask, setCreateTask] = useState(false);
   const [activeLink, setActiveLink] = useState("Overview");
+  const [updateProjct, setUpdateProjct] = useState(false);
 
   useEffect(() => {
     const getProject = async () => {
@@ -36,7 +39,7 @@ const ProjectDetailPage = () => {
   }, [id, projectId]); // Include 'projectId' as a dependency
 
   if (!project) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
@@ -62,7 +65,10 @@ const ProjectDetailPage = () => {
               </span>
             </div>
             <div className="editProject">
-                <AiFillEdit/>
+              <AiFillEdit onClick={() => setUpdateProjct(true)} />
+              {updateProjct && (
+                <ProjectUpdateForm setUpdateProjct={setUpdateProjct} />
+              )}
             </div>
           </div>
           <div>
@@ -183,7 +189,7 @@ const ProjectDetailPage = () => {
       {taskPage && (
         <TaskList createTask={createTask} setCreateTask={setCreateTask} />
       )}
-      {membersPage && <TeamMembers project={project}/>}
+      {membersPage && <TeamMembers project={project} />}
       {collaburationPage && (
         <section>
           <h1>chatting page</h1>

@@ -69,7 +69,6 @@ module.exports.getProject = async (req, res) => {
             .populate('team')
             // .populate('events')
             .populate('chatboard');
-        console.log(projectId);
         res.status(200).json({
             project
         })
@@ -93,7 +92,7 @@ module.exports.addEmployee = async (req, res) => {
 
         if (isMember) {
             res.status(409).json({
-                message: "User is already a member of this project"
+                message: "This Employee is already a member of this project"
             });
         } else {
             project.team.push(userId);
@@ -104,5 +103,32 @@ module.exports.addEmployee = async (req, res) => {
         }
     } catch (error) {
         console.log(error);
+    }
+};
+
+module.exports.removeEmployee = async (req, res) => {
+    try {
+        const {
+            projectId
+        } = req.params;
+
+        const {
+            userId
+        } = req.body;
+
+        const project = await Project.findById(projectId);
+
+        project.team = project.team.filter((member) => member.toString() !== userId);
+
+        await project.save();
+
+        res.status(200).json({
+            project,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            error: 'Internal Server Error',
+        });
     }
 };

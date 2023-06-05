@@ -5,6 +5,7 @@ import WarningPage from "../components/warning/warning";
 import { NavLink,useNavigate } from "react-router-dom";
 import axios from "axios";
 import {RxAvatar} from 'react-icons/rx'
+import Loading from "../components/Loading/Loading";
 
 
 export default function RegistrationPage() {
@@ -15,6 +16,8 @@ export default function RegistrationPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [avatar, setAvatar] = useState("");
   const [code, setCode] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
 
 
   // react hooks
@@ -34,6 +37,7 @@ export default function RegistrationPage() {
 
   // handle registration form submit
   const handleRegistration = async (e) => {
+     setIsLoading(true);
     e.preventDefault();
 
     try {
@@ -51,9 +55,6 @@ export default function RegistrationPage() {
         }
       );
 
-      // Handle the response from the server
-      console.log(response);
-
       // Reset the form after successful registration
       setEmail("");
       setPassword("");
@@ -69,10 +70,12 @@ export default function RegistrationPage() {
       console.log(error);
       // You can display an error message or perform other error handling actions
     }
+      setIsLoading(false);
   };
 
   return (
     <>
+      {isLoading && <Loading />}
       <div className="registration-page">
         <div className="image-background">
           <h1>Welcome to BlueNile Software Development!</h1>
