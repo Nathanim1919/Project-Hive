@@ -7,6 +7,7 @@ import {
   AiFillFacebook,
   AiFillInstagram,
   AiOutlineTwitter,
+  AiFillEdit,
 } from "react-icons/ai";
 import Progress from "../components/progress/progress";
 
@@ -33,15 +34,15 @@ export default function ProfilePage() {
 
 
   return (
-    <section className="profile">
+    <section id="profile">
       <div className="profileinformation">
         <div className="profiliepic">
           <img src={user && user.profile} alt="" />
         </div>
         <div className="personal-info">
-          <h3>{user.name}</h3>
+          <h3>Full Name: {user.name}</h3>
           <p>{user.position}</p>
-          <p>Since: {changeDate(user.employmentDate)}</p>
+          <p>Employee Since: {changeDate(user.employmentDate)}</p>
           <p>Salary: {user.salary} Birr</p>
           <p>Employee-Code: {user.Code}</p>
           <p>Employee-sex: {user.sex}</p>
@@ -59,18 +60,12 @@ export default function ProfilePage() {
             <AiFillLinkedin />
           </div>
         </div>
+        <div className="edit-profile">
+          <AiFillEdit />
+        </div>
       </div>
 
       <div className="employeementInfo">
-        <div className="profile-navigation">
-           <ul>
-              <li>Profile</li>
-              <li>Tasks</li>
-              <li>Projects</li>
-              <li>Events</li>
-           </ul>
-        </div>
-
         <div className="userrating">
           <div>
             <h1>

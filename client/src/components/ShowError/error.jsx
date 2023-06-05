@@ -2,9 +2,9 @@ import React from "react";
 import '../../styles/error.css';
 import { AiOutlineClose } from "react-icons/ai";
 
-export default function Error({ message, setErrorOccured }) {
+export default function Error({ message, setErrorMessage }) {
   const closIcon = () => {
-    setErrorOccured(false);
+    setErrorMessage("");
   };
   return (
     <div className="error-showing">

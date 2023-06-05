@@ -16,8 +16,7 @@ export default function Dashboarddata() {
   const currentDate = new Date();
   const options = { month: "long", year: "numeric" };
   const formattedDate = currentDate.toLocaleDateString("en-US", options);
-  const [ errorOccured, setErrorOccured ] = useState(false);
-  const [ errorMessage, setErrorMessage ] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
   const { id } = useParams();
 
@@ -47,10 +46,9 @@ export default function Dashboarddata() {
         );
         console.log(id);
         setProjects(response.data.projects);
-        setErrorOccured(false);
+       setErrorMessage('');
       } catch (error) {
-        setErrorOccured(true);
-        setErrorMessage('Unable to fetch projects, please reload again later');
+        setErrorMessage("Unable to fetch projects, please reload again later");
       }
     };
     getProjects();
@@ -58,8 +56,8 @@ export default function Dashboarddata() {
 
   return (
     <div className="userdatas">
-      {errorOccured && (
-        <Error message={errorMessage} setErrorOccured={setErrorOccured} />
+      {errorMessage != "" && (
+        <Error message={errorMessage} setErrorMessage={setErrorMessage} />
       )}
       {openForm && <ProjectForm setOpenform={setOpenform} />}
       <div className="projects">

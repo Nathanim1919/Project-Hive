@@ -89,17 +89,17 @@ module.exports.addEmployee = async (req, res) => {
 
         const project = await Project.findById(projectId);
 
-        const isMember = project.team.some((member) => member._id.toString() === userId);
+        const isMember = (project.team).some((member) => member._id.toString() === userId);
 
-        if (!isMember) {
+        if (isMember) {
+            res.status(409).json({
+                message: "User is already a member of this project"
+            });
+        } else {
             project.team.push(userId);
             await project.save();
             res.status(200).json({
-                project
-            });
-        } else {
-            res.status(500).json({
-                message: "User is already a member of this project"
+                project,
             });
         }
     } catch (error) {

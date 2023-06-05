@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { BsThreeDots } from "react-icons/bs";
-import { AiFillCheckCircle, AiOutlinePlus } from "react-icons/ai";
+import {
+  AiFillCheckCircle,
+  AiOutlinePlus,
+  AiOutlineUserDelete,
+} from "react-icons/ai";
 import "../../styles/member.css";
 import MiniProgress from "../progress/miniProgress";
 import axios from "axios";
 import { GrFormClose } from "react-icons/gr";
 import { useParams } from "react-router-dom";
+import Error from "../ShowError/error";
 
 export default function TeamMembers() {
   const [employees, setEmployees] = useState([]);
   const [openUsersBox, setOpenusersBox] = useState(false);
   const { id, projectId } = useParams();
   const [project, setProject] = useState({});
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const getProject = async () => {
@@ -21,7 +27,7 @@ export default function TeamMembers() {
         );
         setProject(response.data.project); // Assuming the response data contains a 'project' property
       } catch (error) {
-        console.log(error);
+        setErrorMessage("Unable to fetch Team Members, please reload again");
       }
     };
     getProject();
@@ -39,21 +45,28 @@ export default function TeamMembers() {
     getUsers();
   }, []);
 
-  const addUser = async (userId) => {
-    try {
-      const add = await axios.post(
-        `http://localhost:5000/user/${id}/projects/${projectId}/addEmployee`,
-        { userId }
-      );
-      console.log(add);
-      setOpenusersBox(false);
-    } catch (error) {
-      console.log(error);
+const addUser = async (userId) => {
+  try {
+    const add = await axios.post(
+      `http://localhost:5000/user/${id}/projects/${projectId}/addEmployee`,
+      { userId }
+    );
+    console.log(add);
+    setOpenusersBox(false);
+  } catch (error) {
+    if (error.response && error.response.status === 409) {
+      setErrorMessage(error.response.data.message);
+    } else {
+      setErrorMessage("Failed to add employee to the project");
     }
-  };
+  }
+};
 
   return (
     <section className="teammembers">
+      {errorMessage != "" && (
+        <Error message={errorMessage} setErrorMessage={setErrorMessage} />
+      )}
       <div className="add-icon" onClick={() => setOpenusersBox(true)}>
         <AiOutlinePlus />
       </div>
@@ -85,7 +98,7 @@ export default function TeamMembers() {
             <div className="member">
               <div className="header">
                 <AiFillCheckCircle />
-                <BsThreeDots />
+                <AiOutlineUserDelete />
               </div>
 
               <div className="profileinfo">
