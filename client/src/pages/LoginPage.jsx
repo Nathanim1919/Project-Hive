@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import "../styles/login.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/global.css";
-import WarningPage from "../components/warning/warning";
 import axios from "axios";
-import DashboardPage from "./DashboardPage";
 import Loading from "../components/Loading/Loading";
 
 export default function LoginPage() {
@@ -52,7 +50,6 @@ export default function LoginPage() {
 
   return (
     <>
-      <WarningPage />
       {isLoading && <Loading />}
       <div className="login-page">
         <div className="image-background">

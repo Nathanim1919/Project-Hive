@@ -1,277 +1,360 @@
 [
   {
-    "id": "1",
-    "email": "abeba@gmail.com",
-    "fullName": "Abeba Assefa",
-    "role": "Full Stack Developer",
-    "employmentDate": "2022-01-01",
-    "phoneNumber": "+251912345678",
-    "sex": "F",
-    "employeeCode": "EMP001",
-    "salary": 25000
-  },
-  {
-    "id": "2",
-    "email": "biruk@gmail.com",
-    "fullName": "Biruk Desta",
-    "role": "Front-end Developer",
+    "id": "26",
+    "email": "solomon@gmail.com",
+    "fullName": "Solomon Mulugeta",
+    "role": "Project Manager",
     "employmentDate": "2021-02-01",
-    "phoneNumber": "+251923456789",
+    "phoneNumber": "+251997890123",
     "sex": "M",
-    "employeeCode": "EMP002",
-    "salary": 22000
-  },
-  {
-    "id": "3",
-    "email": "chala@gmail.com",
-    "fullName": "Chala Negash",
-    "role": "UI/UX Designer",
-    "employmentDate": "2017-03-01",
-    "phoneNumber": "+251934567890",
-    "sex": "M",
-    "employeeCode": "EMP003",
-    "salary": 20000
-  },
-  {
-    "id": "4",
-    "email": "dawit@gmail.com",
-    "fullName": "Dawit Kebede",
-    "role": "Software Engineer",
-    "employmentDate": "2019-04-01",
-    "phoneNumber": "+251945678901",
-    "sex": "M",
-    "employeeCode": "EMP004",
-    "salary": 23000
-  },
-  {
-    "id": "5",
-    "email": "elias@gmail.com",
-    "fullName": "Elias Tesfaye",
-    "role": "System Administrator",
-    "employmentDate": "2021-05-01",
-    "phoneNumber": "+251956789012",
-    "sex": "M",
-    "employeeCode": "EMP005",
-    "salary": 30000
-  },
-  {
-    "id": "6",
-    "email": "fiker@gmail.com",
-    "fullName": "Fiker Tadesse",
-    "role": "Project Executive",
-    "employmentDate": "2020-06-01",
-    "phoneNumber": "+251967890123",
-    "sex": "F",
-    "employeeCode": "EMP006",
-    "salary": 18000
-  },
-  {
-    "id": "7",
-    "email": "genet@gmail.com",
-    "fullName": "Genet Abate",
-    "role": "Back-end Developer",
-    "employmentDate": "2018-07-01",
-    "phoneNumber": "+251978901234",
-    "sex": "F",
-    "employeeCode": "EMP007",
-    "salary": 21000
-  },
-  {
-    "id": "8",
-    "email": "habtamu@gmail.com",
-    "fullName": "Habtamu Gebre",
-    "role": "Data Scientist",
-    "employmentDate": "2018-08-01",
-    "phoneNumber": "+251989012345",
-    "sex": "M",
-    "employeeCode": "EMP008",
-    "salary": 28000
-  },
-  {
-    "id": "9",
-    "email": "iness@gmail.com",
-    "fullName": "Iness Solomon",
-    "role": "Quality Assurance Engineer",
-    "employmentDate": "2020-09-01",
-    "phoneNumber": "+251910123456",
-    "sex": "F",
-    "employeeCode": "EMP009",
-    "salary": 19000
-  },
-  {
-    "id": "10",
-    "email": "jemal@gmail.com",
-    "fullName": "Jemal Teklu",
-    "role": "Database Administrator",
-    "employmentDate": "2017-10-01",
-    "phoneNumber": "+251921234567",
-    "sex": "M",
-    "employeeCode": "EMP010",
-    "salary": 25000
-  },
-  {
-    "id": "11",
-    "email": "kiya@gmail.com",
-    "fullName": "Kiya Mekonnen",
-    "role": "Mobile App Developer",
-    "employmentDate": "2022-11-01",
-    "phoneNumber": "+251932345678",
-    "sex": "F",
-    "employeeCode": "EMP011",
-    "salary": 21500
-  },
-  {
-    "id": "12",
-    "email": "liya@gmail.com",
-    "fullName": "Liya Alemu",
-    "role": "DevOps Engineer",
-    "employmentDate": "2019-12-01",
-    "phoneNumber": "+251943456789",
-    "sex": "F",
-    "employeeCode": "EMP012",
-    "salary": 24000
-  },
-  {
-    "id": "13",
-    "email": "mesfin@gmail.com",
-    "fullName": "Mesfin Demissie",
-    "role": "Software Architect",
-    "employmentDate": "2023-01-01",
-    "phoneNumber": "+251954567890",
-    "sex": "M",
-    "employeeCode": "EMP013",
+    "employeeCode": "EMP026",
     "salary": 32000
   },
   {
-    "id": "14",
-    "email": "nigist@gmail.com",
-    "fullName": "Nigist Wondimu",
-    "role": "Business Analyst",
-    "employmentDate": "2020-02-01",
-    "phoneNumber": "+251965678901",
+    "id": "27",
+    "email": "alem@gmail.com",
+    "fullName": "Alemayehu Tekle",
+    "role": "Project Manager",
+    "employmentDate": "2023-03-01",
+    "phoneNumber": "+251908901234",
+    "sex": "M",
+    "employeeCode": "EMP027",
+    "salary": 31000
+  },
+
+  {
+    "id": "28",
+    "email": "betty@gmail.com",
+    "fullName": "Betty Kebede",
+    "role": "Project Manager",
+    "employmentDate": "2021-04-01",
+    "phoneNumber": "+251919012345",
     "sex": "F",
-    "employeeCode": "EMP014",
-    "salary": 19500
+    "employeeCode": "EMP028",
+    "salary": 30000
   },
+
   {
-    "id": "15",
-    "email": "otiso@gmail.com",
-    "fullName": "Otiso Wolde",
-    "role": "Network Administrator",
-    "employmentDate": "2022-03-01",
-    "phoneNumber": "+251976789012",
+    "id": "29",
+    "email": "solomon2@gmail.com",
+    "fullName": "Solomon Tadesse",
+    "role": "Project Manager",
+    "employmentDate": "2022-05-01",
+    "phoneNumber": "+251930123456",
     "sex": "M",
-    "employeeCode": "EMP015",
-    "salary": 27500
-  },
-  {
-    "id": "16",
-    "email": "paulos@gmail.com",
-    "fullName": "Paulos Gebre",
-    "role": "Data Engineer",
-    "employmentDate": "2023-04-01",
-    "phoneNumber": "+251987890123",
-    "sex": "M",
-    "employeeCode": "EMP016",
-    "salary": 26000
-  },
-  {
-    "id": "17",
-    "email": "rediet@gmail.com",
-    "fullName": "Rediet Admasu",
-    "role": "UI/UX Researcher",
-    "employmentDate": "2021-05-01",
-    "phoneNumber": "+251998901234",
-    "sex": "F",
-    "employeeCode": "EMP017",
-    "salary": 20500
-  },
-  {
-    "id": "18",
-    "email": "seble@gmail.com",
-    "fullName": "Seble Tadesse",
-    "role": "Front-end Developer",
-    "employmentDate": "2022-06-01",
-    "phoneNumber": "+251909012345",
-    "sex": "F",
-    "employeeCode": "EMP018",
-    "salary": 22500
-  },
-  {
-    "id": "19",
-    "email": "tamiru@gmail.com",
-    "fullName": "Tamiru Mulu",
-    "role": "Back-end Developer",
-    "employmentDate": "2020-07-01",
-    "phoneNumber": "+251920123456",
-    "sex": "M",
-    "employeeCode": "EMP019",
-    "salary": 24000
-  },
-  {
-    "id": "20",
-    "email": "wondimu@gmail.com",
-    "fullName": "Wondimu Zewdu",
-    "role": "Full Stack Developer",
-    "employmentDate": "2022-08-01",
-    "phoneNumber": "+251931234567",
-    "sex": "M",
-    "employeeCode": "EMP020",
-    "salary": 28000
-  },
-  {
-    "id": "21",
-    "email": "yodit@gmail.com",
-    "fullName": "Yodit Tesfaye",
-    "role": "Quality Assurance Engineer",
-    "employmentDate": "2021-09-01",
-    "phoneNumber": "+251942345678",
-    "sex": "F",
-    "employeeCode": "EMP021",
-    "salary": 19500
-  },
-  {
-    "id": "22",
-    "email": "zenebe@gmail.com",
-    "fullName": "Zenebe Mengistu",
-    "role": "Software Engineer",
-    "employmentDate": "2020-10-01",
-    "phoneNumber": "+251953456789",
-    "sex": "M",
-    "employeeCode": "EMP022",
-    "salary": 25000
-  },
-  {
-    "id": "23",
-    "email": "abebe@gmail.com",
-    "fullName": "Abebe Assefa",
-    "role": "System Administrator",
-    "employmentDate": "2021-11-01",
-    "phoneNumber": "+251964567890",
-    "sex": "M",
-    "employeeCode": "EMP023",
+    "employeeCode": "EMP029",
     "salary": 29000
   },
+
   {
-    "id": "24",
-    "email": "biruk@gmail.com",
+    "id": "30",
+    "email": "natnael@gmail.com",
+    "fullName": "Natnael Yohannes",
+    "role": "Project Manager",
+    "employmentDate": "2019-06-01",
+    "phoneNumber": "+251941234567",
+    "sex": "M",
+    "employeeCode": "EMP030",
+    "salary": 28000
+  },
+
+  {
+    "id": "31",
+    "email": "mahlet@gmail.com",
+    "fullName": "Mahlet Mengistu",
+    "role": "Project Executive",
+    "employmentDate": "2018-07-01",
+    "phoneNumber": "+251952345678",
+    "sex": "F",
+    "employeeCode": "EMP031",
+    "salary": 18000
+  },
+
+  {
+    "id": "32",
+    "email": "yoseph@gmail.com",
+    "fullName": "Yoseph Desta",
+    "role": "System Administrator",
+    "employmentDate": "2022-08-01",
+    "phoneNumber": "+251963456789",
+    "sex": "M",
+    "employeeCode": "EMP032",
+    "salary": 29000
+  },
+
+  {
+    "id": "33",
+    "email": "ruth@gmail.com",
+    "fullName": "Ruth Mekonnen",
+    "role": "Front-end Developer",
+    "employmentDate": "2023-09-01",
+    "phoneNumber": "+251974567890",
+    "sex": "F",
+    "employeeCode": "EMP033",
+    "salary": 23000
+  },
+
+  {
+    "id": "34",
+    "email": "abraham@gmail.com",
+    "fullName": "Abraham Kebede",
+    "role": "Back-end Developer",
+    "employmentDate": "2022-10-01",
+    "phoneNumber": "+251985678901",
+    "sex": "M",
+    "employeeCode": "EMP034",
+    "salary": 24000
+  },
+
+  {
+    "id": "35",
+    "email": "seble2@gmail.com",
+    "fullName": "Seble Worku",
+    "role": "UI/UX Designer",
+    "employmentDate": "2022-11-01",
+    "phoneNumber": "+251996789012",
+    "sex": "F",
+    "employeeCode": "EMP035",
+    "salary": 20000
+  },
+
+  {
+    "id": "36",
+    "email": "samuel@gmail.com",
+    "fullName": "Samuel Lemma",
+    "role": "Software Engineer",
+    "employmentDate": "2022-02-01",
+    "phoneNumber": "+251907890123",
+    "sex": "M",
+    "employeeCode": "EMP036",
+    "salary": 25000
+  },
+
+  {
+    "id": "37",
+    "email": "betelhem@gmail.com",
+    "fullName": "Betelhem Hailu",
+    "role": "Data Scientist",
+    "employmentDate": "2023-01-01",
+    "phoneNumber": "+251918901234",
+    "sex": "F",
+    "employeeCode": "EMP037",
+    "salary": 28000
+  },
+
+  {
+    "id": "38",
+    "email": "abdu@gmail.com",
+    "fullName": "Abdu Ali",
+    "role": "Quality Assurance Engineer",
+    "employmentDate": "2021-02-01",
+    "phoneNumber": "+251929012345",
+    "sex": "M",
+    "employeeCode": "EMP038",
+    "salary": 19000
+  },
+
+  {
+    "id": "39",
+    "email": "mimi@gmail.com",
+    "fullName": "Mimi Negussie",
+    "role": "Database Administrator",
+    "employmentDate": "2021-03-01",
+    "phoneNumber": "+251940123456",
+    "sex": "F",
+    "employeeCode": "EMP039",
+    "salary": 24000
+  },
+
+  {
+    "id": "40",
+    "email": "natasha@gmail.com",
+    "fullName": "Natasha Ahmed",
+    "role": "Full Stack Developer",
+    "employmentDate": "2022-04-01",
+    "phoneNumber": "+251951234567",
+    "sex": "F",
+    "employeeCode": "EMP040",
+    "salary": 28000
+  },
+
+  {
+    "id": "41",
+    "email": "michael@gmail.com",
+    "fullName": "Michael Tsegaye",
+    "role": "UI/UX Researcher",
+    "employmentDate": "2021-05-01",
+    "phoneNumber": "+251962345678",
+    "sex": "M",
+    "employeeCode": "EMP041",
+    "salary": 20500
+  },
+
+  {
+    "id": "42",
+    "email": "yared@gmail.com",
+    "fullName": "Yared Belay",
+    "role": "Front-end Developer",
+    "employmentDate": "2021-06-01",
+    "phoneNumber": "+251973456789",
+    "sex": "M",
+    "employeeCode": "EMP042",
+    "salary": 22500
+  },
+
+  {
+    "id": "43",
+    "email": "sara@gmail.com",
+    "fullName": "Sara Mohammed",
+    "role": "Back-end Developer",
+    "employmentDate": "2021-07-01",
+    "phoneNumber": "+251984567890",
+    "sex": "F",
+    "employeeCode": "EMP043",
+    "salary": 24000
+  },
+
+  {
+    "id": "44",
+    "email": "abebe2@gmail.com",
+    "fullName": "Abebe Assefa",
+    "role": "System Administrator",
+    "employmentDate": "2021-08-01",
+    "phoneNumber": "+251995678901",
+    "sex": "M",
+    "employeeCode": "EMP044",
+    "salary": 29000
+  },
+
+  {
+    "id": "45",
+    "email": "biruk2@gmail.com",
     "fullName": "Biruk Desta",
     "role": "Project Manager",
-    "employmentDate": "2022-12-01",
-    "phoneNumber": "+251975678901",
+    "employmentDate": "2023-09-01",
+    "phoneNumber": "+251906789012",
     "sex": "M",
-    "employeeCode": "EMP024",
+    "employeeCode": "EMP045",
     "salary": 35000
   },
+
   {
-    "id": "25",
-    "email": "chala@gmail.com",
+    "id": "46",
+    "email": "chala2@gmail.com",
     "fullName": "Chala Negash",
     "role": "Business Intelligence Analyst",
-    "employmentDate": "2021-01-01",
-    "phoneNumber": "+251986789012",
+    "employmentDate": "2023-10-01",
+    "phoneNumber": "+251917890123",
     "sex": "M",
-    "employeeCode": "EMP025",
+    "employeeCode": "EMP046",
     "salary": 27000
+  },
+
+  {
+    "id": "47",
+    "email": "fiker2@gmail.com",
+    "fullName": "Fiker Tadesse",
+    "role": "Project Executive",
+    "employmentDate": "2023-11-01",
+    "phoneNumber": "+251928901234",
+    "sex": "F",
+    "employeeCode": "EMP047",
+    "salary": 18000
+  },
+
+  {
+    "id": "48",
+    "email": "genet2@gmail.com",
+    "fullName": "Genet Abate",
+    "role": "Full Stack Developer",
+    "employmentDate": "2023-12-01",
+    "phoneNumber": "+251939012345",
+    "sex": "F",
+    "employeeCode": "EMP048",
+    "salary": 25000
+  },
+
+  {
+    "id": "49",
+    "email": "habtamu2@gmail.com",
+    "fullName": "Habtamu Gebre",
+    "role": "Front-end Developer",
+    "employmentDate": "2022-01-01",
+    "phoneNumber": "+251950123456",
+    "sex": "M",
+    "employeeCode": "EMP049",
+    "salary": 22000
+  },
+
+  {
+    "id": "50",
+    "email": "iness2@gmail.com",
+    "fullName": "Iness Solomon",
+    "role": "UI/UX Designer",
+    "employmentDate": "2022-02-01",
+    "phoneNumber": "+251961234567",
+    "sex": "F",
+    "employeeCode": "EMP050",
+    "salary": 20000
+  },
+
+  {
+    "id": "51",
+    "email": "jemal2@gmail.com",
+    "fullName": "Jemal Teklu",
+    "role": "Software Engineer",
+    "employmentDate": "2022-03-01",
+    "phoneNumber": "+251972345678",
+    "sex": "M",
+    "employeeCode": "EMP051",
+    "salary": 26000
+  },
+
+  {
+    "id": "52",
+    "email": "leul2@gmail.com",
+    "fullName": "Leul Wolde",
+    "role": "Data Scientist",
+    "employmentDate": "2022-04-01",
+    "phoneNumber": "+251983456789",
+    "sex": "M",
+    "employeeCode": "EMP052",
+    "salary": 28000
+  },
+
+  {
+    "id": "53",
+    "email": "makeda2@gmail.com",
+    "fullName": "Makeda Yirga",
+    "role": "Quality Assurance Engineer",
+    "employmentDate": "2022-05-01",
+    "phoneNumber": "+251994567890",
+    "sex": "F",
+    "employeeCode": "EMP053",
+    "salary": 19000
+  },
+
+  {
+    "id": "54",
+    "email": "nardos2@gmail.com",
+    "fullName": "Nardos Alem",
+    "role": "Database Administrator",
+    "employmentDate": "2022-06-01",
+    "phoneNumber": "+251905678901",
+    "sex": "F",
+    "employeeCode": "EMP054",
+    "salary": 24000
+  },
+
+  {
+    "id": "55",
+    "email": "osman2@gmail.com",
+    "fullName": "Osman Mohamed",
+    "role": "System Administrator",
+    "employmentDate": "2022-07-01",
+    "phoneNumber": "+251916789012",
+    "sex": "M",
+    "employeeCode": "EMP055",
+    "salary": 29000
   }
 ]

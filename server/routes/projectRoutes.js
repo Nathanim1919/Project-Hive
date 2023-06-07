@@ -5,7 +5,8 @@ const {
     getProjects,
     getProject,
     addEmployee,
-    removeEmployee
+    removeEmployee,
+    updateProject
 } = require('../controllers/projectController');
 
 
@@ -22,5 +23,6 @@ router.post('/projects/:projectId/removeEmployee', removeEmployee)
 router.get('/projects/:projectId/getTasks', getTasks);
 router.post('/projects/createProject', createProject)
 router.post('/projects/:projectId/createTask', createTask);
+router.post('/projects/:projectId/updateProject', updateProject);
 
 module.exports = router;

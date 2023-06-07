@@ -132,3 +132,43 @@ module.exports.removeEmployee = async (req, res) => {
         });
     }
 };
+
+
+module.exports.updateProject = async (req, res) => {
+    const {
+        projectId
+    } = req.params;
+    const {
+        UpdatedData
+    } = req.body;
+
+    // Assuming you have a Project model or collection
+    // Update the project with the provided ID and user ID
+    Project.findOneAndUpdate({
+                _id: projectId,
+            },
+            UpdatedData, {
+                new: true
+            }
+        )
+        .then(updatedProject => {
+            if (!updatedProject) {
+                // If the project doesn't exist or doesn't belong to the user
+                return res.status(404).json({
+                    error: 'Project not found'
+                });
+            }
+
+            // Project update successful
+            return res.status(200).json({
+                message: 'Project updated successfully'
+            });
+        })
+        .catch(error => {
+            console.log(error);
+            return res.status(500).json({
+                error: 'Internal server error'
+            });
+        });
+}
+

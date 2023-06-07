@@ -5,10 +5,12 @@
     height: 100vh;
     width: 100vw;
     background-color: rgba(86, 123, 243, 0.418);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
     display: grid;
     place-items: center;
+    align-items:start;
     z-index: 10;
+    padding-top:3rem;
 }
 
 .editOptions form{
@@ -17,6 +19,8 @@
     display: grid;
     place-items: center;
     text-align: left;
+    box-shadow:0 10px 33px rgba(0,0,0,.05);
+    border-radius:10px;
 }
 
 .editOptions form > div{
@@ -53,6 +57,7 @@
 .editOptions form .dropdowns{
     display: flex;
     justify-content: space-between;
+    flex-wrap:wrap;
 }
 
 .editOptions form .dropdowns > div{
@@ -61,19 +66,35 @@
 }
 .editOptions form .dropdowns > div>p{
     font-size: .8rem;
-    color: rgb(255, 255, 255);
-    padding:.5rem 1rem;
-    background-color:rgb(88, 180, 255);
+    color: rgb(88, 85, 85);
+    padding:.5rem;
+    /* background-color:rgb(88, 180, 255); */
+    /* width:100%; */
+}
+.editOptions form .dropdowns > div>p span{
+    background-color:Orange;
+    padding:.2rem .5rem;
+    color:#fff;
 }
 .editOptions form .dropdowns > div>p:hover{
-    background-color:rgb(61, 130, 187);
+    background-color:rgb(216, 218, 219);
+    color:#1f1e1e;
 }
 .editOptions form .dropdowns > div>ul{
-    background-color:rgb(235, 228, 228);
-    border:1px solid #eee;
-    text-align:left;
+    display:grid;
+    place-items:center;
     position:absolute;
     color:#333;
+    top:3rem;
+    z-index:10;
+}
+.editOptions form .dropdowns #all-empolloyee{
+    width:200px;
+    color:#000;
+    max-height:500px;
+}
+.editOptions form .dropdowns #all-empolloyee .employee:hover{
+   color:#333;
 }
 .editOptions form .dropdowns > div>ul li{
     padding:.3rem .5rem;
@@ -82,7 +103,17 @@
     width:100%;
     position:relative;
     left:0;
+    margin:0;
+    padding:.3rem 1rem;
+    background-color:#eee;
 }
 .editOptions form .dropdowns > div>ul li:hover{
     background-color:#eee;
+}
+
+input[type='submit']{
+    place-self:center;
+    background-color:rgb(143, 195, 255);
+    color:#fff;
+    max-width:100px;
 }

@@ -42,6 +42,25 @@ export default function DashboardPage() {
     getUser();
   }, [id]);
 
+ const handleLogout = async () => {
+   try {
+     await axios.get("http://localhost:5000");
+
+     // Clear the token from local storage
+     localStorage.removeItem("token");
+
+     // Redirect the user to the logout page or home page
+    //  navigate("/");
+   } catch (error) {
+     console.error("Logout error:", error);
+     // Handle error
+     // Display an error message to the user
+     // ...
+   }
+ };
+
+
+
   return (
     <section className="dashboard">
       <header className="header-section">
@@ -103,13 +122,13 @@ export default function DashboardPage() {
               </NavLink>
             </div>
             <div className="logout">
-              <NavLink>
+              <NavLink onClick={handleLogout}>
                 <AiOutlineLogout />
               </NavLink>
             </div>
           </div>
         </div>
-        {openDashBoardPage && <Dashboarddata/>}
+        {openDashBoardPage && <Dashboarddata />}
         {openProfilePage && <ProfilePage />}
       </main>
     </section>

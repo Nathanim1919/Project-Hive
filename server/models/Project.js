@@ -58,6 +58,11 @@ const projectSchema = new mongoose.Schema({
         }
     },
 
+    progress:{
+        type:Number,
+        default:0
+    },
+
     chatboard: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Chatboard'

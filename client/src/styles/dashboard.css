@@ -8,8 +8,6 @@ section.dashboard{
     display: grid;
     grid-template-rows: 7% auto;
     height: 100vh;
-   
-    
 }
 
 .header-section{
@@ -220,13 +218,15 @@ section.dashboard{
 /* project lists style sheet */
 .project-list {
     overflow:auto;
-    height:65vh;
-    gap:.6rem;
+    height:60vh;
     margin-top:1rem;
     display:flex;
+    /* justify-content:space-between; */
     flex-wrap:wrap;
+    gap:.6rem;
     padding-bottom: 2rem;
 }
+
 .project-list a{
     text-decoration: none;
     color: #1d1c1c;
@@ -236,10 +236,11 @@ section.dashboard{
 }
 .project-list .p-project{
     display:flex;
+     animation:animate .3s linear;
     flex-direction:column;
-    border-radius:30px;
+    border-radius:20px;
     padding:.5rem 1rem;
-    width:180px;
+    width:185px;
     max-height:175px;
     transition: all .3s ease-in-out;
     background-color:rgb(238, 238, 237);
@@ -405,4 +406,20 @@ section.dashboard{
 }
 .notification-list > div div.message>*{
   margin: 0;
+}
+
+
+@keyframes animate {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.element {
+  animation: animate 1s ease-in-out;
 }

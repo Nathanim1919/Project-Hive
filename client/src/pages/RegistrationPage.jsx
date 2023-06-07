@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import "../styles/register.css";
 import "../styles/global.css";
 import WarningPage from "../components/warning/warning";
-import { NavLink,useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
-import {RxAvatar} from 'react-icons/rx'
+import { RxAvatar } from "react-icons/rx";
+import Error from "../components/ShowError/error";
 import Loading from "../components/Loading/Loading";
-
 
 export default function RegistrationPage() {
   // user registration states
@@ -17,27 +17,23 @@ export default function RegistrationPage() {
   const [avatar, setAvatar] = useState("");
   const [code, setCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-
+  const [errorMessage, setErrorMessage] = useState("");
 
   // react hooks
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
+  // Convert image file to base64
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
 
-
-
-  // change image file into binary inorder to store it on database
-    const toBase64 = (file) =>
-      new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = (error) => reject(error);
-      });
-
-  // handle registration form submit
+  // Handle registration form submit
   const handleRegistration = async (e) => {
-     setIsLoading(true);
+    setIsLoading(true);
     e.preventDefault();
 
     try {
@@ -55,27 +51,44 @@ export default function RegistrationPage() {
         }
       );
 
-      // Reset the form after successful registration
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
-      setCode("");
-
-      // navigate to login page
-      if (response.data.message === "User registered successfully"){
-        navigate("/login");
+      const { message } = response.data;
+      switch (message) {
+        case "User registered successfully":
+          // Reset the form after successful registration
+          setEmail("");
+          setPassword("");
+          setConfirmPassword("");
+          setCode("");
+          navigate("/login");
+          break;
+        case "Unable to find you in our employee database. Please contact our center in person for further discussion.":
+          setErrorMessage(message);
+          break;
+        default:
+          setErrorMessage("An unexpected error occurred: " + message);
       }
     } catch (error) {
-      // Handle any errors that occur during the registration process
-      console.log(error);
-      // You can display an error message or perform other error handling actions
+      if (error.response) {
+        if (error.response.status === 400 || error.response.status === 201) {
+          setErrorMessage(error.response.data.message);
+        } else if (error.response.status === 500) {
+          setErrorMessage("Failed to register, please try again");
+        }
+      } else {
+        console.log(error);
+        setErrorMessage("An unexpected error occurred: " + error.message);
+      }
     }
-      setIsLoading(false);
+
+    setIsLoading(false);
   };
 
   return (
     <>
       {isLoading && <Loading />}
+      {errorMessage !== "" && (
+        <Error message={errorMessage} setErrorMessage={setErrorMessage} />
+      )}
       <div className="registration-page">
         <div className="image-background">
           <h1>Welcome to BlueNile Software Development!</h1>

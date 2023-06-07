@@ -5,7 +5,7 @@ const cors = require('cors');
 const authRouter = require('./routes/authRoutes.js')
 const profileRouter = require('./routes/profileRoutes.js');
 const projectRouter = require('./routes/projectRoutes.js');
-
+const {userLogoutController} = require('./controllers/authController.js')
 const app = express();
 
 
@@ -46,9 +46,12 @@ mongoose.connect('mongodb://127.0.0.1:27017/projecthive', {
 // Define routes
 // Add your routes here
 
+app.get('/', userLogoutController);
 app.use('/auth', authRouter);
 app.use('/user', profileRouter);
 app.use('/user/:id', projectRouter);
+
+
 
 
 

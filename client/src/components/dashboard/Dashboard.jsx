@@ -25,7 +25,7 @@ export default function Dashboarddata() {
     (project) => project.status === "Planning"
   );
   const inprogressProjects = projects.filter(
-    (project) => project.status === "In progress"
+    (project) => project.status === "In Progress"
   );
   const completedProjects = projects.filter(
     (project) => project.status === "Completed"
@@ -207,7 +207,7 @@ export default function Dashboarddata() {
                         <div
                           className="innerProgressBar"
                           style={{
-                            width: `${project.completionPercentage}%`,
+                            width: `${project.progress}%`,
                             backgroundColor:
                               project.priority === "High"
                                 ? "yellow"
@@ -215,7 +215,7 @@ export default function Dashboarddata() {
                           }}
                         ></div>
                       </div>
-                      <p className="percent">{project.completionPercentage}%</p>
+                      <p className="percent">{project.progress}%</p>
                     </div>
 
                     <div className="footer-detail">
@@ -235,8 +235,8 @@ export default function Dashboarddata() {
                         }}
                       >
                         <p>
-                          {howMuchDaysLeft(Date.now(), project.dueDate)}{" "}
-                          days left
+                          {howMuchDaysLeft(Date.now(), project.dueDate)} days
+                          left
                         </p>
                       </div>
                     </div>

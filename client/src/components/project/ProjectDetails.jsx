@@ -67,7 +67,7 @@ const ProjectDetailPage = () => {
             <div className="editProject">
               <AiFillEdit onClick={() => setUpdateProjct(true)} />
               {updateProjct && (
-                <ProjectUpdateForm setUpdateProjct={setUpdateProjct} />
+                <ProjectUpdateForm setUpdateProjct={setUpdateProjct} project={project}/>
               )}
             </div>
           </div>

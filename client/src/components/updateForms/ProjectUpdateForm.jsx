@@ -1,38 +1,123 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "../../styles/updateForms/projectUpdateForm.css";
 import {AiOutlineClose} from 'react-icons/ai';
+import axios from 'axios';
+import "../../styles/member.css";
+import {useParams} from 'react-router-dom';
+import { GrFormClose } from "react-icons/gr";
 
-export default function ProjectUpdateForm({setUpdateProjct}) {
+
+export default function ProjectUpdateForm({setUpdateProjct,project}) {
   const [openManager, setOpenManager] = useState(false);
   const [statusBox, setStatusBox] = useState(false);
   const [priorityBox, setPriorityBox] = useState(false);
   const [progressBox, setProgressBox] = useState(false);
+
+  // form values
+
+  const [manager, setManager] = useState(null);
+  const [managerPlaceholder, setManagerPlaceholder] = useState(
+    project.projectManager
+  );
+  const [status, setStatus] = useState(project.status);
+  const [priority, setPriority] = useState(project.priority);
+  const [progress, setProgress] = useState(project.progress);
+  const [title, setTitle] = useState(project.title);
+  const [description, setDescription] = useState(project.description);
+  const [budget, setBudget] = useState(project.budget);
+  const [dueDate, setDueDate] = useState(project.dueDate);
+  const [employees, setEmployees] = useState([]);
+
+  const {id, projectId} = useParams();
+
+    useEffect(() => {
+      const getUsers = async () => {
+        try {
+          const users = await axios.get("http://localhost:5000/user");
+
+          setEmployees(users.data.user.filter(user => user.position === 'Project Manager'));
+          console.log(employees)
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      getUsers();
+    }, []);
+
+  const handleUpdate = async (e) =>{
+    e.preventDefault()
+    const UpdatedData = {
+      manager,
+      status,
+      priority,
+      progress,
+      title,
+      description,
+      budget,
+      dueDate,
+    };
+    try{
+        const responce = await axios.post(
+          `http://localhost:5000/user/${id}/projects/${projectId}/updateProject`,
+          {
+            UpdatedData,
+          }
+        ); 
+
+       setUpdateProjct(false);
+
+    }catch(error){
+        console.log(error)
+    }
+  }  
 
   return (
     <div className="editOptions">
       <div className="close-icns" onClick={() => setUpdateProjct(false)}>
         <AiOutlineClose />
       </div>
-      <form>
+      <form onSubmit={handleUpdate}>
         <div className="basicInfo">
           <div>
             <label htmlFor="title">Project Title</label>
-            <input type="text" id="title" />
+            <input
+              type="text"
+              id="title"
+              placeholder={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
           </div>
 
           <div>
             <label htmlFor="dueDate">Project dueDate</label>
-            <input type="Date" id="dueDate" />
+            <input
+              type="Date"
+              id="dueDate"
+              // placeholder={dueDate}
+              onChange={(e) => setDueDate(e.target.value)}
+            />
           </div>
           <div>
             <label htmlFor="budget">Project budget</label>
-            <input type="Number" id="budget" />
+            <input
+              type="Number"
+              id="budget"
+              placeholder={budget}
+              onChange={(e) => setBudget(e.target.value)}
+            />
           </div>
         </div>
 
         <div>
           <label htmlFor="description">Project Description</label>
-          <textarea name="description" id="" cols="28" rows="4"></textarea>
+          <textarea
+            name="description"
+            id=""
+            cols="28"
+            rows="4"
+            placeholder={description}
+            onChange={(e) => setDescription(e.target.value)}
+          ></textarea>
         </div>
 
         <div className="dropdowns">
@@ -45,9 +130,39 @@ export default function ProjectUpdateForm({setUpdateProjct}) {
                 setProgressBox(false);
               }}
             >
-              Set projectManager
+              Set projectManager: <span>{managerPlaceholder}</span>
             </p>
-            {openManager && <ul className="projectManagers">managers</ul>}
+            {openManager && (
+              <div id="all-empolloyee">
+                <div
+                  className="close-icon"
+                  onClick={() => setOpenManager(false)}
+                >
+                  <GrFormClose />
+                </div>
+                {employees &&
+                  employees.map((user) => (
+                    <div
+                      className="employee"
+                      onClick={() => {
+                        setManager(user._id);
+                        setManagerPlaceholder(user.name);
+                        setOpenManager(false);
+                      }}
+                    >
+                      <div className="personal-info">
+                        <div className="profilePic">
+                          <img src={user.profile} alt="" />
+                        </div>
+                        <div>
+                          <h5>{user.name}</h5>
+                          <p>{user.position}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            )}
           </div>
           <div className="projectStatus">
             <p
@@ -58,15 +173,50 @@ export default function ProjectUpdateForm({setUpdateProjct}) {
                 setProgressBox(false);
               }}
             >
-              Update Status
+              Update Status: <span>{status}</span>
             </p>
             {statusBox && (
               <ul>
-                <li>Planning</li>
-                <li>In Progress</li>
-                <li>Completed</li>
-                <li>On Hold</li>
-                <li>Cancelled</li>
+                <li
+                  onClick={() => {
+                    setStatus("Planning");
+                    setStatusBox(false);
+                  }}
+                >
+                  Planning
+                </li>
+                <li
+                  onClick={() => {
+                    setStatus("In Progress");
+                    setStatusBox(false);
+                  }}
+                >
+                  In Progress
+                </li>
+                <li
+                  onClick={() => {
+                    setStatus("Completed");
+                    setStatusBox(false);
+                  }}
+                >
+                  Completed
+                </li>
+                <li
+                  onClick={() => {
+                    setStatus("On Hold");
+                    setStatusBox(false);
+                  }}
+                >
+                  On Hold
+                </li>
+                <li
+                  onClick={() => {
+                    setStatus("Cancelled");
+                    setStatusBox(false);
+                  }}
+                >
+                  Cancelled
+                </li>
               </ul>
             )}
           </div>
@@ -79,13 +229,34 @@ export default function ProjectUpdateForm({setUpdateProjct}) {
                 setProgressBox(false);
               }}
             >
-              Update Priority
+              Update Priority: <span>{priority}</span>
             </p>
             {priorityBox && (
               <ul>
-                <li>Low</li>
-                <li>Medium</li>
-                <li>High</li>
+                <li
+                  onClick={() => {
+                    setPriority("Low");
+                    setPriorityBox(false);
+                  }}
+                >
+                  Low
+                </li>
+                <li
+                  onClick={() => {
+                    setPriority("Medium");
+                    setPriorityBox(false);
+                  }}
+                >
+                  Medium
+                </li>
+                <li
+                  onClick={() => {
+                    setPriority("High");
+                    setPriorityBox(false);
+                  }}
+                >
+                  High
+                </li>
               </ul>
             )}
           </div>
@@ -99,13 +270,82 @@ export default function ProjectUpdateForm({setUpdateProjct}) {
                 setProgressBox(true);
               }}
             >
-              Update Progress
+              Update Progress: <span>{progress}</span>
             </p>
             {progressBox && (
               <ul>
-                <li>30</li>
-                <li>60</li>
-                <li>90</li>
+                <li
+                  onClick={() => {
+                    setProgress(10);
+                    setProgressBox(false);
+                  }}
+                >
+                  10
+                </li>
+                <li
+                  onClick={() => {
+                    setProgress(20);
+                    setProgressBox(false);
+                  }}
+                >
+                  20
+                </li>
+                <li
+                  onClick={() => {
+                    setProgress(30);
+                    setProgressBox(false);
+                  }}
+                >
+                  30
+                </li>
+                <li
+                  onClick={() => {
+                    setProgress(40);
+                    setProgressBox(false);
+                  }}
+                >
+                  40
+                </li>
+                <li
+                  onClick={() => {
+                    setProgress(50);
+                    setProgressBox(false);
+                  }}
+                >
+                  50
+                </li>
+                <li
+                  onClick={() => {
+                    setProgress(60);
+                    setProgressBox(false);
+                  }}
+                >
+                  60
+                </li>
+                <li
+                  onClick={() => {
+                    setProgress(70);
+                    setProgressBox(false);
+                  }}
+                >
+                  70
+                </li>
+                <li
+                  onClick={() => {
+                    setProgress(80);
+                    setProgressBox(false);
+                  }}
+                >
+                  80
+                </li>
+                <li
+                  onClick={() => {
+                    setProgress(90);
+                    setProgressBox(false);
+                  }}
+                >
+                  90
+                </li>
               </ul>
             )}
           </div>
