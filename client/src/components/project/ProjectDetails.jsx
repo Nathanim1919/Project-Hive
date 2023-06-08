@@ -23,6 +23,7 @@ const ProjectDetailPage = () => {
   const [createTask, setCreateTask] = useState(false);
   const [activeLink, setActiveLink] = useState("Overview");
   const [updateProjct, setUpdateProjct] = useState(false);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     const getProject = async () => {
@@ -31,12 +32,13 @@ const ProjectDetailPage = () => {
           `http://localhost:5000/user/${id}/projects/${projectId}`
         );
         setProject(response.data.project); // Assuming the response data contains a 'project' property
+        console.log(project);
       } catch (error) {
         console.log(error);
       }
     };
     getProject();
-  }, [id, projectId]); // Include 'projectId' as a dependency
+  }, [id, projectId, updateProjct]); // Include 'projectId' as a dependency
 
   if (!project) {
     return <Loading />;
@@ -53,7 +55,14 @@ const ProjectDetailPage = () => {
             </NavLink>
             <div className="title">
               <h1>{project.title}</h1>
-              <p>project manager: Nathanim Tadele</p>
+              <p>
+                Lead By:{" "}
+                <span className="projectManagerName">
+                  {project.projectManager
+                    ? project.projectManager.name
+                    : "please assign a project manager"}
+                </span>
+              </p>
             </div>
             <div className="deadline">
               <h5>Start-Date:</h5>
@@ -67,7 +76,10 @@ const ProjectDetailPage = () => {
             <div className="editProject">
               <AiFillEdit onClick={() => setUpdateProjct(true)} />
               {updateProjct && (
-                <ProjectUpdateForm setUpdateProjct={setUpdateProjct} project={project}/>
+                <ProjectUpdateForm
+                  setUpdateProjct={setUpdateProjct}
+                  project={project}
+                />
               )}
             </div>
           </div>

@@ -46,7 +46,7 @@ export default function Dashboarddata() {
         );
         console.log(id);
         setProjects(response.data.projects);
-       setErrorMessage('');
+        setErrorMessage("");
       } catch (error) {
         setErrorMessage("Unable to fetch projects, please reload again later");
       }
@@ -220,11 +220,19 @@ export default function Dashboarddata() {
 
                     <div className="footer-detail">
                       <div className="members">
-                        <div className="m1"></div>
-                        <div className="m2"></div>
-                        <div className="m2">
+                        {project.projectManager && (
+                          <div className="m1">
+                            <img src={project.projectManager.profile} alt="" />
+                          </div>
+                        )}
+                        {project.team.length >= 2 && (
+                          <div className="m2">
+                            {<span>{project.team.length}+</span>}
+                          </div>
+                        )}
+                        {/* <div className="add-icon">
                           <AiOutlinePlus />
-                        </div>
+                        </div> */}
                       </div>
 
                       <div

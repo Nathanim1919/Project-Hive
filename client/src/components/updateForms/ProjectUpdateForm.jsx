@@ -1,13 +1,12 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../../styles/updateForms/projectUpdateForm.css";
-import {AiOutlineClose} from 'react-icons/ai';
-import axios from 'axios';
+import { AiOutlineClose } from "react-icons/ai";
+import axios from "axios";
 import "../../styles/member.css";
-import {useParams} from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import { GrFormClose } from "react-icons/gr";
 
-
-export default function ProjectUpdateForm({setUpdateProjct,project}) {
+export default function ProjectUpdateForm({ setUpdateProjct, project }) {
   const [openManager, setOpenManager] = useState(false);
   const [statusBox, setStatusBox] = useState(false);
   const [priorityBox, setPriorityBox] = useState(false);
@@ -15,10 +14,13 @@ export default function ProjectUpdateForm({setUpdateProjct,project}) {
 
   // form values
 
-  const [manager, setManager] = useState(null);
-  const [managerPlaceholder, setManagerPlaceholder] = useState(
-    project.projectManager
-  );
+ const [projectManager, setManager] = useState(
+   project.projectManager ? project.projectManager._id : null
+ );
+ const [managerPlaceholder, setManagerPlaceholder] = useState(
+   project.projectManager ? project.projectManager.name : "no assigned manager"
+ );
+
   const [status, setStatus] = useState(project.status);
   const [priority, setPriority] = useState(project.priority);
   const [progress, setProgress] = useState(project.progress);
@@ -28,48 +30,51 @@ export default function ProjectUpdateForm({setUpdateProjct,project}) {
   const [dueDate, setDueDate] = useState(project.dueDate);
   const [employees, setEmployees] = useState([]);
 
-  const {id, projectId} = useParams();
+  const { id, projectId } = useParams();
 
-    useEffect(() => {
-      const getUsers = async () => {
-        try {
-          const users = await axios.get("http://localhost:5000/user");
+  useEffect(() => {
+    const getUsers = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/user");
+        const users = response.data.user;
 
-          setEmployees(users.data.user.filter(user => user.position === 'Project Manager'));
-          console.log(employees)
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      getUsers();
-    }, []);
+        // Filter users to only include those with position 'Project Manager'
+        const projectManagers = users.filter(
+          (user) => user.position === "Project Manager"
+        );
 
-  const handleUpdate = async (e) =>{
-    e.preventDefault()
-    const UpdatedData = {
-      manager,
-      status,
-      priority,
-      progress,
-      title,
-      description,
-      budget,
-      dueDate,
+        setEmployees(projectManagers);
+        console.log(projectManagers);
+      } catch (error) {
+        console.log(error);
+      }
     };
-    try{
-        const responce = await axios.post(
-          `http://localhost:5000/user/${id}/projects/${projectId}/updateProject`,
-          {
-            UpdatedData,
-          }
-        ); 
 
-       setUpdateProjct(false);
+    getUsers();
+  }, [projectManager]);
 
-    }catch(error){
-        console.log(error)
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/user/${id}/projects/${projectId}/updateProject`,
+        {
+          projectManager,
+          status,
+          priority,
+          progress,
+          title,
+          description,
+          budget,
+          dueDate,
+        }
+      );
+      console.log(response);
+      setUpdateProjct(false);
+    } catch (error) {
+      console.log(error);
     }
-  }  
+  };
 
   return (
     <div className="editOptions">

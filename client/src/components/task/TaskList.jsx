@@ -5,7 +5,9 @@ import {
   AiFillPlusCircle,
   AiOutlineUnorderedList,
   AiOutlineClose,
+  AiOutlineEdit,
 } from "react-icons/ai";
+import {MdOutlineDoneOutline} from 'react-icons/md'
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -15,6 +17,12 @@ export default function TaskList({ createTask, setCreateTask }) {
   const { id, projectId } = useParams();
   const [selectedTask, setSelectedTask] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
+
+  // task edit tools
+  const [editTitle, setEditTitle] = useState(false);
+  const [editdescription, setEditdescription] = useState(false);
+  const [editpriority, setEditpriority] = useState(false);
+  const [editstatus, setEditstatus] = useState(false);
 
   useEffect(() => {
     const getTasks = async () => {
@@ -92,8 +100,45 @@ export default function TaskList({ createTask, setCreateTask }) {
             <div className="close-icon" onClick={closeTask}>
               <AiOutlineClose />
             </div>
-            <h2>{selectedTask.title}</h2>
-            <p>{selectedTask.description}</p>
+            <div className="titledec">
+              {!editTitle && (
+                <div>
+                  <h2>{selectedTask.title}</h2>
+                  <AiOutlineEdit
+                    className="edit"
+                    onClick={() => {setEditTitle(true);setEditdescription(false);}}
+                  />
+                </div>
+              )}
+              {editTitle && (
+                <div>
+                  <input type="text" placeholder="edit task title" />
+                  <MdOutlineDoneOutline
+                    className="done"
+                    onClick={() => setEditTitle(false)}
+                  />
+                </div>
+              )}
+              {!editdescription && (
+                <div className="description">
+                  <p>{selectedTask.description}</p>
+                  <AiOutlineEdit
+                    className="edit"
+                    onClick={() =>{ setEditdescription(true);setEditTitle(false);}}
+                  />
+                </div>
+              )}
+
+              {editdescription && (
+                <div>
+                  <textarea placeholder="Edit Task description.." name="" id="" cols="40" rows="1"></textarea>
+                  <MdOutlineDoneOutline
+                    className="done"
+                    onClick={() => setEditdescription(false)}
+                  />
+                </div>
+              )}
+            </div>
             <p>Priority: High</p>
             <p>Progress: 78%</p>
           </div>

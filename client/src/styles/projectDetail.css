@@ -30,6 +30,12 @@
   flex-direction: column;
 }
 
+.pro-title .title h1{
+  font-size:1.2rem;
+  padding:0;
+  text-transform:Capitalize;
+}
+
 .pro-title .title > * {
   margin: 0;
   text-align: left;
@@ -74,15 +80,26 @@
     color:#fff;
 }
 
+.pro-title .projectManagerName{
+  color: rgb(13, 13, 14);
+  border-radius: .4rem;
+  background-color: #eee;
+  padding: .2rem .5rem;
+}
 
-.projectDetailSection .projectInfo .pro-title >div{
+
+.projectDetailSection .projectInfo .pro-title > div:nth-child(1){
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 4rem;
   background-color: #ffffff;
   position: relative;
   left: 0;
   padding: .5rem 3rem;
+  border-bottom:1px solid #eee;
+}
+section.projectDetailSection .projectInfo .pro-title > div:nth-child(2){
+ padding:.2rem 5rem;
 }
 
 .projectDetailSection .projectInfo .pro-title{
@@ -127,6 +144,7 @@
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
+
 .project-navbar > li::after {
   position: absolute;
   width: 0;
@@ -279,13 +297,52 @@ section.projectDetailSection
 }
 
 
-section div.all_task_info #taskinformation{
-  background-color:rgb(110, 110, 243);
+#taskinformation{
+  border-left: 1px solid #eee;
   height:100%;
   width:100%;
   animation:anim 2s;
   position:relative;
   transition:all 3s ease-in-out;
+}
+
+#taskinformation .titledec{
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 1px solid #eee;
+}
+#taskinformation .titledec > div{
+  display: flex;
+}
+#taskinformation .titledec > div > *{
+  margin: 0;
+}
+#taskinformation .titledec >*{
+  margin: 0;
+}
+#taskinformation .titledec h2{
+  font-size: 1rem;
+  color: #4b4848;
+  padding: 0;
+}
+.description p{
+  font-size: .7rem;
+}
+#taskinformation .titledec >div{
+  padding: .2rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#taskinformation .titledec >div input, #taskinformation .titledec >div textarea{
+  padding: .5rem;
+  border: 1px solid #eee;
+  outline: none;
+  width: 70%;
+  resize: none;
 }
 
 #taskinformation .close-icon{

@@ -11,8 +11,6 @@ import {BiRun} from 'react-icons/bi';
 
 
 export default function HomePage() {
-
-
   return (
     <div>
       <Header />

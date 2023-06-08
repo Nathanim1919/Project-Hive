@@ -6,7 +6,10 @@ section.hero{
     max-height: 100vh;
     font-family: 'Poppins', sans-serif;
 }
+
+
 .hero .hero-content{
+    animation: animate .4s linear;
     position: absolute;
     z-index: 2;
     right: .5%;
@@ -217,7 +220,13 @@ section.hero{
     color: #726e6e;
     transition: all 1s ease-in-out;
 }
-
-/* .faq .faq-list > div:hover p{
-    display: block;
-} */
+@keyframes animate {
+    0%{
+        opacity:0;
+        transform:translateX(-100%)
+    }
+    100%{
+        transform:translateX(0);
+        opacity:1;
+    }
+}

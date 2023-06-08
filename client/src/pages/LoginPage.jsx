@@ -4,11 +4,13 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/global.css";
 import axios from "axios";
 import Loading from "../components/Loading/Loading";
+import Error from "../components/ShowError/error";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-   const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -37,13 +39,11 @@ export default function LoginPage() {
         console.error("Login error:", message);
         // Display an error message to the user
         // ...
+        setErrorMessage(message);
       }
       
     } catch (error) {
-      console.error("Login error:", error);
-      // Handle error
-      // Display an error message to the user
-      // ...
+      setErrorMessage("Internal server error");
     }
     setIsLoading(false);
   };
@@ -51,6 +51,9 @@ export default function LoginPage() {
   return (
     <>
       {isLoading && <Loading />}
+      {errorMessage !== "" && (
+        <Error message={errorMessage} setErrorMessage={setErrorMessage} />
+      )}
       <div className="login-page">
         <div className="image-background">
           <h1>Welcome to BlueNile Software Development!</h1>
