@@ -185,15 +185,20 @@ module.exports.removeEmployee = async (req, res) => {
         const {
             projectId
         } = req.params;
-
         const {
             userId
         } = req.body;
 
         const project = await Project.findById(projectId);
-        const user = await Project.findById(projectId);
+        const user = await User.findById(userId);
 
-        project.team = project.team.filter((member) => member.toString() !== userId);
+        if (user._id.toString() === project.projectManager._id.toString()) {
+            project.projectManager = null;
+        }
+
+        project.team = project.team.filter(
+            (member) => member.toString() !== userId
+        );
 
         await project.save();
 
