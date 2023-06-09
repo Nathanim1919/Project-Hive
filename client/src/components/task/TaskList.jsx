@@ -7,10 +7,11 @@ import {
   AiOutlineClose,
   AiOutlineEdit,
 } from "react-icons/ai";
-import {MdOutlineDoneOutline} from 'react-icons/md'
+import { MdOutlineDoneOutline } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { changeDate, howMuchDaysLeft } from "../../functions.js";
 
 export default function TaskList({ createTask, setCreateTask }) {
   const [tasks, setTasks] = useState([]);
@@ -52,7 +53,7 @@ export default function TaskList({ createTask, setCreateTask }) {
   return (
     <section>
       <div className="task-list-header">
-        <h1>Tasks</h1>
+        <h1></h1>
         <div>
           <button>
             <AiOutlineUnorderedList />
@@ -71,14 +72,40 @@ export default function TaskList({ createTask, setCreateTask }) {
         <div className="tasklist">
           {tasks &&
             tasks.map((task) => (
-              <NavLink key={task._id} onClick={() => findSingleTask(task._id)}>
+              <NavLink
+                key={task._id}
+                onClick={() => findSingleTask(task._id)}
+                className={
+                  selectedTask && task._id === selectedTask._id
+                    ? "selectedTask"
+                    : ""
+                }
+              >
                 <div className="task t1">
                   <div>
-                    <BsListTask />
+                    <BsListTask
+                      className={
+                        selectedTask && task._id === selectedTask._id
+                          ? "taskSelected"
+                          : ""
+                      }
+                    />
                     <p>{task.title}</p>
                   </div>
                   <div>
-                    <p id="priority">{task.priority}</p>
+                    <p
+                      className={
+                        task.priority === "Low"
+                          ? "priority green"
+                          : task.priority === "Medium"
+                          ? "priority orange"
+                          : task.priority === "High"
+                          ? "priority red"
+                          : ""
+                      }
+                    >
+                      {task.priority}
+                    </p>
                     <div id="progress">
                       <AiOutlineCheckCircle />
                       <p>80%</p>
@@ -97,16 +124,24 @@ export default function TaskList({ createTask, setCreateTask }) {
 
         {selectedTask && (
           <div id="taskinformation">
-            <div className="close-icon" onClick={closeTask}>
-              <AiOutlineClose />
+            <div className="info-header">
+              <div>
+                <p>{howMuchDaysLeft(selectedTask.dueDate)} days left</p>
+              </div>
+              <div className="close-icon" onClick={closeTask}>
+                <AiOutlineClose />
+              </div>
             </div>
             <div className="titledec">
               {!editTitle && (
                 <div>
                   <h2>{selectedTask.title}</h2>
                   <AiOutlineEdit
-                    className="edit"
-                    onClick={() => {setEditTitle(true);setEditdescription(false);}}
+                    className="edit-icon"
+                    onClick={() => {
+                      setEditTitle(true);
+                      setEditdescription(false);
+                    }}
                   />
                 </div>
               )}
@@ -114,7 +149,7 @@ export default function TaskList({ createTask, setCreateTask }) {
                 <div>
                   <input type="text" placeholder="edit task title" />
                   <MdOutlineDoneOutline
-                    className="done"
+                    className="edit-icon done"
                     onClick={() => setEditTitle(false)}
                   />
                 </div>
@@ -123,24 +158,48 @@ export default function TaskList({ createTask, setCreateTask }) {
                 <div className="description">
                   <p>{selectedTask.description}</p>
                   <AiOutlineEdit
-                    className="edit"
-                    onClick={() =>{ setEditdescription(true);setEditTitle(false);}}
+                    className="edit-icon"
+                    onClick={() => {
+                      setEditdescription(true);
+                      setEditTitle(false);
+                    }}
                   />
                 </div>
               )}
 
               {editdescription && (
                 <div>
-                  <textarea placeholder="Edit Task description.." name="" id="" cols="40" rows="1"></textarea>
+                  <textarea
+                    placeholder="Edit Task description.."
+                    name=""
+                    id=""
+                    cols="40"
+                    rows="1"
+                  ></textarea>
                   <MdOutlineDoneOutline
-                    className="done"
+                    className="edit-icon done"
                     onClick={() => setEditdescription(false)}
                   />
                 </div>
               )}
             </div>
-            <p>Priority: High</p>
-            <p>Progress: 78%</p>
+            <div className="more-information">
+              <p>
+                Priority: <span>{selectedTask.priority}</span>{" "}
+                <AiOutlineEdit className="edit-icon" />
+              </p>
+              <p>
+                Progress: <span>{selectedTask.progress}%</span>{" "}
+                <AiOutlineEdit className="edit-icon" />
+              </p>
+              <p>
+                Assigned To:{" "}
+                <span>
+                  {selectedTask.assignedTo ? selectedTask.assignedTo : "Assign"}
+                </span>{" "}
+                <AiOutlineEdit className="edit-icon" />
+              </p>
+            </div>
           </div>
         )}
       </div>

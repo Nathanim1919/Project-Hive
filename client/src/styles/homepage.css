@@ -100,27 +100,41 @@ section.hero{
     place-items: center;
     border: 1px solid #eee;
     position: relative;
-    height: 340px;
+    height: 300px;
     border-radius: 10px;
     padding:0 1rem;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.103);
+    /* box-shadow: 0 6px 10px rgba(0, 0, 0, 0.103); */
+}
+.features .feature > *{
+    margin:0;
 }
 
 .feature >*{
     margin: 0;
 }
+
+.feature .feature-icon{
+    max-height:150px;
+}
 .feature img{
     max-width: 100%;
     object-fit: cover;
-    transform: scale(.7);
+    transform: scale(.6);
 }
 
 .feature .content{
-    position: relative;
-    top: -3rem;
+    display:flex;
+    align-items:center;
+    justify-self:start;
+    flex-direction:column;
+}
+
+.feature .content > *{
+    margin:0;
 }
 .feature p{
     color: #696767;
+    font-size:.7rem;
 }
 
 .f1 .content{

@@ -267,14 +267,15 @@ section.projectDetailSection
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 .task-list-header div button {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   width: 100%;
   display: flex;
   align-items: center;
   gap: 0.51rem;
+  padding:.5rem;
 }
 .task-list-header div button:nth-child(1) {
   background-color: transparent;
@@ -298,9 +299,10 @@ section.projectDetailSection
 
 
 #taskinformation{
-  border-left: 1px solid #eee;
-  height:100%;
+  border-left: 1px solid #56bbff;
   width:100%;
+  border-radius:10px;
+  overflow:hidden;
   animation:anim 2s;
   position:relative;
   transition:all 3s ease-in-out;
@@ -309,7 +311,7 @@ section.projectDetailSection
 #taskinformation .titledec{
   display: flex;
   flex-direction: column;
-  padding: 2rem 1rem;
+  padding: 1rem;
   padding-bottom: .4rem;
   border-bottom: 1px solid #eee;
 }
@@ -345,32 +347,75 @@ section.projectDetailSection
   resize: none;
 }
 
-#taskinformation .close-icon{
-  position:absolute;
-  right:1rem;
-  cursor:pointer;
+#taskinformation .info-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background-color:rgb(237, 237, 240);
+  padding:0 1rem;
 }
 
+#taskinformation .more-information{
+  place-self:start;
+   display:flex;
+   flex-direction:column;
+   align-items:start;
+   padding:2rem;
+}
+#taskinformation .more-information >*{
+  margin:.5rem 0;
+}
+#taskinformation .more-information p{
+  display:grid;
+  grid-template-columns:.6fr .3fr .1fr;
+  width:100%;
+  place-items:start;
+  align-items:center;
+  font-size:.9rem;
+}
+#taskinformation .more-information p span{
+  background-color:rgb(243, 242, 239);
+  padding:.1rem .5rem;
+}
+
+#taskinformation .edit-icon{
+  width:20px;
+  height:20px;
+  padding:.31rem;
+  background-color:#f0ebeb;
+  border-radius:50%;
+  color:#555252;
+  cursor:pointer;
+}
+#taskinformation .done{
+  background-color:rgb(127, 182, 127);
+  color:#fff;
+}
 .tasklist {
-  background-color: #fff;
   padding: 0 2rem;
-  display: grid;
+  display: flex;
+  flex-direction:column;
+  align-items:start;
   gap: 0.25rem;
   font-size: 0.8rem;
   overflow:auto;
+  /* height:100%; */
 }
 .tasklist .task {
   padding: 0rem 2rem;
   border: 1px solid #eee;
   border-radius: 5px;
+  margin:0;
+  flex:1;
 }
 .tasklist a {
+  width:100%;
   color: #6e6c6c;
   text-decoration: none;
   transition:all .2s ease-in-out;
 }
 .tasklist a:hover {
-  background-color: #e6e8eb48;
+  background-color: transparent;
   transform:scale(1.01);
 }
 .tasklist .task,
@@ -379,6 +424,32 @@ section.projectDetailSection
   align-items: center;
   gap: 2rem;
   justify-content: space-between;
+}
+
+.tasklist .selectedTask > div{
+  border:1px solid rgb(183, 183, 252);
+ border-left: 5px solid #5f9dee;
+ color:#000000;
+ background-color:#f3efef;
+}
+.taskSelected{
+  color:blue;
+  font-weight:bolder;
+  font-size:1rem;
+}
+.tasklist .task .priority{
+  padding:.1rem .3rem;
+  border-radius:20px;
+  width:70px;
+}
+.tasklist .task .red{
+  border:2px solid red;
+}
+.tasklist .task .orange{
+  border:2px solid orange;
+}
+.tasklist .task .green{
+  border:2px solid green;
 }
 #members {
   background-color: #eee;
@@ -404,7 +475,6 @@ div#progress {
   place-items: center;
   font-size: 1.2rem;
 }
-
 /* sidebar create task box style */
 
 #createTaskBox {

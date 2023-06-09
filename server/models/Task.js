@@ -21,16 +21,18 @@ const taskSchema = new mongoose.Schema({
     assignedTo: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        // required: true
     },
     project:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Project',
     },
+    progress:{
+        type:Number,
+        default:10
+    },
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        // required: true
     },
     createdAt: {
         type: Date,

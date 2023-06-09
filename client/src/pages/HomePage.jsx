@@ -8,6 +8,7 @@ import Testimonial from "../components/testimonial/testimonial";
 import Footer from "../components/footer/Footer";
 import '../styles/global.css'
 import {BiRun} from 'react-icons/bi';
+import {motion} from 'framer-motion';
 
 
 export default function HomePage() {
@@ -27,9 +28,9 @@ export default function HomePage() {
           <NavLink to={'/login'}>Get Started <BiRun/></NavLink>
         </div>
 
-        <div className="hero-ill">
+        <motion.div className="hero-ill">
           <img src="images/hero1.jpg" alt="" />
-        </div>
+        </motion.div>
       </section>
 
       <section className="key-features">

@@ -8,21 +8,21 @@ body{
 
 /* width */
 ::-webkit-scrollbar {
-  width: 3px;
+  width: 5px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f100;
+  background: #ddd9d900;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(rgba(247, 224, 18, 0), orange,rgba(240, 255, 23, 0));
+  background-color: rgb(192, 190, 190);
   border-radius: 20px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #e7c504;
+  background: #3f3f3e;
 }
