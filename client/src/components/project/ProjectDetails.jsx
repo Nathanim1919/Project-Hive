@@ -111,7 +111,7 @@ const ProjectDetailPage = () => {
             }}
             className={activeLink === "Tasks" ? "active" : "not-active"}
           >
-            Tasks
+            Tasks: ({project.tasks && project.tasks.length})
           </li>
           <li
             onClick={() => {
@@ -123,7 +123,7 @@ const ProjectDetailPage = () => {
             }}
             className={activeLink === "Members" ? "active" : "not-active"}
           >
-            Team Members
+            Team Members: ({project.team && project.team.length})
           </li>
           <li
             onClick={() => {
