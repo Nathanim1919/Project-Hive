@@ -13,29 +13,14 @@ import { useParams } from "react-router-dom";
 import Error from "../ShowError/error";
 import Confirmation from "../warning/confirmation";
 
-export default function TeamMembers() {
+export default function TeamMembers({ project }) {
   const [employees, setEmployees] = useState([]);
   const [openUsersBox, setOpenusersBox] = useState(false);
   const { id, projectId } = useParams();
-  const [project, setProject] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
   const [confirmed, setConfirmed] = useState(false);
   const [openConfirmationBox, setOpenConfirmationBox] = useState(false);
   const [userId, setUserId] = useState(null);
-
-  useEffect(() => {
-    const getProject = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/user/${id}/projects/${projectId}`
-        );
-        setProject(response.data.project); // Assuming the response data contains a 'project' property
-      } catch (error) {
-        setErrorMessage("Unable to fetch Team Members, please reload again");
-      }
-    };
-    getProject();
-  }, [id, projectId, openUsersBox]); // Include 'projectId' as a dependency
 
   useEffect(() => {
     const getUsers = async () => {
@@ -85,7 +70,7 @@ export default function TeamMembers() {
         updatedProject.team = updatedProject.team.filter(
           (user) => user._id !== userId
         );
-        setProject(updatedProject);
+        project = updatedProject;
       } catch (error) {
         if (error.response && error.response.status === 409) {
           setErrorMessage(error.response.data.message);
@@ -93,7 +78,7 @@ export default function TeamMembers() {
           setErrorMessage("Failed to remove employee from this project");
         }
       }
-      setConfirmed(false)
+      setConfirmed(false);
     };
 
     if (confirmed) {
@@ -146,8 +131,11 @@ export default function TeamMembers() {
             <div
               className="member"
               style={{
-                backgroundColor:
-                  project.projectManager._id === user._id ? "#3fd0fc" : "white",
+                border:
+                  project.projectManager &&
+                  project.projectManager._id === user._id
+                    ? "2px solid #c2baba"
+                    : "0px solid",
               }}
             >
               <div className="header">

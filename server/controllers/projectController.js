@@ -80,9 +80,6 @@ module.exports.getProject = async (req, res) => {
     }
 }
 
-
-
-
 module.exports.updateProject = async (req, res) => {
     try {
         const {
@@ -101,16 +98,23 @@ module.exports.updateProject = async (req, res) => {
 
         const project = await Project.findById(projectId);
 
-        if (project.projectManager) {
-            project.team = project.team.filter((user) => user._id.toString() !== project.projectManager.toString());
+        // Remove the old project manager from the team if it exists
+        if (project && project.projectManager) {
+            const updatedTeam = project.team.filter(
+                (user) => user && user.toString() !== project.projectManager.toString()
+            );
+            project.team = updatedTeam;
             await project.save();
         }
 
+        // Set the new project manager
         project.team.push(projectManager);
+        project.projectManager = projectManager;
         await project.save();
+        console.log('Updated Team:', project.team);
 
         const updatedProject = await Project.findOneAndUpdate({
-            _id: projectId,
+            _id: projectId
         }, {
             projectManager,
             status,
@@ -121,12 +125,12 @@ module.exports.updateProject = async (req, res) => {
             budget,
             dueDate,
         }, {
-            new: true,
+            new: true
         });
 
         if (!updatedProject) {
             return res.status(404).json({
-                error: 'Project not found',
+                error: 'Project not found'
             });
         }
 
@@ -137,10 +141,14 @@ module.exports.updateProject = async (req, res) => {
     } catch (error) {
         console.log(error);
         return res.status(500).json({
-            error: 'Internal server error',
+            error: 'Internal server error'
         });
     }
 };
+
+
+
+
 
 
 module.exports.addEmployee = async (req, res) => {

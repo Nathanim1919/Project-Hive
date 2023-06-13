@@ -14,12 +14,12 @@ export default function ProjectUpdateForm({ setUpdateProjct, project }) {
 
   // form values
 
- const [projectManager, setManager] = useState(
-   project.projectManager ? project.projectManager._id : null
- );
- const [managerPlaceholder, setManagerPlaceholder] = useState(
-   project.projectManager ? project.projectManager.name : "no assigned manager"
- );
+  const [projectManager, setManager] = useState(
+    project.projectManager ? project.projectManager._id : ""
+  );
+  const [managerPlaceholder, setManagerPlaceholder] = useState(
+    project.projectManager ? project.projectManager.name : "no assigned manager"
+  );
 
   const [status, setStatus] = useState(project.status);
   const [priority, setPriority] = useState(project.priority);
@@ -43,7 +43,11 @@ export default function ProjectUpdateForm({ setUpdateProjct, project }) {
           (user) => user.position === "Project Manager"
         );
 
-        setEmployees(projectManagers);
+        setEmployees(!project.projectManager?projectManagers:
+          projectManagers.filter(
+            (manager) => manager._id != project.projectManager._id
+          )
+        );
         console.log(projectManagers);
       } catch (error) {
         console.log(error);
@@ -138,7 +142,7 @@ export default function ProjectUpdateForm({ setUpdateProjct, project }) {
               Set projectManager: <span>{managerPlaceholder}</span>
             </p>
             {openManager && (
-              <div id="all-empolloyee">
+              <div id="updateside">
                 <div
                   className="close-icon"
                   onClick={() => setOpenManager(false)}
@@ -155,14 +159,12 @@ export default function ProjectUpdateForm({ setUpdateProjct, project }) {
                         setOpenManager(false);
                       }}
                     >
-                      <div className="personal-info">
-                        <div className="profilePic">
-                          <img src={user.profile} alt="" />
-                        </div>
-                        <div>
-                          <h5>{user.name}</h5>
-                          <p>{user.position}</p>
-                        </div>
+                      <div className="profilePic">
+                        <img src={user.profile} alt="" />
+                      </div>
+                      <div>
+                        <h5>{user.name}</h5>
+                        <p>{user.position}</p>
                       </div>
                     </div>
                   ))}
@@ -355,7 +357,7 @@ export default function ProjectUpdateForm({ setUpdateProjct, project }) {
             )}
           </div>
         </div>
-        <input type="submit" value="Update" />
+        <input type="submit" value="Update" style={{ cursor: "pointer" }} />
       </form>
     </div>
   );

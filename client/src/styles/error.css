@@ -9,10 +9,10 @@
     top: 0;
     left: 0;
     z-index: 30;
-    background-color: #4744448a;
+    background-color: #8d89898a;
     place-items: center;
     align-items: start;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(2px);
 }
 
 .close-box{

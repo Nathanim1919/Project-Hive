@@ -26,3 +26,14 @@
 
       return daysLeft;
   }
+
+
+  export const getCurrentDateFormat = () => {
+      const currentDate = new Date();
+      const options = {
+          month: "long",
+          year: "numeric"
+      };
+      const formattedDate = currentDate.toLocaleDateString("en-US", options);
+      return formattedDate;
+  }

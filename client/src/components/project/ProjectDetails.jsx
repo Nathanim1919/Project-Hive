@@ -6,7 +6,6 @@ import "../../styles/projectDetail.css";
 import TaskList from "../task/TaskList";
 import CreateTask from "../task/TaskForm";
 import TeamMembers from "../teamMembers/TeamMembers";
-import Progress from "../progress/progress";
 import { changeDate, howMuchDaysLeft } from "../../functions.js";
 import { AiFillEdit } from "react-icons/ai";
 import Loading from "../Loading/Loading";
@@ -25,7 +24,6 @@ const ProjectDetailPage = () => {
   const [createTask, setCreateTask] = useState(false);
   const [activeLink, setActiveLink] = useState("Overview");
   const [updateProjct, setUpdateProjct] = useState(false);
-  const [user, setUser] = useState({});
 
   useEffect(() => {
     const getProject = async () => {
@@ -34,13 +32,12 @@ const ProjectDetailPage = () => {
           `http://localhost:5000/user/${id}/projects/${projectId}`
         );
         setProject(response.data.project); // Assuming the response data contains a 'project' property
-        console.log(project);
       } catch (error) {
         console.log(error);
       }
     };
     getProject();
-  }, [id, projectId, updateProjct]); // Include 'projectId' as a dependency
+  }, [project]); // Include 'projectId' as a dependency
 
   if (!project) {
     return <Loading />;
@@ -48,7 +45,9 @@ const ProjectDetailPage = () => {
 
   return (
     <section className="projectDetailSection">
-      {createTask && <CreateTask project={project} setCreateTask={setCreateTask} />}
+      {createTask && (
+        <CreateTask project={project} setCreateTask={setCreateTask} />
+      )}
       <div className="projectInfo">
         <div className="pro-title">
           <div>
@@ -142,16 +141,14 @@ const ProjectDetailPage = () => {
           </div>
         </div>
       </div>
-      {overviewPage && (
-          <Overview project={project}/>
-      )}
+      {overviewPage && <Overview project={project} />}
       {taskPage && (
         <TaskList createTask={createTask} setCreateTask={setCreateTask} />
       )}
-      {membersPage && <TeamMembers project={project} />}
-      {collaburationPage && (
-        <DiscussionBoard/>
+      {membersPage && (
+        <TeamMembers project={project} />
       )}
+      {collaburationPage && <DiscussionBoard />}
     </section>
   );
 };

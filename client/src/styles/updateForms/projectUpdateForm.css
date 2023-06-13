@@ -33,6 +33,8 @@
     font-size:1.3rem;
 }
 
+
+
 .editOptions form input,.editOptions form textarea{
     padding: .5rem 1rem;
     border: none;
@@ -116,4 +118,56 @@ input[type='submit']{
     background-color:rgb(143, 195, 255);
     color:#fff;
     max-width:100px;
+}
+
+/* project managers style */
+
+#updateside{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    background-color: rgb(135, 199, 255);
+    padding: .4rem;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.103);
+    position: absolute;
+    z-index: 5;
+}
+
+#updateside .employee{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0;
+    padding: .3rem .5rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+}
+
+#updateside .employee .profilePic{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+#updateside .employee div:nth-child(2){
+    display: flex;
+    flex-direction: column;
+}
+#updateside .employee div:nth-child(2) > *{
+   margin: 0;
+}
+#updateside .employee div:nth-child(2) > h5{
+  font-size: .7rem;
+  color: #555252;
+}
+#updateside .employee div:nth-child(2) > p{
+  font-size: .6rem;
+  color: #585757;
+}
+
+#updateside .employee .profilePic img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
