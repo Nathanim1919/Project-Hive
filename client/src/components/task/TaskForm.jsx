@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Error from "../ShowError/error";
 
-export default function CreateTask({ setCreateTask }) {
+export default function CreateTask({ setCreateTask,project }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("");
@@ -46,7 +46,6 @@ export default function CreateTask({ setCreateTask }) {
           `http://localhost:5000/user/${id}/projects/${projectId}/createTask`,
           taskData
         );
-        console.log(responce);
       } catch (error) {
         console.log(error);
       }
@@ -122,8 +121,14 @@ export default function CreateTask({ setCreateTask }) {
               </div>
             </div>
             <div className="assignmember">
-              <p>Assign to member</p>
-              <div>members</div>
+              <p>Assign to: {assignedTo}</p>
+              <div>
+                  {project.team.map(member=>(
+                    <div>
+                      <p>{member.name}</p>
+                    </div>
+                  ))}
+              </div>
             </div>
             <button type="submit">create</button>
           </form>

@@ -3,6 +3,7 @@
  position: relative;
  overflow: hidden;
  grid-template-columns: repeat(2, 1fr);
+ font-family: 'Poppins', sans-serif;
 }
 
 .registration-page .image-background{

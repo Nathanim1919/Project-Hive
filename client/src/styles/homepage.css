@@ -5,6 +5,7 @@ section.hero{
     align-items: center;
     max-height: 100vh;
     font-family: 'Poppins', sans-serif;
+   
 }
 
 
@@ -15,14 +16,18 @@ section.hero{
     right: .5%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     font-size: 2rem;
-    width: 45%;
+    width: 100vw;
+    height: 100vh;
+    align-items: end;
     text-align: left;
     backdrop-filter: blur(0px);
-    background-color: rgba(255, 255, 255, 0.13);   
+    background-color: rgba(255, 255, 255, 0);   
 }
 .hero .hero-content h1{
-    font-size: 2.8rem;
+    font-size: 4rem;
+     font-family: 'Satisfy', cursive;
 }
 .hero-content article{
     font-size: 1.5rem;
@@ -43,6 +48,8 @@ section.hero{
     transition: all .2s ease-in-out;
     display:flex;
     align-items:center;
+    align-self: end;
+    margin-right: 10%;
     gap:1rem;
 }
 .hero-content a:hover{

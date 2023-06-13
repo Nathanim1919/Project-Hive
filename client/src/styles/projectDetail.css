@@ -8,6 +8,7 @@
   left: 0;
   overflow-y: auto;
   overflow: hidden;
+  
 }
 
 
@@ -31,7 +32,7 @@
 }
 
 .pro-title .title h1{
-  font-size:1.2rem;
+  font-size:1.3rem;
   padding:0;
   text-transform:Capitalize;
 }
@@ -138,8 +139,8 @@ section.projectDetailSection .projectInfo .pro-title > div:nth-child(2){
   color: #272626;
   text-transform: capitalize;
   position: relative;
-  padding: 0.4rem 1rem;
-  font-size: 0.8rem;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.7rem;
   list-style-type: none;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -155,7 +156,7 @@ section.projectDetailSection .projectInfo .pro-title > div:nth-child(2){
   transition: all 0.3s ease-in-out;
 }
 section.projectDetailSection .projectInfo div.project-navbar > li.active {
-  background-color: #eee;
+  background-color: #ffffff;
   border-radius: 20px;
   transition: all 0.3s ease-in-out;
 }
@@ -255,8 +256,26 @@ section.projectDetailSection
   align-items: center;
 }
 
-/* task style */
+.pro-description_navigation{
+  display: grid;
+  grid-template-columns: 5.5fr 4.5fr;
+  gap: 3rem;
+  background-color: rgb(255, 255, 255);
+  place-items: center;
+}
+.pro-description_navigation>p{
+  max-height: 50px;
+  overflow: auto;
+}
+.pro-description_navigation > div.project-navbar{
+  max-height: 70px;
+  overflow: auto;
+  background-color: #eee;
+  border-radius: 120px;
+  max-height: 30px;
+}
 
+/* task style */
 .task-list-header {
   display: grid;
   grid-template-columns: 0.7fr 0.23fr;
@@ -334,9 +353,8 @@ section.projectDetailSection
 }
 #taskinformation .titledec >div{
   padding: .2rem 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+ grid-template-columns: .9fr .1fr;
 }
 
 #taskinformation .titledec >div input, #taskinformation .titledec >div textarea{

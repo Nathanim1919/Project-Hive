@@ -14,6 +14,11 @@ const taskSchema = new mongoose.Schema({
         enum: ['High', 'Medium', 'Low'],
         default: 'Medium'
     },
+    status: {
+        type: String,
+        enum: ['Planning', 'In Progress', 'Completed'],
+        default: 'Planning'
+    },
     dueDate: {
         type: Date,
         required: true
@@ -28,7 +33,7 @@ const taskSchema = new mongoose.Schema({
     },
     progress:{
         type:Number,
-        default:10
+        default:0
     },
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,

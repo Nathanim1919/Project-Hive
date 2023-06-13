@@ -147,7 +147,7 @@ module.exports.addEmployee = async (req, res) => {
     try {
         const {
             projectId
-        } = req.params;
+         } = req.params;
         const {
             userId
         } = req.body;

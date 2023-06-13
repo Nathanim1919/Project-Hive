@@ -69,5 +69,13 @@ const projectSchema = new mongoose.Schema({
     }
 });
 
+// Pre-save middleware to update the status based on the progress
+projectSchema.pre('save', function (next) {
+    if (this.progress === 100) {
+        this.status = 'Completed';
+    }
+    next();
+});
+
 const Project = mongoose.model('Project', projectSchema);
 module.exports = Project;

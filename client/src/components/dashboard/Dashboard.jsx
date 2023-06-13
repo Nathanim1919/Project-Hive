@@ -7,6 +7,8 @@ import ProjectForm from "../project/ProjectForm";
 import axios from "axios";
 import { changeDate, howMuchDaysLeft } from "../../functions.js";
 import Error from "../ShowError/error";
+import { AiOutlineCheck, AiOutlinePause, AiOutlineClose } from "react-icons/ai";
+
 
 export default function Dashboarddata() {
   const [openForm, setOpenform] = useState(false);
@@ -181,7 +183,15 @@ export default function Dashboarddata() {
                 {(project.status === filterProjects ||
                   filterProjects === "") && (
                   <div
-                    className="p-project pro1"
+                    className={
+                      project.status === "On Hold"
+                        ? "p-project pro1 onHold"
+                        : project.status === "Cancelled"
+                        ? "p-project pro1 cancelled"
+                        : project.status === "Completed"
+                        ? "p-project pro1 Completed"
+                        : "p-project pro1"
+                    }
                     style={{
                       backgroundColor:
                         project.priority === "Low"
@@ -193,6 +203,36 @@ export default function Dashboarddata() {
                           : "transparent",
                     }}
                   >
+                    <div className="pro-status-show">
+                      <span>
+                        {project.status === "On Hold" ? (
+                          <p>
+                            <AiOutlinePause className="icon" />
+                            <p>On Hold</p>
+                          </p>
+                        ) : project.status === "Cancelled" ? (
+                          <p>
+                            <AiOutlineClose className="icon" />
+                            <p>Cancelled</p>
+                          </p>
+                        ) : project.status === "Completed" ? (
+                          <p>
+                            <AiOutlineCheck className="icon" />
+                            <p>Completed</p>
+                          </p>
+                        ) : project.status === "In Progress" ? (
+                          <p>
+                            <p>{project.progress}%</p>
+                            <p>In progress</p>
+                          </p>
+                        ) : (
+                          <p>
+                            <p>{project.progress}%</p>
+                            <p>Planning</p>
+                          </p>
+                        )}
+                      </span>
+                    </div>
                     <div className="pro-head">
                       <p>{changeDate(project.startDate)}</p>
                       <p>{project.priority}</p>

@@ -143,7 +143,13 @@ export default function TeamMembers() {
       <div className="teammemberlist">
         {project.team &&
           project.team.map((user) => (
-            <div className="member">
+            <div
+              className="member"
+              style={{
+                backgroundColor:
+                  project.projectManager._id === user._id ? "#3fd0fc" : "white",
+              }}
+            >
               <div className="header">
                 <AiFillCheckCircle />
                 <AiOutlineUserDelete onClick={() => removeUser(user._id)} />
