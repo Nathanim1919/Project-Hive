@@ -1,7 +1,10 @@
 .headerContainer{
-    background-color: #fff;
-    padding:.1rem 1rem;
-    border-bottom: 1px solid #eee;
+    backdrop-filter: blur(3px);
+    z-index: 10;
+    padding:0rem 1rem;
+    position: fixed;
+    right: 0%;
+    left: 0;
 }
 
 .logo .icon{

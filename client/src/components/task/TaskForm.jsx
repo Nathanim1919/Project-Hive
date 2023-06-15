@@ -4,6 +4,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Error from "../ShowError/error";
+import Loading from '../Loading/Loading'
 
 export default function CreateTask({ setCreateTask,project }) {
   const [title, setTitle] = useState("");
@@ -38,6 +39,7 @@ export default function CreateTask({ setCreateTask,project }) {
           description,
           priority,
           dueDate,
+          assignedTo,
           createdBy: id,
           project: projectId,
         };
@@ -122,12 +124,14 @@ export default function CreateTask({ setCreateTask,project }) {
             </div>
             <div className="assignmember">
               <p>Assign to: {assignedTo}</p>
-              <div>
-                  {project.team.map(member=>(
-                    <div>
-                      <p>{member.name}</p>
-                    </div>
-                  ))}
+              <div className="team-members">
+                {!project.team && <Loading />}
+                {project.team.map((member) => (
+                  <div onClick={() => setAssignedTo(member._id)}>
+                    <p>{member.name}</p>
+                    <p>{member.position}</p>
+                  </div>
+                ))}
               </div>
             </div>
             <button type="submit">create</button>

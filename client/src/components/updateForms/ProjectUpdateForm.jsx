@@ -73,13 +73,12 @@ export default function ProjectUpdateForm({ setUpdateProjct, project }) {
           dueDate,
         }
       );
-      console.log(response);
+
       setUpdateProjct(false);
     } catch (error) {
       console.log(error);
     }
   };
-
   return (
     <div className="editOptions">
       <div className="close-icns" onClick={() => setUpdateProjct(false)}>

@@ -12,6 +12,7 @@ import { GrFormClose } from "react-icons/gr";
 import { useParams } from "react-router-dom";
 import Error from "../ShowError/error";
 import Confirmation from "../warning/confirmation";
+import Loading from "../Loading/Loading";
 
 export default function TeamMembers({ project }) {
   const [employees, setEmployees] = useState([]);
@@ -21,8 +22,10 @@ export default function TeamMembers({ project }) {
   const [confirmed, setConfirmed] = useState(false);
   const [openConfirmationBox, setOpenConfirmationBox] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     const getUsers = async () => {
       try {
         const users = await axios.get("http://localhost:5000/user");
@@ -30,6 +33,7 @@ export default function TeamMembers({ project }) {
       } catch (error) {
         console.log(error);
       }
+        setLoading(false);
     };
     getUsers();
   }, []);
@@ -85,6 +89,10 @@ export default function TeamMembers({ project }) {
       removeEmployee();
     }
   }, [confirmed, openConfirmationBox]);
+
+    if (!project) {
+      return <Loading />;
+    }
 
   return (
     <section className="teammembers">
@@ -155,7 +163,7 @@ export default function TeamMembers({ project }) {
 
               <div className="pro-footer">
                 <div className="tasksprogress">
-                  <p>{user.tasks.length} Tasks</p>
+                  <p className="tasks">{user.tasks.length} Tasks</p>
                   <div className="progressIndicator">
                     <MiniProgress animates={2000} total={100} progress={75} />
                   </div>

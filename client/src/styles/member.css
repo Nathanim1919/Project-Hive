@@ -48,7 +48,15 @@
   box-shadow: 0 5px 12px rgba(0, 0, 0, 0.05);
   transition:all .2s ease-in-out;
   cursor:pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all .3s ease-in-out;
 }
+.member > *{
+  position: relative;
+  z-index: 1;
+}
+
 
 .member:hover{
   box-shadow:0 10px 10px rgba(0, 0, 0, 0.075);
@@ -80,7 +88,7 @@
 }
 
 .member p {
-  color: #696767;
+  color: #7e7a7a;
   font-size: 0.7rem;
 }
 .member h3 {
@@ -106,21 +114,21 @@
 }
 
 .member button {
-  background-color: transparent;
-  border: 1px solid #eee;
-  color: #585757;
+  background-color: #fff;
+  border: 1px solid #ece9e9;
+  color: #363535;
   font-size: 0.9rem;
   transition:all .3s ease-in-out;
 }
 .member:hover button {
-  border: 1px solid #eee;
+  border: 1px solid #afacac;
   color: #272626;
   font-size: 0.9rem;
 }
 .member button:hover {
-   border: 1px solid #ffffff;
-   background-color: #e6e1e1;
-   color:#000;
+   border: 1px solid #1a1919;
+   background-color: #ffffff00;
+   color:#000000;
 }
 
 .member .header {
@@ -154,13 +162,11 @@
   width:100%;
   height:100%;
   object-fit:cover;
-
 }
 
 .member .progressIndicator:hover{
-background-color:transparent;
+  background-color:transparent;
 }
-
 
 /* list of all employees style */
 
