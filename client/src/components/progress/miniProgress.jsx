@@ -32,7 +32,7 @@ export default function MiniProgress({ progress, animates, total }) {
 
   return (
     <div className="mini-circular-progress" ref={progressRef}>
-      <sapn id="mini-number">{78}%</sapn>
+      <sapn id="mini-number">{degree}%</sapn>
     </div>
   );
 }

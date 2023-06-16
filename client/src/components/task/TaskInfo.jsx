@@ -12,6 +12,7 @@ export default function TaskInfo({
   setIsupdated,
   setSelectedTask,
   setIsExpanded,
+  tasks
 }) {
   const [editTitle, setEditTitle] = useState(false);
   const [editDescription, setEditDescription] = useState(false);
@@ -22,7 +23,10 @@ export default function TaskInfo({
   const [description, setUpdatedDescription] = useState("");
 
   let currentPriority = selectedTask && selectedTask.priority;
+  let currentProgress = selectedTask && selectedTask.progress;
+
   const [priority, setPriority] = useState(currentPriority);
+  const [progress, setProgress] = useState(currentProgress);
 
   const closeTask = () => {
     setSelectedTask(null);
@@ -31,7 +35,7 @@ export default function TaskInfo({
 
    useEffect(() => {
     
-   }, [priority]);
+   }, [tasks]);
 
   
 
@@ -134,14 +138,14 @@ export default function TaskInfo({
                 Priority: <span>{selectedTask.priority}</span>{" "}
                 <MdOutlineDoneOutline
                   className="edit-icon"
-                  onClick={() => setEditPriority(true)}
+                  onClick={() =>  handleUpdate("priority", priority)}
                 />
               </p>
               <div>
                 <p
                   onClick={() => {
                     setPriority("Low");
-                      handleUpdate("priority", 'Low');
+                     
                   }}
                   className={'Low' === selectedTask.priority?'selectedPriorty':'priority'}
                 >
@@ -150,7 +154,7 @@ export default function TaskInfo({
                 <p
                   onClick={() => {
                     setPriority("Medium");
-                     handleUpdate("priority", "Medium");
+                    
                   }}
                    className={'Medium' === selectedTask.priority?'selectedPriorty':'priority'}
                 >
@@ -159,7 +163,7 @@ export default function TaskInfo({
                 <p
                   onClick={() => {
                     setPriority("High");
-                     handleUpdate("priority", 'High');
+                    
                   }}
                    className={'High' === selectedTask.priority?'selectedPriorty':'priority'}
                 >
@@ -171,13 +175,64 @@ export default function TaskInfo({
             <div>
               <p>
                 Progress: <span>{selectedTask.progress}%</span>{" "}
-                <MdOutlineDoneOutline className="edit-icon" />
+                <MdOutlineDoneOutline onClick={()=>handleUpdate("progress", progress)} className="edit-icon" />
               </p>
               <div>
-                <p>10%</p>
-                <p>20%</p>
-                <p>30%</p>
-                <p>40%</p>
+                  <p className={
+                    0 === selectedTask.progress
+                      ? "selectedProgress"
+                      : "progress"
+                  } onClick={()=>{setProgress(0)}}>0%</p>
+                  <p className={
+                    10 === selectedTask.progress
+                      ? "selectedProgress"
+                      : "progress"
+                  } onClick={()=>{setProgress(10)}}>10%</p>
+                  <p className={
+                    20 === selectedTask.progress
+                      ? "selectedProgress"
+                      : "progress"
+                  } onClick={()=>{setProgress(20)}}>20%</p>
+                  <p className={
+                    30 === selectedTask.progress
+                      ? "selectedProgress"
+                      : "progress"
+                  } onClick={()=>{setProgress(30)}}>30%</p>
+                  <p className={
+                    40 === selectedTask.progress
+                      ? "selectedProgress"
+                      : "progress"
+                  } onClick={()=>{setProgress(40)}}>40%</p>
+                  <p className={
+                    50 === selectedTask.progress
+                      ? "selectedProgress"
+                      : "progress"
+                  } onClick={()=>{setProgress(50)}}>50%</p>
+                  <p className={
+                    60 === selectedTask.progress
+                      ? "selectedProgress"
+                      : "progress"
+                  } onClick={()=>{setProgress(60)}}>60%</p>
+                  <p className={
+                    70 === selectedTask.progress
+                      ? "selectedProgress"
+                      : "progress"
+                  } onClick={()=>{setProgress(70)}}>70%</p>
+                  <p className={
+                    80 === selectedTask.progress
+                      ? "selectedProgress"
+                      : "progress"
+                  } onClick={()=>{setProgress(80)}}>80%</p>
+                  <p className={
+                    90 === selectedTask.progress
+                      ? "selectedProgress"
+                      : "progress"
+                  } onClick={()=>{setProgress(90)}}>90%</p>
+                  <p className={
+                    100 === selectedTask.progress
+                      ? "selectedProgress"
+                      : "progress"
+                  } onClick={()=>{setProgress(100)}}>100%</p>
               </div>
             </div>
             <p>

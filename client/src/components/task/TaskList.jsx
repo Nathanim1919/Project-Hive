@@ -9,8 +9,9 @@ import {
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import Loading from '../Loading/Loading';
+import Loading from "../Loading/Loading";
 import TaskInfo from "./TaskInfo.jsx";
+import MiniProgress from "../progress/miniProgress";
 
 export default function TaskList({ createTask, setCreateTask }) {
   const [tasks, setTasks] = useState([]);
@@ -21,8 +22,6 @@ export default function TaskList({ createTask, setCreateTask }) {
 
   // task edit tools
   const [loading, setLoading] = useState(false);
-
-
 
   useEffect(() => {
     setLoading(true);
@@ -38,15 +37,13 @@ export default function TaskList({ createTask, setCreateTask }) {
       setLoading(false);
     };
     getTasks();
-  }, [createTask, projectId, isupdated]);
+  }, [createTask, projectId, isupdated, selectedTask]);
 
   const findSingleTask = (id) => {
     const task = tasks.find((item) => item._id === id);
     setSelectedTask(task);
     setIsExpanded(true);
   };
-
-
 
   return (
     <section>
@@ -92,6 +89,13 @@ export default function TaskList({ createTask, setCreateTask }) {
                     <p>{task.title}</p>
                   </div>
                   <div>
+                    <div className="progressIndicator">
+                      <MiniProgress
+                        progress={task.progress}
+                        animates={400}
+                        total={100}
+                      />
+                    </div>
                     <p
                       className={
                         task.priority === "Low"
@@ -107,7 +111,6 @@ export default function TaskList({ createTask, setCreateTask }) {
                     </p>
                     <div id="progress">
                       <AiOutlineCheckCircle />
-                      <p>{task.progress}%</p>
                     </div>
                     <p>In progress</p>
                     <div className="members-list" id="members">
@@ -124,14 +127,14 @@ export default function TaskList({ createTask, setCreateTask }) {
                 </div>
               </NavLink>
             ))}
-            
         </div>
-          <TaskInfo
-            selectedTask={selectedTask}
-            setSelectedTask={setSelectedTask}
-            setIsupdated={setIsupdated}
-            setIsExpanded={setIsExpanded}
-          />
+        <TaskInfo
+          selectedTask={selectedTask}
+          setSelectedTask={setSelectedTask}
+          setIsupdated={setIsupdated}
+          setIsExpanded={setIsExpanded}
+          tasks={tasks}
+        />
       </div>
     </section>
   );
