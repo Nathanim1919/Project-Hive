@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { changeDate, howMuchDaysLeft } from "../../functions.js";
 import { AiOutlineCheck, AiOutlinePause, AiOutlineClose } from "react-icons/ai";
 import Loading from "../Loading/Loading";
+import LinearProgress from "../progress/linearProgress.jsx";
 
 export default function ProjectList({ projects, filterProjects }) {
   const { id } = useParams();
@@ -30,11 +31,11 @@ export default function ProjectList({ projects, filterProjects }) {
                   style={{
                     backgroundColor:
                       project.priority === "Low"
-                        ? "rgba(152, 230, 152, 0.7)" // Green with reduced opacity
+                        ? "rgba(202, 241, 202, 0.7)" // Green with reduced opacity
                         : project.priority === "Medium"
-                        ? "rgb(255, 247, 129)" // Orange with reduced opacity
+                        ? "rgb(245, 240, 174)" // Orange with reduced opacity
                         : project.priority === "High"
-                        ? "rgb(255, 123, 119)" // Red with reduced opacity
+                        ? "rgb(247, 161, 158)" // Red with reduced opacity
                         : "transparent",
                   }}
                 >
@@ -75,22 +76,7 @@ export default function ProjectList({ projects, filterProjects }) {
                   <div className="pro-title">
                     <h2>{project.title.slice(0, 20)}</h2>
                   </div>
-
-                  <div className="progress">
-                    <p>Progress</p>
-                    <div className="upperProgressBar">
-                      <div
-                        className="innerProgressBar"
-                        style={{
-                          width: `${project.progress}%`,
-                          backgroundColor:
-                            project.priority === "High" ? "yellow" : "#67b2f8",
-                        }}
-                      ></div>
-                    </div>
-                    <p className="percent">{project.progress}%</p>
-                  </div>
-
+                  <LinearProgress project={project} />
                   <div className="footer-detail">
                     <div className="members">
                       {project.projectManager && (

@@ -3,7 +3,6 @@
  width: 2.5em;
  height: 2.5em;
  transform: rotate(165deg);
- backdrop-filter:blur(10px);
  z-index:10;
 }
 

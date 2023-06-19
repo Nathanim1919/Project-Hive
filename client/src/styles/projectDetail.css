@@ -79,7 +79,7 @@
   color: #fff;
 }
 
-tasklist .pro-title .projectManagerName {
+.tasklist .pro-title .projectManagerName {
   color: rgb(13, 13, 14);
   border-radius: 0.4rem;
   background-color: #eee;
@@ -486,9 +486,11 @@ section.projectDetailSection
   margin: 0;
   flex: 1;
 }
-.tasklist .task .progressIndicator{
-  display: grid;
-  place-items: center;
+.project-list .p-project .progress {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .tasklist a {
   width: 100%;

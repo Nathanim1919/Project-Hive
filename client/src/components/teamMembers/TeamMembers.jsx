@@ -165,7 +165,7 @@ export default function TeamMembers({ project }) {
                 <div className="tasksprogress">
                   <p className="tasks">{user.tasks.length} Tasks</p>
                   <div className="progressIndicator">
-                    <MiniProgress animates={2000} total={100} progress={75} />
+                    <MiniProgress animates={2000} total={100} progress={75}/>
                   </div>
                 </div>
                 <button className="viewprofile">View profile</button>

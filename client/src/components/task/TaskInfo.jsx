@@ -96,6 +96,7 @@ export default function TaskInfo({
                     handleUpdate("title", title);
                     setEditTitle(false);
                     setIsupdated(false);
+                    closeTask();
                   }}
                 />
               </div>
@@ -127,6 +128,7 @@ export default function TaskInfo({
                     setEditDescription(false);
                     handleUpdate("description", description);
                     setIsupdated(false);
+                    closeTask();
                   }}
                 />
               </div>
@@ -138,7 +140,8 @@ export default function TaskInfo({
                 Priority: <span>{selectedTask.priority}</span>{" "}
                 <MdOutlineDoneOutline
                   className="edit-icon"
-                  onClick={() =>  handleUpdate("priority", priority)}
+                  onClick={() =>  {handleUpdate("priority", priority);closeTask();}}
+                  
                 />
               </p>
               <div>
@@ -175,7 +178,7 @@ export default function TaskInfo({
             <div>
               <p>
                 Progress: <span>{selectedTask.progress}%</span>{" "}
-                <MdOutlineDoneOutline onClick={()=>handleUpdate("progress", progress)} className="edit-icon" />
+                <MdOutlineDoneOutline onClick={()=>{handleUpdate("progress", progress);closeTask();}} className="edit-icon" />
               </p>
               <div>
                   <p className={

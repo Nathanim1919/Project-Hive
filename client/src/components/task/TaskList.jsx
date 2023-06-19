@@ -11,7 +11,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import TaskInfo from "./TaskInfo.jsx";
-import MiniProgress from "../progress/miniProgress";
+import TaskProgress from "./taskProgress";
 
 export default function TaskList({ createTask, setCreateTask }) {
   const [tasks, setTasks] = useState([]);
@@ -61,7 +61,6 @@ export default function TaskList({ createTask, setCreateTask }) {
           </button>
         </div>
       </div>
-
       <div
         className={`task-container ${isExpanded ? "expanded" : "collapsed"}`}
       >
@@ -86,16 +85,10 @@ export default function TaskList({ createTask, setCreateTask }) {
                           : ""
                       }
                     />
-                    <p>{task.title}</p>
+                    <p>{task.title.slice(0,13)}</p>
                   </div>
                   <div>
-                    <div className="progressIndicator">
-                      <MiniProgress
-                        progress={task.progress}
-                        animates={400}
-                        total={100}
-                      />
-                    </div>
+                    <TaskProgress project={task} />
                     <p
                       className={
                         task.priority === "Low"
@@ -120,7 +113,6 @@ export default function TaskList({ createTask, setCreateTask }) {
                           alt=""
                         />
                       </div>
-                      {/* <p>2+</p> */}
                       <AiFillPlusCircle className="add" />
                     </div>
                   </div>
