@@ -16,7 +16,7 @@ const taskSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['Planning', 'In Progress', 'Completed'],
+        enum: ['Planning', 'Inprogress', 'Completed'],
         default: 'Planning'
     },
     dueDate: {
@@ -25,24 +25,46 @@ const taskSchema = new mongoose.Schema({
     },
     assignedTo: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'User'
     },
-    project:{
+    project: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Project',
+        ref: 'Project'
     },
-    progress:{
-        type:Number,
-        default:0
+    progress: {
+        type: Number,
+        default: 0
     },
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'User'
     },
     createdAt: {
         type: Date,
         default: Date.now
     }
+});
+
+// Update status before findOneAndUpdate or findOneAndReplace operations
+taskSchema.pre(['findOneAndUpdate', 'findOneAndReplace'], function (next) {
+    const update = this.getUpdate();
+    if (update.progress !== undefined) {
+        const progress = update.progress;
+        if (progress === 0) {
+            this.set({
+                status: 'Planning'
+            });
+        } else if (progress > 0 && progress < 100) {
+            this.set({
+                status: 'Inprogress'
+            });
+        } else if (progress === 100) {
+            this.set({
+                status: 'Completed'
+            });
+        }
+    }
+    next();
 });
 
 const Task = mongoose.model('Task', taskSchema);

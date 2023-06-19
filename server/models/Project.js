@@ -24,7 +24,7 @@ const projectSchema = new mongoose.Schema({
     },
     projectManager: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'User'
     },
     team: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -49,7 +49,7 @@ const projectSchema = new mongoose.Schema({
     },
     internalCost: {
         type: Number,
-        default: 0,
+        default: 0
     },
     budgetLeft: {
         type: Number,
@@ -57,24 +57,42 @@ const projectSchema = new mongoose.Schema({
             return this.budget;
         }
     },
-
     progress: {
         type: Number,
         default: 0
     },
-
     chatboard: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Chatboard'
     }
 });
 
-// Pre-save middleware to update the status based on the progress
-projectSchema.pre('save', function (next) {
+// Method to calculate project progress
+projectSchema.methods.calculateProgress = async function () {
+    const totalTasks = this.tasks.length;
+    let completedTasks = 0;
+    for (const taskId of this.tasks) {
+        const task = await mongoose.model('Task').findById(taskId);
+        if (task.status === 'Completed') {
+            completedTasks++;
+        }
+    }
+    this.progress = (completedTasks / totalTasks) * 100;
+
+    // Update project status based on progress
     if (this.progress === 100) {
         this.status = 'Completed';
+    } else if (this.progress === 0) {
+        this.status = 'Planning';
+    } else {
+        this.status = 'In Progress';
     }
-    next();
+};
+
+// Post-save middleware to update the progress and status
+projectSchema.post('save', async function (doc) {
+    await doc.calculateProgress();
+    await doc.save();
 });
 
 const Project = mongoose.model('Project', projectSchema);
