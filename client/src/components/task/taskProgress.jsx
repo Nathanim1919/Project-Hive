@@ -9,7 +9,7 @@ const TaskProgress = ({ project }) => {
           className="innerProgressBar"
           style={{
             width: `${project.progress}%`,
-            backgroundColor: project.priority === "High" ? "red" :project.priority === 'Medium'?'yellow':'green',
+            backgroundColor: project.priority === "High" ? "#ff6b6b" :project.priority === 'Medium'?'#fdff8b':'#96d19e',
           }}
         ></div>
       </div>

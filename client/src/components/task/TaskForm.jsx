@@ -4,9 +4,9 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Error from "../ShowError/error";
-import Loading from '../Loading/Loading'
+import Loading from "../Loading/Loading";
 
-export default function CreateTask({ setCreateTask,project }) {
+export default function CreateTask({ setCreateTask, project }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("");
@@ -18,11 +18,9 @@ export default function CreateTask({ setCreateTask,project }) {
 
   const handleCreateTask = async (e) => {
     e.preventDefault();
-
     // Check if the due date is less than the start date
     const start = new Date(); // Use current date/time as the start date
     const due = new Date(dueDate);
-
     const timeDiff = due.getTime() - start.getTime();
     const diffInDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
@@ -52,11 +50,11 @@ export default function CreateTask({ setCreateTask,project }) {
         console.log(error);
       }
 
-      setTitle("");
-      setDescription('');
-      setPriority('');
-      setDueDate('');
       setCreateTask(false);
+      setTitle("");
+      setDescription("");
+      setPriority("");
+      setDueDate("");
     }
   };
 

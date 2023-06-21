@@ -185,30 +185,6 @@ export default function ProjectUpdateForm({ setUpdateProjct, project }) {
               <ul>
                 <li
                   onClick={() => {
-                    setStatus("Planning");
-                    setStatusBox(false);
-                  }}
-                >
-                  Planning
-                </li>
-                <li
-                  onClick={() => {
-                    setStatus("In Progress");
-                    setStatusBox(false);
-                  }}
-                >
-                  In Progress
-                </li>
-                <li
-                  onClick={() => {
-                    setStatus("Completed");
-                    setStatusBox(false);
-                  }}
-                >
-                  Completed
-                </li>
-                <li
-                  onClick={() => {
                     setStatus("On Hold");
                     setStatusBox(false);
                   }}
@@ -262,95 +238,6 @@ export default function ProjectUpdateForm({ setUpdateProjct, project }) {
                   }}
                 >
                   High
-                </li>
-              </ul>
-            )}
-          </div>
-
-          <div className="projectProgress">
-            <p
-              onClick={() => {
-                setOpenManager(false);
-                setStatusBox(false);
-                setPriorityBox(false);
-                setProgressBox(true);
-              }}
-            >
-              Update Progress: <span>{progress}</span>
-            </p>
-            {progressBox && (
-              <ul>
-                <li
-                  onClick={() => {
-                    setProgress(10);
-                    setProgressBox(false);
-                  }}
-                >
-                  10
-                </li>
-                <li
-                  onClick={() => {
-                    setProgress(20);
-                    setProgressBox(false);
-                  }}
-                >
-                  20
-                </li>
-                <li
-                  onClick={() => {
-                    setProgress(30);
-                    setProgressBox(false);
-                  }}
-                >
-                  30
-                </li>
-                <li
-                  onClick={() => {
-                    setProgress(40);
-                    setProgressBox(false);
-                  }}
-                >
-                  40
-                </li>
-                <li
-                  onClick={() => {
-                    setProgress(50);
-                    setProgressBox(false);
-                  }}
-                >
-                  50
-                </li>
-                <li
-                  onClick={() => {
-                    setProgress(60);
-                    setProgressBox(false);
-                  }}
-                >
-                  60
-                </li>
-                <li
-                  onClick={() => {
-                    setProgress(70);
-                    setProgressBox(false);
-                  }}
-                >
-                  70
-                </li>
-                <li
-                  onClick={() => {
-                    setProgress(80);
-                    setProgressBox(false);
-                  }}
-                >
-                  80
-                </li>
-                <li
-                  onClick={() => {
-                    setProgress(90);
-                    setProgressBox(false);
-                  }}
-                >
-                  90
                 </li>
               </ul>
             )}

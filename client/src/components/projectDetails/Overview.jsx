@@ -1,7 +1,30 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import Progress from '../progress/progress'
 
 export default function Overview({project}) {
+
+
+  const [planningTasks, setPlanningtasks] = useState([]);
+  const [inprogressTasks, setInprogresstasks] = useState([]);
+  const [completedTasks, setCompletedtasks] = useState([]);
+
+  useEffect(()=>{
+    const getTasksStatus = ()=>{
+      const completed = project.tasks.filter((task) => task.status == "Completed")
+      const planning = project.tasks.filter((task) => task.status == "Planning")
+      const inprogress = project.tasks.filter((task) => task.status == "Inprogress")
+
+      setPlanningtasks(planning);
+      setInprogresstasks(inprogress);
+      setCompletedtasks(completed);
+
+      console.log(project.tasks);
+    }
+
+    getTasksStatus();
+  },[])
+
+
   return (
     <>
       <div className="project-progress">
@@ -11,25 +34,28 @@ export default function Overview({project}) {
         </div>
         <div className="started">
           <h1>
-            {project.tasks.filter((pro) => pro.status === "Planning").length}
+            {planningTasks.length}
           </h1>
           <p>Planning</p>
         </div>
         <div className="inprogress">
           <h1>
-            {project.tasks.filter((pro) => pro.status === "In Progress").length}
+            {
+             
+                inprogressTasks.length
+            }
           </h1>
           <p>In progress</p>
         </div>
         <div className="completed">
           <h1>
-            {project.tasks.filter((pro) => pro.status === "Completed").length}
+            {completedTasks.length}
           </h1>
           <p>Completed</p>
         </div>
 
         <div className="overallProgress">
-          <Progress animates={1000} total={200} progress={100} />
+          <Progress animates={1000} total={100} progress={project.progress} />
           <p>overall progress</p>
         </div>
       </div>

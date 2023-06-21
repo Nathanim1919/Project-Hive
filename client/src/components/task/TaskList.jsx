@@ -5,6 +5,8 @@ import {
   AiFillPlusCircle,
   AiOutlineUnorderedList,
 } from "react-icons/ai";
+import {GiProgression} from 'react-icons/gi'
+import { FcPlanner } from "react-icons/fc";
 
 import { NavLink } from "react-router-dom";
 import axios from "axios";
@@ -12,6 +14,7 @@ import { useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import TaskInfo from "./TaskInfo.jsx";
 import TaskProgress from "./taskProgress";
+import '../../styles/task/taskList.css'
 
 export default function TaskList({ createTask, setCreateTask }) {
   const [tasks, setTasks] = useState([]);
@@ -85,7 +88,7 @@ export default function TaskList({ createTask, setCreateTask }) {
                           : ""
                       }
                     />
-                    <p>{task.title.slice(0,13)}</p>
+                    <p>{task.title.slice(0, 13)}</p>
                   </div>
                   <div>
                     <TaskProgress project={task} />
@@ -103,9 +106,11 @@ export default function TaskList({ createTask, setCreateTask }) {
                       {task.priority}
                     </p>
                     <div id="progress">
-                      <AiOutlineCheckCircle />
+                      {task.status === "Inprogress" && <GiProgression />}
+                      {task.status === "Completed" && <AiOutlineCheckCircle />}
+                      {task.status === "Planning" && <FcPlanner />}
                     </div>
-                    <p>In progress</p>
+                    <p>{task.status}</p>
                     <div className="members-list" id="members">
                       <div>
                         <img

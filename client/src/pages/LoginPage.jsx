@@ -50,7 +50,6 @@ export default function LoginPage() {
 
   return (
     <>
-      {isLoading && <Loading />}
       {errorMessage !== "" && (
         <Error message={errorMessage} setErrorMessage={setErrorMessage} />
       )}
@@ -64,7 +63,8 @@ export default function LoginPage() {
             access is strictly prohibited.
           </p>
         </div>
-        <div className="login-form">
+          {isLoading && <Loading />}
+        {!isLoading && <div className="login-form">
           <h1>Login</h1>
           <form onSubmit={handleLogin}>
             <div className="form-group">
@@ -94,7 +94,7 @@ export default function LoginPage() {
               don't you have an account?
             </NavLink>
           </form>
-        </div>
+        </div>}
       </div>
     </>
   );

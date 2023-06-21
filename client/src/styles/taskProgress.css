@@ -4,7 +4,8 @@
  #progress1 .upperProgressBar {
   position: relative;
   width: 80px;
-  border:1px solid #999696;
+ 
+  box-shadow:0 3px 7px #cccaca;
   height: 5px;
 }
 #progress1 .upperProgressBar .innerProgressBar {

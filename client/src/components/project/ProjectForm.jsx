@@ -4,8 +4,8 @@ import "../../styles/createProject.css";
 import { useParams } from "react-router-dom";
 import Error from "../ShowError/error";
 import { BsCheck2Square } from "react-icons/bs";
-import {BiCheckbox} from 'react-icons/bi';
-import {AiOutlineClose} from 'react-icons/ai';
+import { BiCheckbox } from "react-icons/bi";
+import { AiOutlineClose } from "react-icons/ai";
 
 const ProjectForm = ({ setOpenform }) => {
   const [title, setTitle] = useState("");
@@ -14,9 +14,6 @@ const ProjectForm = ({ setOpenform }) => {
   const [budget, setBudget] = useState(0);
   const [priority, setPriority] = useState("");
   const { id } = useParams();
-
-
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -6,13 +6,13 @@ import {
   AiOutlineUserDelete,
 } from "react-icons/ai";
 import "../../styles/member.css";
-import MiniProgress from "../progress/miniProgress";
 import axios from "axios";
 import { GrFormClose } from "react-icons/gr";
 import { useParams } from "react-router-dom";
 import Error from "../ShowError/error";
 import Confirmation from "../warning/confirmation";
 import Loading from "../Loading/Loading";
+import Card from './card'
 
 export default function TeamMembers({ project }) {
   const [employees, setEmployees] = useState([]);
@@ -134,44 +134,7 @@ export default function TeamMembers({ project }) {
         </div>
       )}
       <div className="teammemberlist">
-        {project.team &&
-          project.team.map((user) => (
-            <div
-              className="member"
-              style={{
-                border:
-                  project.projectManager &&
-                  project.projectManager._id === user._id
-                    ? "2px solid #c2baba"
-                    : "0px solid",
-              }}
-            >
-              <div className="header">
-                <AiFillCheckCircle />
-                <AiOutlineUserDelete onClick={() => removeUser(user._id)} />
-              </div>
-
-              <div className="profileinfo">
-                <div className="image">
-                  <img src={user.profile} alt="" />
-                </div>
-                <div className="userinfo">
-                  <h3>{user.name}</h3>
-                  <p>{user.position}</p>
-                </div>
-              </div>
-
-              <div className="pro-footer">
-                <div className="tasksprogress">
-                  <p className="tasks">{user.tasks.length} Tasks</p>
-                  <div className="progressIndicator">
-                    <MiniProgress animates={2000} total={100} progress={75}/>
-                  </div>
-                </div>
-                <button className="viewprofile">View profile</button>
-              </div>
-            </div>
-          ))}
+        {project.team && <Card removeUser={removeUser} project={project} />}
       </div>
     </section>
   );
