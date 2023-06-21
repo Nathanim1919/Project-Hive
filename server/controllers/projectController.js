@@ -39,28 +39,29 @@ module.exports.createProject = async (req, res) => {
     }
 }
 
+
 module.exports.getProjects = async (req, res) => {
     try {
         const {
             id
         } = req.params;
 
-        console.log(req.params)
-
         const projects = await Project.find()
+            .populate('tasks')
             .populate('projectManager')
-            .populate('team')
+            .populate('team');
+
         res.status(200).json({
             projects
         });
-        console.log(projects)
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).json({
             error: 'Internal Server Error'
         });
     }
 };
+
 
 
 module.exports.getProject = async (req, res) => {
@@ -71,7 +72,7 @@ module.exports.getProject = async (req, res) => {
         const project = await Project.findById(projectId)
             .populate('projectManager')
             .populate('team')
-            .populate('chatboard');
+            .populate('tasks')
         res.status(200).json({
             project
         })
@@ -155,7 +156,7 @@ module.exports.addEmployee = async (req, res) => {
     try {
         const {
             projectId
-         } = req.params;
+        } = req.params;
         const {
             userId
         } = req.body;

@@ -34,6 +34,7 @@ export default function TaskList({ createTask, setCreateTask }) {
           `http://localhost:5000/user/${id}/projects/${projectId}/getTasks`
         );
         setTasks(response.data.tasks);
+        console.log(tasks)
       } catch (error) {
         console.log(error);
       }

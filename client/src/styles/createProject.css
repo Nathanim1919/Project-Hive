@@ -4,22 +4,26 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: rgb(235, 230, 230);
+  background-color: rgba(235, 230, 230, 0.438);
   position: fixed;
-  z-index: 3;
+  z-index: 13;
   top: 0;
   left: 0;
   width: 100vw;
+  backdrop-filter:blur(3px);
+ animation: anim .1s linear;
 }
 
+
 .createProject form {
-  /* animation: anim 2s; */
   display: grid;
   place-items: center;
   width: 60%;
   gap: 1.2rem;
-  height: 100%;
+  height: 70%;
   background-color: #fff;
+  box-shadow:0 9px 21px rgba(0, 0, 0, 0.089);
+  border-radius:10px;
 }
 
 .createProject form input {
@@ -69,8 +73,6 @@
 }
 
 
-.createProject form .moreinfo{
-}
 .createProject form .moreinfo .priority{
   display:flex;
   justify-content:start;
@@ -93,6 +95,12 @@
   background-color: rgb(180, 214, 180);
 }
 
+.createProject form button{
+  background-color: rgb(34, 151, 230);
+  display:grid;
+  place-items:center;
+
+}
 
 .createProject .closeBtnicon{
   position: absolute;
@@ -100,14 +108,16 @@
   right: 2rem;
   cursor: pointer;
   font-size: 1.5rem;
+  
 }
 
-/* 
-@keyframes anim {
+@keyframes anim{
   0%{
-   opacity: 0;
+    transform:translateY(-30%) scale(0.5);
+    opacity:0;
   }
   100%{
-   opacity: 1;
+    transform:translateY(0%) scale(1);
+    opacity:1;
   }
-} */
+}

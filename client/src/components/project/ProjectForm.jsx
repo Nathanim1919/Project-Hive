@@ -69,8 +69,8 @@ const ProjectForm = ({ setOpenform }) => {
       <div className="closeBtnicon" onClick={() => setOpenform(false)}>
         <AiOutlineClose />
       </div>
-      <h1>create New Project</h1>
       <form onSubmit={handleSubmit}>
+      <h1>create New Project</h1>
         <div className="upperForms">
           <div>
             <label htmlFor="name">project Title</label>

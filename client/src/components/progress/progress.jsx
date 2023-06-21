@@ -3,7 +3,7 @@ import "../../styles/progress.css";
 
 export default function Progress({ progress, animates, total }) {
   const progressRef = useRef(null);
-  const [degree, setDegree] = useState(0)
+  const [degree, setDegree] = useState(0);
 
   useEffect(() => {
     const progressElement = progressRef.current;
@@ -15,9 +15,10 @@ export default function Progress({ progress, animates, total }) {
     setDegree(progressPercent);
     let progressDegree = (progressPercent / 100) * 360; // Convert progress to degrees
 
-    if (progressDegree === 360){
+    if (progressDegree === 360) {
       progressDegree = (progressPercent / 100) * 360 + 7;
     }
+
     const animationInterval = setInterval(() => {
       const gradientDegree = (currentFrame / frames) * progressDegree; // Gradually increase the gradient degree
       progressElement.style.background = `conic-gradient(#429ff7, ${gradientDegree}deg, #63f5ff 0deg)`;
@@ -32,6 +33,21 @@ export default function Progress({ progress, animates, total }) {
       clearInterval(animationInterval);
     };
   }, [progress, animates, total]);
+
+  useEffect(() => {
+    slowIncrement(0, 10, degree, 1000); // Start the slow increment with a delay of 100 milliseconds
+  }, [degree]);
+
+  const slowIncrement = (num, increment, target, delay) => {
+    let counter = num;
+    const intervalId = setInterval(() => {
+      counter += increment;
+      console.log(counter);
+      if (counter >= target) {
+        clearInterval(intervalId);
+      }
+    }, delay);
+  };
 
   return (
     <div className="circular-progress" ref={progressRef}>

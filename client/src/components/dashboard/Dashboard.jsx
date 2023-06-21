@@ -7,8 +7,7 @@ import Error from "../ShowError/error";
 import ProjectList from "../project/projectList";
 import Notification from "../notification/Notification";
 import { getCurrentDateFormat } from "../../functions.js";
-
-
+import Loading from '../Loading/Loading'
 
 export default function Dashboarddata() {
   const [openForm, setOpenform] = useState(false);
@@ -16,7 +15,6 @@ export default function Dashboarddata() {
   const [filterProjects, setFilterProjects] = useState("");
 
   // get the current month name with the year
-
 
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -39,22 +37,22 @@ export default function Dashboarddata() {
     (project) => project.status === "Cancelled"
   );
 
-  // get projects associated with the active user
-  useEffect(() => {
-    const getProjects = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/user/${id}/projects`
-        );
-        console.log(id);
-        setProjects(response.data.projects);
-        setErrorMessage("");
-      } catch (error) {
-        setErrorMessage("Unable to fetch projects, please reload again later");
-      }
-    };
-    getProjects();
-  }, [id, openForm]);
+useEffect(() => {
+  const getProjects = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/user/${id}/projects`
+      );
+      setProjects(response.data.projects);
+      setErrorMessage("");
+    } catch (error) {
+      setErrorMessage("Unable to fetch projects, please try again later.");
+    }
+  };
+
+  getProjects();
+}, [id, openForm]);
+
 
   return (
     <div className="userdatas">
@@ -175,9 +173,9 @@ export default function Dashboarddata() {
             </div>
           </div>
         </div>
-        <ProjectList filterProjects={filterProjects} projects={projects} />
+        {projects?<ProjectList filterProjects={filterProjects} projects={projects}/>:<Loading/>}
       </div>
       <Notification />
     </div>
-  ); 
+  );
 }

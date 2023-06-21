@@ -68,5 +68,4 @@ taskSchema.pre(['findOneAndUpdate', 'findOneAndReplace'], function (next) {
 });
 
 const Task = mongoose.model('Task', taskSchema);
-
 module.exports = Task;

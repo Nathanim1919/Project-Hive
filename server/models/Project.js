@@ -67,33 +67,5 @@ const projectSchema = new mongoose.Schema({
     }
 });
 
-// Method to calculate project progress
-projectSchema.methods.calculateProgress = async function () {
-    const totalTasks = this.tasks.length;
-    let completedTasks = 0;
-    for (const taskId of this.tasks) {
-        const task = await mongoose.model('Task').findById(taskId);
-        if (task.status === 'Completed') {
-            completedTasks++;
-        }
-    }
-    this.progress = (completedTasks / totalTasks) * 100;
-
-    // Update project status based on progress
-    if (this.progress === 100) {
-        this.status = 'Completed';
-    } else if (this.progress === 0) {
-        this.status = 'Planning';
-    } else {
-        this.status = 'In Progress';
-    }
-};
-
-// Post-save middleware to update the progress and status
-projectSchema.post('save', async function (doc) {
-    await doc.calculateProgress();
-    await doc.save();
-});
-
 const Project = mongoose.model('Project', projectSchema);
 module.exports = Project;
