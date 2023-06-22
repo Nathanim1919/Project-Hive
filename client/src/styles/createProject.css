@@ -11,7 +11,7 @@
   left: 0;
   width: 100vw;
   backdrop-filter:blur(3px);
- animation: anim .1s linear;
+ animation: animate .1s linear;
 }
 
 
@@ -111,7 +111,7 @@
   
 }
 
-@keyframes anim{
+@keyframes animate{
   0%{
     transform:translateY(-30%) scale(0.5);
     opacity:0;

@@ -1,4 +1,3 @@
-
 /* task style */
 .task-list-header {
   display: grid;
@@ -33,32 +32,32 @@
 }
 
 .expanded {
-  grid-template-columns: .65fr .3fr;
+  grid-template-columns: 0.65fr 0.3fr;
 }
 
 .collapsed {
   grid-template-columns: 1fr;
 }
 
-.expanded #taskinformation{
-  transform:translateX(0%)
+.expanded #taskinformation {
+  transform: translateX(0%);
 }
 
-.collapsed #taskinformation{
-  transform:translateX(100%)
+.collapsed #taskinformation {
+  transform: translateX(100%);
 }
 
 #taskinformation {
   overflow: hidden;
   position: absolute;
-  transition: all .3s ease-in-out;
-  z-index:10;
-  right:0;
-  top:0;
-  height:100vh;
-  background-color:#fff;
-  width:500px;
-  box-shadow:0 12px 21px rgba(0, 0, 0, 0.123);
+  transition: all 0.3s ease-in-out;
+  z-index: 10;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  background-color: #ffffff;
+  width: 500px;
+  box-shadow: 0 12px 21px rgba(0, 0, 0, 0.062);
 }
 
 #taskinformation .titledec {
@@ -113,54 +112,129 @@
   display: flex;
   flex-direction: column;
   align-items: start;
-  padding: 2rem;
+  justify-content: flex-start;
+  max-width: 90%;
+  margin: auto;
 }
 
 #taskinformation .more-information > * {
-  margin: 0.5rem 0;
+  margin:.5rem;
 }
 
-#taskinformation .more-information > div{
-  display:flex;
-  flex-direction:column;
-  width:100%;
-  position:relative;
-  overflow:hidden;
+#taskinformation .more-information > div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
 }
 
-#taskinformation .more-information > div>div{
-  display:flex;
- align-items:center;
- justify-content:center;
- flex-wrap: wrap;
-  width:100%;
-  text-align:left;
-  padding:.1rem .5rem;
-  position:relative;
-  gap:1rem;
+#taskinformation .more-information div > * {
+  flex: 1;
 }
-#taskinformation .more-information > div>div > *{
-  background-color:#f8f4f4;
-  margin:0;
-  cursor:pointer;
-  display:grid;
-  place-items:center;
-  padding:.4rem 1rem;
-  border:2px solid rgba(166, 166, 250, 0);
-  font-size: .7rem;
+
+#taskinformation .more-information > div > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: left;
+  position: relative;
 }
-#taskinformation .more-information > div>div > *:hover{
-  border:2px solid rgb(166, 166, 250);
+
+#taskinformation .more-information .members-to-assign{
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  overflow-y: auto;
+  flex-wrap: nowrap;
+  background-color: #e6e1e1;
+  gap: .4rem;
+  padding: 1rem 1rem;
 }
-#taskinformation .more-information > div>div p.selectedPriorty{
-  background-color:#eeeaea;
-  border:2px solid rgb(102, 102, 250);
+#taskinformation .more-information .members-to-assign>*{
+  margin: 0;
 }
-#taskinformation .more-information > div>div p.selectedProgress{
-  background-color:#eeeaea;
-  border:2px solid rgb(102, 102, 250);
+
+#taskinformation .more-information .members-to-assign #team-member{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+   width: 90%;
+   background-color: #fff;
 }
-#taskinformation .more-information > div>p {
+#taskinformation .more-information .members-to-assign #team-member .personal-info{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+}
+#taskinformation .more-information .members-to-assign #team-member .personal-info >div{
+  display: flex;
+ flex-direction: column;
+}
+#taskinformation .more-information .members-to-assign #team-member .personal-info >div > *{
+ margin: 0;
+}
+
+#taskinformation .more-information .members-to-assign #team-member .image-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+#taskinformation .more-information .members-to-assign #team-member .image-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#taskinformation .more-information > div > div > * {
+  background-color: #dbdfe0;
+  margin: 0;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  padding: 0.4rem 1rem;
+  border: 2px solid rgba(166, 166, 250, 0);
+  font-size: 0.7rem;
+  color: #1f1e1e;
+  animation: animates .3s linear;
+}
+
+#taskinformation .more-information > div > p{
+  background-color: #eee;
+  margin: 0;
+  padding: .6rem;
+}
+
+@keyframes animates {
+
+  0%{
+    opacity: 0;
+    transform: translateX(50%);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+}
+#taskinformation .more-information > div > div > *:hover {
+  border: 2px solid rgb(57, 57, 58);
+}
+#taskinformation .more-information > div > div p.selectedPriorty {
+  background-color: #172952;
+  border: 2px solid rgb(9, 9, 44);
+  color: #fff;
+}
+#taskinformation .more-information > div > div p.selectedProgress {
+  background-color: #172952;
+  border: 2px solid rgb(9, 9, 46);
+  color: #fff;
+}
+#taskinformation .more-information > div > p {
   display: grid;
   grid-template-columns: 0.6fr 0.3fr 0.1fr;
   width: 100%;
@@ -177,8 +251,8 @@
 #taskinformation .more-information p:nth-child(3) span {
   font-size: 0.7rem;
 }
-#taskinformation .close-icon{
-  cursor:pointer;
+#taskinformation .close-icon {
+  cursor: pointer;
 }
 
 #taskinformation .edit-icon {
@@ -212,9 +286,8 @@
   border-radius: 5px;
   margin: 0;
   flex: 1;
-  text-shadow:0 2px 3px rgba(0,0,0,.3);
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
 }
-
 
 .tasklist a {
   width: 100%;
@@ -251,14 +324,14 @@
   width: 70px;
 }
 .tasklist .task .red {
-  background-color:rgb(247, 77, 77);
-  color:#fff;
+  background-color: rgb(247, 77, 77);
+  color: #fff;
 }
 .tasklist .task .orange {
-  background-color:rgb(255, 253, 125);
-  color:#222020;
+  background-color: rgb(255, 253, 125);
+  color: #222020;
 }
 .tasklist .task .green {
-  color:#ffffff;
+  color: #ffffff;
   background-color: rgb(110, 207, 110);
 }

@@ -77,7 +77,12 @@ module.exports.getTasks = async (req, res) => {
                 project: projectId
             })
             .populate('assignedTo')
-            .populate('project')
+            .populate({
+                path: 'project',
+                populate: {
+                    path: 'team'
+                }
+            })
             .populate('createdBy');
 
         res.status(200).json({
@@ -90,6 +95,7 @@ module.exports.getTasks = async (req, res) => {
         });
     }
 };
+
 
 module.exports.updateTask = async (req, res) => {
     const {

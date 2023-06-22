@@ -6,6 +6,9 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import Error from "../ShowError/error";
+import TaskPriority from "./TaskPriority.jsx";
+import TaskProgressEdit from "./TaskProgressEdit.jsx";
+import { BsCheckCircle } from "react-icons/bs";
 
 export default function TaskInfo({
   selectedTask,
@@ -17,6 +20,8 @@ export default function TaskInfo({
   const [editTitle, setEditTitle] = useState(false);
   const [editDescription, setEditDescription] = useState(false);
   const [editPriority, setEditPriority] = useState(false);
+  const [editProgress, setEditProgress] = useState(false);
+  const [editAssinedTo, setEditAssinedTo] = useState(false);
   const { id, projectId } = useParams();
 
   const [title, setUpdatedTitle] = useState("");
@@ -33,7 +38,9 @@ export default function TaskInfo({
     setIsExpanded(false);
   };
 
-  useEffect(() => {}, [tasks]);
+  useEffect(() => {}, [tasks, priority]);
+
+  console.log(selectedTask);
 
   const handleUpdate = async (key, value) => {
     const taskid = selectedTask._id;
@@ -46,7 +53,6 @@ export default function TaskInfo({
         `http://localhost:5000/user/${id}/projects/${projectId}/tasks/${taskid}`,
         { [key]: value }
       );
-      console.log(update);
     } catch (error) {
       console.log(error);
     }
@@ -131,211 +137,56 @@ export default function TaskInfo({
             )}
           </div>
           <div className="more-information">
+            <TaskPriority
+              setPriority={setPriority}
+              setEditPriority={setEditPriority}
+              setEditProgress={setEditProgress}
+              handleUpdate={handleUpdate}
+              closeTask={closeTask}
+              selectedTask={selectedTask}
+              editPriority={editPriority}
+            />
+            <TaskProgressEdit
+              setProgress={setProgress}
+              handleUpdate={handleUpdate}
+              setEditProgress={setEditProgress}
+              setEditPriority={setEditPriority}
+              closeTask={closeTask}
+              editProgress={editProgress}
+              selectedTask={selectedTask}
+            />
             <div>
-              <p>
-                Priority: <span>{selectedTask.priority}</span>{" "}
-                <MdOutlineDoneOutline
-                  className="edit-icon"
-                  onClick={() => {
-                    handleUpdate("priority", priority);
-                    closeTask();
-                  }}
-                />
-              </p>
-              <div>
-                <p
-                  onClick={() => {
-                    setPriority("Low");
-                  }}
-                  className={
-                    "Low" === selectedTask.priority
-                      ? "selectedPriorty"
-                      : "priority"
-                  }
-                >
-                  Low
+              {editAssinedTo ? (
+                <p className="assigned-to">
+                  Assigned To:{" "}
+                  {selectedTask.assignedTo
+                    ? selectedTask.assignedTo.name
+                    : "not assigned"}
+                  <span></span>
+                  <AiOutlineEdit className="edit-icon" />
                 </p>
-                <p
-                  onClick={() => {
-                    setPriority("Medium");
-                  }}
-                  className={
-                    "Medium" === selectedTask.priority
-                      ? "selectedPriorty"
-                      : "priority"
-                  }
-                >
-                  Medium
-                </p>
-                <p
-                  onClick={() => {
-                    setPriority("High");
-                  }}
-                  className={
-                    "High" === selectedTask.priority
-                      ? "selectedPriorty"
-                      : "priority"
-                  }
-                >
-                  High
-                </p>
-              </div>
+              ) : (
+                <div className="members-to-assign">
+                  {selectedTask.project &&
+                    selectedTask.project.team.map((mem) => (
+                      <span id="team-member">
+                        <span className="personal-info">
+                          <span className="image-icon">
+                            <img src={mem.profile} alt="" />
+                          </span>
+                          <div>
+                            <p>{mem.name}</p>
+                            <p>{mem.position}</p>
+                          </div>
+                        </span>
+                        <span>
+                          <BsCheckCircle />
+                        </span>
+                      </span>
+                    ))}
+                </div>
+              )}
             </div>
-
-            <div>
-              <p>
-                Progress: <span>{selectedTask.progress}%</span>{" "}
-                <MdOutlineDoneOutline
-                  onClick={() => {
-                    handleUpdate("progress", progress);
-                    closeTask();
-                  }}
-                  className="edit-icon"
-                />
-              </p>
-              <div>
-                <p
-                  className={
-                    0 === selectedTask.progress
-                      ? "selectedProgress"
-                      : "progress"
-                  }
-                  onClick={() => {
-                    setProgress(0);
-                  }}
-                >
-                  0%
-                </p>
-                <p
-                  className={
-                    10 === selectedTask.progress
-                      ? "selectedProgress"
-                      : "progress"
-                  }
-                  onClick={() => {
-                    setProgress(10);
-                  }}
-                >
-                  10%
-                </p>
-                <p
-                  className={
-                    20 === selectedTask.progress
-                      ? "selectedProgress"
-                      : "progress"
-                  }
-                  onClick={() => {
-                    setProgress(20);
-                  }}
-                >
-                  20%
-                </p>
-                <p
-                  className={
-                    30 === selectedTask.progress
-                      ? "selectedProgress"
-                      : "progress"
-                  }
-                  onClick={() => {
-                    setProgress(30);
-                  }}
-                >
-                  30%
-                </p>
-                <p
-                  className={
-                    40 === selectedTask.progress
-                      ? "selectedProgress"
-                      : "progress"
-                  }
-                  onClick={() => {
-                    setProgress(40);
-                  }}
-                >
-                  40%
-                </p>
-                <p
-                  className={
-                    50 === selectedTask.progress
-                      ? "selectedProgress"
-                      : "progress"
-                  }
-                  onClick={() => {
-                    setProgress(50);
-                  }}
-                >
-                  50%
-                </p>
-                <p
-                  className={
-                    60 === selectedTask.progress
-                      ? "selectedProgress"
-                      : "progress"
-                  }
-                  onClick={() => {
-                    setProgress(60);
-                  }}
-                >
-                  60%
-                </p>
-                <p
-                  className={
-                    70 === selectedTask.progress
-                      ? "selectedProgress"
-                      : "progress"
-                  }
-                  onClick={() => {
-                    setProgress(70);
-                  }}
-                >
-                  70%
-                </p>
-                <p
-                  className={
-                    80 === selectedTask.progress
-                      ? "selectedProgress"
-                      : "progress"
-                  }
-                  onClick={() => {
-                    setProgress(80);
-                  }}
-                >
-                  80%
-                </p>
-                <p
-                  className={
-                    90 === selectedTask.progress
-                      ? "selectedProgress"
-                      : "progress"
-                  }
-                  onClick={() => {
-                    setProgress(90);
-                  }}
-                >
-                  90%
-                </p>
-                <p
-                  className={
-                    100 === selectedTask.progress
-                      ? "selectedProgress"
-                      : "progress"
-                  }
-                  onClick={() => {
-                    setProgress(100);
-                  }}
-                >
-                  100%
-                </p>
-              </div>
-            </div>
-            <p>
-              Assigned To:{" "}
-              {selectedTask.assignedTo
-                ? selectedTask.assignedTo.name
-                : "Assign"}
-              <span></span>
-              <AiOutlineEdit className="edit-icon" />
-            </p>
           </div>
         </>
       )}
