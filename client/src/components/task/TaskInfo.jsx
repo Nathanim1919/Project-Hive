@@ -156,20 +156,20 @@ export default function TaskInfo({
               selectedTask={selectedTask}
             />
             <div>
-              {editAssinedTo ? (
+              {!editAssinedTo ? (
                 <p className="assigned-to">
                   Assigned To:{" "}
                   {selectedTask.assignedTo
                     ? selectedTask.assignedTo.name
                     : "not assigned"}
                   <span></span>
-                  <AiOutlineEdit className="edit-icon" />
+                  <AiOutlineEdit className="edit-icon" onClick={()=>{setEditAssinedTo(true);}}/>
                 </p>
               ) : (
                 <div className="members-to-assign">
                   {selectedTask.project &&
                     selectedTask.project.team.map((mem) => (
-                      <span id="team-member">
+                      <span id="team-member" className={selectedTask.project.projectManager === mem._id?'team-member-manager':'team-member'}>
                         <span className="personal-info">
                           <span className="image-icon">
                             <img src={mem.profile} alt="" />
