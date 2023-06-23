@@ -231,19 +231,6 @@
   margin: 0;
   padding: .6rem;
 }
-
-@keyframes animates {
-
-  0%{
-    opacity: 0;
-    transform: translateX(50%);
-  }
-  100%{
-    opacity: 1;
-    transform: translateX(0);
-  }
-  
-}
 #taskinformation .more-information > div > div > *:hover {
   border: 2px solid rgb(57, 57, 58);
 }
@@ -357,4 +344,18 @@
 .tasklist .task .green {
   color: #ffffff;
   background-color: rgb(110, 207, 110);
+}
+
+  
+@keyframes animates {
+  
+    0%{
+      opacity: 0;
+      transform: translateX(50%);
+    }
+    100%{
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
 }
