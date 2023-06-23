@@ -19,12 +19,12 @@ export default function CreateTask({ setCreateTask, project }) {
   const handleCreateTask = async (e) => {
     e.preventDefault();
     // Check if the due date is less than the start date
-    const start = new Date(); // Use current date/time as the start date
+    const start = new Date(project.dueDate); // Use current date/time as the start date
     const due = new Date(dueDate);
     const timeDiff = due.getTime() - start.getTime();
     const diffInDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
-    if (diffInDays < 0) {
+    if (diffInDays > 0) {
       <Error
         message={
           "Due date cannot be earlier than the start date. Please reset the due date."

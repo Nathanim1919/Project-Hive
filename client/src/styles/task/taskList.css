@@ -58,8 +58,11 @@
   background-color: #ffffff;
   width: 500px;
   box-shadow: 0 12px 21px rgba(0, 0, 0, 0.062);
-  overflow:auto;
+}
 
+#taskinformation .EditEntities{
+  max-height:90%;
+  overflow:auto;
 }
 
 #taskinformation .titledec {
@@ -68,6 +71,8 @@
   padding: 1rem;
   padding-bottom: 0.4rem;
   border-bottom: 1px solid #eee;
+   overflow:hidden;
+  overflow-y: auto;
 }
 #taskinformation .titledec > div {
   display: flex;
@@ -105,8 +110,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgb(237, 237, 240);
+  background-color: rgb(101, 185, 224);
   padding: 0 1rem;
+  color:#fff;
 }
 
 #taskinformation .more-information {
@@ -148,8 +154,6 @@
   display: flex;
   flex-direction: column;
   max-height: 440px;
-  overflow:hidden;
-  overflow-y: auto;
   flex-wrap: nowrap;
   background-color: #ebe6e6;
   padding: 1rem 1rem;
@@ -166,7 +170,6 @@
   align-items: center;
   width: 95%;
   padding:.01rem 1rem .7rem 1rem;
-  border:none;
   border-radius:3px;
 }
 #taskinformation .more-information .members-to-assign .team-member-manager{
@@ -175,10 +178,11 @@
 }
 #taskinformation .more-information .members-to-assign .team-member{
    background-color: #fff;
-   transition:all .3s ease-in;
+    transition:all .3s ease-in;
+    border:1px solid #44444400;
 }
 #taskinformation .more-information .members-to-assign #team-member:hover{
-  border:1px solid #444;
+  border:1px solid #7e7c7c;
   box-shadow:0 4px 17px rgba(0, 0, 0, 0.11)
 }
 
