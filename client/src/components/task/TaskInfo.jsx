@@ -40,8 +40,6 @@ export default function TaskInfo({
 
   useEffect(() => {}, [tasks, priority]);
 
-  console.log(selectedTask);
-
   const handleUpdate = async (key, value) => {
     const taskid = selectedTask._id;
     try {

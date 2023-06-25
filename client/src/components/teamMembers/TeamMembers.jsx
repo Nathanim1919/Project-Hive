@@ -15,21 +15,35 @@ import Loading from "../Loading/Loading";
 import Card from './card'
 
 export default function TeamMembers({ project }) {
+  
   const [employees, setEmployees] = useState([]);
   const [openUsersBox, setOpenusersBox] = useState(false);
-  const { id, projectId } = useParams();
   const [errorMessage, setErrorMessage] = useState("");
   const [confirmed, setConfirmed] = useState(false);
   const [openConfirmationBox, setOpenConfirmationBox] = useState(false);
   const [userId, setUserId] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [activeUser, setActiveUser] = useState({});
+  
+  const { id, projectId } = useParams();
+
+  // get active user
+  useEffect(() => {
+    const getUser = async () => {
+      const user = await axios.get(`http://localhost:5000/user/${id}`);
+      setActiveUser(user.data.user);
+    };
+
+    getUser();
+  }, [id]);
 
   useEffect(() => {
-    setLoading(true);
+    // setLoading(true);
     const getUsers = async () => {
       try {
         const users = await axios.get("http://localhost:5000/user");
         setEmployees(users.data.user);
+        console.log(employees);
       } catch (error) {
         console.log(error);
       }
@@ -108,9 +122,12 @@ export default function TeamMembers({ project }) {
         />
       )}
 
-      <div className="add-icon" onClick={() => setOpenusersBox(true)}>
-        <AiOutlinePlus />
-      </div>
+      {(activeUser.position === "Project Manager" ||
+        activeUser.position === "Project Executive") && (
+        <div className="add-icon" onClick={() => setOpenusersBox(true)}>
+          <AiOutlinePlus />
+        </div>
+      )}
 
       {openUsersBox && (
         <div id="all-empolloyee">

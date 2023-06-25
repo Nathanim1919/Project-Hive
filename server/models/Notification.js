@@ -1,11 +1,6 @@
 const mongoose = require("mongoose");
 
 const NotificationSchema = new mongoose.Schema({
-    recipient: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-    },
     message: {
         type: String,
         required: true,
@@ -34,9 +29,6 @@ const NotificationSchema = new mongoose.Schema({
             "documentApproval",
         ],
         required: true,
-    },
-    data: {
-        type: mongoose.Schema.Types.Mixed,
     },
     createdAt: {
         type: Date,

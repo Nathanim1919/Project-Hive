@@ -36,8 +36,8 @@ export default function DashboardPage() {
     const getUser = async () => {
       const user = await axios.get(`http://localhost:5000/user/${id}`);
       setActiveUser(user.data.user);
-      console.log(activeUser);
-    };
+      console.log(activeUser.notifications);
+    }
 
     getUser();
   }, [id]);

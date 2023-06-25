@@ -150,23 +150,24 @@ export default function ProjectUpdateForm({ setUpdateProjct, project }) {
                 </div>
                 {employees &&
                   employees.map((user) => (
-                    <div
-                      className="employee"
-                      onClick={() => {
-                        setManager(user._id);
-                        setManagerPlaceholder(user.name);
-                        setOpenManager(false);
-                      }}
-                    >
-                      <div className="profilePic">
-                        <img src={user.profile} alt="" />
+                      <div
+                        key={user._id}
+                        className="employee"
+                        onClick={() => {
+                          setManager(user._id);
+                          setManagerPlaceholder(user.name);
+                          setOpenManager(false);
+                        }}
+                      >
+                        <div className="profilePic">
+                          <img src={user.profile} alt="" />
+                        </div>
+                        <div>
+                          <h5>{user.name}</h5>
+                          <p>{user.position}</p>
+                        </div>
                       </div>
-                      <div>
-                        <h5>{user.name}</h5>
-                        <p>{user.position}</p>
-                      </div>
-                    </div>
-                  ))}
+                    ))}
               </div>
             )}
           </div>

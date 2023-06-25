@@ -10,6 +10,7 @@ import Overview from "../projectDetails/Overview";
 import DiscussionBoard from "../collaboration/DiscussionBoard";
 import ProjectDetailHeader from "./projectDetailHeader";
 const ProjectDetailPage = () => {
+  
   const { id, projectId } = useParams();
   const [project, setProject] = useState(null);
   const [overviewPage, setOverviewPage] = useState(true);

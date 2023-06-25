@@ -175,7 +175,7 @@ useEffect(() => {
         </div>
         {projects?<ProjectList filterProjects={filterProjects} projects={projects}/>:<Loading/>}
       </div>
-      <Notification />
+      <Notification id = {id}/>
     </div>
   );
 }

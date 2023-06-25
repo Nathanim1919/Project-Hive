@@ -419,7 +419,7 @@ section.dashboard {
   overflow: auto;
   display: grid;
   padding: 0.5rem;
-  gap: 0.2rem;
+  gap: 0.5rem;
   background-color: #fff;
 }
 .notification-list > div {
@@ -428,15 +428,16 @@ section.dashboard {
   padding: 0.5rem;
   border-radius: 10px;
   gap: 1rem;
-  background-color: #f7f3f300;
+  background-color: #f7f3f3b9;
   border: 1px solid #dddddd00;
   cursor: pointer;
+  transition:all 0.2s ease-in-out;
 }
 
 .notification-list > div .logo {
   width: 30px;
   height: 30px;
-  background-color: #eee;
+  background-color: #ffffff;
   border-radius: 50%;
   font-size: 1.4rem;
   display: grid;
@@ -444,7 +445,11 @@ section.dashboard {
   color: red;
 }
 .notification-list > div:hover {
-  background-color: #f5f1f1;
+  background-color: #ffffff;
+  position:relative;
+  transform:scale(1.03);
+  z-index:5;
+  box-shadow:0 7px 16px rgba(0,0,0,.1);
 }
 .notification-list > div p {
   font-size: 0.7rem;
@@ -458,6 +463,25 @@ section.dashboard {
 }
 .notification-list > div div.message > * {
   margin: 0;
+}
+.notify{
+  background-color:#504d4d;
+  border:1px solid #333;
+}
+/* 
+.unread{
+  font-weight:bolder;
+}
+.read{
+  font-weight:200;
+} */
+.notify .message{
+  text-align:left;
+}
+.notify .message p:nth-child(1){
+  font-size:.7rem;
+  color:#444343;
+  font-weight:bolder;
 }
 
 @keyframes animate {

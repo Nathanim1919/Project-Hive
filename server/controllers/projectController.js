@@ -1,5 +1,6 @@
 const Project = require('../models/Project.js');
 const User = require('../models/User.js');
+const Notification = require('../models/Notification.js')
 
 
 module.exports.createProject = async (req, res) => {
@@ -81,6 +82,7 @@ module.exports.getProject = async (req, res) => {
     }
 }
 
+
 module.exports.updateProject = async (req, res) => {
     try {
         const {
@@ -98,7 +100,6 @@ module.exports.updateProject = async (req, res) => {
         } = req.body;
 
         const project = await Project.findById(projectId);
-
         // Remove the old project manager from the team if it exists
         if (project && project.projectManager) {
             const updatedTeam = project.team.filter(
@@ -112,7 +113,6 @@ module.exports.updateProject = async (req, res) => {
         project.team.push(projectManager);
         project.projectManager = projectManager;
         await project.save();
-        console.log('Updated Team:', project.team);
 
         const updatedProject = await Project.findOneAndUpdate({
             _id: projectId
@@ -134,6 +134,22 @@ module.exports.updateProject = async (req, res) => {
                 error: 'Project not found'
             });
         }
+
+        // Create a single notification for all team members
+        const notification = await Notification.create({
+            recipients: project.team,
+            message: `The project "${updatedProject.title}" has been updated`,
+            type: 'projectUpdate',
+        });
+
+        // Update the notifications field of team members
+        const userPromises = project.team.map(async (teamMember) => {
+            const user = await User.findById(teamMember);
+            user.notifications.push(notification);
+            await user.save();
+        });
+
+        await Promise.all(userPromises);
 
         return res.status(200).json({
             message: 'Project updated successfully',
@@ -189,6 +205,9 @@ module.exports.addEmployee = async (req, res) => {
         console.log(error);
     }
 };
+
+
+
 module.exports.removeEmployee = async (req, res) => {
     try {
         const {
