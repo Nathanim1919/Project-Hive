@@ -53,7 +53,7 @@ export default function RegistrationPage() {
 
       const { message } = response.data;
       switch (message) {
-        case "User registered successfully":
+        case "user successfully created!":
           // Reset the form after successful registration
           setEmail("");
           setPassword("");
