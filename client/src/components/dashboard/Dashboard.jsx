@@ -13,6 +13,7 @@ export default function Dashboarddata() {
   const [openForm, setOpenform] = useState(false);
   const [projects, setProjects] = useState([]);
   const [filterProjects, setFilterProjects] = useState("");
+  const [notificationBar, setNotificationBar] = useState(false);
 
   // get the current month name with the year
 
@@ -55,7 +56,10 @@ useEffect(() => {
 
 
   return (
-    <div className="userdatas">
+    <div className="userdatas" style={{
+      gridTemplateColumns: notificationBar?'70% 30%':'76% 24%',
+      
+      }}>
       {errorMessage != "" && (
         <Error message={errorMessage} setErrorMessage={setErrorMessage} />
       )}
@@ -173,9 +177,13 @@ useEffect(() => {
             </div>
           </div>
         </div>
-        {projects?<ProjectList filterProjects={filterProjects} projects={projects}/>:<Loading/>}
+        {projects ? (
+          <ProjectList filterProjects={filterProjects} projects={projects} />
+        ) : (
+          <Loading />
+        )}
       </div>
-      <Notification id = {id}/>
+      <Notification setNotificationBar={setNotificationBar} id={id} />
     </div>
   );
 }

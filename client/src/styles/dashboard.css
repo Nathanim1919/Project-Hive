@@ -139,7 +139,7 @@ section.dashboard {
 
 .userdatas {
   display: grid;
-  grid-template-columns: 75% 25%;
+  transition:all .3s ease-in-out;
 }
 
 .userdatas .projects {
@@ -393,96 +393,7 @@ section.dashboard {
   border-radius: 40px;
 }
 
-.mes-not {
-  background-color: rgb(255, 255, 255);
-  border-top-left-radius: 40px;
-  display: grid;
-  margin: 0.5rem;
-  grid-template-columns: 1fr;
-}
 
-.mes-not .messages {
-  background-color: rgb(255, 255, 255);
-}
-
-/* notification styles */
-.notifications {
-  max-height: 80vh;
-  color: #272626;
-  position: relative;
-  border-radius: 10px;
-}
-.notification-list {
-  position: relative;
-  color: #333;
-  max-height: 100%;
-  overflow: auto;
-  display: grid;
-  padding: 0.5rem;
-  gap: 0.5rem;
-  background-color: #fff;
-}
-.notification-list > div {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem;
-  border-radius: 10px;
-  gap: 1rem;
-  background-color: #f7f3f3b9;
-  border: 1px solid #dddddd00;
-  cursor: pointer;
-  transition:all 0.2s ease-in-out;
-}
-
-.notification-list > div .logo {
-  width: 30px;
-  height: 30px;
-  background-color: #ffffff;
-  border-radius: 50%;
-  font-size: 1.4rem;
-  display: grid;
-  place-items: center;
-  color: red;
-}
-.notification-list > div:hover {
-  background-color: #ffffff;
-  position:relative;
-  transform:scale(1.03);
-  z-index:5;
-  box-shadow:0 7px 16px rgba(0,0,0,.1);
-}
-.notification-list > div p {
-  font-size: 0.7rem;
-}
-.notification-list > div p:nth-of-type(2) {
-  color: #807c7c;
-}
-.notification-list > div div.message {
-  display: flex;
-  flex-direction: column;
-}
-.notification-list > div div.message > * {
-  margin: 0;
-}
-.notify{
-  background-color:#504d4d;
-  border:1px solid #333;
-}
-/* 
-.unread{
-  font-weight:bolder;
-}
-.read{
-  font-weight:200;
-} */
-.notify .message{
-  text-align:left;
-}
-.notify .message p:nth-child(1){
-  font-size:.7rem;
-  color:#444343;
-  font-weight:bolder;
-}
 
 @keyframes animate {
   0% {
