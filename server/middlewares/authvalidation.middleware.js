@@ -1,49 +1,51 @@
-const validator = require('validate');
-const registerValidation = async (req, res, next) => {
+const validator = require('validatorjs');
+
+const registerValidation = (req, res, next) => {
     const validateRule = {
-        "fullname": "required|string|min:3",
-        "email": "required|email",
-        "code": "required|string"
+        email: 'required|email',
+        code: 'required|string'
+    };
+
+    const validation = new validator(req.body, validateRule);
+
+    if (validation.fails()) {
+        const errors = validation.errors.all();
+        return res.status(400).json({
+            success: false,
+            message: 'Validation failed',
+            errors: errors
+        });
     }
 
-    await validator(req.body, validateRule, {}, (err, status) => {
-        if (!status) {
-            res.status(412)
-                .send({
-                    success: false,
-                    message: 'Validation failed',
-                    data: err
-                })
-        } else {
-            next()
-        }
-    }).catch(err => console.log(err))
-}
+    next();
+};
 
 
 
-const loginValidation = async (req, res, next) => {
+const loginValidation = (req, res, next) => {
     const validateRule = {
-        'email': 'required|email',
-        'password': 'required|min:6',
+        email: 'required|email',
+        password: 'required|min:2'
+    };
+
+    const validation = new validator(req.body, validateRule);
+
+    if (validation.fails()) {
+        const errors = validation.errors.all();
+        return res.status(400).json({
+            success: false,
+            message: 'Validation failed',
+            errors: errors
+        });
     }
 
-    await validator(req.body, validateRule, {}, (err, status) => {
-        if (!status) {
-            res.status(412)
-                .send({
-                    success: false,
-                    message: 'Validation failed',
-                    data: err
-                })
-        } else {
-            next()
-        }
-    }).catch(err => console.log(err))
-}
+    next();
+};
+
+
 
 
 module.exports = {
     registerValidation,
     loginValidation
-}
+};

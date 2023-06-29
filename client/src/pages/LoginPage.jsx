@@ -14,39 +14,45 @@ export default function LoginPage() {
 
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
-    setIsLoading(true);
-    e.preventDefault();
 
-    try {
-      const response = await axios.post("http://localhost:5000/auth/login", {
-        email,
-        password,
-      });
+  
+const handleLogin = async (e) => {
+  setIsLoading(true);
+  e.preventDefault();
 
-      const { token, message } = response.data;
+  try {
+    const response = await axios.post("http://localhost:5000/auth/login", {
+      email,
+      password,
+    });
 
-      // Store the token in local storage for subsequent requests
-      localStorage.setItem("token", token);
+    const { token, message, id } = response.data;
 
-     
-
-      if (message === "Logged in successfully") {
-        // Redirect to the appropriate page after successful login
-        navigate(`/user/${response.data.userId}`);
-      } else {
-        // Handle login error
-        console.error("Login error:", message);
-        // Display an error message to the user
-        // ...
-        setErrorMessage(message);
+    if (message === "Logged in successfully") {
+      try {
+        localStorage.setItem("token", token);
+        axios.defaults.headers.common["authorization"] = `Bearer ${token}`;
+        navigate(`/user/${id}`);
+      } catch (error) {
+        console.error("Error storing token in local storage:", error);
+        setErrorMessage(
+          "An error occurred during login. Please try again later."
+        );
       }
-      
-    } catch (error) {
-      setErrorMessage("Internal server error");
+    } else {
+      console.error("Login error:", message);
+      setErrorMessage(
+        "Invalid credentials. Please check your email and password."
+      );
     }
-    setIsLoading(false);
-  };
+  } catch (error) {
+    console.error("Server error:", error);
+    setErrorMessage("An error occurred. Please try again later.");
+  }
+  setIsLoading(false);
+};
+
+
 
   return (
     <>

@@ -7,7 +7,7 @@ import Error from "../ShowError/error";
 import ProjectList from "../project/projectList";
 import Notification from "../notification/Notification";
 import { getCurrentDateFormat } from "../../functions.js";
-import Loading from '../Loading/Loading'
+import Loading from "../Loading/Loading";
 
 export default function Dashboarddata() {
   const [openForm, setOpenform] = useState(false);
@@ -38,28 +38,36 @@ export default function Dashboarddata() {
     (project) => project.status === "Cancelled"
   );
 
-useEffect(() => {
-  const getProjects = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:5000/user/${id}/projects`
-      );
-      setProjects(response.data.projects);
-      setErrorMessage("");
-    } catch (error) {
-      setErrorMessage("Unable to fetch projects, please try again later.");
-    }
-  };
+  useEffect(() => {
+    const getProjects = async () => {
+      const token = localStorage.getItem("token");
+      const config = {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      };
 
-  getProjects();
-}, [id, openForm]);
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/user/${id}/projects`
+        );
+        setProjects(response.data.projects);
+        setErrorMessage("");
+      } catch (error) {
+        setErrorMessage("Unable to fetch projects, please try again later.");
+      }
+    };
 
+    getProjects();
+  }, [id, openForm]);
 
   return (
-    <div className="userdatas" style={{
-      gridTemplateColumns: notificationBar?'70% 30%':'76% 24%',
-      
-      }}>
+    <div
+      className="userdatas"
+      style={{
+        gridTemplateColumns: notificationBar ? "70% 30%" : "76% 24%",
+      }}
+    >
       {errorMessage != "" && (
         <Error message={errorMessage} setErrorMessage={setErrorMessage} />
       )}

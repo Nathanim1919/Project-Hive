@@ -1,24 +1,25 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
 const cors = require('cors');
-const authRouter = require('./routes/authRoutes.js')
+const authRouter = require('./routes/authRoutes.js');
 const profileRouter = require('./routes/profileRoutes.js');
 const projectRouter = require('./routes/projectRoutes.js');
-const {userLogoutController} = require('./controllers/authController.js')
+const {
+    userLogoutController
+} = require('./controllers/authController.js');
+
 const app = express();
 
+dotenv.config();
 
-// Middleware to parse JSON data with increased payload size limit
 app.use(express.json({
     limit: '50mb'
 }));
-
-
 app.use(bodyParser.json({
     limit: '50mb'
 }));
-
 app.use(bodyParser.urlencoded({
     extended: true,
     limit: '50mb',
@@ -26,14 +27,12 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(cors({
-    origin: ['http://localhost:3000'],
+    origin: 'http://localhost:3000',
     methods: ['GET', 'HEAD', 'PUT', 'POST', 'DELETE'],
     credentials: true,
     allowedHeaders: ['Content-Type'],
 }));
 
-
-// Connect to MongoDB database
 mongoose.connect('mongodb://127.0.0.1:27017/projecthive', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -41,20 +40,10 @@ mongoose.connect('mongodb://127.0.0.1:27017/projecthive', {
     .then(() => console.log('Connected to MongoDB'))
     .catch(error => console.log(error));
 
-
-
-// Define routes
-// Add your routes here
-
 app.get('/', userLogoutController);
 app.use('/auth', authRouter);
 app.use('/user', profileRouter);
 app.use('/user/:id', projectRouter);
 
-
-
-
-
-// Start the server
 const port = 5000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));

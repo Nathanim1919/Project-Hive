@@ -31,35 +31,48 @@ export default function DashboardPage() {
   const options = { month: "long", year: "numeric" };
   const formattedDate = currentDate.toLocaleDateString("en-US", options);
 
-  // get active user
+  // Client-side code
   useEffect(() => {
     const getUser = async () => {
-      const user = await axios.get(`http://localhost:5000/user/${id}`);
-      setActiveUser(user.data.user);
-      console.log(activeUser.notifications);
-    }
+      try {
+        const token = localStorage.getItem("token"); // Assuming you store the token in the browser's local storage
+        const config = {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        };
+
+        console.log(config.headers.authorization);
+
+        const response = await axios.get(
+          `http://localhost:5000/user/${id}`
+        );
+        setActiveUser(response.data.user);
+      } catch (error) {
+        console.error("Error getting user:", error);
+        // Handle the error appropriately (e.g., show an error message to the user)
+      }
+    };
 
     getUser();
   }, [id]);
 
- const handleLogout = async () => {
-   try {
-     await axios.get("http://localhost:5000");
+  const handleLogout = async () => {
+    try {
+      await axios.get("http://localhost:5000");
 
-     // Clear the token from local storage
-     localStorage.removeItem("token");
+      // Clear the token from local storage
+      localStorage.removeItem("token");
 
-     // Redirect the user to the logout page or home page
-    //  navigate("/");
-   } catch (error) {
-     console.error("Logout error:", error);
-     // Handle error
-     // Display an error message to the user
-     // ...
-   }
- };
-
-
+      // Redirect the user to the logout page or home page
+      //  navigate("/");
+    } catch (error) {
+      console.error("Logout error:", error);
+      // Handle error
+      // Display an error message to the user
+      // ...
+    }
+  };
 
   return (
     <section className="dashboard">

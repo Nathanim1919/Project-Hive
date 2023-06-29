@@ -1,4 +1,5 @@
 .progress > * {
+  transition: all 2s ease-in-out;
   margin: 0.1rem;
 }
  .progress .upperProgressBar {
@@ -9,7 +10,6 @@
 }
  .progress .upperProgressBar .innerProgressBar {
   position: absolute;
-  width: 80%;
   height: 100%;
   left: 0;
   top: 0;

@@ -8,6 +8,8 @@ const {
     removeEmployee,
     updateProject
 } = require('../controllers/projectController');
+//Importing the JWT verifyer from auth middleware 
+const verifyToken = require("../middlewares/auth.middleware")
 
 
 const {

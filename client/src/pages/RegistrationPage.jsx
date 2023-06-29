@@ -13,7 +13,6 @@ export default function RegistrationPage() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [avatar, setAvatar] = useState("");
   const [code, setCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -57,7 +56,6 @@ export default function RegistrationPage() {
           // Reset the form after successful registration
           setEmail("");
           setPassword("");
-          setConfirmPassword("");
           setCode("");
           navigate("/login");
           break;
@@ -121,17 +119,6 @@ export default function RegistrationPage() {
                 id="pasword"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <input
-                placeholder="confirm Password"
-                type="password"
-                id="pasword"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
             </div>
