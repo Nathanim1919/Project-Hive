@@ -1,0 +1,71 @@
+.task-container{
+    margin-right: 1rem;
+    border-radius: 10px;
+}
+
+#task-container{
+    height:80vh;
+    overflow:hidden;
+    padding:2rem;
+    overflow-y:auto;
+    background-color:#ffffff;
+    box-shadow:0 6px 15px rgba(0, 0, 0, 0.041)
+}
+
+.task-container h4{
+    text-align: left;
+    margin-left: .4rem;
+    display:flex;
+    font-weight:100;
+    align-items:center;
+    gap:.5rem;
+    font-size:.9rem;
+    color:#686767;
+}
+.projects-container{
+    margin: .3rem;
+    
+}
+
+.more-info{
+    color:#000;
+}
+.taskInformation{
+    animation:anim .5s linear;
+}
+
+.taskInformation p{
+    font-size:
+}
+
+
+.tasks-list{
+    display:grid;
+    font-size:.8rem;
+    grid-template-columns:.3fr .2fr .2fr .2fr;
+    padding: 0rem 2rem;
+    background-color: rgb(255, 255, 255);
+    margin: .3rem;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    border: 1px solid rgb(245, 242, 242);
+    border-radius:10px;
+}
+.tasks-list > div{
+    display:flex;
+    flex-wrap:wrap;
+    color:#979292;
+}
+.tasks-list > div > p:nth-child(1){
+    font-weight:400;
+    color:#302e2e;
+}
+.tasks-list > *{
+    display:flex;
+    gap:.4rem;
+    place-items:center;
+}
+
+.tasks-list:hover{
+    background-color:#f8f4f4;
+}

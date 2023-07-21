@@ -5,7 +5,7 @@ import {
   AiFillPlusCircle,
   AiOutlineUnorderedList,
 } from "react-icons/ai";
-import {GiProgression} from 'react-icons/gi'
+import { GiProgression } from "react-icons/gi";
 import { FcPlanner } from "react-icons/fc";
 
 import { NavLink } from "react-router-dom";
@@ -14,7 +14,8 @@ import { useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import TaskInfo from "./TaskInfo.jsx";
 import TaskProgress from "./taskProgress";
-import '../../styles/task/taskList.css'
+import "../../styles/task/taskList.css";
+import TaskFilter from "./taskFilter.jsx";
 
 export default function TaskList({ createTask, setCreateTask }) {
   const [tasks, setTasks] = useState([]);
@@ -22,6 +23,10 @@ export default function TaskList({ createTask, setCreateTask }) {
   const [selectedTask, setSelectedTask] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isupdated, setIsupdated] = useState(false);
+  const [taskFilter, setTaskFilter] = useState(false);
+  const [priority, setPriority] = useState("");
+  const [status, setStatus] = useState("");
+  const [filteredTask, setFilteredTask] = useState([]);
 
   // task edit tools
   const [loading, setLoading] = useState(false);
@@ -31,16 +36,19 @@ export default function TaskList({ createTask, setCreateTask }) {
     const getTasks = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/user/${id}/projects/${projectId}/getTasks`
+          `http://localhost:5000/user/${id}/projects/${projectId}/getTasks`,
+          priority,
+          status
         );
         setTasks(response.data.tasks);
       } catch (error) {
         console.log(error);
       }
       setLoading(false);
+      console.log(filteredTask);
     };
     getTasks();
-  }, [createTask, projectId, isupdated, selectedTask]);
+  }, [createTask, projectId, isupdated, selectedTask, filteredTask]);
 
   const findSingleTask = (id) => {
     const task = tasks.find((item) => item._id === id);
@@ -51,19 +59,31 @@ export default function TaskList({ createTask, setCreateTask }) {
   return (
     <section>
       {loading && <Loading />}
-      <div className="task-list-header">
-        <h1></h1>
-        <div>
-          <button>
-            <AiOutlineUnorderedList />
-            Filter Tasks
-          </button>
-          <button onClick={() => setCreateTask(true)}>
-            <AiFillPlusCircle className="add" />
-            Add new task
-          </button>
+      {(
+        <div className="task-list-header">
+          <h1></h1>
+          <div>
+            <button onClick={() => setTaskFilter(true)}>
+              <AiOutlineUnorderedList />
+              Filter Tasks
+            </button>
+            <button onClick={() => setCreateTask(true)}>
+              <AiFillPlusCircle className="add" />
+              Add new task
+            </button>
+          </div>
         </div>
-      </div>
+      )}
+      {/* {taskFilter && (
+        <TaskFilter
+          setPriority={setPriority}
+          setStatus={setStatus}
+          priority={priority}
+          status={status}
+          tasks={tasks}
+          setFilteredTask={setFilteredTask}
+        />
+      )} */}
       <div
         className={`task-container ${isExpanded ? "expanded" : "collapsed"}`}
       >

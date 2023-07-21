@@ -6,19 +6,17 @@ import axios from "axios";
 import Error from "../ShowError/error";
 import ProjectList from "../project/projectList";
 import Notification from "../notification/Notification";
+import ReportList from "../report/reports";
 import { getCurrentDateFormat } from "../../functions.js";
 import Loading from "../Loading/Loading";
 
-export default function Dashboarddata() {
-  const [openForm, setOpenform] = useState(false);
-  const [projects, setProjects] = useState([]);
+export default function Dashboarddata({ activeUser, projects,openForm, setOpenform }) {
   const [filterProjects, setFilterProjects] = useState("");
   const [notificationBar, setNotificationBar] = useState(false);
 
   // get the current month name with the year
 
   const [errorMessage, setErrorMessage] = useState("");
-
   const { id } = useParams();
 
   // PROJECT STATUS COUNT
@@ -37,29 +35,6 @@ export default function Dashboarddata() {
   const cancelledProjects = projects.filter(
     (project) => project.status === "Cancelled"
   );
-
-  useEffect(() => {
-    const getProjects = async () => {
-      const token = localStorage.getItem("token");
-      const config = {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      };
-
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/user/${id}/projects`
-        );
-        setProjects(response.data.projects);
-        setErrorMessage("");
-      } catch (error) {
-        setErrorMessage("Unable to fetch projects, please try again later.");
-      }
-    };
-
-    getProjects();
-  }, [id, openForm]);
 
   return (
     <div
@@ -177,12 +152,14 @@ export default function Dashboarddata() {
               <p>Total projects</p>
             </div>
 
-            <div
-              className="createProjecticon"
-              onClick={() => setOpenform(true)}
-            >
-              <AiOutlinePlus />
-            </div>
+            {activeUser && activeUser.position === "Project Executive" && (
+              <div
+                className="createProjecticon"
+                onClick={() => setOpenform(true)}
+              >
+                <AiOutlinePlus />
+              </div>
+            )}
           </div>
         </div>
         {projects ? (
@@ -191,7 +168,9 @@ export default function Dashboarddata() {
           <Loading />
         )}
       </div>
-      <Notification setNotificationBar={setNotificationBar} id={id} />
+      {activeUser.position !== 'Project Executive'?
+      <Notification setNotificationBar={setNotificationBar} id={id} />:
+      <ReportList setNotificationBar={setNotificationBar} id={id} />}
     </div>
   );
 }

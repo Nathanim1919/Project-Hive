@@ -37,10 +37,11 @@
   padding: 0.5rem;
   border-radius: 10px;
   gap: 1rem;
-  background-color: #f7f3f3b9;
+  background-color: #ffffffb9;
   border: 1px solid #dddddd00;
   cursor: pointer;
   transition:all 0.2s ease-in-out;
+  border: 1px solid #eee;
 }
 
 .notification-list > div .logo {
@@ -113,9 +114,8 @@
 }
 
 .mes-not .notifications .notification-list .activeNotification{
-    background-color:rgb(255, 255, 255);
+    background-color:#fdfafa;
     position:relative;
-    box-shadow:0 7px 18px rgba(0, 0, 0, 0.048);
 }
 
 .close-notify{
@@ -126,19 +126,22 @@
 }
 
 .notify-icons{
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   padding: .3rem 0;
 }
 .notify-icons > div{
-  width: 23px;
-  height: 23px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background-color: #eee;
   display: grid;
   place-items: center;
   border:1px solid #f7f4f4;
+  font-size: .7rem;
 }
 .notify-icons > div:hover{
   background-color:#fff;

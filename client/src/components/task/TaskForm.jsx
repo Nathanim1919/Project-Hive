@@ -42,10 +42,14 @@ export default function CreateTask({ setCreateTask, project }) {
           project: projectId,
         };
 
+        
+
+        console.log('responce is here');
         const responce = await axios.post(
           `http://localhost:5000/user/${id}/projects/${projectId}/createTask`,
           taskData
         );
+        console.log(responce);
       } catch (error) {
         console.log(error);
       }

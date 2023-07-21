@@ -8,6 +8,7 @@ import DashboardPage from './pages/DashboardPage';
 import ProjectDetailPage from './components/project/ProjectDetails';
 import ProfilePage from './pages/ProfilePage';
 import Loading from '../src/components/Loading/Loading';
+import ReportingPage from './pages/ReportingAnalyticsPage';
 
 function App() {
   const [loading, setLoading] = useState(true);

@@ -1,27 +1,16 @@
-const Notification = require("./path/to/notificationModel");
+ module.exports.createNotification = async (project, User, Notification, message, type) => {
+     // Create a single notification for all team members
+     const notification = await Notification.create({
+         recipients: project.team,
+         message: message,
+         type: type,
+     });
 
-// Create a new notification
-const createNotification = async (recipientId, message, type, data) => {
-    try {
-        const notification = new Notification({
-            recipient: recipientId,
-            message,
-            type,
-            data,
-        });
-
-        await notification.save();
-        console.log("Notification created:", notification);
-    } catch (error) {
-        console.error("Error creating notification:", error);
-    }
-};
-
-// Usage example
-createNotification(
-    "recipientUserId",
-    "The project has been completed successfully.",
-    "projectCompletion", {
-        projectId: "projectId123"
-    }
-);
+     // Update the notifications field of team members
+     const userPromises = project.team.map(async (teamMember) => {
+         const user = await User.findById(teamMember);
+         user.notifications.push(notification);
+         await user.save();
+     });
+     await Promise.all(userPromises);
+ }

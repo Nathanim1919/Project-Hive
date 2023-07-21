@@ -4,6 +4,7 @@ import { AiFillEdit } from "react-icons/ai";
 import { BiArrowBack } from "react-icons/bi";
 import { NavLink, useParams } from "react-router-dom";
 import ProjectUpdateForm from "../updateForms/ProjectUpdateForm";
+import ReportForm from './projectReport'
 
 const ProjectDetailHeader = ({
   project,
@@ -14,6 +15,7 @@ const ProjectDetailHeader = ({
 }) => {
   const [activeLink, setActiveLink] = useState("Overview");
   const [updateProjct, setUpdateProjct] = useState(false);
+  const [openReportPage, setOpenReportPage] = useState(true);
   const { id, projectId } = useParams();
 
   return (
@@ -52,6 +54,12 @@ const ProjectDetailHeader = ({
               />
             )}
           </div>
+          {project.status === "Completed" && openReportPage && (
+            <ReportForm
+              setOpenReportPage={setOpenReportPage}
+              project={project}
+            />
+          )}
         </div>
         <div className="pro-description_navigation">
           <p>{project.description}</p>

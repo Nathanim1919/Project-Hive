@@ -1,0 +1,45 @@
+.reportPage{
+    width: 70vw;
+    border: 1px solid #eee;
+    margin: auto;
+    margin-top: 2rem;
+    padding: 1rem;
+
+}
+
+.teaminfo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .5rem;
+    flex-wrap: wrap;
+}
+
+.teaminfo >* {
+    background-color: #fafafa;
+    padding: 1rem;
+    flex: 1;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, 0.034);
+    border: 1px solid #eee;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column
+}
+.teaminfo >*>*{
+ margin: 0;
+}
+.teaminfo >* h2{
+ font-size: 2rem;
+}
+.teaminfo >* p{
+ font-size: .8rem;
+ color: #494848;
+}
+
+.reportPage .buttons{
+    display: flex;
+    gap: 1rem;
+}
+.report_summary > p{
+    text-align: left;
+}

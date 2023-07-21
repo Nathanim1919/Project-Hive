@@ -11,68 +11,68 @@ import { SiGotomeeting } from "react-icons/si";
 import { CgProfile } from "react-icons/cg";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import ProfilePage from "./ProfilePage";
 import Dashboarddata from "../components/dashboard/Dashboard";
+import Alltasks from "../components/task/alltasks";
 
 export default function DashboardPage() {
   // states
   const [activeUser, setActiveUser] = useState({});
-  // const [projects, setProjects] = useState([]);
+  const [openTaskPage, setOpenTaskPage] = useState(false);
   const [openDashBoardPage, setOpenDashBoardPage] = useState(true);
   const [openProfilePage, setOpenProfilePage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [projects, setProjects] = useState([]);
+  const [openForm, setOpenform] = useState(false);
   const { id } = useParams();
-
-  const navigate = useNavigate();
 
   // get the current month name with the year
   const currentDate = new Date();
   const options = { month: "long", year: "numeric" };
   const formattedDate = currentDate.toLocaleDateString("en-US", options);
 
-  // Client-side code
   useEffect(() => {
     const getUser = async () => {
+      const token = localStorage.getItem("token");
       try {
-        const token = localStorage.getItem("token"); // Assuming you store the token in the browser's local storage
-        const config = {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        };
-
-        console.log(config.headers.authorization);
-
-        const response = await axios.get(
-          `http://localhost:5000/user/${id}`
-        );
+        const response = await axios.get(`http://localhost:5000/user/${id}`);
         setActiveUser(response.data.user);
       } catch (error) {
         console.error("Error getting user:", error);
-        // Handle the error appropriately (e.g., show an error message to the user)
       }
     };
 
     getUser();
   }, [id]);
 
-  const handleLogout = async () => {
-    try {
-      await axios.get("http://localhost:5000");
+  useEffect(() => {
+    const getProjects = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/user/${id}/projects`
+        );
 
-      // Clear the token from local storage
-      localStorage.removeItem("token");
+        if (activeUser && activeUser.position !== "Project Executive") {
+          setProjects(
+            response.data.projects.filter((project) =>
+              project.team.some((member) => member.id === activeUser.id)
+            )
+          );
+        } else {
+          setProjects(response.data.projects);
+        }
 
-      // Redirect the user to the logout page or home page
-      //  navigate("/");
-    } catch (error) {
-      console.error("Logout error:", error);
-      // Handle error
-      // Display an error message to the user
-      // ...
+        setErrorMessage("");
+      } catch (error) {
+        setErrorMessage("Unable to fetch projects, please try again later.");
+      }
+    };
+
+    if (activeUser) {
+      getProjects();
     }
-  };
+  }, [id, openForm, activeUser]);
 
   return (
     <section className="dashboard">
@@ -108,19 +108,32 @@ export default function DashboardPage() {
               onClick={() => {
                 setOpenDashBoardPage(true);
                 setOpenProfilePage(false);
+                setOpenTaskPage(false);
               }}
             >
               <AiOutlineHome />
+              <span>Dashboard</span>
             </div>
-            <div className="project">
-              <AiOutlineProject />
-            </div>
+            {activeUser.position !== "Project Executive" && (
+              <div
+                className="project"
+                onClick={() => {
+                  setOpenTaskPage(true);
+                  setOpenDashBoardPage(false);
+                  setOpenProfilePage(false);
+                }}
+              >
+                <AiOutlineProject />
+                <span>Tasks</span>
+              </div>
+            )}
             <div className="event">
               <SiGotomeeting />
+              <span>Announcement</span>
             </div>
-            <div className="task">
+            {/* <div className="task">
               <BiTask />
-            </div>
+            </div> */}
           </div>
 
           <div className="lowericon">
@@ -129,19 +142,32 @@ export default function DashboardPage() {
                 onClick={() => {
                   setOpenDashBoardPage(false);
                   setOpenProfilePage(true);
+                  setOpenTaskPage(false);
                 }}
               >
                 <CgProfile />
               </NavLink>
+              <span>Profile</span>
             </div>
             <div className="logout">
-              <NavLink onClick={handleLogout}>
+              <NavLink>
                 <AiOutlineLogout />
               </NavLink>
+              <span>Logout</span>
             </div>
           </div>
         </div>
-        {openDashBoardPage && <Dashboarddata />}
+        {openTaskPage && (
+          <Alltasks activeUser={activeUser} projects={projects} />
+        )}
+        {openDashBoardPage && (
+          <Dashboarddata
+            activeUser={activeUser}
+            projects={projects}
+            openForm={openForm}
+            setOpenform={setOpenform}
+          />
+        )}
         {openProfilePage && <ProfilePage />}
       </main>
     </section>

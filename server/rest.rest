@@ -1,1 +1,1 @@
-GET http://localhost:5000/user/6494689e8e319e8f2c16f11f,{Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTQ2ODllOGUzMTllOGYyYzE2ZjExZiIsImlhdCI6MTY4ODA0ODQ3NX0.h5ylGqbULTzyvjQl9mANXzXZN8mOqf8o2Ct2wOTSGbg}
+http://localhost:5000/user/6488b7f19856c524a4b0b06c/projects

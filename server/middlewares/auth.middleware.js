@@ -2,17 +2,19 @@ const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
     try {
-        const {
-            authorization
-        } = req.headers;
-        console.log('Authorization Header:', authorization);
+        const authorizationHeader = req.headers.authorization;
 
-        if (!authorization) {
+        if (!authorizationHeader) {
             throw new Error('Authorization header missing');
         }
 
-        const token = authorization.replace('Bearer ', '');
-        console.log('Token:', token);
+        const [authType, token] = authorizationHeader.split(' ');
+
+        if (authType !== 'Bearer' || !token) {
+            throw new Error('Invalid authorization header');
+        }
+
+        console.log('Authorization token:', token);
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         console.log('Decoded:', decoded);

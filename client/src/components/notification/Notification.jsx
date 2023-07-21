@@ -44,46 +44,49 @@ const Notification = ({ id, setNotificationBar }) => {
         )}
         <p>Notifications</p>
         <div className="notification-list">
-          {activeUser.notifications
-            ?.slice()
-            .reverse()
-            .map((notify) => (
-              <div
-                key={notify._id}
-                className={`notify ${
-                  notify._id === activeNotify ? "activeNotification" : ""
-                }`}
-                onClick={() => handleNotificationClick(notify._id)}
-              >
-                <div className="message">
-                  <div className="notification-header">
-                    <div className="logo">
-                      <IoMdNotificationsOutline />
+          {activeUser.notifications &&
+            activeUser.notifications
+              ?.slice()
+              .reverse()
+              .map((notify) => (
+                <div
+                  key={notify._id}
+                  className={`notify ${
+                    notify._id === activeNotify ? "activeNotification" : ""
+                  }`}
+                  onClick={() => handleNotificationClick(notify._id)}
+                >
+                  <div className="message">
+                    <div className="notification-header">
+                      <div className="logo">
+                        <IoMdNotificationsOutline />
+                      </div>
+                      <p className="no-header">{notify.type}</p>
                     </div>
-                    <p className="no-header">{notify.type}</p>
+                    <p className="no-body">
+                      {notify._id === activeNotify
+                        ? `${notify.message.slice(0)}`
+                        : `${notify.message.slice(0, 0)}`}
+                    </p>
+                    <p className="created-date">
+                      {changeDate(notify.createdAt)}
+                    </p>
+                    {notify._id === activeNotify && (
+                      <div className="notify-icons">
+                        <div>
+                          <AiOutlineDelete />
+                        </div>
+                        <div>
+                          <CiUnread />
+                        </div>
+                        <div>
+                          <BsArrow90DegRight />
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  <p className="no-body">
-                    {notify._id === activeNotify
-                      ? `${notify.message.slice(0)}`
-                      : `${notify.message.slice(0, 0)}`}
-                  </p>
-                  <p className="created-date">{changeDate(notify.createdAt)}</p>
-                  {notify._id === activeNotify && (
-                    <div className="notify-icons">
-                      <div>
-                        <AiOutlineDelete />
-                      </div>
-                      <div>
-                        <CiUnread />
-                      </div>
-                      <div>
-                        <BsArrow90DegRight />
-                      </div>
-                    </div>
-                  )}
                 </div>
-              </div>
-            ))}
+              ))}
         </div>
       </div>
     </div>

@@ -27,11 +27,10 @@ const handleLogin = async (e) => {
     });
 
     const { token, message, id } = response.data;
+    localStorage.setItem('token', token);
 
     if (message === "Logged in successfully") {
       try {
-        localStorage.setItem("token", token);
-        axios.defaults.headers.common["authorization"] = `Bearer ${token}`;
         navigate(`/user/${id}`);
       } catch (error) {
         console.error("Error storing token in local storage:", error);

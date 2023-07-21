@@ -5,7 +5,7 @@ import { changeDate, howMuchDaysLeft } from "../../functions.js";
 import { AiOutlineCheck, AiOutlinePause, AiOutlineClose } from "react-icons/ai";
 import Loading from "../Loading/Loading";
 import LinearProgress from "../progress/linearProgress.jsx";
-
+import '../../styles/projectlist.css'
 export default function ProjectList({ projects, filterProjects }) {
   const { id } = useParams();
 

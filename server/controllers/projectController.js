@@ -1,14 +1,12 @@
 const Project = require('../models/Project.js');
 const User = require('../models/User.js');
 const Notification = require('../models/Notification.js')
+const Report = require('../models/Report.js');
+const {createNotification} = require('./notificationController')
 
 
 module.exports.createProject = async (req, res) => {
     try {
-        const {
-            id
-        } = req.params;
-
         const {
             title,
             description,
@@ -47,10 +45,11 @@ module.exports.getProjects = async (req, res) => {
             id
         } = req.params;
 
-        const projects = await Project.find()
-            .populate('tasks')
-            .populate('projectManager')
-            .populate('team');
+       const projects = await Project.find()
+           .populate('tasks')
+           .populate('projectManager')
+           .populate('team');
+
 
         res.status(200).json({
             projects
@@ -62,7 +61,6 @@ module.exports.getProjects = async (req, res) => {
         });
     }
 };
-
 
 
 module.exports.getProject = async (req, res) => {
@@ -134,22 +132,9 @@ module.exports.updateProject = async (req, res) => {
                 error: 'Project not found'
             });
         }
-
-        // Create a single notification for all team members
-        const notification = await Notification.create({
-            recipients: project.team,
-            message: `The project "${updatedProject.title}" has been updated`,
-            type: 'projectUpdate',
-        });
-
-        // Update the notifications field of team members
-        const userPromises = project.team.map(async (teamMember) => {
-            const user = await User.findById(teamMember);
-            user.notifications.push(notification);
-            await user.save();
-        });
-
-        await Promise.all(userPromises);
+        const message = 'project updated'
+        const type = 'projectUpdate'
+        createNotification(project, User, Notification, message, type);
 
         return res.status(200).json({
             message: 'Project updated successfully',
@@ -162,11 +147,6 @@ module.exports.updateProject = async (req, res) => {
         });
     }
 };
-
-
-
-
-
 
 module.exports.addEmployee = async (req, res) => {
     try {
@@ -206,8 +186,6 @@ module.exports.addEmployee = async (req, res) => {
     }
 };
 
-
-
 module.exports.removeEmployee = async (req, res) => {
     try {
         const {
@@ -240,3 +218,50 @@ module.exports.removeEmployee = async (req, res) => {
         });
     }
 };
+
+module.exports.createProjectReport = async (req, res)=>{
+    try {
+          const {
+              projectId
+          } = req.params;
+
+          const {
+            report,
+            project
+          } = req.body;
+
+          const {
+            projectManager,
+            dueDate
+          } = project
+
+          const newReport = await Report.create({
+            project: projectId,
+            projectManager,
+            completionDate:dueDate,
+            summary:report,
+          })
+
+          res.status(200).json({
+            message:"report created successfully",
+            newReport
+          })
+
+    } catch (error) {
+        console.log(error);
+    }    
+}
+
+
+
+module.exports.getReports = async (req, res) =>{
+    try{
+        const reports = await Report.find().populate('project').populate('projectManager');
+        res.status(200).json({
+            message:"report fetched successfully",
+            reports
+        })
+    }catch(error){
+        console.log(error);
+    }
+}

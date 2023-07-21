@@ -18,12 +18,6 @@ export default function ProfilePage() {
   // get active user
   useEffect(() => {
     const getUser = async () => {
-       const token = localStorage.getItem("token"); // Assuming you store the token in the browser's local storage
-       const config = {
-         headers: {
-           Authorization: `Bearer ${token}`,
-         },
-       };
       const user = await axios.get(`http://localhost:5000/user/${id}`);
       setUser(user.data.user);
     };

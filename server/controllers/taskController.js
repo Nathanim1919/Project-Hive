@@ -70,8 +70,13 @@ module.exports.createTask = async (req, res) => {
 module.exports.getTasks = async (req, res) => {
     try {
         const {
-            projectId
+            projectId,
         } = req.params;
+
+        const {
+            priority,
+            status
+        } = req.body;
 
         const tasks = await Task.find({
                 project: projectId

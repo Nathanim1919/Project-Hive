@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const verifyToken = require("../middlewares/auth.middleware")
+const varifier = require('../middlewares/auth.middleware');
 
 const {
   getUser,
@@ -10,7 +10,7 @@ const {
 
 
 router.get('/', getAllUsers);
-router.get('/:id', getUser);
+router.get('/:id',getUser);
 
 
 module.exports = router;

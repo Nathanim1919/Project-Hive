@@ -43,8 +43,6 @@ const loginValidation = (req, res, next) => {
 };
 
 
-
-
 module.exports = {
     registerValidation,
     loginValidation

@@ -20,6 +20,7 @@ app.use(express.json({
 app.use(bodyParser.json({
     limit: '50mb'
 }));
+
 app.use(bodyParser.urlencoded({
     extended: true,
     limit: '50mb',
@@ -45,5 +46,5 @@ app.use('/auth', authRouter);
 app.use('/user', profileRouter);
 app.use('/user/:id', projectRouter);
 
-const port = 5000;
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+
+app.listen(process.env.PORT, () => console.log(`Server is running on port ${process.env.PORT}`));

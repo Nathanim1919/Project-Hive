@@ -1,0 +1,184 @@
+
+/* project lists style sheet */
+.project-list {
+  overflow: auto;
+  height: 60vh;
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-bottom: 2rem;
+}
+
+.project-list a {
+  text-decoration: none;
+  color: #1d1c1c;
+}
+.project-list a:hover {
+  background-color: transparent;
+}
+.project-list .p-project {
+  display: flex;
+  animation: animate 0.3s linear;
+  flex-direction: column;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  width: 185px;
+  max-height: 170px;
+  transition: all 0.3s ease-in-out;
+  background-color: rgb(238, 238, 237);
+  border: 2px solid rgba(0, 0, 255, 0);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.project-list .p-project .pro-status-show{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  height: 100%;
+   background: linear-gradient(to right, #0000009c,#00000021);
+  content: '=';
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity .5s ease-in-out;
+  border-radius: 20px;
+  z-index: 10;
+}
+
+.project-list .p-project .pro-status-show span{
+  color: #ffffff;
+}
+.project-list .p-project .pro-status-show span >p{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 10px 20px black;
+}
+.project-list .p-project .pro-status-show span >p > *{
+  margin: 0;
+}
+.project-list .p-project .pro-status-show span p .icon,
+.project-list .p-project .pro-status-show span p>p:nth-child(1){
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: grid;
+  place-items: center;
+  padding: .5rem;
+  color: #000;
+}
+
+.project-list .p-project:hover .pro-status-show{
+   opacity: 1;
+}
+
+.project-list .p-project > * {
+  margin: 0;
+}
+
+.project-list .p-project .pro-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-list .p-project .pro-head p {
+  font-size: 0.7rem;
+}
+
+.project-list .p-project .pro-head p {
+  font-size: 0.7rem;
+}
+
+.project-list .p-project .pro-title h2 {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.project-list .p-project .progress {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.project-list .p-project .progress > * {
+  margin: 0.1rem;
+}
+.project-list .p-project .progress .upperProgressBar {
+  position: relative;
+  width: 100%;
+  height: 5px;
+  background-color: rgb(224, 228, 230);
+}
+.project-list .p-project .progress .upperProgressBar .innerProgressBar {
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  /* background-color:rgb(41, 186, 253); */
+}
+.project-list .p-project .progress p:nth-child(1) {
+  align-self: start;
+  font-size: 0.7rem;
+}
+.project-list .p-project .progress p:nth-child(3) {
+  align-self: end;
+  font-size: 0.7rem;
+}
+
+.project-list .footer-detail,
+.footer-detail .members {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-detail .members {
+  position: relative;
+}
+.footer-detail .members > div {
+  width: 25px;
+  border: 1px solid #a8a3a3;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #fff;
+  overflow: hidden;
+}
+.footer-detail .members > div:nth-child(2) {
+  position: relative;
+  left: -0.61rem;
+   background-color: #ffffff48;
+   color:rgb(255, 255, 255);
+   font-size:.7rem;
+   display:grid;
+   place-items:center;
+   backdrop-filter:blur(5px);
+}
+.footer-detail .members > div.add-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  left: -0.3rem;
+  background-color: rgb(14, 199, 255);
+  color: #fff;
+}
+.footer-detail .members > div img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.footer-detail .deadline {
+  font-size: 0.7rem;
+  background-color: rgba(73, 148, 182, 0.342);
+  padding: 0 1rem;
+  display: grid;
+  place-items: center;
+  border-radius: 40px;
+}
