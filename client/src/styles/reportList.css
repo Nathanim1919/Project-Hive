@@ -1,6 +1,28 @@
-.ReportList{
+.reportList{
     background-color:white;
     border-top-left-radius:50px;
     margin-left:5px;
     margin-top:10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.report{
+    padding: .2rem 2rem;
+    background-color: rgb(255, 255, 255);
+    text-align: left;
+    margin:.2rem .5rem;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgb(233, 228, 228);
+}
+.report:hover{
+    background-color: rgb(255, 233, 106);
+}
+.report h3{
+    font-size: .9rem;
+}
+.report p{
+    font-size: .7rem;
+    color: rgb(92, 95, 95);
 }

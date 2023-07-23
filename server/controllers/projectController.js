@@ -244,7 +244,7 @@ module.exports.createProjectReport = async (req, res)=>{
 
           res.status(200).json({
             message:"report created successfully",
-            newReport
+            newReport,
           })
 
     } catch (error) {
@@ -256,7 +256,7 @@ module.exports.createProjectReport = async (req, res)=>{
 
 module.exports.getReports = async (req, res) =>{
     try{
-        const reports = await Report.find().populate('project').populate('projectManager');
+        const reports = await Report.find().populate('project').populate('projectManager').populate('project.team');
         res.status(200).json({
             message:"report fetched successfully",
             reports

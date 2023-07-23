@@ -1,45 +1,120 @@
-.reportPage{
-    width: 70vw;
+.back-drop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  z-index: 20;
+  overflow: auto;
+}
+.back-drop > * {
+  display: flex;
+  text-align: left;
+}
+.back-drop div:nth-child(1),
+.back-drop div:nth-child(3) {
+  flex: 0;
+}
+.back-drop > * {
+  flex: 1;
+  padding: 1rem;
+}
+
+.close-page {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  position: absolute;
+  top: 2rem;
+  cursor: pointer;
+  right: 2rem;
+}
+#header{
     border: 1px solid #eee;
-    margin: auto;
-    margin-top: 2rem;
-    padding: 1rem;
-
+    background-color: #f7faf8;
 }
 
-.teaminfo{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: .5rem;
-    flex-wrap: wrap;
+.reportPage {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.reportPage > * {
+  flex: 1;
+  background-color: #ffffff;
+}
+.reportPage div:nth-child(2) {
+  flex: 0;
+}
+.reportPage div:nth-child(4) {
+  flex: 1;
+}
+.reportPage div:nth-child(1),
+.reportPage div:nth-child(5),
+.reportPage div:nth-child(6) {
+  flex: 0;
 }
 
-.teaminfo >* {
-    background-color: #fafafa;
-    padding: 1rem;
-    flex: 1;
-    box-shadow: 0 5px 6px rgba(0, 0, 0, 0.034);
+.pro-detail-info {
+  display: grid;
+  grid-template-columns: 0.3fr 0.7fr;
+  gap: 0.5rem;
+}
+.pro-detail-info > * {
+  background-color: rgb(255, 255, 255);
+  padding: 1rem;
+  border: 1px solid #eee;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.041);
+}
+
+.pro-information{
     border: 1px solid #eee;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column
-}
-.teaminfo >*>*{
- margin: 0;
-}
-.teaminfo >* h2{
- font-size: 2rem;
-}
-.teaminfo >* p{
- font-size: .8rem;
- color: #494848;
+    padding: .5rem;
 }
 
-.reportPage .buttons{
-    display: flex;
-    gap: 1rem;
+
+
+.footer-buttons {
+  display: flex;
+  gap: 1rem;
 }
-.report_summary > p{
-    text-align: left;
+.footer-buttons #roll-back-btn {
+    background-color: red;
+    
+}
+.footer-buttons #approve-btn {
+    color: #333;
+ background-color: rgb(255, 253, 253);
+   border: 1px solid red;
+}
+
+.info-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+}
+.info-list > div{
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+  box-shadow: 0 10px 16px rgba(0, 0, 0, 0.041);
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.info-list > div > *{
+    margin: 0;
+}
+
+.info-list > div h1{
+    font-size: 3rem;
 }
