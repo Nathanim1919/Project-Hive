@@ -36,6 +36,7 @@ const Notification = ({ id, setNotificationBar }) => {
 
   return (
     <div className="mes-not">
+      
       <div className="notifications">
         {activeNotify && (
           <div className="close-notify" onClick={handleNotificationClickClose}>
@@ -43,6 +44,7 @@ const Notification = ({ id, setNotificationBar }) => {
           </div>
         )}
         <p>Notifications</p>
+        
         <div className="notification-list">
           {activeUser.notifications &&
             activeUser.notifications

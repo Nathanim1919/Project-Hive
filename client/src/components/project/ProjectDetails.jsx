@@ -41,7 +41,7 @@ const ProjectDetailPage = () => {
     <section className="projectDetailSection">
       {createTask && (
         <CreateTask project={project} setCreateTask={setCreateTask} />
-      )}
+      )}    
       <ProjectDetailHeader
         project={project}
         setOverviewPage={setOverviewPage}
@@ -51,10 +51,10 @@ const ProjectDetailPage = () => {
       />
       {overviewPage && <Overview project={project} />}
       {taskPage && (
-        <TaskList createTask={createTask} setCreateTask={setCreateTask} />
+        <TaskList acti createTask={createTask} setCreateTask={setCreateTask} />
       )}
       {membersPage && <TeamMembers project={project} />}
-      {collaburationPage && <DiscussionBoard />}
+      {collaburationPage && <DiscussionBoard project={project}/>}
     </section>
   );
 };

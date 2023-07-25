@@ -6,6 +6,7 @@ import {TbForbid2} from 'react-icons/tb'
 import FAQ from "../components/faq/faq";
 import Testimonial from "../components/testimonial/testimonial";
 import Footer from "../components/footer/Footer";
+import BotpressChatbot from "../components/bot";
 import '../styles/global.css'
 import {BiRun} from 'react-icons/bi';
 import {motion} from 'framer-motion';
@@ -25,7 +26,9 @@ export default function HomePage() {
               Employee-Exclusive Platform.
             </article>
           </h1>
-          <NavLink to={'/login'}>Get Started <BiRun/></NavLink>
+          <NavLink to={"/login"}>
+            Get Started <BiRun />
+          </NavLink>
         </div>
 
         <motion.div className="hero-ill">
@@ -147,9 +150,10 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <Testimonial/>
-      <FAQ/>
-      <Footer/>
+      <Testimonial />
+      <FAQ />
+      <Footer />
+      <BotpressChatbot />
     </div>
   );
 }

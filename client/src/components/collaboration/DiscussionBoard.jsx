@@ -1,7 +1,13 @@
 import React from 'react'
+import TeamMembers from '../chat/teamMembers'
+import Chatting from '../chat/chatting';
+import "../../styles/chat/discussionBoard.css";
 
-export default function DiscussionBoard() {
+export default function DiscussionBoard({project}) {
   return (
-    <div>DiscussionBoard</div>
-  )
+    <div className='discussionBoard'>
+      <TeamMembers project={project} />
+      <Chatting/>
+    </div>
+  );
 }

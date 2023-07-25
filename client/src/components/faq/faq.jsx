@@ -58,6 +58,7 @@ function FAQ() {
     <section className="faq">
       <h1>FAQ</h1>
       <div className="faq-list">
+
         {faqData.map((item, index) => (
           <div key={index} onClick={() => toggleParagraph(index)}>
             <h2>

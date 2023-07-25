@@ -16,6 +16,7 @@ module.exports.getUser = async (req, res) => {
         res.status(200).json({
             user
         });
+       
     } catch (error) {
         console.error('Error retrieving user:', error);
         res.status(500).json({
@@ -23,7 +24,6 @@ module.exports.getUser = async (req, res) => {
         });
     }
 };
-
 
 module.exports.getAllUsers = async (req, res)=>{
     try {

@@ -45,15 +45,17 @@ const ProjectDetailHeader = ({
               {howMuchDaysLeft(Date.now(), project.dueDate)} days left
             </span>
           </div>
-          <div className="editProject">
-            <AiFillEdit onClick={() => setUpdateProjct(true)} />
-            {updateProjct && (
-              <ProjectUpdateForm
-                setUpdateProjct={setUpdateProjct}
-                project={project}
-              />
-            )}
-          </div>
+          {project.projectManager._id === id && (
+            <div className="editProject">
+              <AiFillEdit onClick={() => setUpdateProjct(true)} />
+              {updateProjct && (
+                <ProjectUpdateForm
+                  setUpdateProjct={setUpdateProjct}
+                  project={project}
+                />
+              )}
+            </div>
+          )}
           {project.status === "Completed" && openReportPage && (
             <ReportForm
               setOpenReportPage={setOpenReportPage}
