@@ -31,14 +31,14 @@ nav,.sign{
     text-decoration: none;
     color: #000;
     cursor: pointer;
-    background-color: rgb(35, 112, 253);
-    color: #fff;
+    background-color: rgb(255, 255, 255);
+    color: #0f0f0f;
     border: 1px solid rgba(34, 33, 33, 0.096);
     border-radius: 4px;
     text-transform: uppercase;
 }
 
 .sign > *:first-child{
-    color: #000;
+    color: #ffffff;
     background-color: transparent;
 }

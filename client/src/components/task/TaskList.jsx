@@ -16,7 +16,7 @@ const TaskList = ({ createTask, setCreateTask }) => {
   const [tasks, setTasks] = useState([]);
   const [selectedTask, setSelectedTask] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
-   const [isupdated, setIsupdated] = useState(false);
+  const [isupdated, setIsupdated] = useState(false);
   const [loading, setLoading] = useState(false);
   const [activeUser, setActiveUser] = useState({});
 
@@ -141,5 +141,4 @@ const TaskList = ({ createTask, setCreateTask }) => {
     </section>
   );
 };
-
 export default TaskList;
