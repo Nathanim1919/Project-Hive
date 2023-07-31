@@ -4,7 +4,7 @@ import "../../styles/chat/teammember.css";
 export default function TeamMembers({ project }) {
   return (
     <div className="teammembersSec">
-      <h1>Teams</h1>
+      <p>Teams Members</p>
       {project.team.map((member) => (
         <div id="member">
           <div className="profileSec">

@@ -1,19 +1,22 @@
 .teammembersSec {
-    background-color: rgb(244, 241, 245);
+    background-color: rgb(144, 151, 135);
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100vh;
+    padding:0 1rem;
 }
 
 #member {
     display: grid;
     grid-template-columns: .1fr .9fr;
     align-items: center;
-    width: 60%;
+    width: 90%;
     background-color: #fff;
     padding: .5rem;
     margin: .2rem;
+    box-shadow:0 4px 9px rgba(0,0,0,.1);
+    border-radius:5px;
 }
 
 .member-info {
@@ -21,7 +24,10 @@
     flex-direction: column;
 }
 .member-info h4{
-    font-size: .9rem;
+    font-size: .8rem;
+}
+.member-info p{
+    font-size: .7rem;
 }
 
 .member-info>* {
@@ -29,8 +35,8 @@
 }
 
 #member .profileSec {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     overflow: hidden;
 }

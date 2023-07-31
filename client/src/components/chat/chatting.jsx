@@ -43,7 +43,7 @@ export default function Chatting({ project }) {
 
   return (
     <div className="chatContainer">
-      <div style={{ height: "500px", overflowY: "scroll" }}>
+      <div style={{ height: "430px", overflowY: "scroll" }}>
         {chatHistory.map((msg, index) => (
           <div
             className={
