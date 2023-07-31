@@ -91,11 +91,7 @@ export default function DashboardPage() {
             <img src={activeUser.profile} alt="" />
           </div>
           <div className="user-info">
-            <h6>{`${(activeUser.name || "").slice(0, 3)} ${(
-              activeUser.name || ""
-            )
-              .split(" ")[1]
-              ?.charAt(0)}`}</h6>
+            <h6>{(activeUser.name || "").slice(0, 15)}</h6>
             <p>{activeUser.position && activeUser.position.slice(0, 21)}</p>
           </div>
         </div>

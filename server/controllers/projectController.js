@@ -2,7 +2,10 @@ const Project = require('../models/Project.js');
 const User = require('../models/User.js');
 const Notification = require('../models/Notification.js')
 const Report = require('../models/Report.js');
-const {createNotification} = require('./notificationController')
+const Chatboard = require('../models/Chatboard'); // Import the Chatboard model
+const {
+    createNotification
+} = require('./notificationController')
 
 
 module.exports.createProject = async (req, res) => {
@@ -16,6 +19,7 @@ module.exports.createProject = async (req, res) => {
             budget,
         } = req.body;
 
+        // Create the project
         const project = await Project.create({
             title,
             description,
@@ -23,20 +27,33 @@ module.exports.createProject = async (req, res) => {
             dueDate,
             priority,
             budget,
-            projectManager: null
+            projectManager: null,
         });
+
+        // Create the Chatboard associated with the project
+        const chatboard = await Chatboard.create({
+            project: project._id, // Use the _id of the created project
+            teams: [], // Initially, no team members are added
+            messages: [], // Initially, no messages are added
+        });
+
+        // Update the project's chatboard field with the created chatboard's _id
+        project.chatboard = chatboard._id;
+        await project.save();
 
         res.status(200).json({
-            meesage: "project created successfully",
-            project
+            message: 'Project and Chatboard created successfully',
+            project,
+            chatboard,
         });
-
     } catch (error) {
         res.status(500).json({
-            message: "unable to create a new project"
-        })
+            message: 'Unable to create a new project and chatboard',
+            error: error.message,
+        });
     }
-}
+};
+
 
 
 module.exports.getProjects = async (req, res) => {
@@ -45,10 +62,10 @@ module.exports.getProjects = async (req, res) => {
             id
         } = req.params;
 
-       const projects = await Project.find()
-           .populate('tasks')
-           .populate('projectManager')
-           .populate('team');
+        const projects = await Project.find()
+            .populate('tasks')
+            .populate('projectManager')
+            .populate('team');
 
 
         res.status(200).json({
@@ -93,13 +110,29 @@ module.exports.updateProject = async (req, res) => {
             progress,
             title,
             description,
-            budget,
+            internalCost,
             dueDate,
         } = req.body;
-
+        
+        
         const project = await Project.findById(projectId);
+
+       if (internalCost > 0) {
+           if (project.budgetLeft - internalCost >= 0) {
+               project.budgetLeft = project.budgetLeft - internalCost;
+               project.internalCost = project.internalCost + Number(internalCost);
+               await project.save();
+           } else {
+               return res.status(200).json({
+                   message: "Insufficient budget, please request for additional budget"
+               });
+           }
+       }
+
+
         // Remove the old project manager from the team if it exists
         if (project && project.projectManager) {
+
             const updatedTeam = project.team.filter(
                 (user) => user && user.toString() !== project.projectManager.toString()
             );
@@ -121,7 +154,7 @@ module.exports.updateProject = async (req, res) => {
             progress,
             title,
             description,
-            budget,
+            internalCost,
             dueDate,
         }, {
             new: true
@@ -147,6 +180,7 @@ module.exports.updateProject = async (req, res) => {
         });
     }
 };
+
 
 module.exports.addEmployee = async (req, res) => {
     try {
@@ -219,49 +253,49 @@ module.exports.removeEmployee = async (req, res) => {
     }
 };
 
-module.exports.createProjectReport = async (req, res)=>{
+module.exports.createProjectReport = async (req, res) => {
     try {
-          const {
-              projectId
-          } = req.params;
+        const {
+            projectId
+        } = req.params;
 
-          const {
+        const {
             report,
             project
-          } = req.body;
+        } = req.body;
 
-          const {
+        const {
             projectManager,
             dueDate
-          } = project
+        } = project
 
-          const newReport = await Report.create({
+        const newReport = await Report.create({
             project: projectId,
             projectManager,
-            completionDate:dueDate,
-            summary:report,
-          })
+            completionDate: dueDate,
+            summary: report,
+        })
 
-          res.status(200).json({
-            message:"report created successfully",
+        res.status(200).json({
+            message: "report created successfully",
             newReport,
-          })
+        })
 
     } catch (error) {
         console.log(error);
-    }    
+    }
 }
 
 
 
-module.exports.getReports = async (req, res) =>{
-    try{
+module.exports.getReports = async (req, res) => {
+    try {
         const reports = await Report.find().populate('project').populate('projectManager').populate('project.team');
         res.status(200).json({
-            message:"report fetched successfully",
+            message: "report fetched successfully",
             reports
         })
-    }catch(error){
+    } catch (error) {
         console.log(error);
     }
 }

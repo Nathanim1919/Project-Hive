@@ -130,9 +130,6 @@ section.dashboard {
   border-radius: 40px;
   margin-right: 2rem;
 }
-.profile:hover {
-  background-color: #fffdfd;
-}
 
 .profile .pic {
   width: 40px;

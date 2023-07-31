@@ -17,6 +17,7 @@ section.hero{
     display:flex;
     flex-direction:column;
     align-items:center;
+    top: 10%;
 }
 
 .hero-content > *{
@@ -35,7 +36,38 @@ section.hero{
     background-color:white;
     color:#333;
     text-decoration:none;
-    letter-spacing:3px;
+    letter-spacing:1px;
     align-self:center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
     margin:1rem;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.hero-content a::after{
+    transition: all .3s ease-in-out;
+    content: 'Click';
+    display: grid;
+    place-items: center;
+    background-color: orange;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform: translateX(-100%);
+    height: 100%;
+    z-index: 0;
+}
+
+.hero-content a:hover{
+    background-color: transparent;
+}
+
+.hero-content a:hover::after{
+     transform: translateX(0%);
+    width: 100%;
 }

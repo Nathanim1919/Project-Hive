@@ -11,7 +11,7 @@ export default function Progress({ progress, animates, total }) {
     const intervalDuration = 20; // Interval duration in milliseconds
     const frames = animationDuration / intervalDuration;
     let currentFrame = 0;
-    const progressPercent = (progress / total) * 100; // Convert progress to percentage
+    const progressPercent = ((progress / total) * 100).toFixed(0); // Convert progress to percentage
     setDegree(progressPercent);
     let progressDegree = (progressPercent / 100) * 360; // Convert progress to degrees
 

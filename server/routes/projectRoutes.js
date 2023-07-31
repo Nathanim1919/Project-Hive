@@ -10,7 +10,12 @@ const {
     createProjectReport,
     getReports
 } = require('../controllers/projectController');
-//Importing the JWT verifyer from auth middleware 
+
+const {
+    createMessage,
+    getMessages,
+} = require('../controllers/discussionController');
+ 
 
 const {
     createTask,
@@ -29,5 +34,9 @@ router.post('/projects/createProject', createProject);
 router.post('/projects/:projectId/createTask', createTask);
 router.post('/projects/:projectId/tasks/:taskid', updateTask);
 router.post('/projects/:projectId/updateProject', updateProject);
+
+// routing for chatboard
+router.get('/projects/:projectId/chatboard/:chatboard/getMessages', getMessages);
+router.post('/projects/:projectId/chatboard/:chatboard/createMessage', createMessage);
 
 module.exports = router;

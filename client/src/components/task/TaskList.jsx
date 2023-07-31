@@ -128,15 +128,16 @@ const TaskList = ({ createTask, setCreateTask }) => {
             </NavLink>
           ))}
         </div>
-        {selectedTask && selectedTask.assignedTo._id === activeUser._id && (
-          <TaskInfo
-            selectedTask={selectedTask}
-            setSelectedTask={setSelectedTask}
-            setIsExpanded={setIsExpanded}
-            setIsupdated={setIsupdated}
-            tasks={tasks}
-          />
-        )}
+        {selectedTask &&
+          selectedTask.assignedTo._id === activeUser._id && (
+            <TaskInfo
+              selectedTask={selectedTask}
+              setSelectedTask={setSelectedTask}
+              setIsExpanded={setIsExpanded}
+              setIsupdated={setIsupdated}
+              tasks={tasks}
+            />
+          )}
       </div>
     </section>
   );

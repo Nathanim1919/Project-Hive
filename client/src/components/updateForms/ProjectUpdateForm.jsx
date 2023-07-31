@@ -26,7 +26,7 @@ export default function ProjectUpdateForm({ setUpdateProjct, project }) {
   const [progress, setProgress] = useState(project.progress);
   const [title, setTitle] = useState(project.title);
   const [description, setDescription] = useState(project.description);
-  const [budget, setBudget] = useState(project.budget);
+  const [internalCost, setBudget] = useState(project.budget);
   const [dueDate, setDueDate] = useState(project.dueDate);
   const [employees, setEmployees] = useState([]);
 
@@ -56,7 +56,7 @@ export default function ProjectUpdateForm({ setUpdateProjct, project }) {
 
     getUsers();
   }, [projectManager]);
-
+  
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
@@ -69,8 +69,7 @@ export default function ProjectUpdateForm({ setUpdateProjct, project }) {
           progress,
           title,
           description,
-          budget,
-          dueDate,
+          internalCost,
         }
       );
 
@@ -106,11 +105,11 @@ export default function ProjectUpdateForm({ setUpdateProjct, project }) {
             />
           </div>
           <div>
-            <label htmlFor="budget">Project budget</label>
+            <label htmlFor="budget">How Much money you take this week?</label>
             <input
               type="Number"
               id="budget"
-              placeholder={budget}
+              placeholder='10,000 Birr'
               onChange={(e) => setBudget(e.target.value)}
             />
           </div>
@@ -150,24 +149,24 @@ export default function ProjectUpdateForm({ setUpdateProjct, project }) {
                 </div>
                 {employees &&
                   employees.map((user) => (
-                      <div
-                        key={user._id}
-                        className="employee"
-                        onClick={() => {
-                          setManager(user._id);
-                          setManagerPlaceholder(user.name);
-                          setOpenManager(false);
-                        }}
-                      >
-                        <div className="profilePic">
-                          <img src={user.profile} alt="" />
-                        </div>
-                        <div>
-                          <h5>{user.name}</h5>
-                          <p>{user.position}</p>
-                        </div>
+                    <div
+                      key={user._id}
+                      className="employee"
+                      onClick={() => {
+                        setManager(user._id);
+                        setManagerPlaceholder(user.name);
+                        setOpenManager(false);
+                      }}
+                    >
+                      <div className="profilePic">
+                        <img src={user.profile} alt="" />
                       </div>
-                    ))}
+                      <div>
+                        <h5>{user.name}</h5>
+                        <p>{user.position}</p>
+                      </div>
+                    </div>
+                  ))}
               </div>
             )}
           </div>

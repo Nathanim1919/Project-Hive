@@ -48,8 +48,6 @@ const ProjectForm = ({ setOpenform }) => {
           projectData
         );
 
-        // Handle the response and perform any necessary actions
-        console.log("Project created successfully:", response.data);
 
         // Reset the form after successful project creation
         setTitle("");

@@ -38,24 +38,28 @@ const projectSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Event'
     }],
+
     status: {
         type: String,
         enum: ['Planning', 'In Progress', 'Completed', 'On Hold', 'Cancelled'],
         default: 'Planning'
     },
+    
     budget: {
         type: Number,
         required: true
     },
-    internalCost: {
-        type: Number,
-        default: 0
-    },
+
     budgetLeft: {
         type: Number,
         default: function () {
             return this.budget;
         }
+    },
+
+    internalCost:{
+        type:Number,
+        default:0
     },
     progress: {
         type: Number,

@@ -1,4 +1,5 @@
 const express = require('express');
+const socketIO = require('socket.io');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
@@ -11,6 +12,7 @@ const {
 } = require('./controllers/authController.js');
 
 const app = express();
+
 
 dotenv.config();
 

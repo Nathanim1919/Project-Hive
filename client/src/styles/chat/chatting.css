@@ -1,0 +1,51 @@
+.chatContainer{
+    display:flex;
+    flex-direction:column;
+    height:100vh;
+      background-color:rgb(78, 223, 248);
+      position:relative;
+}
+.chatContainer:nth-child(1){
+    background-color:red;
+    flex:1;
+}
+
+.messageBox{
+    position:fixed;
+    bottom:0;
+    width:50%;
+    display:flex;
+    gap:2rem;
+    padding: 1rem 3rem;
+}
+
+.message{
+    background-color:#fff;
+    margin:.5rem;
+    width:50%;
+    text-align:left;
+    padding:.5rem;
+    box-shadow:0 7px 14px rgba(0, 0, 0, 0.048);
+    border-radius:10px 0;
+    text-shadow:0 3px 4px rgba(0,0,0,.2);
+    font-size:.8rem;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+}
+.message>*{
+    margin:0;
+}
+.message>p:nth-child(2){
+   align-self:end;
+   color:#969393;
+}
+.not-activeUser-msg{
+    right:0;
+    background-color:#333232;
+    color:#fff;
+}
+
+.messageBox button{
+    width:100px;
+}

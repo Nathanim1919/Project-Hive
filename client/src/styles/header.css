@@ -36,9 +36,14 @@ nav,.sign{
     border: 1px solid rgba(34, 33, 33, 0.096);
     border-radius: 4px;
     text-transform: uppercase;
+    border:1px solid #fff;
 }
 
 .sign > *:first-child{
+    color: #ffffff;
+    background-color: transparent;
+}
+.sign > *:nth-child(2):hover{
     color: #ffffff;
     background-color: transparent;
 }

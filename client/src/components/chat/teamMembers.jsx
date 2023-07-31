@@ -1,5 +1,5 @@
 import React from "react";
-import '../../styles/chat/teammember.css'
+import "../../styles/chat/teammember.css";
 
 export default function TeamMembers({ project }) {
   return (

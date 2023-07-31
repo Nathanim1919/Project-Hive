@@ -7,7 +7,7 @@ export default function DiscussionBoard({project}) {
   return (
     <div className='discussionBoard'>
       <TeamMembers project={project} />
-      <Chatting/>
+      <Chatting project={project}/>
     </div>
   );
 }

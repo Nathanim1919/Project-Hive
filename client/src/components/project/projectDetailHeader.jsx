@@ -5,6 +5,7 @@ import { BiArrowBack } from "react-icons/bi";
 import { NavLink, useParams } from "react-router-dom";
 import ProjectUpdateForm from "../updateForms/ProjectUpdateForm";
 import ReportForm from './projectReport'
+import axios from 'axios';
 
 const ProjectDetailHeader = ({
   project,
@@ -16,7 +17,24 @@ const ProjectDetailHeader = ({
   const [activeLink, setActiveLink] = useState("Overview");
   const [updateProjct, setUpdateProjct] = useState(false);
   const [openReportPage, setOpenReportPage] = useState(true);
+   const [activeUser, setActiveUser] = useState({});
   const { id, projectId } = useParams();
+
+
+  useEffect(() => {
+    const getUser = async () => {
+      const token = localStorage.getItem("token");
+      try {
+        const response = await axios.get(`http://localhost:5000/user/${id}`);
+        setActiveUser(response.data.user);
+      } catch (error) {
+        console.error("Error getting user:", error);
+      }
+    };
+
+    getUser();
+  }, [id]);
+
 
   return (
     <div className="projectInfo">
@@ -45,7 +63,8 @@ const ProjectDetailHeader = ({
               {howMuchDaysLeft(Date.now(), project.dueDate)} days left
             </span>
           </div>
-          {project.projectManager._id === id && (
+          {(project.projectManager && project.projectManager._id === id ||
+            (activeUser && activeUser.position === "Project Executive")) && (
             <div className="editProject">
               <AiFillEdit onClick={() => setUpdateProjct(true)} />
               {updateProjct && (
