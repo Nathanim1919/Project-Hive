@@ -5,6 +5,10 @@ const projectSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    subTitle: {
+        type: String,
+        required: true
+    },
     description: {
         type: String,
         required: true
@@ -34,17 +38,13 @@ const projectSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Task'
     }],
-    events: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Event'
-    }],
 
     status: {
         type: String,
         enum: ['Planning', 'In Progress', 'Completed', 'On Hold', 'Cancelled'],
         default: 'Planning'
     },
-    
+
     budget: {
         type: Number,
         required: true
@@ -57,10 +57,25 @@ const projectSchema = new mongoose.Schema({
         }
     },
 
-    internalCost:{
-        type:Number,
-        default:0
+    completionAcceptance: {
+        type: Boolean,
+        default: false
     },
+
+    costList: [{
+        reason: {
+            type: String,
+            required: true
+        },
+        amount: {
+            type: Number,
+            required: true
+        },
+        date: {
+            type: Date,
+            required: true
+        }
+    }],
     progress: {
         type: Number,
         default: 0

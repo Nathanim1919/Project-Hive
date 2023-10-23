@@ -12,7 +12,7 @@ const ReportForm = ({ project, setOpenReportPage }) => {
 
   useEffect(() => {
     const getUser = async () => {
-      const token = localStorage.getItem("token");
+      // const token = localStorage.getItem("token");
       try {
         const response = await axios.get(`http://localhost:5000/user/${id}`);
         setActiveUser(response.data.user);

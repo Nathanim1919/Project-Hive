@@ -7,7 +7,7 @@ import { CiUnread } from "react-icons/ci";
 import { BsArrow90DegRight } from "react-icons/bs";
 import {changeDate,getCurrentDateFormat} from '../../functions.js'
 
-const Notification = ({ id, setNotificationBar }) => {
+const Notification = ({ id, setNotificationBar,notificationBar }) => {
   const [activeUser, setActiveUser] = useState({});
   const [activeNotify, setActiveNotify] = useState(null);
 
@@ -22,11 +22,19 @@ const Notification = ({ id, setNotificationBar }) => {
     };
 
     fetchUser();
-  }, [id]);
+  }, [id, activeNotify]);
 
-  const handleNotificationClick = (notificationId) => {
-    setActiveNotify(notificationId);
-    setNotificationBar(true);
+  const handleNotificationClick = async (notificationId) => {
+    try {
+   
+      setActiveNotify(notificationId);
+      setNotificationBar(true);
+      const readNotification = await axios.post(`http://localhost:5000/user/${id}/setRead`, {
+        notificationId
+      })
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleNotificationClickClose = () => {
@@ -38,14 +46,33 @@ const Notification = ({ id, setNotificationBar }) => {
     <div className="mes-not">
       
       <div className="notifications">
-        {activeNotify && (
-          <div className="close-notify" onClick={handleNotificationClickClose}>
-            <AiOutlineClose />
-          </div>
-        )}
-        <p>Notifications</p>
+        <div className="notifiy-header">
+            <p>Notifications</p>
+        <div>
+          {
+            activeUser.notifications && (activeUser.notifications.filter(notification => notification.isRead === false)).length > 0 && < span > {
+              activeUser.notifications && (activeUser.notifications.filter(notification => notification.isRead === false)).length
+            } </span>}
+          < IoMdNotificationsOutline / >
+        </div>
+        </div>
+         {activeNotify && 
+                <div className = "close-notify"
+                    onClick = {handleNotificationClickClose}>
+                      <AiOutlineClose />
+                  </div>}
         
-        <div className="notification-list">
+        <div className = "notification-list"
+        style = {
+          {
+            overflow: notificationBar ? "visible" : "auto",
+          }
+        } >
+          <div    style = {
+          {
+            display: notificationBar ? "grid" : "none",
+          }
+        }  className="backdrop"></div>
           {activeUser.notifications &&
             activeUser.notifications
               ?.slice()
@@ -58,9 +85,14 @@ const Notification = ({ id, setNotificationBar }) => {
                   }`}
                   onClick={() => handleNotificationClick(notify._id)}
                 >
+                 
+                  
                   <div className="message">
                     <div className="notification-header">
-                      <div className="logo">
+                      <div className="logo" style={{
+                        backgroundColor: notify.isRead?"#eee":"red",
+                        color: notify.isRead?"red":"#fff"
+                      }}>
                         <IoMdNotificationsOutline />
                       </div>
                       <p className="no-header">{notify.type}</p>
@@ -70,22 +102,11 @@ const Notification = ({ id, setNotificationBar }) => {
                         ? `${notify.message.slice(0)}`
                         : `${notify.message.slice(0, 0)}`}
                     </p>
-                    <p className="created-date">
+                    <p className = {
+                      notify._id === activeNotify ? "created-date date" : "created-date"
+                    } >
                       {changeDate(notify.createdAt)}
                     </p>
-                    {notify._id === activeNotify && (
-                      <div className="notify-icons">
-                        <div>
-                          <AiOutlineDelete />
-                        </div>
-                        <div>
-                          <CiUnread />
-                        </div>
-                        <div>
-                          <BsArrow90DegRight />
-                        </div>
-                      </div>
-                    )}
                   </div>
                 </div>
               ))}

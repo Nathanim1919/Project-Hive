@@ -5,24 +5,34 @@ const taskSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+
     description: {
         type: String,
         required: true
     },
+    
     priority: {
         type: String,
         enum: ['High', 'Medium', 'Low'],
         default: 'Medium'
     },
+
     status: {
         type: String,
         enum: ['Planning', 'Inprogress', 'Completed'],
         default: 'Planning'
     },
+
+    startDate: {
+        type: Date,
+        default:new Date()
+    },
+
     dueDate: {
         type: Date,
         required: true
     },
+
     assignedTo: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -31,18 +41,17 @@ const taskSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Project'
     },
+
     progress: {
         type: Number,
         default: 0
     },
+
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
+
 });
 
 // Update status before findOneAndUpdate or findOneAndReplace operations

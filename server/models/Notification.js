@@ -7,7 +7,7 @@ const NotificationSchema = new mongoose.Schema({
     },
     isRead: {
         type: Boolean,
-        default: false,
+        default: false
     },
     type: {
         type: String,
@@ -23,10 +23,12 @@ const NotificationSchema = new mongoose.Schema({
             "meetingInvitation",
             "importantAnnouncement",
             "bugFix",
-            "milestoneAchievement",
+            "projectCompletionReportRejection",
             "paymentReminder",
             "teamInvitation",
-            "documentApproval",
+            "projectApproval",
+            "employeeAdded",
+            "employeeRemoved",
         ],
         required: true,
     },

@@ -10,7 +10,7 @@
   overflow: hidden;
 }
 
-.projectDetailSection .projectInfo .pro-title a {
+.projectDetailSection .pro-title a {
   position: absolute;
   left: 0;
   top: 0;
@@ -143,7 +143,7 @@ section.projectDetailSection .projectInfo .pro-title > div:nth-child(2) {
   transition: all 0.3s ease-in-out;
 }
 
-.project-navbar > li::after {
+.deadline .project-navbar > li::after {
   position: absolute;
   width: 0;
   height: 2px;
@@ -172,9 +172,27 @@ section.projectDetailSection
 
 .projectDetailSection .projectInfo .pro-title .deadline {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.projectDetailSection .projectInfo .pro-title .deadline > h2 {
+  position: relative;
+  top: -1rem;
+  font-size: 0.9rem;
+  color: #5a5858;
+}
+.projectDetailSection .projectInfo .pro-title .deadline > * {
+  margin: 0;
+}
+
+.projectDetailSection .projectInfo .pro-title .deadline > div {
+  display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
+  padding: 0;
 }
 .projectDetailSection .projectInfo .pro-title .deadline span {
   color: #fff;
@@ -327,9 +345,10 @@ div#progress {
   width: 500px;
   background-color: #fff;
   position: absolute;
-  right: 0;
+  right: 0rem;
   bottom: 0;
-  top: 0;
+  top: 0rem;
+  transition: all 2s ease-in-out;
 }
 
 #taskform .close-icon {
@@ -343,7 +362,13 @@ div#progress {
   border-radius: 50%;
 }
 
-#taskform form input,
+#taskform form#form {
+  position: relative;
+  right: 0;
+  width: 87%;
+}
+
+#taskform form#form input,
 #taskform textarea {
   border: 1px solid #ccc7c75b;
   width: 83%;
@@ -397,13 +422,17 @@ div#progress {
 }
 
 #taskform button {
-  background-color: transparent;
-  color: #333;
+  background-color: rgb(30, 124, 233);
+  color: #ffffff;
+  width: 50%;
   margin-top: 2rem;
-  border: 1px solid rgb(205, 207, 205);
+  border: 2px solid rgb(30, 124, 233);
+  transition: all 0.4s ease-in-out;
 }
 #taskform button:hover {
   border-color: blue;
+  background-color: transparent;
+  color: #272626;
 }
 #taskform .assignmember {
   position: relative;
@@ -414,20 +443,32 @@ div#progress {
   max-width: 300px;
   max-height: 230px;
   overflow: auto;
-  top: -5rem;
-  left: 5rem;
+  top: -2rem;
+  left: -11rem;
   box-shadow: 0 5px 13px rgba(102, 98, 98, 0.24);
   padding: 1rem;
-  display: none;
+  display: grid;
   gap: 0.5rem;
   border-radius: 10px;
 }
-#taskform .assignmember > p {
-  cursor: pointer;
+
+#taskform .assignmember .team-members .close {
+  position: absolute;
+  background-color: transparent;
+  font-size: .9rem;
+  display: grid;
+  place-items: center;
+  top: 0rem;
+  right: 0rem;
 }
 
-#taskform .assignmember:hover .team-members {
-  display: grid;
+#taskform .assignmember .team-members .close:hover{
+  background-color: transparent;
+}
+
+
+#taskform .assignmember > p {
+  cursor: pointer;
 }
 
 #taskform .assignmember .team-members > div {
@@ -435,6 +476,7 @@ div#progress {
   flex-direction: column;
   cursor: pointer;
   padding: 0.3rem 1rem;
+  border-bottom: 1px solid #eee;
 }
 #taskform .assignmember .team-members > div:hover {
   background-color: #f7f4f4;
@@ -449,4 +491,123 @@ div#progress {
 #taskform .assignmember .team-members > div > p:nth-child(1) {
   font-size: 0.7rem;
   color: #333;
+}
+
+@media screen and (max-width: 768px) {
+  .projectDetailSection {
+    overflow-y: auto;
+  }
+
+  .pro-title .title h1 {
+    font-size: 0.9rem;
+  }
+
+  .pro-title > div:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pro-title > div:nth-child(1) > * {
+    margin: 0;
+  }
+
+  .projectInfo div.pro-title div.deadline {
+    font-size: 0.8rem;
+    margin: 0 auto;
+    padding: 0 0.5rem;
+    width: 98vw;
+    position: relative;
+    left: -4rem;
+  }
+  .pro-description_navigation {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pro-description_navigation > * {
+    margin: 0;
+  }
+  .pro-description_navigation > p {
+    width: 100vw;
+    height: 100%;
+    display: grid;
+    place-items: center;
+  }
+
+  .pro-description_navigation > div {
+    background-color: green;
+  }
+
+  .project-progress,
+  .project-budget {
+    display: grid;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    place-items: center;
+    padding: 1rem;
+    gap: 3rem;
+    border: 1px solid #eee;
+    margin: 0.4rem auto;
+    width: 85vw;
+  }
+
+  .project-progress > *,
+  .project-budget > * {
+    background-color: rgb(184, 248, 184);
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+  }
+
+  .project-budget {
+    margin: 4rem auto;
+  }
+
+  .project-progress {
+    background: linear-gradient(90deg, #ffffff 0%, #f7f7f8 100%);
+  }
+  .project-progress h1,
+  .project-budget h1 {
+    font-size: 1.5rem;
+    color: rgb(52, 52, 53);
+  }
+  .project-progress p,
+  .project-budget p {
+    font-size: 0.8rem;
+    color: rgb(52, 52, 53);
+  }
+
+  .project-progress > div {
+    /* border: 1px solid #eee; */
+    border-radius: 5px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .project-budget > div > div:nth-child(1),
+  .project-budget > div:nth-child(1) {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .project-progress > div > *,
+  .project-budget > div > div:nth-child(1) > *,
+  .project-budget > div:nth-child(1) > * {
+    margin: 0;
+  }
+  .project-progress > div > p,
+  .project-budget > div > div:nth-child(1) > p {
+    color: #706e6e;
+  }
+
+  .project-budget > div {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    flex: 1;
+    padding: 1rem;
+    background: linear-gradient(90deg, #ffffff 0%, #efeff1 100%);
+  }
 }

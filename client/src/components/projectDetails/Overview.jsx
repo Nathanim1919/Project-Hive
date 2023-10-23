@@ -13,14 +13,10 @@ export default function Overview({project}) {
       const completed = project.tasks.filter((task) => task.status == "Completed")
       const planning = project.tasks.filter((task) => task.status == "Planning")
       const inprogress = project.tasks.filter((task) => task.status == "Inprogress")
-
       setPlanningtasks(planning);
       setInprogresstasks(inprogress);
       setCompletedtasks(completed);
-
-      console.log(project.tasks);
     }
-
     getTasksStatus();
   },[])
 
@@ -67,13 +63,13 @@ export default function Overview({project}) {
         <div className="internal-cost">
           <div>
             <p>Internal cost</p>
-            <h1>{project.internalCost} Birr</h1>
+            <h1>{project.budget - project.budgetLeft} Birr</h1>
           </div>
           <div className="circle-progress">
             <Progress
               animates={1000}
               total={project.budget}
-              progress={project.internalCost}
+              progress={project.budget - project.budgetLeft}
             />
           </div>
         </div>

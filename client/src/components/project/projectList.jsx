@@ -15,7 +15,7 @@ export default function ProjectList({ projects, filterProjects }) {
     return (
       <div className="project-list">
         {projects &&
-          projects.map((project) => (
+          (projects.reverse()).map((project) => (
             <NavLink to={`/user/${id}/projects/${project._id}`}>
               {(project.status === filterProjects || filterProjects === "") && (
                 <div
@@ -74,10 +74,15 @@ export default function ProjectList({ projects, filterProjects }) {
                     <p>{project.priority}</p>
                   </div>
                   <div className="pro-title">
-                    <h2>{project.title.slice(0, 20)}</h2>
+                    <h1>{project.title.slice(0, 20)}</h1>
+                    <h2>{project.subTitle.slice(0, 20)}</h2>
                   </div>
                   <LinearProgress project={project} />
                   <div className="footer-detail">
+                    < div className = {
+                      project.priority === 'High' ? "boarder red" : project.priority === 'Low'?
+                      "boarder green": "boarder yellow"
+                    } > </div>
                     <div className="members">
                       {project.projectManager && (
                         <div className="m1">
@@ -97,12 +102,13 @@ export default function ProjectList({ projects, filterProjects }) {
                     <div
                       className="deadline"
                       style={{
-                        backgroundColor:
+                        backgroundColor: howMuchDaysLeft(Date.now(), project.dueDate).startsWith('passed') ? 'rgb(255,0,0)' :
                           project.priority === "High" ? "#c3f16d" : "#67b2f8",
+                        color: howMuchDaysLeft(Date.now(), project.dueDate).startsWith('passed') ?'white':'#333'
                       }}
                     >
                       <p>
-                        {howMuchDaysLeft(Date.now(), project.dueDate)} days left
+                        {howMuchDaysLeft(Date.now(), project.dueDate)}
                       </p>
                     </div>
                   </div>

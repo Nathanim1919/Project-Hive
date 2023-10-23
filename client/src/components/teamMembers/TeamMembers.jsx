@@ -13,6 +13,8 @@ import Error from "../ShowError/error";
 import Confirmation from "../warning/confirmation";
 import Loading from "../Loading/Loading";
 import Card from './card'
+import {BiSearch} from "react-icons/bi";
+
 
 export default function TeamMembers({ project }) {
   
@@ -24,8 +26,19 @@ export default function TeamMembers({ project }) {
   const [userId, setUserId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [activeUser, setActiveUser] = useState({});
-  
+  const [searching, setSearching] = useState(false);
+  const [searchedUsers, setSearchedUsers] = useState([]);
+
   const { id, projectId } = useParams();
+
+
+    const searchUsers = (e) => {
+      setSearching(true);
+      setSearchedUsers(
+        employees.filter((user) => user.name.startsWith(e) || user.position.startsWith(e))
+      );
+    }
+
 
   // get active user
   useEffect(() => {
@@ -36,6 +49,7 @@ export default function TeamMembers({ project }) {
 
     getUser();
   }, [id]);
+
 
   useEffect(() => {
     // setLoading(true);
@@ -51,6 +65,7 @@ export default function TeamMembers({ project }) {
     };
     getUsers();
   }, []);
+
 
   const addUser = async (userId) => {
     try {
@@ -69,10 +84,12 @@ export default function TeamMembers({ project }) {
     }
   };
 
+
   const removeUser = async (userId) => {
     setOpenConfirmationBox(true);
     setUserId(userId);
   };
+
 
   useEffect(() => {
     const removeEmployee = async () => {
@@ -134,9 +151,23 @@ export default function TeamMembers({ project }) {
           <div className="close-icon" onClick={() => setOpenusersBox(false)}>
             <GrFormClose />
           </div>
-          {employees &&
-            employees.map((user) => (
-              <div className="employee" onClick={() => addUser(user._id)}>
+          <div className="member-searchBar">
+            < input type = "text"
+            name = "search"
+            placeholder = "search.."
+            onChange = {
+              (e) => searchUsers(e.target.value)
+            }
+            />
+          </div>
+          {
+          (searchedUsers.length > 0 && searching ? searchedUsers : !searching ? employees : searchedUsers)
+            .map((user) => (
+              (user.position !== "Project Executive" && user.position !== "System Administrator" && user.position !== "Project Manager" &&
+               <div className = "employee"
+                onClick = {
+                  () => addUser(user._id)
+                } >
                 <div className="personal-info">
                   <div className="profilePic">
                     <img src={user.profile} alt="" />
@@ -146,7 +177,7 @@ export default function TeamMembers({ project }) {
                     <p>{user.position}</p>
                   </div>
                 </div>
-              </div>
+              </div>)
             ))}
         </div>
       )}

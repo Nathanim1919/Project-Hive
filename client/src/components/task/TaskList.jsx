@@ -19,6 +19,7 @@ const TaskList = ({ createTask, setCreateTask }) => {
   const [isupdated, setIsupdated] = useState(false);
   const [loading, setLoading] = useState(false);
   const [activeUser, setActiveUser] = useState({});
+  const [currentProject, setCurrentProject] = useState({});
 
   const fetchCurrentUser = useCallback(async () => {
     try {
@@ -28,6 +29,18 @@ const TaskList = ({ createTask, setCreateTask }) => {
       console.error("Error getting user:", error);
     }
   }, [id]);
+
+
+  const fetchCurrentProject = useCallback(async () => {
+    try {
+       const response = await axios.get(
+         `http://localhost:5000/user/${id}/projects/${projectId}`
+       );
+       setCurrentProject(response.data.project)
+    } catch (error) {
+      
+    }
+  })
 
   const fetchTasks = useCallback(async () => {
     setLoading(true);
@@ -45,7 +58,10 @@ const TaskList = ({ createTask, setCreateTask }) => {
   useEffect(() => {
     fetchCurrentUser();
     fetchTasks();
+    fetchCurrentProject();
   }, [fetchCurrentUser, fetchTasks]);
+
+
 
   const findSingleTask = useCallback(
     (id) => {
@@ -56,18 +72,22 @@ const TaskList = ({ createTask, setCreateTask }) => {
     [tasks]
   );
 
+  
+
   return (
     <section>
       {loading && <Loading />}
-      <div className="task-list-header">
+     {
+(       (activeUser && activeUser.position === 'Project Executive') || (currentProject.projectManager && currentProject.projectManager._id === activeUser._id) )&& < div className = "task-list-header" >
         <h1></h1>
         <div>
+          {
           <button onClick={() => setCreateTask(true)}>
             <AiFillPlusCircle className="add" />
             Add new task
-          </button>
+          </button>}
         </div>
-      </div>
+      </div>}
       <div
         className={`task-container ${isExpanded ? "expanded" : "collapsed"}`}
       >
@@ -128,8 +148,8 @@ const TaskList = ({ createTask, setCreateTask }) => {
             </NavLink>
           ))}
         </div>
-        {selectedTask &&
-          selectedTask.assignedTo._id === activeUser._id && (
+        {(selectedTask &&
+          selectedTask.assignedTo._id === activeUser._id || activeUser.position === 'Project Executive' || currentProject.projectManager && currentProject.projectManager._id === activeUser._id) && (
             <TaskInfo
               selectedTask={selectedTask}
               setSelectedTask={setSelectedTask}

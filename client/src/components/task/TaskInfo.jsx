@@ -22,10 +22,12 @@ export default function TaskInfo({
   const [editPriority, setEditPriority] = useState(false);
   const [editProgress, setEditProgress] = useState(false);
   const [editAssinedTo, setEditAssinedTo] = useState(false);
+  const [editDueDate, setEditDueDate] = useState(false);
   const { id, projectId } = useParams();
 
   const [title, setUpdatedTitle] = useState("");
   const [description, setUpdatedDescription] = useState("");
+  const [dueDate, setDueDate] = useState();
 
   let currentPriority = selectedTask && selectedTask.priority;
   let currentProgress = selectedTask && selectedTask.progress;
@@ -62,8 +64,30 @@ export default function TaskInfo({
       {selectedTask && (
         <>
           <div className="info-header">
-            <div>
+            <div className="due-date">
+            {
+              editDueDate? < div className = "update-task-duedate" >
+                < input type = "date"
+                onChange = {
+                  (e) => setDueDate(e.target.value)
+                }
+                />
+                <input onClick = {
+                  () => {
+                    setEditDueDate(false);
+                    handleUpdate("dueDate", dueDate);
+                  }
+                }
+                type = "submit"
+                value = "edit"/>
+              </div>:
+              <div>
+                <div className="date-info">
               <p>Due - {changeDate(selectedTask.dueDate)}</p>
+              <span>{howMuchDaysLeft(selectedTask.startDate, selectedTask.dueDate)}</span>
+                </div>
+              <div onClick={() => setEditDueDate(true)}> <AiOutlineEdit/> </div>
+              </div>}
             </div>
             <div className="close-icon" onClick={closeTask}>
               <AiOutlineClose />

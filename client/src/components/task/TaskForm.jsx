@@ -4,13 +4,16 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Error from "../ShowError/error";
-import Loading from "../Loading/Loading";
+import {
+  GiCancel
+} from "react-icons/gi";
 
 export default function CreateTask({ setCreateTask, project }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("");
   const [dueDate, setDueDate] = useState("");
+  const [assignTask, setAssignTask] = useState(false);
   const [assignedTo, setAssignedTo] = useState(null);
   const [createdBy, setCreatedBy] = useState(null);
 
@@ -71,7 +74,7 @@ export default function CreateTask({ setCreateTask, project }) {
         />
         <h1>Create Task</h1>
         <div>
-          <form onSubmit={handleCreateTask}>
+          <form id="form" onSubmit={handleCreateTask}>
             <input
               type="text"
               placeholder="Title"
@@ -125,16 +128,18 @@ export default function CreateTask({ setCreateTask, project }) {
               </div>
             </div>
             <div className="assignmember">
-              <p>Assign to: {assignedTo}</p>
-              <div className="team-members">
-                {!project.team && <Loading />}
+              <p onClick={()=>setAssignTask(true)}>Assign to: {assignedTo}</p>
+             {assignTask && <div className="team-members">
+                <div className="close" onClick={() => setAssignTask(false)}>
+                  <GiCancel/>
+                </div>
                 {project.team.map((member) => (
                   <div onClick={() => setAssignedTo(member._id)}>
                     <p>{member.name}</p>
                     <p>{member.position}</p>
                   </div>
                 ))}
-              </div>
+              </div>}
             </div>
             <button type="submit">create</button>
           </form>

@@ -46,22 +46,25 @@ const ProjectDetailHeader = ({
           <div className="title">
             <h1>{project.title}</h1>
             <p>
-              Lead By:{" "}
+              {project.subTitle}
+            </p>
+          </div>
+          <div className="deadline">
+            <div>
+              <h5>Start-Date:</h5>
+              <p>{changeDate(project.startDate)}</p>
+              <h5>Due-Date:</h5>
+              <p>{changeDate(project.dueDate)}</p>
+              <span>
+                {howMuchDaysLeft(Date.now(), project.dueDate)}
+              </span>
+            </div>
+            <h2>Lead By:{" "}
               <span className="projectManagerName">
                 {project.projectManager
                   ? project.projectManager.name
                   : "please assign a project manager"}
-              </span>
-            </p>
-          </div>
-          <div className="deadline">
-            <h5>Start-Date:</h5>
-            <p>{changeDate(project.startDate)}</p>
-            <h5>Due-Date:</h5>
-            <p>{changeDate(project.dueDate)}</p>
-            <span>
-              {howMuchDaysLeft(Date.now(), project.dueDate)} days left
-            </span>
+              </span></h2>
           </div>
           {(project.projectManager && project.projectManager._id === id ||
             (activeUser && activeUser.position === "Project Executive")) && (
@@ -75,7 +78,8 @@ const ProjectDetailHeader = ({
               )}
             </div>
           )}
-          {project.status === "Completed" && openReportPage && (
+          {
+            project.status === "Completed" && !project.completionAcceptance && openReportPage && (
             <ReportForm
               setOpenReportPage={setOpenReportPage}
               project={project}
@@ -119,7 +123,7 @@ const ProjectDetailHeader = ({
               }}
               className={activeLink === "Members" ? "active" : "not-active"}
             >
-              Team Members: ({project.team && project.team.length})
+              Team: ({project.team && project.team.length})
             </li>
             <li
               onClick={() => {
@@ -131,7 +135,7 @@ const ProjectDetailHeader = ({
               }}
               className={activeLink === "Collaburate" ? "active" : "not-active"}
             >
-              Collaburate
+              Chat
             </li>
           </div>
         </div>

@@ -9,6 +9,8 @@ import ProjectDetailPage from './components/project/ProjectDetails';
 import ProfilePage from './pages/ProfilePage';
 import Loading from '../src/components/Loading/Loading';
 import ReportingPage from './pages/ReportingAnalyticsPage';
+import AdminPanel from './pages/AdminPanel';
+import EmployeeProfile from './pages/employeeProfile';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -30,7 +32,9 @@ function App() {
           <Route path="/register" element={<RegistrationPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/user/:id" element={<DashboardPage />} />
+          <Route path="/user/adminPanel/:id" element={<AdminPanel />} />
           <Route path="/user/:id/profile" element={<ProfilePage />} />
+          <Route path="/user/:id/userProfile" element={<EmployeeProfile />} />
           <Route
             path="/user/:id/projects/:projectId"
             element={<ProjectDetailPage />}

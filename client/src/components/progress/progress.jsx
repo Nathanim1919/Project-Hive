@@ -12,7 +12,7 @@ export default function Progress({ progress, animates, total }) {
     const frames = animationDuration / intervalDuration;
     let currentFrame = 0;
     const progressPercent = ((progress / total) * 100).toFixed(0); // Convert progress to percentage
-    setDegree(progressPercent);
+    setDegree(total === 0? 0:progressPercent);
     let progressDegree = (progressPercent / 100) * 360; // Convert progress to degrees
 
     if (progressDegree === 360) {
@@ -42,7 +42,6 @@ export default function Progress({ progress, animates, total }) {
     let counter = num;
     const intervalId = setInterval(() => {
       counter += increment;
-      console.log(counter);
       if (counter >= target) {
         clearInterval(intervalId);
       }

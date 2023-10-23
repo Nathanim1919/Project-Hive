@@ -10,6 +10,7 @@
     "employeeCode": "EMP026",
     "salary": 32000
   },
+  "ruth@gmail.com",
   {
     "id": "27",
     "email": "alem@gmail.com",
@@ -21,7 +22,6 @@
     "employeeCode": "EMP027",
     "salary": 31000
   },
-
   {
     "id": "28",
     "email": "betty@gmail.com",
@@ -255,7 +255,7 @@
     "email": "fiker2@gmail.com",
     "fullName": "Fiker Tadesse",
     "role": "Project Executive",
-    "employmentDate": "2023-11-01",
+    "employmentDate": "2022-11-01",
     "phoneNumber": "+251928901234",
     "sex": "F",
     "employeeCode": "EMP047",

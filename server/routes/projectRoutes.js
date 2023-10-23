@@ -8,7 +8,9 @@ const {
     removeEmployee,
     updateProject,
     createProjectReport,
-    getReports
+    getReports,
+    acceptProject,
+    cancleProject
 } = require('../controllers/projectController');
 
 const {
@@ -25,6 +27,8 @@ const {
 
 router.get('/projects', getProjects);
 router.get('/projects/reports', getReports);
+router.post('/projects/acceptProject', acceptProject);
+router.post('/projects/cancleProject', cancleProject);
 router.get('/projects/:projectId', getProject);
 router.post('/projects/:projectId/createReport', createProjectReport);
 router.post('/projects/:projectId/addEmployee', addEmployee);

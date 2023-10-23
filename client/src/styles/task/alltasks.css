@@ -1,6 +1,7 @@
 .task-container{
-    margin-right: 1rem;
-    border-radius: 10px;
+        border-radius:20px;
+        margin-right:1rem;
+        margin-top:.5rem;
 }
 
 #task-container{
@@ -12,7 +13,12 @@
     box-shadow:0 6px 15px rgba(0, 0, 0, 0.041)
 }
 
-.task-container h4{
+.task-container h3{
+    display: grid;
+    background-color: rgb(243, 237, 237);
+    grid-template-columns: .9fr .1fr;
+}
+.task-container h3 > h4{
     text-align: left;
     margin-left: .4rem;
     display:flex;
@@ -21,25 +27,34 @@
     gap:.5rem;
     font-size:.9rem;
     color:#686767;
-}
-.projects-container{
-    margin: .3rem;
     
 }
-
-.more-info{
-    color:#000;
+.task-container h3 span{
+    font-size: .8rem;
+    font-weight: lighter;
+    display: grid;
+    place-items: center;
+    margin: 0;
+    padding: 0;
+    border-radius: 20px;
+    display: flex;
+    gap: .3rem;
+    align-items: center;
 }
-.taskInformation{
-    animation:anim .5s linear;
+.task-container h3 span span{
+    width: 25px;
+    height: 25px;
+    background-color: rgb(63, 66, 67);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #fff;
+}
+.projects-container{
+    margin: .3rem; 
 }
 
-.taskInformation p{
-    font-size:
-}
-
-
-.tasks-list{
+.tasks-list > div:nth-child(1){
     display:grid;
     font-size:.8rem;
     grid-template-columns:.3fr .2fr .2fr .2fr;
@@ -50,6 +65,8 @@
     transition: all .3s ease-in-out;
     border: 1px solid rgb(245, 242, 242);
     border-radius:10px;
+    position: relative;
+    
 }
 .tasks-list > div{
     display:flex;
@@ -61,11 +78,36 @@
     color:#302e2e;
 }
 .tasks-list > *{
+
     display:flex;
     gap:.4rem;
     place-items:center;
+
 }
 
-.tasks-list:hover{
-    background-color:#f8f4f4;
+
+.tasks-list > div:nth-child(1):hover,.active_task{
+    background-color:#474545;
+    transform: scale(.98);
 }
+
+.tasks-list div.active_task{
+    background-color:#474545;
+    transform: scale(.98); 
+    box-shadow: 0 7px 16px rgba(0, 0, 0, 0.041);
+}
+.tasks-list >div:nth-child(1).active_task>*{
+    color: #eee;
+}
+
+.tasks-list > div:nth-child(1):hover > *{
+    color: #eee;
+}
+
+.taskInformation{
+    position: relative;
+    width: 95%;
+    font-size: .8rem;
+    padding: 1rem 2rem;
+}
+

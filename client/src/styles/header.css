@@ -1,5 +1,4 @@
 .headerContainer{
-    backdrop-filter: blur(3px);
     z-index: 10;
     padding:0rem 1rem;
     position: fixed;
@@ -7,10 +6,12 @@
     left: 0;
 }
 
+
 .logo .icon{
     font-size: 1.5rem;
     display: grid;
     place-items: center;
+    color: #8ae2ff;
 }
 
 nav,.sign{
@@ -27,23 +28,21 @@ nav,.sign{
 
 .sign > *{
     border: 1px solid #000;
-    padding: .2rem 1rem;
+    padding: .4rem 1rem;
     text-decoration: none;
-    color: #000;
     cursor: pointer;
-    background-color: rgb(255, 255, 255);
-    color: #0f0f0f;
+    background-color: rgb(43, 159, 255);
+    color: #fdfdfd;
     border: 1px solid rgba(34, 33, 33, 0.096);
     border-radius: 4px;
-    text-transform: uppercase;
-    border:1px solid #fff;
+    border:2px solid transparent;
 }
 
 .sign > *:first-child{
     color: #ffffff;
-    background-color: transparent;
+    background-color: #333;
 }
 .sign > *:nth-child(2):hover{
     color: #ffffff;
-    background-color: transparent;
+    border:2px solid #fff;
 }

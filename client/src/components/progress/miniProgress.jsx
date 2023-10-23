@@ -2,8 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import "../../styles/miniprogress.css";
 
 export default function MiniProgress({ progress, animates, total }) {
+
   const progressRef = useRef(null);
-  const [degree, setDegree] = useState(0)
+  const [degree, setDegree] = useState(0);
 
   useEffect(() => {
     const progressElement = progressRef.current;
@@ -32,7 +33,7 @@ export default function MiniProgress({ progress, animates, total }) {
 
   return (
     <div className="mini-circular-progress" ref={progressRef}>
-      <sapn id="mini-number">{degree}%</sapn>
+      <sapn id="mini-number">{Math.floor(degree)}%</sapn>
     </div>
   );
 }

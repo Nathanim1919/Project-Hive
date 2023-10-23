@@ -11,6 +11,8 @@
   align-items: center;
   gap: 1rem;
 }
+
+
 .task-list-header div button {
   font-size: 0.8rem;
   width:40%;
@@ -19,7 +21,6 @@
   gap: 0.51rem;
   padding: 0.5rem;
 }
-
 
 .task-container {
   display: grid;
@@ -37,6 +38,52 @@
 
 .expanded #taskinformation {
   transform: translateX(0%);
+}
+
+.expanded #taskinformation .due-date > div:nth-child(1)
+{
+ display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.expanded #taskinformation .due-date > div:nth-child(1) .date-info{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.expanded #taskinformation .due-date > div:nth-child(1) form#update-task-duedate{
+  display: flex;
+  background-color: red;
+  width: 60%;
+
+}
+.expanded #taskinformation .due-date > div:nth-child(1) > .date-info > span{
+  font-size: .9rem;
+  background-color: rgb(223, 8, 8);
+  color: #fff;
+  padding: .3rem;
+  border-radius: 4px;
+}
+.expanded #taskinformation .due-date > div:nth-child(1) >.date-info >*{
+  margin: 0;
+}
+
+.expanded #taskinformation .due-date >div> div:nth-child(2){
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.479);
+  border: 1px solid transparent;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.expanded #taskinformation .due-date >div > div:nth-child(2):hover{
+  background-color: transparent;
+  border: 1px solid #33333311;
 }
 
 .collapsed #taskinformation {
@@ -59,6 +106,8 @@
 #taskinformation .EditEntities{
   max-height:90%;
   overflow:auto;
+  text-align: left;
+  padding: 1rem;
 }
 
 #taskinformation .titledec {
@@ -67,26 +116,32 @@
   padding: 1rem;
   padding-bottom: 0.4rem;
   border-bottom: 1px solid #eee;
-   overflow:hidden;
+  overflow:hidden;
   overflow-y: auto;
 }
+
 #taskinformation .titledec > div {
   display: flex;
 }
+
 #taskinformation .titledec > div > * {
   margin: 0;
 }
+
 #taskinformation .titledec > * {
   margin: 0;
 }
+
 #taskinformation .titledec h2 {
   font-size: 1rem;
   color: #4b4848;
   padding: 0;
 }
+
 .description p {
   font-size: 0.7rem;
 }
+
 #taskinformation .titledec > div {
   padding: 0.2rem 1rem;
   display: grid;
@@ -102,13 +157,33 @@
   resize: none;
 }
 
+.expanded #taskinformation .due-date  div.update-task-duedate{
+  width: 130%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.expanded #taskinformation .due-date  div.update-task-duedate > *{
+  padding: 0;
+}
+
+.expanded #taskinformation .due-date  div.update-task-duedate > input:nth-child(1){
+  padding: .3rem 1rem;
+}
+
+.expanded #taskinformation .due-date  div.update-task-duedate > input:nth-child(2){
+  padding: .3rem;
+  cursor: pointer;
+}
+
 #taskinformation .info-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgb(101, 185, 224);
-  padding: 0 1rem;
-  color:#fff;
+  background-color: rgb(231, 235, 236);
+  padding: 1rem;
+  color:#474545;
+  transition: all 1s ease-in-out;
 }
 
 #taskinformation .more-information {
@@ -341,7 +416,6 @@
   color: #ffffff;
   background-color: rgb(110, 207, 110);
 }
-
   
 @keyframes animates {
   

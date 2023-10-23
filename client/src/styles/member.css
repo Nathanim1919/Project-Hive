@@ -168,8 +168,23 @@
   background-color:transparent;
 }
 
+
+
 /* list of all employees style */
 
+
+.member-searchBar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.member-searchBar input{
+  padding: .4rem;
+  border: 1px solid #eee;
+  outline: none;
+  border-radius: 4px;
+}
 
 #all-empolloyee{
   position:absolute;

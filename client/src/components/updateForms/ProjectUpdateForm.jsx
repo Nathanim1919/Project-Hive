@@ -22,11 +22,12 @@ export default function ProjectUpdateForm({ setUpdateProjct, project }) {
   );
 
   const [status, setStatus] = useState(project.status);
+  const [costReason, setCostReason] = useState('');
   const [priority, setPriority] = useState(project.priority);
   const [progress, setProgress] = useState(project.progress);
   const [title, setTitle] = useState(project.title);
   const [description, setDescription] = useState(project.description);
-  const [internalCost, setBudget] = useState(project.budget);
+  const [internalCost, setBudget] = useState(0);
   const [dueDate, setDueDate] = useState(project.dueDate);
   const [employees, setEmployees] = useState([]);
 
@@ -45,10 +46,9 @@ export default function ProjectUpdateForm({ setUpdateProjct, project }) {
 
         setEmployees(!project.projectManager?projectManagers:
           projectManagers.filter(
-            (manager) => manager._id != project.projectManager._id
+            (manager) => manager._id !== project.projectManager._id
           )
         );
-        console.log(projectManagers);
       } catch (error) {
         console.log(error);
       }
@@ -65,13 +65,17 @@ export default function ProjectUpdateForm({ setUpdateProjct, project }) {
         {
           projectManager,
           status,
+          dueDate,
           priority,
           progress,
           title,
           description,
           internalCost,
+          costReason
         }
       );
+
+      console.log(response)
 
       setUpdateProjct(false);
     } catch (error) {
@@ -100,10 +104,15 @@ export default function ProjectUpdateForm({ setUpdateProjct, project }) {
             <input
               type="Date"
               id="dueDate"
-              // placeholder={dueDate}
-              onChange={(e) => setDueDate(e.target.value)}
+              value = {
+                dueDate
+              }
+              onChange = {
+                (e) => setDueDate(e.target.value)
+              }
             />
           </div>
+        </div>
           <div>
             <label htmlFor="budget">How Much money you take this week?</label>
             <input
@@ -113,15 +122,26 @@ export default function ProjectUpdateForm({ setUpdateProjct, project }) {
               onChange={(e) => setBudget(e.target.value)}
             />
           </div>
-        </div>
+          
 
+        <div>
+          <label htmlFor="description">internal Cost Reason</label>
+          <textarea
+            name="description"
+            id=""
+            cols="28"
+            rows="1"
+            placeholder='Cost reason...'
+            onChange={(e) => setCostReason(e.target.value)}
+          ></textarea>
+        </div>
         <div>
           <label htmlFor="description">Project Description</label>
           <textarea
             name="description"
             id=""
             cols="28"
-            rows="4"
+            rows="1"
             placeholder={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>

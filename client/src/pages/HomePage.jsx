@@ -7,6 +7,7 @@ import BotpressChatbot from "../components/bot";
 import "../styles/global.css";
 import { BiRun } from "react-icons/bi";
 import { motion } from "framer-motion";
+import Services from "../components/homepage/Services";
 
 export default function HomePage() {
   return (
@@ -29,6 +30,7 @@ export default function HomePage() {
         </div>
       </section>
       <BotpressChatbot />
+      < Services/>
     </div>
   );
 }

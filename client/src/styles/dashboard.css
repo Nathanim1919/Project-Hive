@@ -26,6 +26,7 @@ section.dashboard {
   background-color: white;
   padding: 0.3rem 1rem;
   border-radius: 20px;
+  position: relative;
 }
 .header-section .contents {
   display: flex;
@@ -69,10 +70,19 @@ section.dashboard {
   justify-content: space-between;
   align-items: center;
 }
-.sidbar .uppericon div{
+.sidbar .uppericon div {
   cursor: pointer;
+  background-color: transparent;
+  color: #141414;
 }
-.sidbar .uppericon div > span,.sidbar > .lowericon > div > span {
+.sidbar .uppericon div.active {
+  box-shadow: 0 6px 13px rgba(0, 0, 0, 0.466);
+  transition: all 0.3s ease-in-out;
+  background-color: rgb(0, 0, 0);
+  color: #fff;
+}
+.sidbar .uppericon div > span,
+.sidbar > .lowericon > div > span {
   padding: 0.2rem 0.4rem;
   background-color: rgb(255, 255, 255);
   color: #3a3838;
@@ -86,8 +96,9 @@ section.dashboard {
   border-radius: 4px;
   font-size: 0.9rem;
 }
-.sidbar .uppericon div:hover > span,.sidbar > .lowericon > div:hover > span {
-  transform: translateX(65px);
+.sidbar .uppericon div:hover > span,
+.sidbar > .lowericon > div:hover > span {
+  transform: translateX(45px);
   opacity: 1;
 }
 .sidbar > div {
@@ -105,13 +116,25 @@ section.dashboard {
   cursor: pointer;
 }
 
+.sidbar > .lowericon > div.active{
+  transition: all .3s ease-in-out;
+  background-color: rgb(3, 3, 3);
+  color: #fff;
+  box-shadow: 0 6px 13px rgba(0, 0, 0, 0.466);
+}
 
-.sidbar > div.lowericon > * a:hover {
-  background-color: transparent;
+.sidbar > .lowericon > div a{
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  padding: .5rem;
+  color: #000;
 }
-.sidbar > div.lowericon > *:hover {
-  color: #5671cc;
+.sidbar > .lowericon > div a:hover{
+  color: #817f7f;
+  background-color: #333;
 }
+
 .sidbar > div > * {
   font-size: 1rem;
   width: 40px;
@@ -154,7 +177,7 @@ section.dashboard {
 .main-section {
   width: 100%;
   display: grid;
-  grid-template-columns: 6% auto;
+  grid-template-columns: 4% auto;
 }
 
 .userdatas {
@@ -163,9 +186,9 @@ section.dashboard {
 }
 
 .userdatas .projects {
-  margin-top: 0.51rem;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
+  margin-top: 0.5rem;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
   padding: 1.5rem;
   position: relative;
   background-color: rgb(255, 255, 255);
@@ -229,6 +252,31 @@ section.dashboard {
   /* color:#696666; */
 }
 
+
+.feedback-date{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.feedback-date span{
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: rgb(121, 121, 233);
+  color: #fff;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+}
+
+.feedback-date span:hover{
+  background-color: blue;
+}
+
+
 @keyframes animate {
   0% {
     opacity: 0;
@@ -242,4 +290,35 @@ section.dashboard {
 
 .element {
   animation: animate 1s ease-in-out;
+}
+
+.search
+
+
+/* searched projects style */
+.serachedProjects {
+  position: absolute;
+  background-color: white;
+  z-index: 20;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 230px;
+  top: 2.5rem;
+  left: 0;
+  box-shadow: 0 6px 13px rgba(0, 0, 0, 0.123);
+  padding: 1rem;
+}
+
+.serachedProjects .project {
+  display: flex;
+  font-size: 0.7rem;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid #eeeeee00;
+}
+
+.serachedProjects .project:hover {
+  background-color: #eafcdd;
+  border: 1px solid #eee;
 }

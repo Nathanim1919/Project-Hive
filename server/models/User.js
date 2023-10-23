@@ -39,10 +39,17 @@ const userSchema = new mongoose.Schema({
         required: true
     },
 
+    account: {
+        type: String,
+        enum: ['active', 'not active'],
+        default: 'active'
+    },
+
     employmentDate: {
         type: Date,
         required: true
     },
+
     code: {
         type: String,
         required: true
@@ -59,17 +66,10 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Project'
     }],
-    createdProjects: [{
+
+    notifications: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Project'
-    }],
-    createdEvents: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Event'
-    }],
-    notifications:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:'Notification'
+        ref: 'Notification'
     }]
 });
 

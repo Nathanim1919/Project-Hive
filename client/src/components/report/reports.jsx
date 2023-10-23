@@ -4,6 +4,14 @@ import axios from "axios";
 import "../../styles/reportList.css";
 import {changeDate} from '../../functions'
 import ReportingPage from "../../pages/ReportingAnalyticsPage";
+import {
+  AiOutlineProject,
+} from "react-icons/ai";
+import {
+  MdTask
+} from 'react-icons/md';
+
+
 
 const ReportList = () => {
   const [reports, setReports] = useState([]);
@@ -27,7 +35,13 @@ const ReportList = () => {
 
   return (
     <div className="reportList">
-      <h4>Project Completion Reports</h4>
+      <div className="report-header">
+      <h5>Project Reports</h5>
+      <div>
+        <span>{reports.length}</span>
+        < AiOutlineProject/>
+      </div>
+      </div>
       {showDetails && (
         <ReportingPage report={proDetail} setShowDetail={setShowDetail} />
       )}
@@ -40,8 +54,13 @@ const ReportList = () => {
               setShowDetail(true);
             }}
           >
-            <h3>{report.project.title.slice(0, 25) + ".."}</h3>
-            <p>{changeDate(report.reportSendat)}</p>
+            <div className="report-icon">
+              <div>
+                < MdTask/>
+              </div>
+            <h3><span>({report.project.subTitle})</span>{report.project.title.slice(0, 13) + ".."}</h3>
+            </div>
+            {/* <p className="date">{changeDate(report.reportSendat)}</p> */}
           </div>
         ))}
     </div>

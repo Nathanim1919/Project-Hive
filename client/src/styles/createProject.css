@@ -4,24 +4,23 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: rgba(235, 230, 230, 0.438);
   position: fixed;
   z-index: 13;
   top: 0;
   left: 0;
   width: 100vw;
   backdrop-filter:blur(3px);
- animation: animate .1s linear;
+  background-color: rgba(0, 0, 0, 0.76);
 }
 
-
 .createProject form {
+  animation: animate .2s linear;
   display: grid;
   place-items: center;
-  width: 60%;
+  width: 70vw;
   gap: 1.2rem;
-  height: 70%;
-  background-color: #fff;
+  height: 75%;
+  background-color: #f7f3f3;
   box-shadow:0 9px 21px rgba(0, 0, 0, 0.089);
   border-radius:10px;
 }
@@ -29,7 +28,7 @@
 .createProject form input {
   background-color: #fffdfd;
   border: none;
-  padding: 0.7rem;
+  padding: 0.7rem .4rem;
   border-radius: 0;
   outline: none;
   border: 1px solid #eee;
@@ -99,7 +98,7 @@
   background-color: rgb(34, 151, 230);
   display:grid;
   place-items:center;
-
+  
 }
 
 .createProject .closeBtnicon{
@@ -108,16 +107,71 @@
   right: 2rem;
   cursor: pointer;
   font-size: 1.5rem;
-  
+  color:#fff;
 }
+
+
+div#pro-budget-and-date{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.pro-budget-and-date > div{
+  flex: 1;
+}
+
+
+.setProjectDiv{
+  position: relative;
+}
+
+.setProjectDiv > span{
+    font-size: .8rem;
+    background-color: rgb(151, 180, 132);
+    max-width: 7rem;
+    padding:.3rem .5rem;
+    color: #eee;
+    cursor: pointer;
+}
+
+.list-of-managers{
+  background-color: rgb(255, 255, 255);
+  color: #383838;
+  position: absolute;
+  left: 9rem;
+  bottom: 1rem;
+  padding: 0.3rem;
+  border: 1px solid #969393;
+ 
+}
+
+.list-of-managers > div{
+  padding: .1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.list-of-managers > div:hover{
+  cursor: pointer;
+  background-color: #eee;
+}
+
+.list-of-managers h2{
+  font-size: .7rem;
+}
+
+
+
 
 @keyframes animate{
   0%{
-    transform:translateY(-30%) scale(0.5);
+    transform: scale(0.4);
     opacity:0;
+
   }
   100%{
-    transform:translateY(0%) scale(1);
+    transform: scale(1);
     opacity:1;
+
   }
 }
