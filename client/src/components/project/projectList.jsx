@@ -75,7 +75,7 @@ export default function ProjectList({ projects, filterProjects }) {
                   </div>
                   <div className="pro-title">
                     <h1>{project.title.slice(0, 20)}</h1>
-                    <h2>{project.subTitle.slice(0, 20)}</h2>
+                    <h2>{project.subTitle.slice(0, 20)}...</h2>
                   </div>
                   <LinearProgress project={project} />
                   <div className="footer-detail">

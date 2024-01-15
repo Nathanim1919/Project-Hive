@@ -101,7 +101,7 @@ export default function DashboardPage() {
       <header className="header-section">
         <div className="contents">
           <RiBarChartLine />
-          <h2>Blue-Nile</h2>
+          <h2>Project-Hive</h2>
           <div className="search">
             <input
               type="text"

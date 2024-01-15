@@ -23,9 +23,9 @@
   animation: animate 0.3s linear;
   flex-direction: column;
   border-radius: 30px;
-  padding: 0.9rem 1rem;
+  padding: 0.9rem 1.5rem;
   width: 190px;
-  height: 195px;
+  height: 225px;
   transition: all 0.3s ease-in-out;
   background-color: rgb(238, 238, 237);
   border: 2px solid rgba(0, 0, 255, 0);

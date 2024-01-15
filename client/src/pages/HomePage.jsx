@@ -29,7 +29,7 @@ export default function HomePage() {
           </NavLink>
         </div>
       </section>
-      <BotpressChatbot />
+      {/* <BotpressChatbot /> */}
       < Services/>
     </div>
   );

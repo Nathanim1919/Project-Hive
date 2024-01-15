@@ -10,23 +10,27 @@
   left: 0;
   width: 100vw;
   backdrop-filter:blur(3px);
-  background-color: rgba(0, 0, 0, 0.76);
+  background-color: rgba(0, 0, 0, 0.256);
 }
 
 .createProject form {
   animation: animate .2s linear;
   display: grid;
   place-items: center;
-  width: 70vw;
+  width: 60vw;
   gap: 1.2rem;
-  height: 75%;
-  background-color: #f7f3f3;
+  height: 100%;
+  background-color: #fff;
   box-shadow:0 9px 21px rgba(0, 0, 0, 0.089);
   border-radius:10px;
 }
 
+.createProject form > *{
+  margin: 0;
+}
+
 .createProject form input {
-  background-color: #fffdfd;
+  background-color: #f3ebeb;
   border: none;
   padding: 0.7rem .4rem;
   border-radius: 0;
@@ -46,12 +50,9 @@
   color: #969393;
 }
 .createProject form .upperForms {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   width: 100%;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
   gap: 2.1rem;
   flex-wrap: wrap;
 }
@@ -113,7 +114,7 @@
 
 div#pro-budget-and-date{
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
 }
 

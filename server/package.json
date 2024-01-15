@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/Nathanim1919/Project-Hive#readme",
   "dependencies": {
-    "bcrypt": "^5.1.0",
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
