@@ -20,6 +20,8 @@ import CompletedProjects from "../components/project/CompletedProjects";
 import {
   useNavigate
 } from "react-router-dom";
+import Loading from "../components/Loading/Loading";
+
 
 export default function DashboardPage() {
 
@@ -35,6 +37,7 @@ export default function DashboardPage() {
   const [openForm, setOpenform] = useState(false);
   const [searchedProjects, setSearchedProjects] = useState([]);
   const [searching, setSearching] = useState(false);
+  const [search, setSearch] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -58,7 +61,7 @@ export default function DashboardPage() {
 
     getUser();
   }, [id]);
-  
+
 
   useEffect(() => {
     const getProjects = async () => {
@@ -87,15 +90,13 @@ export default function DashboardPage() {
   }, [id, openForm, activeUser]);
 
 
+  const searchProjects = () => {
+    const filteredProjects = projects.filter((project) => project.subTitle.startsWith(search))
+    setSearchedProjects(filteredProjects);
+  };
 
-  const searchProjects  = (e) => {
-    setSearching(true);
-    setSearchedProjects(
-      projects.filter((project) => project.title.startsWith(e))
-    );
-  }
 
-  
+
   return (
     <section className="dashboard">
       <header className="header-section">
@@ -106,24 +107,29 @@ export default function DashboardPage() {
             <input
               type="text"
               placeholder="Search"
-              onChange={(e) => searchProjects(e.target.value)}
+              onChange={(e) =>{ setSearch(e.target.value);searchProjects();setSearching(true)}}
             />
             <BiSearch />
 
-            {searching &&
-              searchedProjects.length > 0 && (
-                <div className="serachedProjects">
-                  {searchedProjects &&
-                    searchedProjects.map((project) => (
-                      <NavLink to={`/user/${id}/projects/${project._id}`}>
+            {search && (
+              <div className="serachedProjects">
+                {searchedProjects.length > 0 ? (
+                  searchedProjects.map((project) => (
+                    <NavLink to={`/user/${id}/projects/${project._id}`} key={project._id}>
                       <div className="project">
-                        <p>{project.title.slice(0, 20) + ".."}</p>
-                        <p>{project.status}</p>
+                        <AiOutlineProject />
+                        <p className="title">{project.subTitle.slice(0, 10) + ".."}</p>
+                        <p className="status">{project.status}</p>
+                        <p className="progress">{project.progress}%</p>
                       </div>
-                      </NavLink>
-                    ))}
-                </div>
-              )}
+                    </NavLink>
+                  ))
+                ) : (
+                  <Loading />
+                )}
+              </div>
+            )}
+
           </div>
         </div>
 
@@ -141,7 +147,7 @@ export default function DashboardPage() {
         <div className="sidbar">
           <div className="uppericon">
             <div
-              className= {openDashBoardPage?"homepage active":"homepage"}
+              className={openDashBoardPage ? "homepage active" : "homepage"}
               onClick={() => {
                 setOpenDashBoardPage(true);
                 setOpenProfilePage(false);
@@ -155,9 +161,9 @@ export default function DashboardPage() {
             </div>
             {activeUser.position !== "Project Executive" && (
               <div
-                 className = {
-                   openTaskPage ? "project active" : "project"
-                 }
+                className={
+                  openTaskPage ? "project active" : "project"
+                }
                 onClick={() => {
                   setOpenTaskPage(true);
                   setOpenDashBoardPage(false);
@@ -171,9 +177,9 @@ export default function DashboardPage() {
               </div>
             )}
             <div
-               className = {
-                 openannouncementPage ? "event active" : "event"
-               }
+              className={
+                openannouncementPage ? "event active" : "event"
+              }
               onClick={() => {
                 setOpenannouncementPage(true);
                 setOpenTaskPage(false);
@@ -186,41 +192,41 @@ export default function DashboardPage() {
               <span>Announcement</span>
             </div>
             {
-              activeUser.position === "Project Executive" && 
-              <div div onClick = {
+              activeUser.position === "Project Executive" &&
+              <div div onClick={
                 () => {
-                      setOpencompletedProjectsPage(true);
-                      setOpenannouncementPage(false);
-                      setOpenTaskPage(false);
-                      setOpenDashBoardPage(false);
-                      setOpenProfilePage(false);
-                      }
+                  setOpencompletedProjectsPage(true);
+                  setOpenannouncementPage(false);
+                  setOpenTaskPage(false);
+                  setOpenDashBoardPage(false);
+                  setOpenProfilePage(false);
+                }
               }
-              className = {
-                opencompletedProjectsPage ? "event active" : "event"
-              } >
-              <BiTask />
-              < span > Approved </span>
-            </div>}
+                className={
+                  opencompletedProjectsPage ? "event active" : "event"
+                } >
+                <BiTask />
+                < span > Approved </span>
+              </div>}
           </div>
 
           <div className="lowericon">
-            <div className = {
+            <div className={
               openProfilePage ? "active gotoprofile" : "gotoprofile"
-            } 
-                onClick={() => {
-                  setOpenDashBoardPage(false);
-                  setOpenProfilePage(true);
-                  setOpenTaskPage(false);
-                  setOpenannouncementPage(false);
-                  setOpencompletedProjectsPage(false);
-                }}
-              >
-                <CgProfile />
-              
+            }
+              onClick={() => {
+                setOpenDashBoardPage(false);
+                setOpenProfilePage(true);
+                setOpenTaskPage(false);
+                setOpenannouncementPage(false);
+                setOpencompletedProjectsPage(false);
+              }}
+            >
+              <CgProfile />
+
               <span>Profile</span>
             </div>
-            <div onClick =  {()=>navigate('/')} className="logout">
+            <div onClick={() => navigate('/')} className="logout">
               <NavLink>
                 <AiOutlineLogout />
               </NavLink>
@@ -242,7 +248,7 @@ export default function DashboardPage() {
         )}
 
         {
-          opencompletedProjectsPage && < CompletedProjects opencompletedProjectsPage  = {opencompletedProjectsPage}/>
+          opencompletedProjectsPage && < CompletedProjects opencompletedProjectsPage={opencompletedProjectsPage} />
         }
         {openProfilePage && <ProfilePage />}
       </main>

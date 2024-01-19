@@ -135,14 +135,14 @@ const ProjectForm = ({ setOpenform }) => {
           <label htmlFor="description">Project Description</label>
           <textarea
             id="description"
-            rows={5}
+            rows={3}
             placeholder="Description Of the Project"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
         <div className="setProjectDiv">
-          <span onClick={() => setOpenManager(true)}>set projectManager</span>
+          <span onClick={() => setOpenManager(true)}>set projectManager  <span>{projectManager?"Selected":"Not Selected"}</span></span>
 
           {openManager && <div className="list-of-managers">
             {managers.map(manManager =>(
