@@ -1,6 +1,3 @@
-Certainly, here's a detailed description you can use for your project management web app's README file:
-
----
 
 # Project Management Web App for Software Development Companies
 
