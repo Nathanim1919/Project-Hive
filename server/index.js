@@ -35,7 +35,7 @@ app.use(cors({
     allowedHeaders: ['Content-Type'],
 }));
 
-mongoose.connect('mongodb://127.0.0.1:27017/projecthive', {
+mongoose.connect(process.env.MONGO_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })

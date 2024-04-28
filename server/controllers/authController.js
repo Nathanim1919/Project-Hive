@@ -36,6 +36,8 @@ module.exports.registerUser = asyncHandler(async (req, res) => {
     employeeCode,
   } = emp;
 
+
+
   try {
     if (verifyEmail) {
       return res.status(403).json({
