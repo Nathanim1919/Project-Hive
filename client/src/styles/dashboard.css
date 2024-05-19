@@ -8,6 +8,7 @@ section.dashboard {
   display: grid;
   grid-template-rows: 7% auto;
   height: 100vh;
+
 }
 
 .header-section {

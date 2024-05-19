@@ -16,7 +16,7 @@ export default function ProjectList({ projects, filterProjects }) {
       <div className="project-list">
         {projects &&
           (projects.reverse()).map((project) => (
-            <NavLink to={`/user/${id}/projects/${project._id}`}>
+            <NavLink key={project._id} to={`/user/${id}/projects/${project._id}`}>
               {(project.status === filterProjects || filterProjects === "") && (
                 <div
                   className={
