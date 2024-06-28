@@ -11,8 +11,12 @@ import Loading from "../Loading/Loading";
 import FeedBackForm from "../admin/FeedBackForm";
 import { AiFillEdit } from "react-icons/ai";
 
-
-export default function Dashboarddata({ activeUser, projects,openForm, setOpenform }) {
+export default function Dashboarddata({
+  activeUser,
+  projects,
+  openForm,
+  setOpenform,
+}) {
   const [filterProjects, setFilterProjects] = useState("");
   const [notificationBar, setNotificationBar] = useState(false);
   const [sendFeedBack, setSendFeedBack] = useState(false);
@@ -56,11 +60,11 @@ export default function Dashboarddata({ activeUser, projects,openForm, setOpenfo
             <h3>Projects</h3>
 
             <div className="feedback-date">
-            <h4>
-              {getCurrentDateFormat()}{" "}
-             
-            </h4>
-            <span onClick = {() => setSendFeedBack(true)} > < AiFillEdit/> </span>
+              <h4>{getCurrentDateFormat()} </h4>
+              <span onClick={() => setSendFeedBack(true)}>
+                {" "}
+                <AiFillEdit />{" "}
+              </span>
             </div>
           </div>
 
@@ -172,14 +176,20 @@ export default function Dashboarddata({ activeUser, projects,openForm, setOpenfo
             )}
           </div>
         </div>
-        {projects ? (
+        {projects === null ? (
+          <Loading />
+        ) : projects && projects.length > 0 ? (
           <ProjectList filterProjects={filterProjects} projects={projects} />
         ) : (
-          <Loading />
+          <div>No project</div>
         )}
       </div>
       {activeUser.position !== "Project Executive" ? (
-        <Notification setNotificationBar={setNotificationBar} notificationBar ={notificationBar} id={id} />
+        <Notification
+          setNotificationBar={setNotificationBar}
+          notificationBar={notificationBar}
+          id={id}
+        />
       ) : (
         <ReportList setNotificationBar={setNotificationBar} id={id} />
       )}

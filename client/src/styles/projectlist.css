@@ -6,6 +6,8 @@
   flex-wrap: wrap;
   gap: 1rem;
   padding: 1rem;
+  overflow-y: auto;
+  height: 68vh;
 }
 
 .project-list a {

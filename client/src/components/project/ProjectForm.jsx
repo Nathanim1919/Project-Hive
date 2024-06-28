@@ -6,6 +6,8 @@ import Error from "../ShowError/error";
 import { BsCheck2Square } from "react-icons/bs";
 import { BiCheckbox } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
+import { ImSpinner } from "react-icons/im";
+
 
 const ProjectForm = ({ setOpenform }) => {
   const [title, setTitle] = useState("");
@@ -18,22 +20,25 @@ const ProjectForm = ({ setOpenform }) => {
   const [budget, setBudget] = useState(0);
   const [priority, setPriority] = useState("");
   const { id } = useParams();
+  const [loading, setLoading] = useState(false);
 
-
-  useEffect(()=>{
+  useEffect(() => {
     const getProjectManagers = async () => {
       try {
-        const users = await axios.get('http://localhost:5000/user');
-        setManageres(users.data.user.filter(user => user.position === 'Project Manager'));
+        const users = await axios.get("http://localhost:5000/user");
+        setManageres(
+          users.data.user.filter((user) => user.position === "Project Manager")
+        );
       } catch (error) {
         console.error(error);
       }
-    }
+    };
     getProjectManagers();
-  },[])
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     // Check if the due date is less than the start date
     const start = new Date(); // Use current date/time as the start date
@@ -58,16 +63,15 @@ const ProjectForm = ({ setOpenform }) => {
           dueDate,
           budget,
           priority,
-          projectManager
+          projectManager,
         };
 
         // Send the project data to the server
-        const response = await axios.post(
+        setOpenform(false);
+       await axios.post(
           `http://localhost:5000/user/${id}/projects/createProject`,
           projectData
         );
-
-
         // Reset the form after successful project creation
         setTitle("");
         setSubTitle("");
@@ -75,7 +79,8 @@ const ProjectForm = ({ setOpenform }) => {
         setDueDate("");
         setPriority("");
         setBudget("");
-        setOpenform(false);
+        
+        setLoading(false);
       } catch (error) {
         console.error("Error creating project:", error);
       }
@@ -88,7 +93,7 @@ const ProjectForm = ({ setOpenform }) => {
         <AiOutlineClose />
       </div>
       <form onSubmit={handleSubmit}>
-      <h1>create New Project</h1>
+        <h1>create New Project</h1>
         <div className="upperForms">
           <div>
             <label htmlFor="name">project Title</label>
@@ -142,20 +147,26 @@ const ProjectForm = ({ setOpenform }) => {
           />
         </div>
         <div className="setProjectDiv">
-          <span onClick={() => setOpenManager(true)}>set projectManager  <span>{projectManager?"Selected":"Not Selected"}</span></span>
+          <span onClick={() => setOpenManager(true)}>
+            set projectManager{" "}
+            <span>{projectManager ? "Selected" : "Not Selected"}</span>
+          </span>
 
-          {openManager && <div className="list-of-managers">
-            {managers.map(manManager =>(
-              <div div onClick = {
-                () => {
-                  setProjectManager(manManager._id);
-                  setOpenManager(false)
-                }
-              } >
-                <h2>{manManager.name}</h2>
-              </div>
-            ))}
-          </div>}
+          {openManager && (
+            <div className="list-of-managers">
+              {managers.map((manManager) => (
+                <div
+                  div
+                  onClick={() => {
+                    setProjectManager(manManager._id);
+                    setOpenManager(false);
+                  }}
+                >
+                  <h2>{manManager.name}</h2>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         <div className="moreinfo">
           <label className="priorityHead">set priority</label>
@@ -183,7 +194,13 @@ const ProjectForm = ({ setOpenform }) => {
             </div>
           </div>
         </div>
-        <button type="submit">Create Project</button>
+        <button type="submit" disabled={loading} style={{
+          cursor: loading ? "not-allowed" : "pointer",
+
+        }}>
+          {loading && <ImSpinner className="spinner" />}
+          {loading?"Creating new Project....":"Create Project"}
+        </button>
       </form>
     </div>
   );

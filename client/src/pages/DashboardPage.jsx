@@ -49,45 +49,40 @@ export default function DashboardPage() {
 
 
   useEffect(() => {
-    const getUser = async () => {
+    const fetchData = async () => {
       const token = localStorage.getItem("token");
+      // Fetch user
       try {
-        const response = await axios.get(`http://localhost:5000/user/${id}`);
-        setActiveUser(response.data.user);
-      } catch (error) {
-        console.error("Error getting user:", error);
-      }
-    };
-
-    getUser();
-  }, [id]);
-
-
-  useEffect(() => {
-    const getProjects = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/user/${id}/projects`
-        );
-
-        if (activeUser && activeUser.position !== "Project Executive") {
-          setProjects(
-            response.data.projects.filter((project) =>
-              project.team.some((member) => member._id === activeUser._id)
-            )
-          );
+        const userResponse = await axios.get(`http://localhost:5000/user/${id}`);
+        setActiveUser(userResponse.data.user);
+        // Based on the user's position, decide whether to fetch projects
+        const projectsResponse = await axios.get(`http://localhost:5000/user/${id}/projects`);
+        if (userResponse.data.user && userResponse.data.user.position !== "Project Executive") {
+          try {
+            const filteredProjects = projectsResponse.data.projects.filter((project) =>
+              project.team.some((member) => member._id === userResponse.data.user._id)
+            );
+            setProjects(filteredProjects);
+          } catch (error) {
+            console.error("Error fetching projects:", error);
+            setErrorMessage("Unable to fetch projects, please try again later.");
+          }
         } else {
-          setProjects(response.data.projects);
+          // Fetch all projects if the user is a Project Executive
+          try {
+            setProjects(projectsResponse.data.projects);
+          } catch (error) {
+            console.error("Error fetching projects:", error);
+            setErrorMessage("Unable to fetch projects, please try again later.");
+          }
         }
-        setErrorMessage("");
       } catch (error) {
-        setErrorMessage("Unable to fetch projects, please try again later.");
+        console.error("Error fetching user:", error);
       }
     };
-    if (activeUser) {
-      getProjects();
-    }
-  }, [id, openForm, activeUser]);
+  
+    fetchData();
+  }, [id, openForm]); // Depend on id and openForm
 
 
   const searchProjects = () => {

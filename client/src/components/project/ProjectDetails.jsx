@@ -25,13 +25,13 @@ const ProjectDetailPage = () => {
         const response = await axios.get(
           `http://localhost:5000/user/${id}/projects/${projectId}`
         );
-        setProject(response.data.project); // Assuming the response data contains a 'project' property
+        setProject(response?.data?.project); // Assuming the response data contains a 'project' property
       } catch (error) {
         console.log(error);
       }
     };
     getProject();
-  }, [project]); // Include 'projectId' as a dependency
+  }, [projectId]); // Include 'projectId' as a dependency
 
   if (!project) {
     return <Loading />;
